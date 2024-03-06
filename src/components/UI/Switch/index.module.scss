@@ -1,0 +1,83 @@
+@use '../../../styles/global' as *;
+
+.switch {
+    width: 50px;
+    height: 23px;
+    background: white;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    border: 0;
+    border-radius: 100px;
+    
+    transition: all .2s;
+    user-select: none;
+
+    @include addCursorElement($device-M);
+
+    &--checked {
+        background: #2D283E;
+
+        .switch-inner-checked {
+            transform: translateX(0);
+        }
+
+        .switch-inner-unchecked {
+            transform: translateX(100%);
+        }
+    }
+
+
+    &--checked .switch-handle {
+        inset-inline-start: 28px;
+    }
+
+    &--checked .switch-handle::before {
+        background-color: white;
+    }
+
+}
+
+.switch-handle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    transition: all .5s ease-in-out;
+    inset-inline-start: 3px;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        inset-inline-end: 0;
+        bottom: 0;
+        inset-inline-start: 0;
+        background-color: #2D283E;
+        border-radius: 9px;
+        box-shadow: 0px 2px 4px 0px rgba(0, 35, 11, 0.2);
+        transition: all .4s ease-in-out;
+        content: "";
+    }
+}
+
+
+.switch-inner {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 100px;
+}
+
+.switch-inner-checked {
+    transform: translateX(-100%);
+    transition: transform .3s ease-in-out;
+    pointer-events: none;
+}
+
+.switch-inner-unchecked {
+    transform: translateX(0);
+    transition: transform .3s ease-in-out;
+    pointer-events: none;
+}

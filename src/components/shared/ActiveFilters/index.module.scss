@@ -1,0 +1,44 @@
+@use '../../../styles/global' as *;
+.aplly-filters {
+    @include flex($justify: flex-start, $gap: .2em);
+    overflow-x: scroll;
+    margin-bottom: 1em;
+
+    @include mediaMin($device-M) {
+        display: none;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    &__item {
+        padding: 0.43em 0.72em;
+
+        @include flex($gap: .36em);
+        border-radius: 562px;
+        @include filterNames;
+
+    }
+
+    &__text {
+        display: block;
+
+        width: max-content;
+        min-width: 38px;
+        color: white;
+        text-align: center;
+        font-size: .79rem;
+        font-weight: 600;
+        line-height: normal;
+        transition: all .3s;
+    }
+
+    &__btn {
+        border: none;
+        width: 16px;
+        height: 16px;
+        background: url('../../../assets/close.svg');
+        background-size: cover;
+    }
+}

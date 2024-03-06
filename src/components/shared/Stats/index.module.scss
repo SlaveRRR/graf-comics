@@ -1,0 +1,13 @@
+@use '../../../styles/global' as *;
+.stats {
+    @include flex($gap:3.125em);
+
+    &__name,
+    &__count {
+        text-align: center;
+        color: $black-color;
+        font-size: .86rem;
+        font-weight: 600;
+        line-height: normal;
+    }
+}

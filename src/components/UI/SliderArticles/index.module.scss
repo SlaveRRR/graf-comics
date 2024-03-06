@@ -1,0 +1,73 @@
+@use '../../../styles/global' as *;
+
+.slider{
+    width: clamp(20.714rem, 23.313vw + 15.386rem, 47.357rem);
+    margin:  0 auto;
+}
+
+.slide {
+    padding: clamp(1.071em, 1.063vw + 0.829em, 2.286em) clamp(1.214rem, 1.375vw + 0.9rem, 2.786rem) clamp(1.071em, 1.313vw + 0.771em, 2.571em);
+
+    @include flex($gap:2em,$justify:space-between);
+
+    display: flex !important;
+   
+   
+    border-radius: 10px;
+    background: #FFFFFF;
+
+    // @include mediaMin($device-M){
+    //     padding: 2.28em 2.7em 2.5em;
+    // }
+
+    &__text-container{
+        align-self: flex-start;
+    }
+
+    &__text {
+        font-size: clamp(0.72rem, 0.875vw + 0.514rem, 1.714rem);
+        font-weight: 500;
+        line-height: 12px;
+        margin-bottom: 4.8em;
+    }
+
+    &__link {
+        width: clamp(7.143rem, 9.375vw + 5rem, 17.857rem);
+        text-align: center;
+        display: inline-block;
+        padding: .7em .5em;
+        border: 0.89px solid #7A5AF8;
+        color: $primary-color;
+        border-radius: 562px;
+        text-decoration: none;
+        font-size: clamp(0.571rem, 0.75vw + 0.4rem, 1.429rem);
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    &__img{
+        border-radius: 10px;
+        min-height: 81px;
+        width: 130px;
+        max-width: 100%;
+        background: #E8E8E8;
+
+    }
+}
+
+
+  
+.my-swiper{
+    --swiper-pagination-color: #7A5AF8;
+    --swiper-pagination-bullet-inactive-color: #DFDFDF;
+    --swiper-pagination-bullet-inactive-opacity: 1;
+    --swiper-pagination-bullet-size: 6px;
+    --swiper-pagination-bullet-horizontal-gap: 3px;
+    overflow: visible !important;
+    padding-bottom: 50px !important;
+    
+    @include mediaMin($device-M){
+        --swiper-pagination-bullet-size: 12px;
+        --swiper-pagination-bullet-horizontal-gap: 6px;
+    }
+}

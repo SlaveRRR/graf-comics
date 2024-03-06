@@ -1,0 +1,56 @@
+@use '../../../styles/global' as *;
+
+.footer-container {
+    padding-top: 2em;
+    padding-bottom: 1.8em;
+}
+
+.icons {
+    @include flex($gap: 1em);
+    margin-bottom: 1.5em;
+}
+
+.links {
+    @include flex($wrap: wrap);
+    row-gap: .4em;
+    column-gap: 1.27em;
+    margin-bottom: .8em;
+
+    &__item {
+        position: relative;
+        text-decoration: none;
+        color: $main-color;
+        font-size: clamp(0.714rem, 0.375vw + 0.629rem, 1.143rem);
+        font-weight: 500;
+        line-height: 12px;
+    }
+
+    &__mail {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    &__logo {
+        width: max-content;
+        margin: 0 auto;
+        color: #2D283E;
+        font-size: 1.22rem;
+        font-weight: 700;
+        line-height: 21px;
+        
+
+
+    }
+}
+
+.dot {
+    position: absolute;
+    top: 50%;
+    right: -9px;
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    border-radius: 2px;
+    background: #2D283E;
+}

@@ -1,0 +1,37 @@
+@use '../../../styles/global' as *;
+
+.chapter {
+    width: 100%;
+    padding: .5em;
+    @include flex($justify: flex-start);
+    border-radius: 10px;
+    background: #FAFAFA;
+
+    &__views-icon {
+        margin-right: .7em;
+    }
+
+    &__like-icon {
+        margin-right: .2em;
+    }
+
+    &__text-container {
+        margin-right: 10em;
+    }
+
+    &__time-code {
+        color: #2D283E;
+        font-size: .72rem;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    &__text-chapter {
+        color: #2D283E;
+        font-size: .86rem;
+        font-weight: 500;
+        line-height: normal;
+
+    }
+
+}

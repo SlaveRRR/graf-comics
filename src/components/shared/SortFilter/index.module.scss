@@ -1,0 +1,71 @@
+@use '../../../styles/global' as *;
+
+.sort-filter {
+    &__arrow-icon {
+        transition: transform .8s linear;
+
+        &--active {
+            transform: rotateX(180deg);
+        }
+    }
+
+    &__container {
+
+        @include flex($dir: column);
+
+    }
+
+    &__header {
+        border: none;
+        background-color: transparent;
+        margin: 0 auto 1.4em;
+        width: max-content;
+        color: #000;
+        font-size: .86rem;
+        font-weight: 600;
+        line-height: normal;
+        @include mediaMin($device-M){
+            margin-left: 0;
+        }
+    }
+
+    &__content {
+        @include flex($dir: column, $align: flex-start, $gap: 5px);
+    }
+
+    &__sort {
+        @include flex($gap: .5em);
+        color: #000;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: normal;
+
+        &:has(input:checked) {
+            &>span {
+                background: radial-gradient(6px 6px at center, #7A5AF8 70%, white 30%);
+            }
+        }
+
+        &:has(input:active) {
+            &>span {
+                box-shadow:  0px 0px 0px 4px #E4DEFE;
+            }
+        }
+    }
+
+    &__radio-btn {
+        display: inline-block;
+        min-width: 16px;
+        height: 16px;
+        border: 1px solid $main-color;
+        border-radius: 100px;
+        transition: all .4s;
+    }
+
+
+
+    &__sort-inp {
+        display: none;
+    }
+
+}

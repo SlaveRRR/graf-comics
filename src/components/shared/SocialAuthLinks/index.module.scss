@@ -1,0 +1,16 @@
+@use '../../../styles/global' as *;
+
+.social-links{
+    @include flex($gap:1.86em);
+
+    @include mediaMin($size:$device-XM){
+        gap: 2.2em;
+    }
+
+    &__item{
+        @include mediaMin($size:$device-XM){
+            width: 42px;
+            height: 40px;
+        }
+    }
+}

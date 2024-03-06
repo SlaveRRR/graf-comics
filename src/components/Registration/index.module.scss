@@ -1,0 +1,225 @@
+@use '../../styles/global' as *;
+
+.registration {
+    background:white;
+    &__container {
+        @include flex($dir: column);
+        padding-top: 1em;
+    }
+
+    &__head {
+        font-size: clamp(1.43rem, .5rem + 3.8vw, 3.72rem);
+        font-weight: 600;
+        line-height: 24px;
+        text-align: center;
+        margin-bottom: .3em;
+
+        @include mediaMin($size: $device-XM) {
+            line-height: 59px;
+
+        }
+    }
+    &__backLink {
+        align-self: flex-start;
+        margin-bottom: 2em;
+    }
+
+    &__logo {
+        margin-bottom: 1em;
+
+        @include mediaMin($size: $device-XM) {
+            display: none;
+        }
+    }
+
+    &__with-social {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 17px;
+        letter-spacing: 0em;
+        margin-bottom: 1em;
+
+        @include mediaMin($size: $device-XM) {
+            font-size: 1.72rem;
+            font-weight: 500;
+            line-height: 29px;
+            margin-bottom: .7em;
+        }
+
+
+
+    }
+
+    &__social {
+        margin-bottom: .86em;
+
+        @include mediaMin($size: $device-XM) {
+            margin-bottom: 2em;
+        }
+    }
+
+    &__or {
+        font-size: clamp(0.876rem, 0.7rem + 1.6vw, 2.15rem);
+        font-weight: 400;
+        line-height: 17px;
+        margin-bottom: .8em;
+
+        @include mediaMin($size: $device-XM) {
+            font-weight: 500;
+            line-height: 29px;
+            margin-bottom: 1.2em;
+        }
+
+    }
+
+    &__fieldset {
+        @include flex($dir: column, $align: flex-start);
+        margin-bottom: 1.9em;
+    }
+
+    &__fieldset-password {
+        @include flex($dir: column, $align: flex-start);
+    }
+
+    &__input {
+        @include focus($outline: 1px solid #807d7d);
+        border: none;
+        border-radius: 2em;
+        padding: .5em 2em;
+        
+        font-size: clamp(.86rem, 1.9vw, 1.72rem);
+        font-weight: 600;
+        line-height: 15px;
+        background-color: #F2EFFE;
+        margin-bottom: 1.5em;
+
+        width: clamp(210px, 50vw, 510px);
+
+        @include mediaMin($size: $device-XM) {
+            padding: .8em 1.8em;
+            font-weight: 500;
+            line-height: 24px;
+        }
+
+        &::placeholder {
+            font-size: .86em;
+            font-weight: 600;
+            line-height: 15px;
+            font-size: clamp(.86rem, 1.9vw, 1.72rem);
+
+            @include mediaMin($size: $device-XM) {
+                font-weight: 500;
+                line-height: 24px;
+            }
+
+
+
+        }
+
+        &--marginNo {
+            margin: 0;
+        }
+
+        &--error {
+            background: #E545451A;
+            color: #e54545;
+          
+        }
+
+        &--success {
+            background: #0f99181a;
+            color: #0f9918;
+           
+        }
+    }
+
+    &__label {
+        font-size: clamp(1rem, 1rem + .1vw, 2rem);
+        margin-bottom: .4em;
+        font-weight: 500;
+        line-height: 17px;
+
+        @include mediaMin($size: $device-XM) {
+            line-height: 29px;
+          
+            font-size: clamp(1rem, 1rem + 1.1vw, 2.1rem);
+        }
+    }
+
+    &__next {
+        display: block;
+        background: transparent;
+        color: $main-color;
+        margin: 0 auto;
+        border: 1px solid $main-color;
+        border-radius: 2em;
+        padding: .63em 2.5em;
+        font-size: .79rem;
+        font-weight: 500;
+        line-height: 13px;
+        margin-bottom: 2.3em;
+    }
+
+    &__ready {
+        display: block;
+        background-color: $main-color;
+        color: white;
+        padding: .7em 1.6em;
+        margin: 0 auto 2.4em;
+        border-radius: 2em;
+        font-size: .79rem;
+        font-weight: 500;
+        line-height: 13px;
+        border: none;
+    }
+
+    &__signin {
+
+        font-size: .79rem;
+        font-weight: 500;
+        line-height: 13px;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+
+    &__link {
+
+        font-size: .79rem;
+        font-weight: 400;
+        line-height: 13px;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    &__error {
+        margin: .4em 0;
+        font-size: 1.1em;
+        color: red;
+    }
+
+    &__password-container {
+        position: relative;
+    }
+
+    &__visibility {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        background: none;
+        border: none;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.agreement {
+    @include flex;
+    margin-bottom: .5em;
+
+    &__label {
+        font-weight: 500;
+        font-size: .8rem;
+        text-wrap: balance;
+    }
+}

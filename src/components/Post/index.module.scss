@@ -1,0 +1,53 @@
+@use '../../styles/global' as *;
+
+.post {
+    &__container {
+        padding-top: .4em;
+    }
+
+    &__header {
+        height: 45px;
+        @include flex($justify: space-between);
+        margin-bottom: .7em;
+    }
+
+    &__header-text {
+        color: #2D283E;
+        font-size: .78rem;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    &__more-btn {
+        padding: 0;
+        border: none;
+        background: transparent;
+        align-self: flex-start;
+    }
+
+    &__poster {
+        width: 100%;
+        object-fit: cover;
+        margin-bottom: .8em;
+    }
+    &__info{
+        @include flex($justify:space-between);
+    }
+    &__actions{
+        @include flex($gap:.8em);
+    }
+    &__like-btn,&__comment-btn{
+        padding: 0;
+        border: none;
+        background: transparent;
+    }
+
+    
+    &__views-count{
+        bottom: 8px;
+        left: 3px;;
+        position: relative;
+
+    }
+   
+}

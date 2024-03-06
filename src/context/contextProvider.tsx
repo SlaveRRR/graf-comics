@@ -1,3 +1,4 @@
+'use client';
 import { FilterItem } from '@/types/filter.type';
 import React, { FC, useMemo, useState } from 'react';
 

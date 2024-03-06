@@ -1,0 +1,16 @@
+@use '../../../styles/global' as *;
+
+.link {
+    display: block;
+    background-color: transparent;
+    border: 0;
+    font-size: .86rem;
+    font-weight: 600;
+    line-height: 15px;
+    text-align: left;
+    text-decoration: none;
+    color:$main-color;
+}
+.arrow{
+    margin-right: .3em;
+}

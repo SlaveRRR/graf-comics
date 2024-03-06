@@ -1,0 +1,13 @@
+.link {
+    display: block;
+    width: max-content;
+    color: #564F70;
+    font-size: clamp(.858rem, 0.74rem + 0.5vw, 1.42rem);
+    font-weight: 600;
+    line-height: 15px;
+    text-decoration: none;   
+}
+
+.arrow{
+    margin-left: 6px;
+}

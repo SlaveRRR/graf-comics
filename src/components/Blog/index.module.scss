@@ -1,0 +1,152 @@
+@use '../../styles/global' as *;
+
+.blog {
+
+    overflow: hidden;
+
+    &__header {
+        margin-bottom: 2em;
+        @include flex($gap: .8em);
+    }
+
+    &__header-text {
+        font-size: .86rem;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    &__header-link {
+        min-width: 140px;
+        text-align: center;
+        font-size: .8rem;
+        font-weight: 500;
+        line-height: normal;
+        text-decoration: none;
+        padding: .5em 1.3em;
+        background: $main-color;
+        color: white;
+        border-radius: 249px;
+    }
+
+    &__link {
+        margin-bottom: .9em;
+    }
+
+    &__container {
+        padding-top: 1em;
+    }
+
+    &__search-label {
+        display: block;
+        position: relative;
+        margin-bottom: 1.1em;
+
+        &::before {
+            content: url('../../assets/search.svg');
+            top: 50%;
+            left: 11px;
+            transform: translateY(-50%);
+            color: #8a8a8a;
+            position: absolute;
+        }
+    }
+
+    &__search-field {
+        display: block;
+        border: none;
+        border-radius: 526px;
+        max-width: 290px;
+        width: 100%;
+        height: 35px;
+        padding: .3em 2.8em;
+        font-size: .86rem;
+        font-weight: 600;
+        line-height: 15px;
+
+        background-color: #F2EFFE;
+        color: #9991b9;
+        @include focus($outline: 1px solid #8a8a8a);
+
+
+
+
+        &::placeholder {
+            background-color: #F2EFFE;
+            color: #CABDFC;
+            font-size: .86rem;
+            font-weight: 600;
+            line-height: 15px;
+        }
+    }
+
+    &__filter {
+        margin-bottom: 1em;
+    }
+
+}
+
+.articles {
+    @include flex($gap: 1em);
+
+    &__item {
+        width: 100%;
+        border-radius: 10px;
+        padding: 1.1em 1.5em .8em 1.1em;
+        background: #FFFFFF;
+        @include flex($dir: column);
+    }
+
+    &__item-card {
+        border-radius: 10px;
+        padding: 1.1em 1.5em .8em 1.1em;
+        background: #FFFFFF;
+        @include flex($dir: column);
+    }
+
+    &__header {
+        align-self: flex-start;
+        font-size: .8rem;
+        font-weight: 500;
+        line-height: 12px;
+        color: #2D283E;
+        margin-bottom: .3em;
+    }
+
+    &__short {
+        align-self: flex-start;
+        font-size: .68rem;
+        font-weight: 500;
+        line-height: 10px;
+        margin-bottom: 3em;
+    }
+
+    &__link {
+        text-align: center;
+        width: 100%;
+        display: block;
+        padding: .5em 1em;
+        border: 0.89px solid #7A5AF8;
+        color: $primary-color;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: .7rem;
+        font-weight: 500;
+        line-height: 10px;
+
+
+    }
+}
+
+.blog-articles {
+    margin-bottom: 2.5em;
+}
+
+.articles-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.filter-section {
+    margin-bottom: 3em;
+}
