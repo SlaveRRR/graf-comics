@@ -2,12 +2,15 @@ import React, { FC } from 'react'
 import {theme,author,sortSmall} from '@/data/data.json'
 import cn from 'classnames'
 import Link from 'next/link';
-import { ArrowLink, Filters } from '../shared'
+import { ArrowLink} from '../shared'
 import { SliderArticles } from '../UI'
 import { routes } from '@/config/routing'
 import styles from './index.module.scss'
+import dynamic from 'next/dynamic';
 
-
+const Filters = dynamic(() => import('@/components/shared/Filters/index'), {
+    ssr: false
+  })
 
 const Blog: FC = () => {
 
