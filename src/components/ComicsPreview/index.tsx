@@ -78,7 +78,7 @@ const ComicsPreview: FC = () => {
                 <div className={styles["filters"]}>
                   <header className={styles['filters__header']}>Жанры</header>
                   <div className={styles["filters__container"]}>
-                    {genres.slice(0, 10).map(val => <label key={val} htmlFor={`id${val}`} className={styles["filters__label"]}>{val} <input id={`id${val}`} type="checkbox" className='myvisuallyhidden' /></label>)}
+                    {(genres as string[]).slice(0, 10).map(val => <label key={val} htmlFor={`id${val}`} className={styles["filters__label"]}>{val} <input id={`id${val}`} type="checkbox" className='myvisuallyhidden' /></label>)}
                   </div>
                 </div>
                 <div className={styles["same"]}>

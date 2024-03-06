@@ -1,9 +1,8 @@
+import React from 'react'
+import { NextPage } from 'next'
 
-import React, { FC } from 'react'
 
-
-
-const ErrorPage : FC = () => {
+const ErrorPage : NextPage = () => {
   return (
       <div className="container" style={{
         paddingTop:'120px'
