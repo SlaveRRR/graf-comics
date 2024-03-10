@@ -84,7 +84,7 @@ const Header: FC = () => {
         >
            <figure className={styles['avatar']}>
            <figcaption className={styles['avatar__name']}>Никнейм</figcaption>
-            <img alt="аватарка пользователя" className={styles['avatar__img']} src="./avatar.svg" />
+            <img alt="аватарка пользователя" className={styles['avatar__img']} src="/avatar.svg" />
           </figure>
           <span className={styles["line"]}></span>
           {Object.entries(sideMenuRoutes).map(([text,url], i) => (
@@ -107,17 +107,17 @@ const Header: FC = () => {
         <BurgerMenu isActive={activeBurger} onClick={handleBurgerClick} />
         <Link href={'/'}>
             <picture className={styles['logo-mobile']}>
-            <source type="image/webp" srcSet="./logo-mobile.webp 1x, ./logo-mobile2x.webp 2x, ./logo-mobile3x.webp 3x" />
+            <source type="image/webp" srcSet="/logo-mobile.webp 1x, /logo-mobile2x.webp 2x, /logo-mobile3x.webp 3x" />
                 <img srcSet="
-                     ./logo-mobile.png 1x,
-                     ./logo-mobile2x.png 2x,
-                     ./logo-mobile3x.png 3x" src="./logo.png" alt="логотип" />
+                     /logo-mobile.png 1x,
+                     /logo-mobile2x.png 2x,
+                     /logo-mobile3x.png 3x" src="/logo.png" alt="логотип" />
             </picture>
         </Link>
           {
             isAuth ?
             <button onClick={handleAvatarClick} className={styles['right-menu-btn']}>
-               <img alt="аватарка пользователя" className={styles['avatar__img']} src="./avatar.svg" />
+               <img alt="аватарка пользователя" className={styles['avatar__img']} src="/avatar.svg" />
             </button>
           : 
           <>
