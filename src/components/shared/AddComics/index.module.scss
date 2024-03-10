@@ -1,0 +1,16 @@
+.add-comics {
+    &__link{
+        margin-bottom: .65em;
+    }
+    &__head {
+        font-weight: 600;
+        font-size: 1.42rem;
+        line-height: 24px;
+        margin-bottom: 1.2em;
+    }
+    &__content{
+        padding: 1.28em .72em 1.5em;
+        border-radius: 10px;
+        background-color: white;
+    }
+}

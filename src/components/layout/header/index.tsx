@@ -53,7 +53,7 @@ const Header: FC = () => {
             </>
           
           ))}
-          <Link onClick={() => setActiveBurger(false)} className={styles['add-comics']} href={'/author'}>Добавить комикс</Link>
+          <Link onClick={() => setActiveBurger(false)} className={styles['add-comics']} href={'/add-comics/images'}>Добавить комикс</Link>
            <Switch
             checked={
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14" fill="none">
