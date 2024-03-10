@@ -19,7 +19,7 @@ import Cards from './Cards';
 import Chapters from './Chapters';
 
 import Switch from './Switch';
-
+import Progress from './Progress';
 export {
   BurgerMenu,
   Search,
@@ -36,4 +36,5 @@ export {
   Chapters,
   Switch,
   ModalAuth,
+  Progress
 };

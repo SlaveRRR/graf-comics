@@ -1,0 +1,31 @@
+@use '../../styles/global' as *;
+
+.comics-footer {
+    padding-top: .57em;
+    padding-bottom: .57em;
+    @include flex($gap: .93em,$justify:space-between);
+    background-color: #F6F6F6;
+    z-index: 100;
+    position: fixed;
+    bottom: 0;
+}
+
+.progress-container {
+    &__text {
+        font-weight: 500;
+        font-size: .8rem;
+        line-height: 10px;
+        color: #000000;
+        margin-bottom: .3em;
+    }
+}
+
+.buttons {
+    @include flex($gap: 1.42em);
+
+    &__item {
+        background: transparent;
+        padding: 0;
+        border: none;
+    }
+}

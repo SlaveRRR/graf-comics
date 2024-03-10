@@ -6,6 +6,7 @@ export const routes = {
     // 'Профиль автора': '/author',
     "Каталог":'/catalog',
     'Блог':'/blog',
+    'Комикс':'/comics/1',
     // "Популярное": '/popular',
     
 }

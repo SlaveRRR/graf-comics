@@ -15,7 +15,7 @@ const Header: FC = () => {
 
   const [isAuth,setIsAuth] = useState<boolean>(true)
 
-  const {setActiveBurger,activeBurger,setActiveModal,setActiveAvatar,activeAvatar} = useContext(ctx);
+  const {setActiveBurger,activeBurger,setActiveModal,setActiveAvatar,activeAvatar,visibleMenu} = useContext(ctx);
 
   const path = usePathname();
 
@@ -28,8 +28,10 @@ const Header: FC = () => {
     setActiveAvatar(prev => !prev);
     setActiveBurger(false);
   }
-
+  
   return (
+    visibleMenu
+    &&
     <header className={styles['header']}>
       <div className={cn(styles['header-container'], 'container')}>
         <nav

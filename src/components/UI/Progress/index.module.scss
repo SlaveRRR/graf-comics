@@ -1,0 +1,13 @@
+.progress {
+    min-width: 140px;
+    width: 100%;
+    background: white;
+    border-radius: 17px;
+    &__value {
+        border-radius: 17px;
+        height: 5px;
+        background-color: #7A5AF8;
+        width: 0;
+        transition: width 0.5s;
+    }
+}

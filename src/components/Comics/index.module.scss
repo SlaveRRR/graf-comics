@@ -1,0 +1,10 @@
+.comics{
+    overflow-y: scroll;
+    width: 100vw;
+    height: 100dvh;
+    scroll-snap-type: y mandatory;
+    &::-webkit-scrollbar{
+        height: 0;
+        width: 0;
+    }
+}
