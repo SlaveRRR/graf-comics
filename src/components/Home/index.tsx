@@ -1,13 +1,22 @@
-import React, { FC } from 'react';
+'use client'
+import React, { FC, useEffect } from 'react';
 
 import styles from './index.module.scss';
 
 import cn from 'classnames';
 import { ArrowLink } from '../shared/index';
 import { Badge, Button, SliderArticles, Card } from '../UI';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
+
 const Home: FC = () => {
+  const {data,status} = useSession()
+  
+  if(status !== 'loading'){
+    console.log(data)
+    console.log(status)
+  }
   return (
     <>
       <section className={styles['image-section']}>

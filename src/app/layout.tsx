@@ -2,9 +2,12 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import ContextProvider from '@/context/contextProvider';
 import Layout from '@/components/layout';
+import AuthProvider from '@/context/authProvider';
 import ScrollToTop from '@/components/ScrollToTop';
-import '../styles/style.scss'
-const montserrat = Montserrat({ subsets: ['latin'],weight:['400','500','600','700']});
+import '../styles/style.scss';
+
+
+const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,21 +21,20 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body className={montserrat.className}>{
-
-        <ContextProvider>
-          <Layout>
-            {children}
-          <ScrollToTop/>
-          </Layout>
-           
-        </ContextProvider>
-
-      }</body>
+      <body className={montserrat.className}>
+        {
+          <AuthProvider>
+            <ContextProvider>
+              <Layout>
+                {children}
+                <ScrollToTop />
+              </Layout>
+            </ContextProvider>
+          </AuthProvider>
+        }
+      </body>
     </html>
   );
 };
 
 export default RootLayout;
-
-

@@ -3,13 +3,13 @@ import React, { useContext, useState } from 'react'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Logo } from '../UI'
-
+import AuthService from '@/services/auth'
 import cn from 'classnames'
-
-import styles from './index.module.scss'
 import { BackLink, SocialAuthLinks } from '../shared'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { ctx } from '../../context/contextProvider'
+import styles from './index.module.scss'
+
 
 
 type FormData = {
@@ -36,15 +36,22 @@ const Registration = () => {
         setTimeout(() => setAlert(false), 2000)
     }
     const handler: SubmitHandler<FormData> = async (data) => {
-        // имитация api
-        const delay = (ms: number): Promise<void> => new Promise((res, rej) => setTimeout(() => res(), ms))
         setActiveLoader(true)
-        await delay(3000)
-
-        setActiveLoader(false)
         console.log(data)
-
-        router.push('/signin')
+        const user = {
+            email:data['email'],
+            name:data['username'],
+            password:data['password']
+        }
+        try {
+            await AuthService.signup(user)
+            alert('Вы зарегестрировались')
+        } catch (error) {
+            alert(error)
+        }
+        finally{
+            setActiveLoader(false)
+        }
     }
 
     return (
@@ -191,7 +198,7 @@ const Registration = () => {
 
 
                 </form>
-                <p className={styles['registration__signin']}>Уже есть аккаунт? <Link className={styles['registration__link']} href={'/signin'}>Войдите</Link></p>
+                <p className={styles['registration__signin']}>Уже есть аккаунт? <Link className={styles['registration__link']} href={'/auth/signin'}>Войдите</Link></p>
             </div>
 
         </section>

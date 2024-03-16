@@ -1,26 +1,55 @@
 'use client';
-import React, { FC } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { AddComics } from '@/components/shared';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import cn from 'classnames';
 import styles from './index.module.scss';
 import Image from 'next/image';
-import { Button } from '@/components/UI';
 
 interface IFormData {
   title: string;
   description: string;
   cover: File[];
-  banner: File[];
+  banner: File;
 }
 
-const NewComicsImages: FC = () => {
-  const { register, handleSubmit, control } = useForm<IFormData>();
+async function readImageFile(file : File) : Promise<string> {
+  const reader = new FileReader();
+  return new Promise((resolve, reject) => {
+      reader.onload = event => resolve(event.target.result as string); 
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+  });
+}
 
+const readFiles = async (arr : File[]) : Promise<string[]> =>{
+  
+  const res = []
+  for(let i of arr){
+    let url = await readImageFile(i);
+    if(/обложка/ig.test(i.name)){
+      res.unshift(url)
+    }
+    else{
+      res.push(url)
+    }
+  }
+  return res
+}
+
+
+const NewComicsImages: FC = () => {
+  const { register, handleSubmit, control,formState:{isValid},getValues } = useForm<IFormData>({
+    mode:'onChange'
+  });
+
+  const [banner,setBanner] = useState<string>();
+  const [cover,setCover] = useState<string[]>(["/bg-default.svg","/bg-default.svg","/bg-default.svg","/bg-default.svg"])
   const handler: SubmitHandler<IFormData> = (data) => {
     console.log(data);
   };
 
+  console.log(isValid)
   return (
     <AddComics>
       <form onSubmit={handleSubmit(handler)}>
@@ -33,7 +62,9 @@ const NewComicsImages: FC = () => {
               placeholder="Введите название"
               id="title"
               type="text"
-              {...register('title')}
+              {...register('title',{
+                required:true
+              })}
             />
           </label>
           <label className={styles['description']} htmlFor="description">
@@ -49,6 +80,9 @@ const NewComicsImages: FC = () => {
                 />
               )}
               control={control}
+              rules={{
+                required:true
+              }}
             />
           </label>
         </fieldset>
@@ -72,7 +106,15 @@ const NewComicsImages: FC = () => {
               type="file"
               id="cover"
               className={cn(styles['cover__input'], 'myvisuallyhidden')}
-              {...register('cover')}
+              {...register('cover',{
+                required:true,
+                onChange(event) {
+                  if(getValues('cover').length <= 4){
+                    readFiles(getValues('cover')).then(data => setCover(data))
+                  }
+                  
+              },
+              })}
               accept="image/png, image/jpeg"
               multiple
             />
@@ -81,31 +123,19 @@ const NewComicsImages: FC = () => {
                 width={83}
                 height={100}
                 className={styles['cover-img__item']}
-                src="/bg-default.svg"
+                src={cover[0]}
                 alt="bg of comics"
               />
             </span>
-            <Image
+           {
+            cover.slice(1).map(el =>  <Image
               className={styles['cover-img__item']}
               width={83}
               height={100}
-              src="/bg-default.svg"
+              src={el}
               alt="bg of comics"
-            />
-            <Image
-              className={styles['cover-img__item']}
-              width={83}
-              height={100}
-              src="/bg-default.svg"
-              alt="bg of comics"
-            />
-            <Image
-              className={styles['cover-img__item']}
-              width={83}
-              height={100}
-              src="/bg-default.svg"
-              alt="bg of comics"
-            />
+            />)
+           }
           </div>
           <p className={styles['text-label']}>Баннер(фон)</p>
           <label className={styles['banner']} htmlFor="banner">
@@ -120,16 +150,23 @@ const NewComicsImages: FC = () => {
                 </clipPath>
               </defs>
             </svg>
+            {banner && <img className={styles['banner-img']} src={banner} alt='banner for comics' />}
           </label>
           <input
             type="file"
-            id="cover"
+            id="banner"
             className={cn(styles['cover__input'], 'myvisuallyhidden')}
-            {...register('banner')}
+            {...register('banner',{
+              required:true,
+              onChange(event) {
+                  readImageFile(getValues('banner')[0]).then(data => setBanner(data))
+              },
+            })}
+
             accept="image/png, image/jpeg"
           />
         </fieldset>
-        <button className={styles['next-btn']}>Далее</button>
+        <button disabled={!isValid}  className={styles['next-btn']}>Далее</button>
       </form>
     </AddComics>
   );
