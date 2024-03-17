@@ -1,10 +1,12 @@
 @use '../../styles/global' as *;
 
 .login {
-    background:white;
-    &__container {
+    &__inner-container {
+        border-radius: 10px;
+        background: white;
         @include flex($dir: column);
         padding-top: 1em;
+        margin-bottom: .9em;
     }
 
     &__head {
@@ -18,7 +20,7 @@
 
     &__backLink {
         align-self: flex-start;
-        margin-bottom: 2em;
+        margin-bottom: .8em;
     }
 
     &__logo {
@@ -74,16 +76,16 @@
         }
 
         &--error {
-            background:#E545451A;
-            color:#e54545;
-          
-            
+            background: #E545451A;
+            color: #e54545;
+
+
         }
 
         &--success {
             background: #0f99181a;
             color: #0f9918;
-          
+
         }
     }
 
@@ -118,7 +120,7 @@
         font-size: .79rem;
         font-weight: 500;
         line-height: 13px;
-        
+
     }
 
     &__signin {
@@ -126,14 +128,12 @@
         font-size: .79rem;
         font-weight: 500;
         line-height: 13px;
-        margin-bottom: 2em;
-
+        text-align: center;
     }
 
     &__link {
-
         font-size: .79rem;
-        font-weight: 400;
+        font-weight: 500;
         line-height: 13px;
         text-decoration: none;
         text-align: center;

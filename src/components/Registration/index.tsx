@@ -57,7 +57,8 @@ const Registration = () => {
     return (
         <section className={styles['registration']}>
             <div className={cn(styles["registration__container"], "container")}>
-                <BackLink mixClass={[styles['registration__backLink']]} />
+            <BackLink mixClass={[styles['registration__backLink']]} />
+                <div className={styles["registration__inner-container"]}>
                 <Logo mixClass={[styles['registration__logo']]} />
 
 
@@ -198,6 +199,7 @@ const Registration = () => {
 
 
                 </form>
+                </div>
                 <p className={styles['registration__signin']}>Уже есть аккаунт? <Link className={styles['registration__link']} href={'/auth/signin'}>Войдите</Link></p>
             </div>
 

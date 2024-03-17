@@ -9,20 +9,21 @@ import { routes, sideMenuRoutes } from '@/config/routing';
 import Link from 'next/link';
 import styles from './index.module.scss';
 import { Switch } from '@/components/UI';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import axios from 'axios';
 import { signOut, useSession } from 'next-auth/react';
 
 const Header: FC = () => {
   const { status, data } = useSession();
-  const [avatar, setAvatar] = useState('');
+  const router = useRouter();
+  const [avatar, setAvatar] = useState('/avatar.svg');
   const { setActiveBurger, activeBurger, setActiveModal, setActiveAvatar, activeAvatar, visibleMenu } = useContext(ctx);
 
   const path = usePathname();
 
   const handleSignOut = () => {
-    setActiveModal(true);
     signOut();
+    router.replace('/');
   };
   useEffect(() => {
     async function getAvatar() {

@@ -1,20 +1,19 @@
-import React, {FC} from 'react'
-import cn from 'classnames'
-import styles from './index.module.scss'
+import React, { FC } from 'react';
+import cn from 'classnames';
+import styles from './index.module.scss';
 
-const RouterLoader : FC = () => {
-    
-    
+const RouterLoader: FC = () => {
   return (
-    <div className={cn(styles["loader"],styles["loader--active"])}>
-        <h2 className={styles['loader__text']}>Секундочку...</h2>
-        <div className={styles["circles"]}>
-            <span className={styles['circles__item']}></span>
-            <span className={styles['circles__item']}></span>
-            <span className={styles['circles__item']}></span>
-        </div>
-    </div>
-  )
-}
+    <img className={styles['box']} src="/loader.gif" alt="loader" />
+    // <div className={cn(styles["loader"],styles["loader--active"])}>
+    //     <h2 className={styles['loader__text']}>Секундочку...</h2>
+    //     <div className={styles["circles"]}>
+    //         <span className={styles['circles__item']}></span>
+    //         <span className={styles['circles__item']}></span>
+    //         <span className={styles['circles__item']}></span>
+    //     </div>
+    // </div>
+  );
+};
 
-export default RouterLoader
+export default RouterLoader;
