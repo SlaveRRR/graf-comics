@@ -5,16 +5,16 @@ import cn from 'classnames';
 import styles from './index.module.scss';
 import { Filters } from '../shared';
 import { Cards } from '../UI';
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation';
 import { CSSTransition } from 'react-transition-group';
 import { ctx } from '@/context/contextProvider';
-import {ActiveFilters} from '@/components/shared/index';
+import { ActiveFilters } from '@/components/shared/index';
 
 const Catalog: FC = () => {
   const searchParams = useSearchParams();
   const [scroll, setScroll] = useState<number>(0);
 
-  const {activeFilters,setFilters} = useContext(ctx);
+  const { activeFilters, setFilters } = useContext(ctx);
 
   const handleClick = () => {
     window.scrollTo({
@@ -37,54 +37,59 @@ const Catalog: FC = () => {
   return (
     <section className="catalog">
       <div className={cn(styles['catalog__container'], 'container')}>
-          <Filters
-            filters={[
-              { text: 'Жанры', colorClass: 'genres', filters: genres, filterType: 'default', isActive: false },
-              { text: 'Направленность', colorClass: 'naprav', filters: focus, filterType: 'default', isActive: false },
-              { text: 'Размер', colorClass: 'size', filters: size, filterType: 'default', isActive: false },
-              { text: 'Включить метки', colorClass: 'tags', filters: tags, filterType: 'search', isActive: false },
-              {
-                text: 'Количество оценок',
-                colorClass: 'viewcounts',
-                filters: viewCounts,
-                filterType: 'default',
-                isActive: false,
-              },
-              { text: 'Рейтинг', colorClass: 'rating', filters: rating, filterType: 'default', isActive: false },
-              { text: 'Статус', colorClass: 'status', filters: status, filterType: 'default', isActive: false },
-              { text: 'Сортировать', colorClass: '', filters: sort, filterType: 'sort', isActive: false },
-            ]}
-            mixClass={[styles['catalog__filter']]}
-            urlFilter={searchParams.get('genre') ?? ''}
-          />
-          <div className={styles['catalog__cards-container']}>
-            <label htmlFor="search" className={styles['catalog__search-label']}>
-              <input
-                type="text"
-                id="search"
-                placeholder="Название, автор, персонаж..."
-                className={styles['catalog__search-field']}
-              />
-            </label>
-            <ActiveFilters shortMode={true} mixClass={[styles['catalog__active-filters']]} filters={activeFilters} setFilters={setFilters}/>
-            <Cards
-              mixClass={[styles['catalog__cards']]}
-              names={[
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-              ]}
+        <Filters
+          filters={[
+            { text: 'Жанры', colorClass: 'genres', filters: genres, filterType: 'default', isActive: false },
+            { text: 'Направленность', colorClass: 'naprav', filters: focus, filterType: 'default', isActive: false },
+            { text: 'Размер', colorClass: 'size', filters: size, filterType: 'default', isActive: false },
+            { text: 'Включить метки', colorClass: 'tags', filters: tags, filterType: 'search', isActive: false },
+            {
+              text: 'Количество оценок',
+              colorClass: 'viewcounts',
+              filters: viewCounts,
+              filterType: 'default',
+              isActive: false,
+            },
+            { text: 'Рейтинг', colorClass: 'rating', filters: rating, filterType: 'default', isActive: false },
+            { text: 'Статус', colorClass: 'status', filters: status, filterType: 'default', isActive: false },
+            { text: 'Сортировать', colorClass: 'author', filters: sort, filterType: 'sort', isActive: false },
+          ]}
+          mixClass={[styles['catalog__filter']]}
+          urlFilter={searchParams.get('genre') ?? ''}
+        />
+        <div className={styles['catalog__cards-container']}>
+          <label htmlFor="search" className={styles['catalog__search-label']}>
+            <input
+              type="text"
+              id="search"
+              placeholder="Название, автор, персонаж..."
+              className={styles['catalog__search-field']}
             />
-          </div>
+          </label>
+          <ActiveFilters
+            shortMode={true}
+            mixClass={[styles['catalog__active-filters']]}
+            filters={activeFilters}
+            setFilters={setFilters}
+          />
+          <Cards
+            mixClass={[styles['catalog__cards']]}
+            names={[
+              'Название',
+              'Название',
+              'Название',
+              'Название',
+              'Название',
+              'Название',
+              'Название',
+              'Название',
+              'Название',
+              'Название',
+              'Название',
+              'Название',
+            ]}
+          />
+        </div>
         <CSSTransition
           timeout={200}
           in={scroll > 80}

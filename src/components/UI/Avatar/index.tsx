@@ -14,7 +14,7 @@ const Avatar: FC = () => {
 
   return (
     <>
-      {status === 'loading' || avatar === undefined ? (
+      {status === 'loading' ? (
         <div className={styles['loader']}>
           <span className={styles['loader__round']}></span>
         </div>
