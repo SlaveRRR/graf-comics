@@ -1,11 +1,31 @@
-import React, { FC } from 'react';
+'use client';
+import React, { FC, useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useGetUserByIdQuery } from '@/store/api';
 import styles from './index.module.scss';
 
-type Props = {
-  avatar: string;
-};
+const Avatar: FC = () => {
+  const { status, data } = useSession();
 
-const Avatar: FC<Props> = ({ avatar }) => {
-  return <img alt="аватарка пользователя" className={styles['avatar']} src={avatar} />;
+  const { avatar } = useGetUserByIdQuery(data?.user?.id, {
+    selectFromResult: ({ data }) => ({ avatar: data?.avatar }),
+    skip: status !== 'authenticated',
+  });
+
+  return (
+    <>
+      {status === 'loading' || avatar === undefined ? (
+        <div className={styles['loader']}>
+          <span className={styles['loader__round']}></span>
+        </div>
+      ) : (
+        <img
+          alt="аватарка пользователя"
+          className={styles['avatar']}
+          src={avatar ? `data:image/jpeg;base64,${avatar}` : '/avatar.svg'}
+        />
+      )}
+    </>
+  );
 };
 export default Avatar;

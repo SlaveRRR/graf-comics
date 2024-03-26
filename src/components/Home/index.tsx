@@ -13,10 +13,7 @@ import Link from 'next/link';
 const Home: FC = () => {
   const {data,status} = useSession()
   
-  if(status !== 'loading'){
-    console.log(data)
-    console.log(status)
-  }
+  
   return (
     <>
       <section className={styles['image-section']}>

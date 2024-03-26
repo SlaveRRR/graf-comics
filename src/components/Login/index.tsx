@@ -82,6 +82,7 @@ const Login: FC = () => {
                 type="text"
                 id="email"
                 placeholder="Введите e-mail"
+                autoComplete="on"
               />
               <label className={styles['login__label']} htmlFor="pass">
                 Пароль

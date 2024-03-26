@@ -1,0 +1,80 @@
+@use '../../../styles//global' as *;
+
+.search {
+    position: relative;
+    margin-bottom: 1.6em;
+}
+
+.search-title {
+    font-weight: 600;
+    padding-left: 0.5em;
+    font-size: 0.86rem;
+    line-height: 15px;
+    color: #000000;
+    margin-bottom: 0.5em;
+}
+
+.search-label {
+    display: block;
+    position: relative;
+    margin-bottom: .3em;
+
+    &::before {
+        content: url('../../../assets/search.svg');
+        top: 50%;
+        left: 11px;
+        transform: translateY(-50%);
+        color: #8a8a8a;
+        position: absolute;
+    }
+}
+
+.search-field {
+    display: block;
+    border: none;
+    border-radius: 526px;
+    max-width: 290px;
+    width: 100%;
+    height: 35px;
+    padding: .3em 2.8em;
+    font-size: .86rem;
+    font-weight: 600;
+    line-height: 15px;
+
+    background-color: #F2EFFE;
+    color: $main-color;
+    @include focus($outline: 1px solid #504f4f);
+    margin-bottom: .6em;
+
+
+
+    &::placeholder {
+        background-color: #F2EFFE;
+        color: #CABDFC;
+        font-size: .86rem;
+        font-weight: 600;
+        line-height: 15px;
+    }
+}
+
+.items {
+    width: 100%;
+    position: absolute;
+    @include flex($dir: column, $justify: flex-start);
+    background: white;
+    z-index: 250;
+    border-radius: 15px;
+    overflow: auto;
+    max-height: 250px;
+    box-shadow: 0px 8px 10px 3px #00000070;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
+    // &::-webkit-scrollbar-thumb {
+    //     border-radius: 15px;
+    //     background-color: gray;
+    // }
+}

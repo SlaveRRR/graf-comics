@@ -37,6 +37,7 @@
 
 
     @include mediaMax($size: $device-M) {
+        max-width: 240px;
         padding: .5em 1.2em 0 1.2em;
         @include flex($dir: column, $justify: flex-start, $gap: 1em, $align: flex-start);
         position: fixed;
@@ -86,6 +87,7 @@
 
 .right-nav {
     z-index: 1000;
+    max-width: 240px;
     @include flex($dir: column, $justify: flex-start, $gap: 1em, $align: flex-end);
     padding: .64em 1.2em 0 1.2em;
     position: fixed;

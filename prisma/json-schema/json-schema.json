@@ -72,6 +72,12 @@
           "type": "boolean",
           "default": false
         },
+        "comics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Comics"
+          }
+        },
         "comments": {
           "type": "array",
           "items": {
@@ -95,6 +101,126 @@
         "email",
         "name",
         "password"
+      ]
+    },
+    "Comics": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "covers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "banner": {
+          "type": "string"
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "focus": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "age": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "author": {
+          "$ref": "#/definitions/User"
+        },
+        "toms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tom"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "status",
+        "covers",
+        "banner",
+        "genres",
+        "focus",
+        "labels",
+        "age",
+        "authorId"
+      ]
+    },
+    "Tom": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "chapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Chapter"
+          }
+        },
+        "comics": {
+          "$ref": "#/definitions/Comics"
+        }
+      },
+      "required": [
+        "name",
+        "comicsId"
+      ]
+    },
+    "Chapter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tom": {
+          "$ref": "#/definitions/Tom"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "tomId",
+        "images"
       ]
     },
     "Comment": {
@@ -258,6 +384,15 @@
   "properties": {
     "user": {
       "$ref": "#/definitions/User"
+    },
+    "comics": {
+      "$ref": "#/definitions/Comics"
+    },
+    "tom": {
+      "$ref": "#/definitions/Tom"
+    },
+    "chapter": {
+      "$ref": "#/definitions/Chapter"
     },
     "comment": {
       "$ref": "#/definitions/Comment"

@@ -33,9 +33,42 @@ model User {
   about             String?
   closedProfile     Boolean   @default(false)
   closedSubscribers Boolean   @default(false)
+  comics            Comics[]
   comments          Comment[]
   accounts          Account[]
   sessions          Session[]
+}
+
+model Comics {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  status      String
+  covers      Bytes[]
+  banner      Bytes
+  genres      String[]
+  focus       String[]
+  labels      String[]
+  age         String[]
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String   @db.ObjectId
+  toms        Tom[]
+}
+
+model Tom {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  chapters Chapter[]
+  comics   Comics    @relation(fields: [comicsId], references: [id])
+  comicsId String    @db.ObjectId
+}
+
+model Chapter {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  tom    Tom     @relation(fields: [tomId], references: [id])
+  tomId  String  @db.ObjectId
+  images Bytes[]
 }
 
 model Comment {

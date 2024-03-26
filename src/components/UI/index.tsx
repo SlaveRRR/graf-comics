@@ -21,6 +21,7 @@ import Chapters from './Chapters';
 import Switch from './Switch';
 import Progress from './Progress';
 import Avatar from './Avatar';
+import SearchSelect from './SearchSelect';
 export {
   BurgerMenu,
   Search,
@@ -39,4 +40,5 @@ export {
   ModalAuth,
   Progress,
   Avatar,
+  SearchSelect,
 };

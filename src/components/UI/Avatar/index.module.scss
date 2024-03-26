@@ -1,7 +1,36 @@
+@use '../../../styles/global' as *;
+
 .avatar {
     object-fit: cover;
     width: 35px;
     height: 35px;
     border: 1px solid #000000;
     border-radius: 30px;
+}
+
+.loader {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #000000;
+    border-radius: 30px;
+    animation: loading 1.5s ease-in-out infinite;
+
+    &__round {
+        display: block;
+        background-color: $main-color;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+
+    }
+
+    @keyframes loading {
+        from {
+            transform: rotate(0);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
 }

@@ -1,0 +1,17 @@
+.item {
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding-left: .2em;
+    line-height: 20px;
+    width: 100%;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    color: #CABDFC;
+
+    &--active {
+        color: #7A5AF8;
+        background: #F2EFFE;
+    }
+
+}

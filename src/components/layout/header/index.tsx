@@ -10,13 +10,13 @@ import Link from 'next/link';
 import styles from './index.module.scss';
 import { Switch } from '@/components/UI';
 import { usePathname, useRouter } from 'next/navigation';
-import axios from 'axios';
+
 import { signOut, useSession } from 'next-auth/react';
 
 const Header: FC = () => {
   const { status, data } = useSession();
   const router = useRouter();
-  const [avatar, setAvatar] = useState('/avatar.svg');
+
   const { setActiveBurger, activeBurger, setActiveModal, setActiveAvatar, activeAvatar, visibleMenu } = useContext(ctx);
 
   const path = usePathname();
@@ -25,22 +25,6 @@ const Header: FC = () => {
     signOut();
     router.replace('/');
   };
-  useEffect(() => {
-    async function getAvatar() {
-      try {
-        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_AXIOS_URL}/api/user/avatar`);
-        console.log(data);
-        if (data.response) {
-          setAvatar(`data:image/jpeg;base64,${data.response}`);
-        }
-      } catch (error) {
-        alert(error);
-      }
-    }
-    if (status === 'authenticated') {
-      getAvatar();
-    }
-  }, [status]);
 
   const handleBurgerClick = () => {
     setActiveBurger((prev) => !prev);
@@ -76,9 +60,12 @@ const Header: FC = () => {
                 <span className={styles['line']}></span>
               </>
             ))}
-            <Link onClick={() => setActiveBurger(false)} className={styles['add-comics']} href={'/add-comics/images'}>
-              Добавить комикс
-            </Link>
+            {data?.user?.role == 'AUTHOR' && (
+              <Link onClick={() => setActiveBurger(false)} className={styles['add-comics']} href={'/add-comics/images'}>
+                Добавить комикс
+              </Link>
+            )}
+
             <Switch
               checked={
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14" fill="none">
@@ -109,7 +96,7 @@ const Header: FC = () => {
           >
             <figure className={styles['avatar']}>
               <figcaption className={styles['avatar__name']}>{data?.user.name}</figcaption>
-              <Avatar avatar={avatar} />
+              <Avatar />
             </figure>
             <span className={styles['line']}></span>
             {Object.entries(sideMenuRoutes).map(([text, url], i) => (
@@ -146,9 +133,9 @@ const Header: FC = () => {
               />
             </picture>
           </Link>
-          {status === 'authenticated' ? (
+          {status === 'authenticated' || status === 'loading' ? (
             <button onClick={handleAvatarClick} className={styles['right-menu-btn']}>
-              <Avatar avatar={avatar} />
+              <Avatar />
             </button>
           ) : (
             <>

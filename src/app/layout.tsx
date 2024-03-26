@@ -5,7 +5,7 @@ import Layout from '@/components/layout';
 import AuthProvider from '@/context/authProvider';
 import ScrollToTop from '@/components/ScrollToTop';
 import '../styles/style.scss';
-
+import ReduxProvider from '@/context/reduxProvider';
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
 
@@ -24,12 +24,14 @@ const RootLayout = ({
       <body className={montserrat.className}>
         {
           <AuthProvider>
-            <ContextProvider>
-              <Layout>
-                {children}
-                <ScrollToTop />
-              </Layout>
-            </ContextProvider>
+            <ReduxProvider>
+              <ContextProvider>
+                <Layout>
+                  {children}
+                  <ScrollToTop />
+                </Layout>
+              </ContextProvider>
+            </ReduxProvider>
           </AuthProvider>
         }
       </body>
