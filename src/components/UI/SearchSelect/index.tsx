@@ -8,12 +8,14 @@ import { FilterItem } from '@/types/filter.type';
 type Props = {
   data: FilterItem[];
   title: string;
+  state: FilterItem[];
+  toggleFilters: any;
+  searchTitle: string;
 };
 
-const SearchSelect: FC<Props> = ({ data, title }) => {
+const SearchSelect: FC<Props> = ({ data, title, state, toggleFilters, searchTitle }) => {
   const [visible, setVisible] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const [activeElements, setActiveElements] = useState<FilterItem[]>([]);
 
   const refCnt = useRef<HTMLDivElement>(null);
 
@@ -41,7 +43,7 @@ const SearchSelect: FC<Props> = ({ data, title }) => {
           value={searchValue}
           type="text"
           id="search"
-          placeholder="Поиск жанра"
+          placeholder={searchTitle}
           className={styles['search-field']}
         />
       </label>
@@ -51,15 +53,15 @@ const SearchSelect: FC<Props> = ({ data, title }) => {
             .filter((el) => el.text.includes(searchValue))
             .map(({ text }) => (
               <SearchItem
-                setActiveElements={setActiveElements}
-                activeElements={activeElements}
+                toggleFilters={toggleFilters}
+                activeElement={state.some((e) => e.text === text)}
                 key={text}
                 text={text}
               />
             ))}
         </ul>
       )}
-      {activeElements.length > 0 && <ActiveFilters filters={activeElements} setFilters={setActiveElements} />}
+      {state.length > 0 && <ActiveFilters filters={state} toggleFilters={toggleFilters} />}
     </div>
   );
 };

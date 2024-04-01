@@ -5,20 +5,17 @@ import styles from './index.module.scss';
 import { ShowMore } from '..';
 type Props = {
   filters: FilterItem[];
-  setFilters: React.Dispatch<SetStateAction<FilterItem[]>>;
+  toggleFilters: any;
   mixClass?: string[];
   shortMode?: boolean;
 };
 
-const ActiveFilters: FC<Props> = ({ filters, setFilters, mixClass = [], shortMode = false }) => {
+const ActiveFilters: FC<Props> = ({ filters, toggleFilters, mixClass = [], shortMode = false }) => {
   console.log(filters);
   const filterItems = filters.map(({ text, colorClass }) => (
     <div className={cn(styles['aplly-filters__item'], styles[`aplly-filters__item--${colorClass}`])}>
       <p className={styles['aplly-filters__text']}>{text}</p>
-      <button
-        onClick={() => setFilters(filters.filter(({ text: v }) => v !== text))}
-        className={styles['aplly-filters__btn']}
-      ></button>
+      <button onClick={() => toggleFilters({ text, colorClass })} className={styles['aplly-filters__btn']}></button>
     </div>
   ));
 

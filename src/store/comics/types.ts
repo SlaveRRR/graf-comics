@@ -1,11 +1,10 @@
-interface IChapter {
-  title: string;
-  images: string[];
-}
+import { ITom } from '@/components/Tom/types';
+import { FilterItem } from '@/types/filter.type';
 
-interface ITom {
-  title: string;
-  chapters: IChapter[];
+export enum Status {
+  WORK = 'в процессе',
+  FREEZED = 'заморожен',
+  READY = 'завершён',
 }
 
 export interface IComics {
@@ -13,9 +12,16 @@ export interface IComics {
   description: string;
   cover: string[];
   banner: string;
-  genres: string[];
-  focus: string[];
-  tags: string[];
-  rating: string[];
+  genres: FilterItem[];
+  focus: FilterItem[];
+  tags: FilterItem[];
+  rating: FilterItem[];
   toms: ITom[];
+  authorName: string;
+  status: Status;
+}
+
+export interface IFilter {
+  type: keyof Pick<IComics, 'focus' | 'genres' | 'rating' | 'tags'>;
+  element: FilterItem;
 }

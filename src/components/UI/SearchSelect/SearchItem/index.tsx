@@ -5,16 +5,16 @@ import styles from './index.module.scss';
 import { FilterItem } from '@/types/filter.type';
 type Props = {
   text: string;
-  setActiveElements: Dispatch<SetStateAction<FilterItem[]>>;
-  activeElements: FilterItem[];
+  toggleFilters: any;
+  activeElement: boolean;
 };
 
-const SearchItem: FC<Props> = ({ text, setActiveElements, activeElements }) => {
-  const [active, setActive] = useState(activeElements.some(e => e.text === text));
+const SearchItem: FC<Props> = ({ text, toggleFilters, activeElement }) => {
+  const [active, setActive] = useState(activeElement);
 
   const handleClick = () => {
     setActive((prev) => !prev);
-    setActiveElements((prev) => (active ? prev.filter((el) => el.text !== text) : [{text,colorClass:'violet'}, ...prev]));
+    toggleFilters({text,colorClass:'violet'})
   };
 
   return (

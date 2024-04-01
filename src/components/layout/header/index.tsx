@@ -60,11 +60,10 @@ const Header: FC = () => {
                 <span className={styles['line']}></span>
               </>
             ))}
-            {data?.user?.role == 'AUTHOR' && (
-              <Link onClick={() => setActiveBurger(false)} className={styles['add-comics']} href={'/add-comics/images'}>
-                Добавить комикс
-              </Link>
-            )}
+
+            <Link onClick={() => setActiveBurger(false)} className={styles['add-comics']} href={'/add-comics/images'}>
+              Добавить комикс
+            </Link>
 
             <Switch
               checked={

@@ -109,35 +109,26 @@
         "по количеству лайков"
     ],
     "chapters": [
-        {
+        {   
+            "chapterId":"0",
             "likes": 5,
-            "text": "Том 0 Глава 1",
-            "timeCode": "00.00.00"
+            "title": "Том 0 Глава 1",
+            "timeCode": "00.00.00",
+            "images":[]
         },
-        {
-            "likes": 6,
-            "text": "Том 0 Глава 2",
-            "timeCode": "00.00.00"
-        },
-        {
-            "likes": 8,
-            "text": "Том 0 Глава 3",
-            "timeCode": "00.00.00"
-        },
-        {
-            "likes": 0,
-            "text": "Том 0 Глава 4",
-            "timeCode": "00.00.00"
-        },
-        {
+        {   
+            "chapterId":"1",
             "likes": 1,
-            "text": "Том 0 Глава 5",
-            "timeCode": "00.00.00"
+            "title": "Том 0 Глава 2",
+            "timeCode": "00.00.00",
+            "images":[]
         },
-        {
-            "likes": 13,
-            "text": "Том 0 Глава 6",
-            "timeCode": "00.00.00"
+        {   
+            "chapterId":"2",
+            "likes": 12,
+            "title": "Том 0 Глава 3",
+            "timeCode": "00.00.00",
+            "images":[]
         }
     ]
 }

@@ -1,10 +1,12 @@
 @use '../../../styles/global' as *;
 
 .slider {
- 
+
     height: 320px;
-    @include flex($dir:column,$justify:flex-end);
+    @include flex($dir: column, $justify: flex-end);
     background: #DFDFDF;
+    background-size: cover;
+    background-position: center center;
 }
 
 .slide {

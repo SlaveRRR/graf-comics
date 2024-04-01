@@ -1,0 +1,87 @@
+@use '../../styles/global' as *;
+
+
+.chapter-info {
+    @include flex($justify: flex-start, $gap: .35em);
+    padding-left: .71em;
+    border-bottom: 1px solid #4D37A5;
+    min-height: 35px;
+
+
+    &__show-btn {
+        display: flex;
+        border: none;
+        background: transparent;
+        padding: 0;
+        transform: rotate(0deg);
+        transition: all .3s;
+
+        &--active {
+            transform: rotate(-180deg);
+        }
+    }
+
+    &__edit-btn {
+        display: flex;
+        border: none;
+        background: transparent;
+        padding: 0;
+
+    }
+
+    &__title {
+        display: block;
+        max-width: 50px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        font-weight: 600;
+        font-size: .86rem;
+        line-height: 15px;
+        color: black;
+        @include focus;
+    }
+}
+
+.cover {
+    @include flex;
+    background-color: white;
+    border: 1px solid $main-color;
+    min-width: 83px;
+    border-radius: 10px;
+
+}
+
+.cover-img {
+    display: inline-block;
+    height: 101px;
+    position: relative;
+    border: 1px solid $main-color;
+    border-radius: 10px;
+
+    &::after {
+        content: 'Обложка';
+        position: absolute;
+        left: 50%;
+        bottom: 7px;
+        transform: translateX(-50%);
+        font-size: .8rem;
+        font-weight: 600;
+        line-height: 13px;
+        color: $main-color;
+    }
+
+    &__item {
+        max-width: 83px;
+        max-height: 150px;
+        border-radius: 10px;
+        object-fit: cover;
+        object-position: bottom;
+    }
+}
+
+.imgs {
+    padding-top: .78em;
+    @include flex($wrap: wrap, $align: stretch, $justify: stretch, $gap: .8rem);
+    margin-bottom: 2em;
+}

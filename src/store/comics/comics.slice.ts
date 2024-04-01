@@ -1,35 +1,97 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IComics } from './types';
+import { IComics, IFilter, Status } from './types';
+import { v4 as uuidv4 } from 'uuid';
 
+const defaultImages = ['/bg-default.svg', '/bg-default.svg', '/bg-default.svg', '/bg-default.svg'];
 const initialState: IComics = {
   title: 'Название',
   description: 'Описание',
   banner: '',
-  cover: ['/bg-default.svg', '/bg-default.svg', '/bg-default.svg', '/bg-default.svg'],
+  authorName: 'Автор',
+  cover: defaultImages,
   focus: [],
   genres: [],
   rating: [],
   tags: [],
-  toms: [],
+  status: Status.WORK,
+  toms: [
+    {
+      title: 'Том 0',
+      tomId: uuidv4(),
+      chapters: [
+        {
+          chapterId: uuidv4(),
+          title: 'Глава 0',
+          images: defaultImages,
+          likes: 0,
+          timeCode: '00.00.00',
+        },
+      ],
+    },
+  ],
 };
 
 const comicsSlice = createSlice({
   name: 'comics',
   initialState: initialState,
   reducers: {
-    addTitleDescription(state, action: PayloadAction<Pick<IComics, 'title' | 'description'>>) {
-      const { description, title } = action.payload;
+    addTitleDescription(state, action: PayloadAction<Pick<IComics, 'title' | 'description' | 'authorName'>>) {
+      const { description, title, authorName } = action.payload;
       state['description'] = description;
       state['title'] = title;
+      state['authorName'] = authorName;
     },
     addCover(state, action: PayloadAction<string[]>) {
       const { payload } = action;
       state['cover'] = payload;
     },
     addBanner(state, action: PayloadAction<string>) {
-        const { payload } = action;
-        state['banner'] = payload;
-      },
+      const { payload } = action;
+      state['banner'] = payload;
+    },
+    // switch active element
+    toggleFilters(state, action: PayloadAction<IFilter>) {
+      const {
+        payload: { type, element },
+      } = action;
+      const arr = state[type];
+      arr.some((e) => e.text === element.text) ? arr.filter((el) => el.text !== element.text) : arr.unshift(element);
+    },
+    addTom(state) {
+      state['toms'].push({
+        title: 'Том 0',
+        tomId: uuidv4(),
+        chapters: [{ title: 'Глава 0', images: [], chapterId: uuidv4(), likes: 0, timeCode: '00.00.00' }],
+      });
+    },
+    saveTomName(state, action: PayloadAction<{ tomId: string; tomName: string }>) {
+      const { payload } = action;
+      const tom = state.toms.find((el) => el.tomId === payload.tomId);
+      tom.title = payload.tomName;
+    },
+    addChapter(state, action: PayloadAction<{ tomId: string }>) {
+      const { payload } = action;
+      const tom = state.toms.find((el) => el.tomId === payload.tomId);
+      tom.chapters.push({
+        title: 'Глава 0',
+        images: defaultImages,
+        chapterId: uuidv4(),
+        likes: 0,
+        timeCode: '00.00.00',
+      });
+    },
+    saveChapterName(state, action: PayloadAction<{ chapterId: string; chapterName: string; tomId: string }>) {
+      const { payload } = action;
+      const tom = state.toms.find((el) => el.tomId === payload.tomId);
+      const chapter = tom.chapters.find((el) => el.chapterId === payload.chapterId);
+      chapter.title = payload.chapterName;
+    },
+    saveChapterImages(state, action: PayloadAction<{ chapterId: string; images: string[]; tomId: string }>) {
+      const { payload } = action;
+      const tom = state.toms.find((el) => el.tomId === payload.tomId);
+      const chapter = tom.chapters.find((el) => el.chapterId === payload.chapterId);
+      chapter.images = payload.images;
+    },
   },
 });
 

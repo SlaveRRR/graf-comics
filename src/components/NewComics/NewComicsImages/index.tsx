@@ -1,5 +1,5 @@
 'use client';
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { AddComics } from '@/components/shared';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import cn from 'classnames';
@@ -9,42 +9,18 @@ import { useRouter } from 'next/navigation';
 import { IComics } from '@/store/comics/types';
 import { useActions, useAppSelector } from '@/hooks/redux';
 import { File } from 'buffer';
+import { readFiles, readImageFile } from '@/utils/filereader';
+import { useSession } from 'next-auth/react';
 
 type FormData = {
-  cover: File[] | string[];
+  cover: FileList | string[];
   banner: File | string;
 } & Pick<IComics, 'title' | 'description'>;
-
-async function readImageFile(file: File): Promise<string> {
-  const reader = new FileReader();
-  return new Promise((resolve, reject) => {
-    reader.onload = (event) => {
-      // console.log(Buffer.from(event.target.result as string, 'base64'));
-      resolve(event.target.result as string);
-    };
-    reader.onerror = reject;
-
-    reader.readAsDataURL(file);
-  });
-}
-
-const readFiles = async (arr: File[]): Promise<string[]> => {
-  const res = [];
-  for (let i of arr) {
-    let url = await readImageFile(i);
-    if (/обложка/gi.test(i.name)) {
-      res.unshift(url);
-    } else {
-      res.push(url);
-    }
-  }
-  return res;
-};
 
 const NewComicsImages: FC = () => {
   const { addTitleDescription, addCover, addBanner } = useActions();
   const comics = useAppSelector((state) => state.comics);
-
+  const { data: session } = useSession();
   const {
     register,
     handleSubmit,
@@ -63,11 +39,12 @@ const NewComicsImages: FC = () => {
     addTitleDescription({
       title: data.title,
       description: data.description,
+      authorName: session?.user?.name,
     });
   };
 
   return (
-    <AddComics>
+    <AddComics final={false}>
       <form onSubmit={handleSubmit(handler)}>
         <fieldset>
           <legend className="visuallyhidden">Название и описание</legend>
@@ -129,7 +106,7 @@ const NewComicsImages: FC = () => {
                 required: true,
                 onChange(event) {
                   if (getValues('cover').length <= 4) {
-                    readFiles(getValues('cover') as File[]).then((data) => addCover(data));
+                    readFiles(getValues('cover') as FileList).then((data) => addCover(data));
                   }
                 },
               })}
@@ -177,7 +154,11 @@ const NewComicsImages: FC = () => {
             accept="image/png, image/jpeg"
           />
         </fieldset>
-        <button disabled={!isValid} onClick={() => router.push('/add-comics/tags')} className={styles['next-btn']}>
+        <button
+          disabled={isValid ? false : !isValid && comics.banner && comics.cover.length >= 1 ? false : true}
+          onClick={() => router.push('/add-comics/tags')}
+          className={styles['next-btn']}
+        >
           Далее
         </button>
       </form>

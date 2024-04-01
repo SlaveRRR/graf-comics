@@ -1,22 +1,19 @@
-import React,{FC} from 'react'
+import React, { FC } from 'react';
 import ChapterCard from '../ChapterCard';
-
-type ChapterType = {
-    likes:number;
-    text:string;
-    timeCode:string;
-}
+import { IChapter } from '@/components/Chapter/types';
 
 type Props = {
-    chapters:ChapterType[]
-}
+  chapters: Pick<IChapter, 'title' | 'timeCode' | 'likes'>[];
+};
 
-const Chapters : FC<Props> = ({chapters}) => {
+const Chapters: FC<Props> = ({ chapters }) => {
   return (
     <>
-    {chapters.map((obj,i) => <ChapterCard key={i} {...obj} />)}
+      {chapters.map((obj, i) => (
+        <ChapterCard key={i} {...obj} />
+      ))}
     </>
-  )
-}
+  );
+};
 
-export default Chapters
+export default Chapters;
