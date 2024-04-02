@@ -35,7 +35,7 @@ const obj: IComics = {
 };
 
 const ComicsPreview: FC<Props> = ({ comics = obj }) => {
-  const { banner, cover, description, genres, title, toms, authorName } = comics;
+  const { banner, cover, description, genres, title, toms, authorName, status } = comics;
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
 
   return (
