@@ -53,7 +53,10 @@ const SearchSelect: FC<Props> = ({ data, title, state, toggleFilters, searchTitl
             .filter((el) => el.text.includes(searchValue))
             .map(({ text }) => (
               <SearchItem
-                toggleFilters={toggleFilters}
+                toggleFilters={(el) => {
+                  setSearchValue('');
+                  toggleFilters(el);
+                }}
                 activeElement={state.some((e) => e.text === text)}
                 key={text}
                 text={text}

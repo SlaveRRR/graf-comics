@@ -1,12 +1,12 @@
 'use client';
-import React, { FC, useCallback, useContext, useEffect,useState } from 'react';
+import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import type { IFilter, FilterItem } from '@/types/filter.type';
 
 import cn from 'classnames';
 import styles from './index.module.scss';
 import { MixClass } from '@/types/mixClass.type';
 import { Filter, SearchFilter, SortFilter } from '..';
-import {ActiveFilters} from '@/components/shared/index';
+import { ActiveFilters } from '@/components/shared/index';
 import { ctx } from '@/context/contextProvider';
 
 type Props = {
@@ -21,8 +21,7 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
 
   const initialState = urlFilter ? [{ text: urlFilter, colorClass: 'genres' }] : [];
 
-
- const {activeFilters,setFilters} = useContext(ctx)
+  const { activeFilters, toggleFilters, setFilters } = useContext(ctx);
   const [sortText, setSort] = useState<string>();
 
   const handleClick = () => {
@@ -34,9 +33,7 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
 
     const { text: filterText, colorClass } = filter;
 
-    checked
-      ? setFilters([...activeFilters, { text: filterText, colorClass }])
-      : setFilters(activeFilters.filter(({ text }) => text !== filterText));
+    toggleFilters(filter);
   };
 
   const setActive = (elem): void => {
@@ -46,26 +43,26 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
           return { ...v, isActive: !v['isActive'] };
         }
         return v;
-      }),
+      })
     );
   };
 
-  const [match,setMatch] = useState(() =>{
-    return window.matchMedia('(min-width:768px)')
-  })
+  const [match, setMatch] = useState(() => {
+    return window.matchMedia('(min-width:768px)');
+  });
 
-  const handleChange = useCallback(() =>{
-    setFilters(initialState as FilterItem[])
-    if(match.matches){
-        setVisible(true)
+  const handleChange = useCallback(() => {
+    setFilters(initialState as FilterItem[]);
+    if (match.matches) {
+      setVisible(true);
     }
-  },[])
- 
-  useEffect(() =>{
-    handleChange()
-    match.addEventListener('change',handleChange)
-    return () => match.removeEventListener('change',handleChange)
-  },[])
+  }, []);
+
+  useEffect(() => {
+    handleChange();
+    match.addEventListener('change', handleChange);
+    return () => match.removeEventListener('change', handleChange);
+  }, []);
 
   return (
     <div className={cn(styles['filter__container'], ...mixClass)}>
@@ -132,7 +129,7 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
           </button>
         )}
 
-        <ActiveFilters filters={activeFilters} setFilters={setFilters}/>
+        <ActiveFilters filters={activeFilters} toggleFilters={toggleFilters} />
 
         {isVisibleFilter && (
           <>

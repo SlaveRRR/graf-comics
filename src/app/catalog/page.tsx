@@ -1,12 +1,10 @@
-import React from 'react'
-import { NextPage } from 'next'
-import Catalog from '@/components/Catalog'
+import React from 'react';
+import { RouterLoader } from '@/components/UI';
+import dynamic from 'next/dynamic';
 
+const CatalogPage = dynamic(() => import('@/components/Catalog'), {
+  loading: () => <RouterLoader />,
+  ssr: false,
+});
 
-
-
-const CatalogPage : NextPage  = () => {
-  return <Catalog/>
-}
-
-export default CatalogPage
+export default CatalogPage;

@@ -20,6 +20,8 @@ interface IContext {
 
   visibleMenu: boolean;
   setVisibleMenu: React.Dispatch<React.SetStateAction<boolean>>;
+
+  toggleFilters: ({ text, colorClass }) => void;
 }
 export const ctx = React.createContext<IContext>({} as IContext);
 
@@ -27,7 +29,6 @@ type Props = {
   children: React.ReactNode;
 };
 const ContextProvider: FC<Props> = ({ children }) => {
-
   // loader сайта
   const [activeLoader, setActiveLoader] = useState<boolean>(false);
 
@@ -46,6 +47,11 @@ const ContextProvider: FC<Props> = ({ children }) => {
   // видимость меню в режиме чтения
   const [visibleMenu, setVisibleMenu] = useState<boolean>(true);
 
+  const toggleFilters = (val: any) => {
+    const ind = activeFilters.findIndex((e) => e.text === val.text);
+    ind === -1 ? setFilters((prev) => [val, ...prev]) : setFilters((prev) => prev.filter((el) => el.text !== val.text));
+  };
+
   const obj = useMemo(
     () => ({
       activeLoader,
@@ -59,9 +65,10 @@ const ContextProvider: FC<Props> = ({ children }) => {
       activeFilters,
       setFilters,
       visibleMenu,
-      setVisibleMenu
+      setVisibleMenu,
+      toggleFilters,
     }),
-    [activeLoader, activeBurger, activeModal, activeAvatar, activeFilters,visibleMenu]
+    [activeLoader, activeBurger, activeModal, activeAvatar, activeFilters, visibleMenu]
   );
   return <ctx.Provider value={obj}>{children}</ctx.Provider>;
 };

@@ -11,7 +11,6 @@ type Props = {
 };
 
 const ActiveFilters: FC<Props> = ({ filters, toggleFilters, mixClass = [], shortMode = false }) => {
-  console.log(filters);
   const filterItems = filters.map(({ text, colorClass }) => (
     <div className={cn(styles['aplly-filters__item'], styles[`aplly-filters__item--${colorClass}`])}>
       <p className={styles['aplly-filters__text']}>{text}</p>

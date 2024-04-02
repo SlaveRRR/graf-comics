@@ -14,7 +14,7 @@ const Catalog: FC = () => {
   const searchParams = useSearchParams();
   const [scroll, setScroll] = useState<number>(0);
 
-  const { activeFilters, setFilters } = useContext(ctx);
+  const { activeFilters, toggleFilters } = useContext(ctx);
 
   const handleClick = () => {
     window.scrollTo({
@@ -67,10 +67,10 @@ const Catalog: FC = () => {
             />
           </label>
           <ActiveFilters
-            shortMode={true}
             mixClass={[styles['catalog__active-filters']]}
             filters={activeFilters}
-            setFilters={setFilters}
+            toggleFilters={toggleFilters}
+            shortMode={false}
           />
           <Cards
             mixClass={[styles['catalog__cards']]}

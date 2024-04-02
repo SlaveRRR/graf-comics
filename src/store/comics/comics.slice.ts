@@ -54,8 +54,11 @@ const comicsSlice = createSlice({
       const {
         payload: { type, element },
       } = action;
+      console.log(action.payload);
+
       const arr = state[type];
-      arr.some((e) => e.text === element.text) ? arr.filter((el) => el.text !== element.text) : arr.unshift(element);
+      const ind = arr.findIndex((e) => e.text === element.text);
+      ind !== -1 ? arr.splice(ind, 1) : arr.unshift(element);
     },
     addTom(state) {
       state['toms'].push({
