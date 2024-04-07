@@ -39,7 +39,7 @@
     }
 
     &__stats {
-        margin-bottom: 1.2em;
+        margin-bottom: 1.42em;
         @include flex($gap: .9em);
     }
 
@@ -317,11 +317,11 @@
         border: 1px solid #F2EFFE;
         background: #F2EFFE;
         padding: .4em 2.1em;
-        
-        @include focus(){
+
+        @include focus() {
             border: 1px solid #808080;
         }
-        
+
         &::placeholder {
             color: #CABDFC;
             font-size: .72rem;
@@ -330,16 +330,14 @@
         }
     }
 
-    &__send{
+    &__send {
         padding: .1em .4em;
         border-radius: 50%;
         background: #ffffff;
-        top:50%;
+        top: 50%;
         transform: translateY(-50%);
         right: 0;
         border: none;
-        // padding: 0;
-        // background: transparent;
         position: absolute;
     }
 
@@ -358,5 +356,29 @@
         }
 
         margin-bottom: 1em;
+    }
+}
+
+.buttons {
+    @include flex($gap: .57em);
+    margin-bottom: 1.42em;
+
+    &__bookmark {
+        border: 1px solid $main-color;
+        font-size: .86rem;
+        padding: .5em 2em;
+        background: white;
+        color: $main-color;
+        border-radius: 250px;
+
+    }
+
+    &__read {
+        padding: .5em 3.7em;
+        border: none;
+        font-size: .86rem;
+        color: white;
+        background-color: $main-color;
+        border-radius: 250px;
     }
 }

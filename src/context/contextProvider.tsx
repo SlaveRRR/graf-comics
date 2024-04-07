@@ -22,6 +22,9 @@ interface IContext {
   setVisibleMenu: React.Dispatch<React.SetStateAction<boolean>>;
 
   toggleFilters: ({ text, colorClass }) => void;
+
+  activeBookMarks: boolean;
+  setActiveBookMarks: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export const ctx = React.createContext<IContext>({} as IContext);
 
@@ -47,6 +50,9 @@ const ContextProvider: FC<Props> = ({ children }) => {
   // видимость меню в режиме чтения
   const [visibleMenu, setVisibleMenu] = useState<boolean>(true);
 
+  // меню закладок
+  const [activeBookMarks, setActiveBookMarks] = useState<boolean>(false);
+
   const toggleFilters = (val: any) => {
     const ind = activeFilters.findIndex((e) => e.text === val.text);
     ind === -1 ? setFilters((prev) => [val, ...prev]) : setFilters((prev) => prev.filter((el) => el.text !== val.text));
@@ -67,8 +73,10 @@ const ContextProvider: FC<Props> = ({ children }) => {
       visibleMenu,
       setVisibleMenu,
       toggleFilters,
+      activeBookMarks,
+      setActiveBookMarks,
     }),
-    [activeLoader, activeBurger, activeModal, activeAvatar, activeFilters, visibleMenu]
+    [activeLoader, activeBurger, activeModal, activeAvatar, activeFilters, visibleMenu, activeBookMarks]
   );
   return <ctx.Provider value={obj}>{children}</ctx.Provider>;
 };

@@ -1,11 +1,12 @@
 'use client';
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { chapters as defaultChapters } from '@/data/data.json';
 import cn from 'classnames';
 import { Chapters, SliderPreview, Tabs } from '../UI';
 import { IComics, Status } from '@/store/comics/types';
 import Link from 'next/link';
 import styles from './index.module.scss';
+import { ctx } from '@/context/contextProvider';
 
 type Props = {
   comics?: IComics;
@@ -35,6 +36,7 @@ const obj: IComics = {
 };
 
 const ComicsPreview: FC<Props> = ({ comics = obj }) => {
+  const {setActiveBookMarks} = useContext(ctx)
   const { banner, cover, description, genres, title, toms, authorName, status } = comics;
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
 
@@ -101,6 +103,10 @@ const ComicsPreview: FC<Props> = ({ comics = obj }) => {
               </svg>
               0
             </p>
+          </div>
+          <div className={styles['buttons']}>
+            <button onClick={() => setActiveBookMarks(true)} className={styles['buttons__bookmark']}>В избранное</button>
+            <button className={styles['buttons__read']}>Читать</button>
           </div>
           <div className="container">
             <Tabs mixClass={[]} tabs={['Описание', 'Главы', 'Комментарии']}>
@@ -265,7 +271,7 @@ const ComicsPreview: FC<Props> = ({ comics = obj }) => {
                   chapters={toms
                     .map((el) => el.chapters)
                     .flat()
-                    .map((el) => ({ likes: el.likes, timeCode: el.timeCode, title: el.title }))}
+                    .map((el) => ({ likes: el.likes, timeCode: el.timeCode, title: el.title, isRidden: el.isRidden }))}
                 />
               </div>
               <div className={styles['comics-page__comments']}>

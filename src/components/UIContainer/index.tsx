@@ -1,18 +1,14 @@
+import React, { FC } from 'react';
+import { BookMarkMenu, Loader, ModalAuth } from '../UI';
 
-
-import React,{FC} from 'react'
-import { Loader, ModalAuth } from '../UI'
-
-
-
-
-const UIContainer : FC = () => {
+const UIContainer: FC = () => {
   return (
     <div className="ui-container">
-        <Loader/>
-        <ModalAuth/>
+      <Loader />
+      <ModalAuth />
+      <BookMarkMenu />
     </div>
-  )
-}
+  );
+};
 
-export default UIContainer
+export default UIContainer;

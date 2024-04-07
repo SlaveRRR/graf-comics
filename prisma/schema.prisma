@@ -64,11 +64,12 @@ model Tom {
 }
 
 model Chapter {
-  id     String  @id @default(auto()) @map("_id") @db.ObjectId
-  name   String
-  tom    Tom     @relation(fields: [tomId], references: [id])
-  tomId  String  @db.ObjectId
-  images Bytes[]
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  tom      Tom     @relation(fields: [tomId], references: [id])
+  tomId    String  @db.ObjectId
+  images   Bytes[]
+  isRidden Boolean
 }
 
 model Comment {

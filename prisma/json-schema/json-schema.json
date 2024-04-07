@@ -215,12 +215,16 @@
           "items": {
             "type": "string"
           }
+        },
+        "isRidden": {
+          "type": "boolean"
         }
       },
       "required": [
         "name",
         "tomId",
-        "images"
+        "images",
+        "isRidden"
       ]
     },
     "Comment": {

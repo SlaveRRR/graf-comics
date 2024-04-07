@@ -3,7 +3,7 @@ import ChapterCard from '../ChapterCard';
 import { IChapter } from '@/components/Chapter/types';
 
 type Props = {
-  chapters: Pick<IChapter, 'title' | 'timeCode' | 'likes'>[];
+  chapters: Pick<IChapter, 'title' | 'timeCode' | 'likes' | 'isRidden'>[];
 };
 
 const Chapters: FC<Props> = ({ chapters }) => {

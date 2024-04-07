@@ -4,8 +4,10 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { actions as comicsActions } from '@/store/comics/comics.slice';
+import { actions as userActions } from '@/store/user/user.slice';
 const rootActions = {
   ...comicsActions,
+  ...userActions,
 };
 
 export const useAppDispatch = () => useDispatch<AppDispatch>;

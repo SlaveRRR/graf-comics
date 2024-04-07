@@ -7,6 +7,10 @@
     border-radius: 10px;
     background: #FAFAFA;
 
+    &--ridden {
+        background: #DFDFDF;
+    }
+
     &__views-icon {
         margin-right: .7em;
     }

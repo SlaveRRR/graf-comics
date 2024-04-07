@@ -25,6 +25,7 @@ const initialState: IComics = {
           images: defaultImages,
           likes: 0,
           timeCode: '00.00.00',
+          isRidden: false,
         },
       ],
     },
@@ -64,7 +65,9 @@ const comicsSlice = createSlice({
       state['toms'].push({
         title: 'Том 0',
         tomId: uuidv4(),
-        chapters: [{ title: 'Глава 0', images: [], chapterId: uuidv4(), likes: 0, timeCode: '00.00.00' }],
+        chapters: [
+          { title: 'Глава 0', images: [], chapterId: uuidv4(), likes: 0, timeCode: '00.00.00', isRidden: false },
+        ],
       });
     },
     saveTomName(state, action: PayloadAction<{ tomId: string; tomName: string }>) {
@@ -81,6 +84,7 @@ const comicsSlice = createSlice({
         chapterId: uuidv4(),
         likes: 0,
         timeCode: '00.00.00',
+        isRidden: false,
       });
     },
     saveChapterName(state, action: PayloadAction<{ chapterId: string; chapterName: string; tomId: string }>) {

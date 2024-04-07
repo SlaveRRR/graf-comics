@@ -22,6 +22,7 @@ import Switch from './Switch';
 import Progress from './Progress';
 import Avatar from './Avatar';
 import SearchSelect from './SearchSelect';
+import BookMarkMenu from './BookMarkMenu';
 export {
   BurgerMenu,
   Search,
@@ -41,4 +42,5 @@ export {
   Progress,
   Avatar,
   SearchSelect,
+  BookMarkMenu,
 };

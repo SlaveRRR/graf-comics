@@ -4,4 +4,5 @@ export interface IChapter {
   images: string[];
   likes: number;
   timeCode: string;
+  isRidden: boolean;
 }
