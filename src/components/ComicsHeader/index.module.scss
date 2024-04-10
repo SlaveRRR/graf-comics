@@ -1,16 +1,13 @@
 @use '../../styles/global' as *;
+
 .header {
-    @include flex($justify:space-evenly);
+    @include flex($justify: space-evenly);
     padding-top: .78em;
     padding-bottom: .78em;
     background-color: #F6F6F6;
     z-index: 100;
     position: fixed;
-    &__btn{
-        padding: 0;
-        background-color: transparent;
-        border: none;
-    }
+
     &__title {
         font-weight: 600;
         font-size: .85rem;

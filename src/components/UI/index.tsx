@@ -23,6 +23,7 @@ import Progress from './Progress';
 import Avatar from './Avatar';
 import SearchSelect from './SearchSelect';
 import BookMarkMenu from './BookMarkMenu';
+import ChaptersButton from './ChaptersButton';
 export {
   BurgerMenu,
   Search,
@@ -43,4 +44,5 @@ export {
   Avatar,
   SearchSelect,
   BookMarkMenu,
+  ChaptersButton,
 };

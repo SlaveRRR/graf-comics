@@ -1,0 +1,21 @@
+@use '../../../styles/global' as *;
+
+.chapters {
+    position: fixed;
+    top: 104px;
+    right: 0;
+    @include flex($dir: column, $gap: .43em);
+    background: #F6F6F6;
+    padding: .74em;
+
+    &>* {
+        background: white;
+    }
+
+    &__btn {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+    }
+
+}
