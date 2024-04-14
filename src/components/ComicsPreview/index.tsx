@@ -23,7 +23,12 @@ const obj: IComics = {
   genres: [],
   focus: [],
   tags: [],
-  rating: [],
+  rating: [
+    {
+      colorClass: 'author',
+      text: '18+',
+    },
+  ],
   toms: [
     {
       title: 'Том 0',
