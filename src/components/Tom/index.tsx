@@ -85,7 +85,7 @@ const Tom: FC<Props> = ({ tom }) => {
           </svg>
         </button>
       </div>
-      {active && chapters.map((el) => <Chapter chapter={el} tomId={tomId} />)}
+      {active && chapters.map((el) => <Chapter chapter={el} tomId={tomId} key={el.chapterId} />)}
     </>
   );
 };

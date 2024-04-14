@@ -1,0 +1,13 @@
+.add-article {
+    &__container {
+        background: white;
+        padding: 1.2em .71em 1.5em;
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 1.43rem;
+        line-height: 24px;
+        margin-bottom: 1.2em;
+    }
+}

@@ -15,13 +15,22 @@
           "default": ""
         },
         "email": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "name": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "password": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "role": {
           "type": "string",
@@ -95,13 +104,15 @@
           "items": {
             "$ref": "#/definitions/Session"
           }
+        },
+        "Article": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Article"
+          }
         }
       },
-      "required": [
-        "email",
-        "name",
-        "password"
-      ]
+      "required": []
     },
     "Comics": {
       "type": "object",
@@ -337,6 +348,40 @@
         "providerAccountId"
       ]
     },
+    "Article": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "description": {
+          "type": "string"
+        },
+        "cover": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "author": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "cover",
+        "text",
+        "authorId"
+      ]
+    },
     "Session": {
       "type": "object",
       "properties": {
@@ -403,6 +448,9 @@
     },
     "account": {
       "$ref": "#/definitions/Account"
+    },
+    "article": {
+      "$ref": "#/definitions/Article"
     },
     "session": {
       "$ref": "#/definitions/Session"

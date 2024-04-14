@@ -2,8 +2,14 @@
 
 
 .chapter-info {
-    @include flex($justify: flex-start, $gap: .35em);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 18fr;
+    justify-items: start;
+    align-items: center;
+    column-gap: .35em;
+
     padding-left: .71em;
+    padding-right: .71em;
     border-bottom: 1px solid #4D37A5;
     min-height: 35px;
 
@@ -29,9 +35,17 @@
 
     }
 
+    &__remove-btn {
+        justify-self: end;
+        border: 0;
+        padding: 0;
+        background: transparent;
+    }
+
     &__title {
         display: block;
-        max-width: 50px;
+        max-width: 60px;
+        text-overflow: ellipsis;
         padding: 0;
         border: none;
         background: transparent;

@@ -8,15 +8,26 @@ export const POST = async (request: NextRequest) => {
     await connect();
     console.log('ok');
     const body = await request.json();
-    console.log(body);
-    const password = await bcrypt.hash(body['password'], 15);
-    const newUser = await prisma.user.create({
-      data: {
-        ...body,
-        password,
+    const { email, name, password } = await request.json();
+
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        email,
       },
     });
-    console.log(newUser);
+
+    if (existingUser) {
+      return NextResponse.json({ error: 'Email taken' });
+    }
+    console.log(body, 'this is boydy asdfasf');
+    const hashedPassword = await bcrypt.hash(password, 15);
+    // const newUser = await prisma.user.create({
+    //   data: {
+    //     ...body,
+    //     hashedPassword,
+    //   },
+    // });
+    // console.log(newUser);
     return NextResponse.json('User created');
   } catch (error) {
     console.log(error);

@@ -36,8 +36,8 @@ const obj: IComics = {
 };
 
 const ComicsPreview: FC<Props> = ({ comics = obj }) => {
-  const {setActiveBookMarks} = useContext(ctx)
-  const { banner, cover, description, genres, title, toms, authorName, status } = comics;
+  const { setActiveBookMarks } = useContext(ctx);
+  const { banner, cover, description, genres, title, toms, authorName, status, rating } = comics;
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
 
   return (
@@ -53,7 +53,7 @@ const ComicsPreview: FC<Props> = ({ comics = obj }) => {
           <h2 className={styles['comics-page__header']}>{title} </h2>
           <p className={styles['comics-page__author']}> {authorName} </p>
           <div className={styles['comics-page__details']}>
-            <p className={styles['comics-page__age']}> 18+ </p>
+            <p className={styles['comics-page__age']}> {rating[0].text} </p>
             <p className={styles['comics-page__year']}> {new Date().getFullYear()} </p>
             <p className={styles['comics-page__status']}> {status} </p>
           </div>
@@ -105,7 +105,9 @@ const ComicsPreview: FC<Props> = ({ comics = obj }) => {
             </p>
           </div>
           <div className={styles['buttons']}>
-            <button onClick={() => setActiveBookMarks(true)} className={styles['buttons__bookmark']}>В избранное</button>
+            <button onClick={() => setActiveBookMarks(true)} className={styles['buttons__bookmark']}>
+              В избранное
+            </button>
             <button className={styles['buttons__read']}>Читать</button>
           </div>
           <div className="container">

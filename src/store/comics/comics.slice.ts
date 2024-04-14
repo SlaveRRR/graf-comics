@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IComics, IFilter, Status } from './types';
 import { v4 as uuidv4 } from 'uuid';
+import { IChapter } from '@/components/Chapter/types';
 
 const defaultImages = ['/bg-default.svg', '/bg-default.svg', '/bg-default.svg', '/bg-default.svg'];
 const initialState: IComics = {
@@ -70,6 +71,9 @@ const comicsSlice = createSlice({
         ],
       });
     },
+    removeTom(state) {
+      state['toms'].pop();
+    },
     saveTomName(state, action: PayloadAction<{ tomId: string; tomName: string }>) {
       const { payload } = action;
       const tom = state.toms.find((el) => el.tomId === payload.tomId);
@@ -86,6 +90,11 @@ const comicsSlice = createSlice({
         timeCode: '00.00.00',
         isRidden: false,
       });
+    },
+    removeChapter(state, action: PayloadAction<{ tomId: string; chapter: IChapter }>) {
+      const { payload } = action;
+      const tom = state.toms.find((el) => el.tomId === payload.tomId);
+      tom.chapters = tom.chapters.filter((el) => el.chapterId !== payload.chapter.chapterId);
     },
     saveChapterName(state, action: PayloadAction<{ chapterId: string; chapterName: string; tomId: string }>) {
       const { payload } = action;

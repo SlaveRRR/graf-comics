@@ -11,9 +11,10 @@ type Props = {
   state: FilterItem[];
   toggleFilters: any;
   searchTitle: string;
+  multiple: boolean;
 };
 
-const SearchSelect: FC<Props> = ({ data, title, state, toggleFilters, searchTitle }) => {
+const SearchSelect: FC<Props> = ({ data, title, state, toggleFilters, searchTitle, multiple }) => {
   const [visible, setVisible] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
@@ -60,6 +61,8 @@ const SearchSelect: FC<Props> = ({ data, title, state, toggleFilters, searchTitl
                 activeElement={state.some((e) => e.text === text)}
                 key={text}
                 text={text}
+                multiple={multiple}
+                state={state}
               />
             ))}
         </ul>

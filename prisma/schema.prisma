@@ -22,9 +22,9 @@ datasource db {
 model User {
   id                String    @id @default(auto()) @map("_id") @db.ObjectId
   avatar            String?   @default("")
-  email             String    @unique
-  name              String
-  password          String
+  email             String?   @unique
+  name              String?
+  password          String?
   role              Role      @default(BASIC)
   link              String?
   gender            Gender    @default(NONE)
@@ -37,6 +37,7 @@ model User {
   comments          Comment[]
   accounts          Account[]
   sessions          Session[]
+  Article           Article[]
 }
 
 model Comics {
@@ -101,6 +102,17 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+}
+
+model Article {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  createdAt   DateTime @default(now())
+  description String
+  cover       String
+  text        String
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String   @db.ObjectId
 }
 
 model Session {

@@ -39,7 +39,8 @@
 
     &__title {
         display: block;
-        max-width: 50px;
+        max-width: 60px;
+        text-overflow: ellipsis;
         padding: 0;
         border: none;
         background: transparent;

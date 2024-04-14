@@ -14,7 +14,7 @@ type Props = {
 
 const Chapter: FC<Props> = ({ chapter, tomId }) => {
   const { title, images, chapterId } = chapter;
-  const { saveChapterImages, saveChapterName } = useActions();
+  const { saveChapterImages, saveChapterName, removeChapter } = useActions();
   const [active, setActive] = useState(false);
   const [chapterTitle, setChapterTitle] = useState(title);
   const [disabled, setDisabled] = useState(true);
@@ -22,6 +22,9 @@ const Chapter: FC<Props> = ({ chapter, tomId }) => {
   const handleBlur = () => {
     setDisabled(true);
     saveChapterName({ tomId, chapterName: chapterTitle, chapterId });
+  };
+  const handleRemove = () => {
+    removeChapter({ tomId, chapter });
   };
   useEffect(() => {
     !disabled && editRef.current.focus();
@@ -69,6 +72,34 @@ const Chapter: FC<Props> = ({ chapter, tomId }) => {
             />
             <path d="M9.375 3.75L11.25 5.625" stroke="#7A5AF8" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M8.125 12.5H13.125" stroke="#7A5AF8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+        <button onClick={() => handleRemove()} className={styles['chapter-info__remove-btn']}>
+          <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1609_10883)">
+              <path d="M9 7V12" stroke="#E54545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M6 7V12" stroke="#E54545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M3 4V13C3 14.1046 3.89543 15 5 15H10C11.1046 15 12 14.1046 12 13V4"
+                stroke="#E54545"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path d="M1 4H14" stroke="#E54545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M3 4L4.8 1H10.2L12 4"
+                stroke="#E54545"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_1609_10883">
+                <rect width="15" height="16" fill="white" />
+              </clipPath>
+            </defs>
           </svg>
         </button>
       </div>

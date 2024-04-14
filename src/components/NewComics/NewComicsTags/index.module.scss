@@ -21,5 +21,9 @@
         color: white;
         background-color: $main-color;
         border-radius: 250px;
+
+        &:disabled {
+            background: rgba($main-color, .6);
+        }
     }
 }

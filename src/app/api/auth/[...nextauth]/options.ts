@@ -5,6 +5,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import YandexProvider from 'next-auth/providers/yandex';
 import VkProvider from 'next-auth/providers/vk';
+import GoogleProvider from 'next-auth/providers/google';
 import { connect } from '@/services/connect';
 import bcrypt from 'bcrypt';
 
@@ -38,9 +39,33 @@ export const options: NextAuthOptions = {
       clientId: process.env.VK_CLIENT_ID,
       clientSecret: process.env.VK_SECRET,
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+      profile(profile, tokens) {
+        return {
+          id: profile.sub,
+          role: 'BASIC',
+          email: profile.email,
+          name: profile.name,
+          avatar: profile.picture,
+        };
+      },
+    }),
     YandexProvider({
       clientId: process.env.YANDEX_CLIENT_ID,
       clientSecret: process.env.YANDEX_SECRET,
+      profile(profile, tokens) {
+        return {
+          id: profile.id,
+          role: 'BASIC',
+          email: profile.emails[0],
+          name: profile.display_name,
+          avatar: profile.is_avatar_empty
+            ? ''
+            : `https://avatars.yandex.net/get-yapic/${profile.default_avatar_id}/islands-34`,
+        };
+      },
     }),
 
     CredentialsProvider({

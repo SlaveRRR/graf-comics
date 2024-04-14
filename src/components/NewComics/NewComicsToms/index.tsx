@@ -2,12 +2,13 @@
 import React, { FC } from 'react';
 import { AddComics } from '@/components/shared';
 import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/hooks/redux';
+import { useActions, useAppSelector } from '@/hooks/redux';
 import styles from './index.module.scss';
 import Tom from '@/components/Tom';
 
 const NewComicsToms: FC = () => {
   const router = useRouter();
+  const { addTom, removeTom } = useActions();
   const { toms } = useAppSelector((state) => state.comics);
   const handleClick = () => {
     router.push('/add-comics/preview');
@@ -17,8 +18,12 @@ const NewComicsToms: FC = () => {
     <AddComics final={false}>
       <p className={styles['title']}>Добавьте главы и загрузите файлы</p>
       <div className={styles['btns']}>
-        <button className={styles['btns__add-btn']}>Добавить том</button>
-        <button className={styles['btns__remove-btn']}>Удалить том</button>
+        <button onClick={() => addTom()} className={styles['btns__add-btn']}>
+          Добавить том
+        </button>
+        <button onClick={() => removeTom()} className={styles['btns__remove-btn']}>
+          Удалить том
+        </button>
       </div>
 
       <div className={styles['toms']}>

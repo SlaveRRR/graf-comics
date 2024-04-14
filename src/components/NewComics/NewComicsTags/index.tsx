@@ -25,6 +25,7 @@ const NewComicsTags: FC = () => {
   return (
     <AddComics final={false}>
       <SearchSelect
+        multiple={true}
         title="Выберите жанры"
         searchTitle="Поиск жанра"
         data={genresData}
@@ -32,6 +33,7 @@ const NewComicsTags: FC = () => {
         toggleFilters={(el) => toggleFilters({ type: 'genres', element: el })}
       />
       <SearchSelect
+        multiple={true}
         title="Выберите направленность"
         searchTitle="Поиск направленности"
         data={focusData}
@@ -39,6 +41,7 @@ const NewComicsTags: FC = () => {
         toggleFilters={(el) => toggleFilters({ type: 'focus', element: el })}
       />
       <SearchSelect
+        multiple={true}
         title="Выберите метки"
         searchTitle="Поиск метки"
         data={tagsData}
@@ -46,6 +49,7 @@ const NewComicsTags: FC = () => {
         toggleFilters={(el) => toggleFilters({ type: 'tags', element: el })}
       />
       <SearchSelect
+        multiple={false}
         title="Выберите рейтинг"
         searchTitle="Поиск рейтинга"
         data={ratingData}
@@ -56,7 +60,11 @@ const NewComicsTags: FC = () => {
         <button onClick={() => router.back()} className={styles['btns-container__back-btn']}>
           назад
         </button>
-        <button onClick={() => handleClick()} className={styles['btns-container__next-btn']}>
+        <button
+          disabled={!(focus.length > 0 && genres.length > 0 && rating.length > 0 && tags.length > 0)}
+          onClick={() => handleClick()}
+          className={styles['btns-container__next-btn']}
+        >
           далее
         </button>
       </div>

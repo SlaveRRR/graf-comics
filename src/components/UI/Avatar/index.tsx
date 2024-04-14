@@ -22,7 +22,7 @@ const Avatar: FC = () => {
         <img
           alt="аватарка пользователя"
           className={styles['avatar']}
-          src={avatar ? `data:image/jpeg;base64,${avatar}` : '/avatar.svg'}
+          src={avatar ? avatar.includes('https') ? avatar : `data:image/jpeg;base64,${avatar}` : '/avatar.svg'}
         />
       )}
     </>
