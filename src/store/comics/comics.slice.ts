@@ -12,7 +12,12 @@ const initialState: IComics = {
   cover: defaultImages,
   focus: [],
   genres: [],
-  rating: [],
+  rating: [
+    {
+      colorClass: 'author',
+      text: '18+',
+    },
+  ],
   tags: [],
   status: Status.WORK,
   toms: [
