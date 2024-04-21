@@ -116,5 +116,16 @@ export const options: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
+  events: {
+    linkAccount: async ({ user }) => {
+      console.log(user);
+      await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          emailVerified: false,
+        },
+      });
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
 };
