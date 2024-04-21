@@ -4,9 +4,8 @@ import prisma from '@/services/prisma';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import YandexProvider from 'next-auth/providers/yandex';
-import VkProvider from 'next-auth/providers/vk';
+import VkProvider from '@/utils/vk';
 import GoogleProvider from 'next-auth/providers/google';
-import { connect } from '@/services/connect';
 import bcrypt from 'bcrypt';
 
 import { type DefaultSession, type DefaultUser } from 'next-auth';
@@ -38,17 +37,6 @@ export const options: NextAuthOptions = {
     VkProvider({
       clientId: process.env.VK_CLIENT_ID,
       clientSecret: process.env.VK_SECRET,
-      profile(profile, tokens) {
-        console.log(profile);
-        return {
-          id: profile.sub,
-          role: 'BASIC',
-          email: profile.email,
-          name: profile.name,
-          emailVerified: true,
-          avatar: profile.picture,
-        };
-      },
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
