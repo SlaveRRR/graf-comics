@@ -28,7 +28,7 @@ model User {
   role              Role      @default(BASIC)
   link              String?
   gender            Gender    @default(NONE)
-  emailVerified     Boolean   @default(false)
+  emailVerified     DateTime?
   subscribers       Int       @default(0)
   about             String?
   closedProfile     Boolean   @default(false)

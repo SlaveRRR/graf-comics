@@ -57,8 +57,11 @@
           ]
         },
         "emailVerified": {
-          "type": "boolean",
-          "default": false
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
         },
         "subscribers": {
           "type": "integer",

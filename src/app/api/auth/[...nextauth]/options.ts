@@ -4,7 +4,7 @@ import prisma from '@/services/prisma';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import YandexProvider from 'next-auth/providers/yandex';
-import VkProvider from '@/utils/vk';
+import VkProvider from 'next-auth/providers/vk';
 import GoogleProvider from 'next-auth/providers/google';
 import bcrypt from 'bcrypt';
 
@@ -34,9 +34,20 @@ declare module 'next-auth/jwt' {
 export const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
+    // не добавляется почта, с новой версией next-auth это пофиксили
     VkProvider({
       clientId: process.env.VK_CLIENT_ID,
       clientSecret: process.env.VK_SECRET,
+      profile(profile, tokens) {
+        return {
+          id: profile.id,
+          name: [profile.first_name, profile.last_name].filter(Boolean).join(' '),
+          email: profile.email ?? '',
+          avatar: profile.photo_100,
+          emailVerified: true,
+          role: 'BASIC',
+        };
+      },
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -115,17 +126,6 @@ export const options: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
-  },
-  events: {
-    linkAccount: async ({ user }) => {
-      console.log(user);
-      await prisma.user.update({
-        where: { id: user.id },
-        data: {
-          emailVerified: false,
-        },
-      });
-    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
