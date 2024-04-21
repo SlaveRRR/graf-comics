@@ -38,6 +38,17 @@ export const options: NextAuthOptions = {
     VkProvider({
       clientId: process.env.VK_CLIENT_ID,
       clientSecret: process.env.VK_SECRET,
+      profile(profile, tokens) {
+        console.log(profile);
+        return {
+          id: profile.sub,
+          role: 'BASIC',
+          email: profile.email,
+          name: profile.name,
+          emailVerified: true,
+          avatar: profile.picture,
+        };
+      },
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -48,6 +59,7 @@ export const options: NextAuthOptions = {
           role: 'BASIC',
           email: profile.email,
           name: profile.name,
+          emailVerified: true,
           avatar: profile.picture,
         };
       },
@@ -61,6 +73,7 @@ export const options: NextAuthOptions = {
           role: 'BASIC',
           email: profile.emails[0],
           name: profile.display_name,
+          emailVerified: true,
           avatar: profile.is_avatar_empty
             ? ''
             : `https://avatars.yandex.net/get-yapic/${profile.default_avatar_id}/islands-34`,
