@@ -5,10 +5,11 @@ export async function readImageFile(file: File): Promise<string> {
       resolve(event.target.result as string);
     };
     reader.onerror = reject;
-
     reader.readAsDataURL(file);
   });
 }
+
+
 
 export const readFiles = async (arr: FileList): Promise<string[]> => {
   const res = [];

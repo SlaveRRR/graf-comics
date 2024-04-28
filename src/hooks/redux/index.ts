@@ -5,7 +5,9 @@ import { AppDispatch, RootState } from '@/store';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { actions as comicsActions } from '@/store/comics/comics.slice';
 import { actions as userActions } from '@/store/user/user.slice';
+import { actions as articleActions } from '@/store/article/article.slice';
 const rootActions = {
+  ...articleActions,
   ...comicsActions,
   ...userActions,
 };

@@ -20,24 +20,25 @@ datasource db {
 }
 
 model User {
-  id                String    @id @default(auto()) @map("_id") @db.ObjectId
-  avatar            String?   @default("")
-  email             String?   @unique
+  id                String         @id @default(auto()) @map("_id") @db.ObjectId
+  avatar            String?        @default("")
+  email             String?        @unique
   name              String?
   password          String?
-  role              Role      @default(BASIC)
+  role              Role           @default(BASIC)
   link              String?
-  gender            Gender    @default(NONE)
+  gender            Gender         @default(NONE)
   emailVerified     DateTime?
-  subscribers       Int       @default(0)
+  subscribers       Int            @default(0)
   about             String?
-  closedProfile     Boolean   @default(false)
-  closedSubscribers Boolean   @default(false)
+  closedProfile     Boolean        @default(false)
+  closedSubscribers Boolean        @default(false)
   comics            Comics[]
   comments          Comment[]
   accounts          Account[]
   sessions          Session[]
   Article           Article[]
+  ArticleImage      ArticleImage[]
 }
 
 model Comics {
@@ -110,9 +111,19 @@ model Article {
   createdAt   DateTime @default(now())
   description String
   cover       String
-  text        String
+  content     Json
   author      User     @relation(fields: [authorId], references: [id])
   authorId    String   @db.ObjectId
+  isApproved  Boolean
+  authorName  String
+}
+
+model ArticleImage {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String @unique
+  image  Bytes
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
 }
 
 model Session {

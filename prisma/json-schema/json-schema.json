@@ -110,6 +110,12 @@
           "items": {
             "$ref": "#/definitions/Article"
           }
+        },
+        "ArticleImage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArticleImage"
+          }
         }
       },
       "required": []
@@ -367,19 +373,56 @@
         "cover": {
           "type": "string"
         },
-        "text": {
-          "type": "string"
+        "content": {
+          "type": [
+            "number",
+            "string",
+            "boolean",
+            "object",
+            "array",
+            "null"
+          ]
         },
         "author": {
           "$ref": "#/definitions/User"
+        },
+        "isApproved": {
+          "type": "boolean"
+        },
+        "authorName": {
+          "type": "string"
         }
       },
       "required": [
         "title",
         "description",
         "cover",
-        "text",
-        "authorId"
+        "content",
+        "authorId",
+        "isApproved",
+        "authorName"
+      ]
+    },
+    "ArticleImage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": [
+        "name",
+        "image",
+        "userId"
       ]
     },
     "Session": {
@@ -451,6 +494,9 @@
     },
     "article": {
       "$ref": "#/definitions/Article"
+    },
+    "articleImage": {
+      "$ref": "#/definitions/ArticleImage"
     },
     "session": {
       "$ref": "#/definitions/Session"

@@ -35,7 +35,7 @@ const NewComicsImages: FC = () => {
 
   const router = useRouter();
 
-  const handler: SubmitHandler<FormData> = async (data) => {
+  const handler: SubmitHandler<FormData> = (data) => {
     addTitleDescription({
       title: data.title,
       description: data.description,

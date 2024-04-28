@@ -39,7 +39,7 @@ const Login: FC = () => {
       });
       if (isSignin?.ok) {
         alert('Вы вошли');
-        router.push('/');
+        router.replace('/');
         return;
       }
     } catch (error) {

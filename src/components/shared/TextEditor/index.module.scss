@@ -1,0 +1,35 @@
+@use '../../../styles/global' as *;
+
+.words {
+    margin-bottom: .5em;
+    width: max-content;
+
+}
+
+.btns-container {
+    @include flex($gap: .57em);
+    margin: 0 auto;
+
+    &__back-btn {
+        border: 1px solid $main-color;
+        font-size: .86rem;
+        padding: .5em 2em;
+        background: white;
+        color: $main-color;
+        border-radius: 250px;
+
+    }
+
+    &__next-btn {
+        padding: .5em 2em;
+        border: none;
+        font-size: .86rem;
+        color: white;
+        background-color: $main-color;
+        border-radius: 250px;
+
+        &:disabled {
+            background: rgba($main-color, .6);
+        }
+    }
+}
