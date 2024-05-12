@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { FC, useEffect } from 'react';
 
 import styles from './index.module.scss';
@@ -8,12 +8,11 @@ import { ArrowLink } from '../shared/index';
 import { Badge, Button, SliderArticles, Card } from '../UI';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-
+import Articles from '../Articles';
 
 const Home: FC = () => {
-  const {data,status} = useSession()
-  
-  
+  const { data, status } = useSession();
+
   return (
     <>
       <section className={styles['image-section']}>
@@ -106,7 +105,7 @@ const Home: FC = () => {
       <section className="article-section">
         <div className="container">
           <ArrowLink mixClass={[styles['slider-container__link']]} text="Полезные статьи" url="/articles" />
-         
+          <Articles />
         </div>
       </section>
     </>

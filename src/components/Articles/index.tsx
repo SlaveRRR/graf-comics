@@ -1,47 +1,25 @@
 import React, { FC } from 'react';
 import styles from './index.module.scss';
-import Link from 'next/link';
+import { useGetArticlesQuery } from '@/store/api/articles';
+import { ArticleCard } from '../UI';
 
 const Articles: FC = () => {
+  const { data, isLoading } = useGetArticlesQuery();
+
   return (
-    <div className={styles['articles']}>
-      <div className={styles['articles__item']}>
-        <div className={styles['articles__container-text']}>
-          <header className={styles['articles__header']}>Название статьи</header>
-          <p className={styles['articles__short']}>Кратко о статье</p>
+    <>
+      {isLoading ? (
+        <p>Загрузка...</p>
+      ) : data.length > 0 ? (
+        <div className={styles['articles']}>
+          {data.map((el) => (
+            <ArticleCard title={el.title} id={el.id} description={el.description} />
+          ))}
         </div>
-        <Link className={styles['articles__link']} href={'/article'}>
-          Читать статью
-        </Link>
-      </div>
-      <div className={styles['articles__item']}>
-        <div className={styles['articles__container-text']}>
-          <header className={styles['articles__header']}>Название статьи</header>
-          <p className={styles['articles__short']}>Кратко о статье</p>
-        </div>
-        <Link className={styles['articles__link']} href={'/article'}>
-          Читать статью
-        </Link>
-      </div>
-      <div className={styles['articles__item']}>
-        <div className={styles['articles__container-text']}>
-          <header className={styles['articles__header']}>Название статьи</header>
-          <p className={styles['articles__short']}>Кратко о статье</p>
-        </div>
-        <Link className={styles['articles__link']} href={'/article'}>
-          Читать статью
-        </Link>
-      </div>
-      <div className={styles['articles__item']}>
-        <div className={styles['articles__container-text']}>
-          <header className={styles['articles__header']}>Название статьи</header>
-          <p className={styles['articles__short']}>Кратко о статье</p>
-        </div>
-        <Link className={styles['articles__link']} href={'/article'}>
-          Читать статью
-        </Link>
-      </div>
-    </div>
+      ) : (
+        <p>Статей пока нет :-</p>
+      )}
+    </>
   );
 };
 export default Articles;

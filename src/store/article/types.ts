@@ -1,4 +1,4 @@
-import { Category } from '@prisma/client';
+import { FilterItem } from '@/types/filter.type';
 
 export interface IArticle {
   title: string;
@@ -8,5 +8,10 @@ export interface IArticle {
   article: string;
   htmlFromFile: string;
   fileName: string;
-  category: Category;
+  category: FilterItem[];
+}
+
+export interface IFilter {
+  type: keyof Pick<IArticle, 'category'>;
+  element: FilterItem;
 }

@@ -1,0 +1,54 @@
+@use '../../../styles/global' as *;
+
+.article {
+    width: clamp(10rem, 13vw + 7.029rem, 24.857rem);
+    border-radius: 10px;
+    padding: 1.1em 1.5em .8em 1.1em;
+    background: #FFFFFF;
+    @include flex($dir: column, $justify: space-between);
+    height: clamp(7.143rem, 18.125vw + 3rem, 27.857rem);
+    scroll-snap-align: start;
+
+    @include mediaMin($size: $device-M) {
+        padding: 2.7em 3.5em 3em;
+    }
+
+    &__container-text {
+        align-self: flex-start;
+    }
+
+    &__header {
+        align-self: flex-start;
+        font-size: clamp(0.786rem, 0.813vw + 0.6rem, 1.714rem);
+        font-weight: 500;
+        line-height: normal;
+        color: #2D283E;
+        margin-bottom: clamp(0.214rem, 0.563vw + 0.086rem, 0.857rem);
+    }
+
+
+
+    &__short {
+        align-self: flex-start;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        font-size: clamp(0.571rem, 0.5vw + 0.457rem, 1.143rem);
+        font-weight: 500;
+        line-height: 10px;
+    }
+
+    &__link {
+        width: clamp(7.143rem, 9.375vw + 5rem, 17.857rem);
+        text-align: center;
+        @include flex;
+        padding: .5em .4em;
+        border: 0.89px solid #7A5AF8;
+        color: $primary-color;
+        border-radius: 562px;
+        text-decoration: none;
+        font-size: clamp(0.714rem, 0.625vw + 0.571rem, 1.429rem);
+        font-weight: 500;
+        line-height: normal;
+    }
+}

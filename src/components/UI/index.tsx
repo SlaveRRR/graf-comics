@@ -24,7 +24,9 @@ import Avatar from './Avatar';
 import SearchSelect from './SearchSelect';
 import BookMarkMenu from './BookMarkMenu';
 import ChaptersButton from './ChaptersButton';
+import ArticleCard from './ArticleCard';
 export {
+  ArticleCard,
   BurgerMenu,
   Search,
   Logo,

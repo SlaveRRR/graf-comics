@@ -3,6 +3,33 @@ import prisma from '@/services/prisma';
 import { IArticle } from '@/store/article/types';
 import { getServerSession } from 'next-auth';
 import { options } from '../../api/auth/[...nextauth]/options';
+import { Category } from '@prisma/client';
+
+// prettier-ignore
+const categoryObj = {
+  "продвижение комикса": Category.PROMOTION,
+  "сценарий": Category.SCENARIO,
+  "лайфстайл художника": Category.LIFESTYLE,
+  "персонажи": Category.CHARACTERS,
+  "окружение": Category.ENVIROMENT,
+  "графическое наполнение": Category.GRAPHIC,
+};
+
+export const GET = async (request: NextRequest) => {
+  try {
+    const articles = await prisma.article.findMany({
+      where: { isApproved: true },
+    });
+    return NextResponse.json(articles);
+  } catch (error) {
+    return NextResponse.json(
+      { message: error },
+      {
+        status: 500,
+      }
+    );
+  }
+};
 
 export const POST = async (request: NextRequest) => {
   try {
@@ -12,7 +39,7 @@ export const POST = async (request: NextRequest) => {
 
     const newArticle = await prisma.article.create({
       data: {
-        category: data.category,
+        category: categoryObj[data.category[0].text],
         content: data.article,
         isApproved: false,
         cover: data.cover,

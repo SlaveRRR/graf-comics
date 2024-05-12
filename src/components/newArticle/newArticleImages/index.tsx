@@ -11,6 +11,10 @@ import cn from 'classnames';
 import { useGetUserByIdQuery } from '@/store/api';
 import { useSession } from 'next-auth/react';
 import { SearchSelect } from '@/components/UI';
+import { category } from '@/data/data.json';
+import { FilterItem } from '@/types/filter.type';
+
+const categoriesData = category.map((v, i) => ({ colorClass: 'violet', text: v } as FilterItem));
 
 type FormData = {
   cover: File | string;
@@ -18,7 +22,8 @@ type FormData = {
 } & Pick<IArticle, 'title' | 'description'>;
 
 const NewArticleImages: FC = () => {
-  const { addTitleDescriptionArticle, addCoverArticle, addHtmlFromFile, addFileName, clearFile } = useActions();
+  const { addTitleDescriptionArticle, addCoverArticle, addHtmlFromFile, addFileName, clearFile, toggleCategory } =
+    useActions();
   const router = useRouter();
   const article = useAppSelector((state) => state.article);
   const {
@@ -138,6 +143,14 @@ const NewArticleImages: FC = () => {
               },
             })}
             accept="image/png, image/jpeg"
+          />
+          <SearchSelect
+            multiple={false}
+            title="Выберите категорию"
+            searchTitle="Поиск категории"
+            data={categoriesData}
+            state={article.category}
+            toggleFilters={(el) => toggleCategory({ type: 'category', element: el })}
           />
           <div className={styles['upload-file']}>
             <p className={styles['text-label']}>Загрузить из файла .doc .docx</p>

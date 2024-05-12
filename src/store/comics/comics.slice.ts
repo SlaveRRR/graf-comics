@@ -61,7 +61,7 @@ const comicsSlice = createSlice({
       const {
         payload: { type, element },
       } = action;
-      console.log(action.payload);
+  
 
       const arr = state[type];
       const ind = arr.findIndex((e) => e.text === element.text);

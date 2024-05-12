@@ -3,12 +3,14 @@ import prisma from '@/services/prisma';
 
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
   try {
-    
-    const user = await prisma.user.findUnique({
-      where: { id: params.id },
-      include: { accounts: false, sessions: false, Article: true, comics: true, comments: true },
-    });
-    return NextResponse.json(user);
+    if (!params?.id) {
+      return NextResponse.json({ message: 'Id not found' });
+    } else {
+      const article = await prisma.article.findUnique({
+        where: { id: params.id, isApproved: true },
+      });
+      return NextResponse.json(article);
+    }
   } catch (error) {
     return NextResponse.json(
       { message: error },
