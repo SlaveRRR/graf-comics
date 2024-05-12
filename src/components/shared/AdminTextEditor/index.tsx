@@ -25,7 +25,6 @@ const AdminTextEditor: FC<Props> = ({ value, name, onChange, rawErrors }) => {
         holder: 'editorjs',
         autofocus: true,
         data: JSON.parse(JSON.parse(value)),
-        readOnly: true,
         onChange: async (api, event: BlockMutationEvent) => {
           if (event.type !== 'block-changed') {
             return;

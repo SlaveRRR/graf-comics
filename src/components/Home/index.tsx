@@ -106,44 +106,7 @@ const Home: FC = () => {
       <section className="article-section">
         <div className="container">
           <ArrowLink mixClass={[styles['slider-container__link']]} text="Полезные статьи" url="/articles" />
-          <div className={styles['articles']}>
-            <div className={styles['articles__item']}>
-              <div className={styles['articles__container-text']}>
-                <header className={styles['articles__header']}>Название статьи</header>
-                <p className={styles['articles__short']}>Кратко о статье</p>
-              </div>
-              <Link className={styles['articles__link']} href={'/article'}>
-                Читать статью
-              </Link>
-            </div>
-            <div className={styles['articles__item']}>
-              <div className={styles['articles__container-text']}>
-                <header className={styles['articles__header']}>Название статьи</header>
-                <p className={styles['articles__short']}>Кратко о статье</p>
-              </div>
-              <Link className={styles['articles__link']} href={'/article'}>
-                Читать статью
-              </Link>
-            </div>
-            <div className={styles['articles__item']}>
-              <div className={styles['articles__container-text']}>
-                <header className={styles['articles__header']}>Название статьи</header>
-                <p className={styles['articles__short']}>Кратко о статье</p>
-              </div>
-              <Link className={styles['articles__link']} href={'/article'}>
-                Читать статью
-              </Link>
-            </div>
-            <div className={styles['articles__item']}>
-              <div className={styles['articles__container-text']}>
-                <header className={styles['articles__header']}>Название статьи</header>
-                <p className={styles['articles__short']}>Кратко о статье</p>
-              </div>
-              <Link className={styles['articles__link']} href={'/article'}>
-                Читать статью
-              </Link>
-            </div>
-          </div>
+         
         </div>
       </section>
     </>

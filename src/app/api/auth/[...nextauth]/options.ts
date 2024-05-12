@@ -1,4 +1,4 @@
-import type { NextAuthOptions } from 'next-auth';
+import type { NextAuthOptions, DefaultSession, DefaultUser } from 'next-auth';
 import { Role } from '@prisma/client';
 import prisma from '@/services/prisma';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
@@ -8,7 +8,6 @@ import VkProvider from 'next-auth/providers/vk';
 import GoogleProvider from 'next-auth/providers/google';
 import bcrypt from 'bcrypt';
 
-import { type DefaultSession, type DefaultUser } from 'next-auth';
 import { type DefaultJWT } from 'next-auth/jwt';
 
 declare module 'next-auth' {
@@ -84,7 +83,6 @@ export const options: NextAuthOptions = {
       name: 'Credentials',
       credentials: {},
       async authorize(credentials) {
-        // await connect();
         const { email, password } = credentials as {
           email: string;
           password: string;

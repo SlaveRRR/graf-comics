@@ -1,13 +1,16 @@
 'use client';
 import { AddArticle } from '@/components/shared';
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { readImageFile } from '@/utils/filereader';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import styles from './index.module.scss';
 import { useActions, useAppSelector } from '@/hooks/redux';
 import { IArticle } from '@/store/article/types';
 import cn from 'classnames';
+import { useGetUserByIdQuery } from '@/store/api';
+import { useSession } from 'next-auth/react';
+import { SearchSelect } from '@/components/UI';
 
 type FormData = {
   cover: File | string;
@@ -35,9 +38,10 @@ const NewArticleImages: FC = () => {
       description: data.description,
     });
   };
-
+  const [loading, setLoading] = useState(false);
   const handleTextChange = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
+      setLoading(true);
       const file = e.target.files[0];
       const data = new FormData();
       data.append('file', new Blob([await file.arrayBuffer()]));
@@ -53,11 +57,22 @@ const NewArticleImages: FC = () => {
       addFileName(file.name);
     } catch (error) {
       alert(error);
+    } finally {
+      setLoading(false);
     }
   };
   const removeText = () => {
     clearFile();
   };
+  const { status, data } = useSession();
+
+  const { isArticleApprove } = useGetUserByIdQuery(data?.user?.id, {
+    selectFromResult: ({ data }) => ({ isArticleApprove: data?.isArticleApprove }),
+    skip: status !== 'authenticated',
+  });
+  if (!isArticleApprove) {
+    return redirect('/add-article/articles');
+  }
   return (
     <AddArticle>
       <form onSubmit={handleSubmit(handler)}>
@@ -118,7 +133,6 @@ const NewArticleImages: FC = () => {
             id="banner"
             className={cn(styles['cover__input'], 'myvisuallyhidden')}
             {...register('cover', {
-              required: true,
               onChange(event) {
                 readImageFile(getValues('cover')[0]).then((data) => addCoverArticle(data));
               },
@@ -134,7 +148,7 @@ const NewArticleImages: FC = () => {
                 </button>
               ) : (
                 <label className={styles['text__label']} htmlFor="uploadFile">
-                  Выбрать
+                  {loading ? <div className={styles['loader']} /> : 'Выбрать'}
                 </label>
               )}
 
@@ -153,7 +167,7 @@ const NewArticleImages: FC = () => {
           </div>
         </fieldset>
         <button
-          disabled={isValid ? false : !isValid && article.cover ? false : true}
+          disabled={isValid ? false : true}
           onClick={() => router.push('/add-article/text')}
           className={styles['next-btn']}
         >

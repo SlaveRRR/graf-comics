@@ -31,6 +31,7 @@ model User {
   emailVerified     DateTime?
   subscribers       Int            @default(0)
   about             String?
+  isArticleApprove  Boolean        @default(true)
   closedProfile     Boolean        @default(false)
   closedSubscribers Boolean        @default(false)
   comics            Comics[]
@@ -110,19 +111,20 @@ model Article {
   title       String
   createdAt   DateTime @default(now())
   description String
-  cover       String
+  cover       String?
   content     Json
-  author      User     @relation(fields: [authorId], references: [id])
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId    String   @db.ObjectId
   isApproved  Boolean
   authorName  String
+  category    Category
 }
 
 model ArticleImage {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   name   String @unique
   image  Bytes
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @db.ObjectId
 }
 
@@ -153,4 +155,13 @@ enum Role {
   BASIC
   AUTHOR
   ADMIN
+}
+
+enum Category {
+  SCENARIO
+  LIFESTYLE
+  CHARACTERS
+  ENVIROMENT
+  PROMOTION
+  GRAPHIC
 }

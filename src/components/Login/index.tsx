@@ -1,7 +1,6 @@
 'use client';
 import React, { FC, useContext, useState } from 'react';
 import { BackLink, SocialAuthLinks } from '../shared';
-import AuthService from '@/services/auth';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import cn from 'classnames';
 import { ctx } from '../../context/contextProvider';

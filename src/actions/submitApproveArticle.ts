@@ -6,6 +6,11 @@ export const submitApproveArticle = async (model: ModelName, ids: number[] | str
     await prisma.article.update({
       data: {
         isApproved: true,
+        author: {
+          update: {
+            isArticleApprove: true,
+          },
+        },
       },
       where: {
         id: id as string,

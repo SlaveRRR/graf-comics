@@ -14,20 +14,31 @@ import ImageTool from '@editorjs/image';
 import styles from './index.module.scss';
 import { useRouter } from 'next/navigation';
 
+function couldBeCounted(block) {
+  return 'text' in block.data;
+}
+
+function getBlocksTextLen(blocks) {
+  return blocks.filter(couldBeCounted).reduce((sum, block) => {
+    sum += block.data.text.replaceAll('&nbsp;', '').length;
+    return sum;
+  }, 0);
+}
+
 type Props = {
   rawHtml?: string;
-  setResult: React.Dispatch<SetStateAction<string>>;
+  onSave: (result: string) => void;
 };
 
-const TextEditor: FC<Props> = ({ rawHtml, setResult }) => {
+const TextEditor: FC<Props> = ({ rawHtml, onSave }) => {
   const isReady = useRef(false);
-  const editor = useRef(null);
+  const editor = useRef<EditorJS>(null);
   const router = useRouter();
   const [count, setCount] = useState(0);
   const handleSave = async () => {
     alert('Ваша статья отправлена на модерацию');
     const res = JSON.stringify(await editor.current.save());
-    setResult(res);
+    onSave(res);
     // router.replace('/');
   };
   useEffect(() => {
@@ -35,28 +46,34 @@ const TextEditor: FC<Props> = ({ rawHtml, setResult }) => {
       editor.current = new EditorJS({
         holder: 'editorjs',
         autofocus: true,
+        // обход бага при первом рендере renderFromHtml
+        data: {
+          time: 1550476186479,
+          version: '2.29.1',
+          blocks: [
+            {
+              type: 'header',
+              data: {
+                text: 'Напишите свою статью...',
+              },
+            },
+          ],
+        },
         onReady: async () => {
           if (rawHtml) {
-            await editor.current.blocks.renderFromHTML(rawHtml);
-            await editor.current.save();
+            try {
+              await editor.current.blocks.renderFromHTML(rawHtml);
+            } catch (error) {
+              console.log(error);
+            }
           }
         },
         onChange: async (api, event: BlockMutationEvent) => {
           if (event.type !== 'block-changed') {
             return;
           }
-
-          function couldBeCounted(block) {
-            return 'text' in block.data;
-          }
-
-          function getBlocksTextLen(blocks) {
-            return blocks.filter(couldBeCounted).reduce((sum, block) => {
-              sum += block.data.text.replaceAll('&nbsp;', '').length;
-              return sum;
-            }, 0);
-          }
           const content = await api.saver.save();
+          console.log(content);
           const contentLen = getBlocksTextLen(content.blocks);
           setCount(contentLen);
         },
@@ -108,4 +125,5 @@ const TextEditor: FC<Props> = ({ rawHtml, setResult }) => {
     </>
   );
 };
+
 export default TextEditor;

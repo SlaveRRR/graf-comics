@@ -35,7 +35,7 @@ export const options: NextAdminOptions = {
         },
       },
       edit: {
-        display: ['name', 'email', 'gender', 'role', 'closedProfile', 'closedSubscribers'],
+        display: ['name', 'email', 'gender', 'role', 'closedProfile', 'closedSubscribers', 'isArticleApprove'],
         styles: {
           _form: 'grid-cols-3 gap-2 md:grid-cols-4',
           name: 'col-span-2',
@@ -72,10 +72,11 @@ export const options: NextAdminOptions = {
         styles: {
           _form: 'grid-cols-3 gap-2 md:grid-cols-4',
           title: 'col-span-2',
+          createdAt: 'cols-span-2 row-start-2',
           author: 'col-span-2 row-start-2',
           cover: 'col-span-2 row-start-3',
-          description: 'col-span-2 row-start-4',
-          content: 'col-span-2 row-start-4',
+          description: 'col-span-2 row-start-3',
+          content: 'col-span-3 row-start-4',
           isApproved: 'col-span-3 row-start-5',
         },
         fields: {

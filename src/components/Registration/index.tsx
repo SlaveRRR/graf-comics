@@ -48,6 +48,7 @@ const Registration = () => {
     try {
       await AuthService.signup(user);
       alert('Вы зарегестрировались');
+      router.replace('/auth/signin');
     } catch (error) {
       alert(error);
     } finally {

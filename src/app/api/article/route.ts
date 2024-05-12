@@ -12,6 +12,7 @@ export const POST = async (request: NextRequest) => {
 
     const newArticle = await prisma.article.create({
       data: {
+        category: data.category,
         content: data.article,
         isApproved: false,
         cover: data.cover,
@@ -19,6 +20,14 @@ export const POST = async (request: NextRequest) => {
         title: data.title,
         authorId: session.user.id,
         authorName: data.authorName,
+      },
+    });
+    await prisma.user.update({
+      where: {
+        id: session.user.id,
+      },
+      data: {
+        isArticleApprove: false,
       },
     });
     return NextResponse.json(newArticle);

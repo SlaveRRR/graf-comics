@@ -5,6 +5,7 @@ const initialState: IArticle = {
   title: 'Название',
   description: 'Описание',
   cover: '',
+  category: 'GRAPHIC',
   fileName: 'Файл не выбран',
   authorName: 'Автор авторович',
   article: '',

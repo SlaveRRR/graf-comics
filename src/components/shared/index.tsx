@@ -10,11 +10,17 @@ import ActiveFilters from './ActiveFilters';
 import ShowMore from './ShowMore';
 import AddComics from './AddComics';
 import AddArticle from './AddArticle';
-import TextEditor from './TextEditor';
-import AdminTextEditor from './AdminTextEditor';
+import dynamic from 'next/dynamic';
+
+const TextEditor = dynamic(() => import('./TextEditor'), {
+  ssr: false,
+});
+const AdminTextEditor = dynamic(() => import('./AdminTextEditor'), {
+  ssr: false,
+});
 export {
-  AdminTextEditor,
   TextEditor,
+  AdminTextEditor,
   BackLink,
   SocialAuthLinks,
   ArrowLink,

@@ -66,4 +66,5 @@ export interface IUser {
   closedSubscribers: boolean;
   comics: IComics[];
   comments: IComment[];
+  isArticleApprove: boolean;
 }

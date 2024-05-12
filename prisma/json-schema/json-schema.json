@@ -73,6 +73,10 @@
             "null"
           ]
         },
+        "isArticleApprove": {
+          "type": "boolean",
+          "default": true
+        },
         "closedProfile": {
           "type": "boolean",
           "default": false
@@ -371,7 +375,10 @@
           "type": "string"
         },
         "cover": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "content": {
           "type": [
@@ -391,16 +398,27 @@
         },
         "authorName": {
           "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "SCENARIO",
+            "LIFESTYLE",
+            "CHARACTERS",
+            "ENVIROMENT",
+            "PROMOTION",
+            "GRAPHIC"
+          ]
         }
       },
       "required": [
         "title",
         "description",
-        "cover",
         "content",
         "authorId",
         "isApproved",
-        "authorName"
+        "authorName",
+        "category"
       ]
     },
     "ArticleImage": {
