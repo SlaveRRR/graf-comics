@@ -7,6 +7,7 @@ import YandexProvider from 'next-auth/providers/yandex';
 import VkProvider from 'next-auth/providers/vk';
 import GoogleProvider from 'next-auth/providers/google';
 import bcrypt from 'bcrypt';
+import { v4 as uuid } from 'uuid';
 
 import { type DefaultJWT } from 'next-auth/jwt';
 
@@ -39,7 +40,7 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.VK_SECRET,
       profile(profile, tokens) {
         return {
-          id: profile.id,
+          id: uuid(),
           name: [profile.first_name, profile.last_name].filter(Boolean).join(' '),
           email: profile.email ?? '',
           avatar: profile.photo_100,
