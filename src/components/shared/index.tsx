@@ -18,7 +18,13 @@ const TextEditor = dynamic(() => import('./TextEditor'), {
 const AdminTextEditor = dynamic(() => import('./AdminTextEditor'), {
   ssr: false,
 });
+
+const ArticleView = dynamic(() => import('./ArticleView'), {
+  ssr: false,
+});
+
 export {
+  ArticleView,
   TextEditor,
   AdminTextEditor,
   BackLink,

@@ -1,4 +1,4 @@
-import Article from '@/components/Article';
+import Article from '@/components/ArticleAdmin';
 import { NextPage } from 'next';
 
 const ModerateArticlePage: NextPage = async ({ params }: { params: { id: string } }) => {

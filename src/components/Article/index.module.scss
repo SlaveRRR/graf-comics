@@ -1,4 +1,78 @@
-.paragraph {
-    font-size: 1rem;
-    margin: 10px 0;
+@use '../../styles/global' as *;
+
+.data-container {
+    @include flex($justify: space-between, $align: center);
+}
+
+.data-flex {
+    @include flex($gap: 6px)
+}
+
+.link {
+    margin-bottom: .64em;
+}
+
+.inner-container {
+    background: white;
+}
+
+.padding {
+    padding-top: .5em;
+}
+
+.article {
+    &__container {
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+        background: white;
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 1.43rem;
+        line-height: 24px;
+        text-align: center;
+        color: #2D283E;
+        margin-bottom: .71em;
+    }
+
+    &__category {
+        margin: 0 auto;
+        max-width: 174px;
+        padding: 8px 10px;
+        background: #E4DEFE;
+        border-radius: 10px;
+        font-weight: 600;
+        text-align: center;
+        font-size: .79rem;
+        line-height: 13px;
+        color: #957BF9;
+        margin-bottom: .73em;
+    }
+
+    &__cover {
+
+        object-position: top;
+        border-radius: 10px;
+        height: 250px;
+        width: 100%;
+        max-height: 450px;
+        object-fit: cover;
+        margin-bottom: 1.43em;
+    }
+
+    &__author {
+        font-weight: 700;
+        font-size: .79rem;
+        line-height: 13px;
+        color: #7A5AF8;
+    }
+
+    &__data {
+        font-weight: 700;
+        font-size: .79rem;
+        line-height: 13px;
+        color: #7A5AF8;
+    }
 }

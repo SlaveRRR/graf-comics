@@ -1,5 +1,5 @@
 import { NextAdminOptions } from '@premieroctet/next-admin';
-import Article from '@/components/Article';
+import ArticleAdmin from '@/components/ArticleAdmin';
 
 export const options: NextAdminOptions = {
   basePath: '/admin',
@@ -18,6 +18,7 @@ export const options: NextAdminOptions = {
             formatter(avatar, context) {
               return (
                 <img
+                  alt="user avatar"
                   style={{
                     objectFit: 'cover',
                     width: '35px',
@@ -81,7 +82,7 @@ export const options: NextAdminOptions = {
         },
         fields: {
           content: {
-            input: <Article />,
+            input: <ArticleAdmin />,
           },
           cover: {
             format: 'file',

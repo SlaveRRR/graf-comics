@@ -4,6 +4,7 @@ import { ARTICLETAG } from './tags';
 const article = 'article';
 
 const extendedApi = api.injectEndpoints({
+  overrideExisting: true,
   endpoints: (builder) => ({
     getArticles: builder.query<Article[], void>({
       query: () => `${article}/`,
