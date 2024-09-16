@@ -3,6 +3,14 @@
 .profile-header {
     background: white;
     margin-bottom: 1.1em;
+    margin-right: 8%;
+    margin-left: 8%;
+    border-radius: 10px;
+
+    @media (max-width: 767px) {
+        margin: 0; // Значение для телефонов
+        margin-bottom: 1.1em;
+    }
 }
 
 .profile {
@@ -29,8 +37,7 @@
         background-position: center;
         background-size: cover;
         border: 1px solid transparent;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-radius: 10px;
         margin-bottom: 6.1em;
     }
 
@@ -60,13 +67,59 @@
         margin-bottom: 2.5em;
     }
 
+    &__details-btn {
+        background: transparent;
+        height: 20px;
+        border: none;
+        cursor: pointer;
+    }
+
     &__stats {
         margin-bottom: 1.9em;
+    }
+
+    &__modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    &__modal-cnt {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        max-width: 500px;
+        width: 100%;
+        position: relative;
+    }
+
+    &__modal-close {
+        position: absolute;
+        top: 1px;
+        right: 5px;
+        font-size: 2.5rem;
+        color:#7A5AF8;
+        cursor: pointer;
     }
 }
 
 .tabs {
     background-color: white;
+    margin-right: 8%;
+    margin-left: 8%;
+    border-radius: 10px;
+
+    @media (max-width: 767px) {
+        margin: 0; // Значение для телефонов
+        margin-bottom: 1.1em;
+    }
 
     &__container {
         padding-top: 1em;
@@ -75,6 +128,7 @@
     &__items {
         margin-bottom: 2em;
     }
+
     &__public-btn{
         display: block;
         margin:0 auto 1.8em;
@@ -88,21 +142,150 @@
         padding: .5em 4.7em;
         
     }
+
+    &__search-label {
+        display: block;
+        position: relative;
+        margin-bottom: 1.1em;
+
+        &::before {
+            content: url('../../assets/search.svg');
+            top: 50%;
+            left: 11px;
+            transform: translateY(-50%);
+            color: #8a8a8a;
+            position: absolute;
+        }
+    }
+
+    &__search-field {
+        display: block;
+        border: none;
+        border-radius: 526px;
+        max-width: 490px;
+        width: 100%;
+        height: 35px;
+        padding: .3em 2.8em;
+        font-size: .86rem;
+        font-weight: 600;
+        line-height: 15px;
+
+        background-color: #F2EFFE;
+        color: #9991b9;
+        @include focus($outline: 1px solid #fdfdfd);
+
+
+
+
+        &::placeholder {
+            background-color: #F2EFFE;
+            color: #CABDFC;
+            font-size: .86rem;
+            font-weight: 600;
+            line-height: 15px;
+        }
+    }
+}
+
+.post {
+    &__text-field {
+        display: block;
+        border: none;
+        border-radius: 10px;
+        max-width: 490px;
+        min-height: 100px;
+        width: 100%;
+        height: 100px;
+        padding: 1em;
+        font-size: .86rem;
+        font-weight: 600;
+        line-height: 15px;
+        text-align: left;
+        overflow-y: visible;
+        text-wrap: wrap;
+        resize: vertical;
+
+        background-color: #F2EFFE;
+        color: #9991b9;
+        @include focus($outline: 1px solid #fdfdfd);
+
+        &::placeholder {
+            background-color: #F2EFFE;
+            color: #CABDFC;
+            font-size: .86rem;
+            font-weight: 600;
+            line-height: 15px;
+        }
+    }
+
+    &__text-label {
+        display: block;
+        position: relative;
+        margin-bottom: 1.1em;
+
+        &::before {
+            top: 50%;
+            left: 11px;
+            transform: translateY(-50%);
+            color: #8a8a8a;
+            position: absolute;
+        }
+    }
+
+    &__send-btn {
+        margin:0 auto 1.8em;
+        height: 30px;
+        border: 1px solid #7A5AF8;
+        border-radius: 560px;
+        color:#7A5AF8;
+        background: transparent;
+        font-size: .78rem;
+        font-weight: 500;
+        line-height: normal;
+        padding: .5em 4.7em;
+        justify-content: start;
+        cursor: pointer;
+    }
+
+    &__icon-btn {
+        margin:0 auto 1.4em;
+        margin-left: 1em;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    &__btn-cont {
+        width: 200px;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+    }
+}
+
+.filter {
+    background-color: white;
+    padding: 1em;
 }
 
 .gifts {
     background: #FFFFFF;
     border-radius: 10px;
     margin-bottom: 1.1em;
+    margin-right: 8%;
+    margin-left: 8%;
+
+    @media (max-width: 767px) {
+        margin: 0; // Значение для телефонов
+        margin-bottom: 1.1em;
+    }
   
     &__container{
         padding-top: 1.2em;
         padding-bottom: 1.7em;
-       
     }
 
     &__header{
-        @include flex($justify:space-between);
+        @include flex($justify:flex-end);
         margin-bottom: .9em;
     }
 
@@ -119,34 +302,47 @@
         color: $main-color;
         font-family: Montserrat;
         padding: 0;
-        font-size: .72rem;
+        font-size: .82rem;
         font-weight: 600;
         line-height: normal;
+        cursor: pointer;
     }
 
     &__items{
         display: grid;
         grid-template-columns: repeat(4,1fr);
         overflow: hidden;
-        column-gap: .2em;
-        row-gap: .2em;
+        column-gap: .5em;
+        row-gap: .8em;
         justify-items: center;
 
         height: auto;
         overflow: hidden;
         transition: all .6s linear;
-        max-height: 49px;
+        max-height: 140px;
         &--all{
-            max-height: 150px;
+            max-height: 300px;
+        }
+
+        @media (max-width: 767px) {
+            grid-template-columns: repeat(1,4fr);
+            &--all{
+                max-height: 1170px;
+            }
         }
     }
 
-   
+    &__item-name{
+        font-family: Montserrat;
+        font-weight: 500;
+    }
+
+    &__item-wall{
+        height: 120px;
+    }
 
     &__item{
         max-width: 100%;
         object-fit: cover;
     }
-
-    
 }
