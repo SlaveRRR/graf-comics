@@ -1,0 +1,84 @@
+@use '../../styles/global' as *;
+
+.profile-header {
+  background: white;
+}
+
+.profile {
+  &__img {
+    position: relative;
+    top: 50px;
+    width: 85px;
+    height: 85px;
+    border: 6px solid white;
+    border-radius: 200px;
+  }
+
+  &__wallpaper {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    max-height: 62px;
+    height: 100%;
+    background-image: url('./../../../public/profile-wallpaper.svg');
+    background-position: center;
+    background-size: cover;
+    border: 1px solid transparent;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-bottom: 4em;
+  }
+
+  &__details {
+    color: $main-color;
+    font-size: 0.86rem;
+    font-weight: 600;
+    @include flex($gap: 0.5em, $align: end);
+    line-height: normal;
+
+    margin-bottom: 2.5em;
+  }
+}
+
+.tabs {
+  background-color: white;
+
+  &__items {
+    padding-top: 1em;
+    background-color: #f6f6f6;
+    padding-bottom: 0.5em;
+    /* margin-left:  0.9375em;; */
+  }
+
+  &__public-btn {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #7a5af8;
+    border-radius: 560px;
+    color: #7a5af8;
+    background: transparent;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: normal;
+    padding: 0.5em 4.7em;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .save-btn {
+    @include flex($gap: 0, $justify: center, $align: center, $dir: row, $wrap: nowrap);
+    margin-bottom: 1.8em;
+    padding: 10px 24px;
+    gap: 10px;
+    background: #7a5af8;
+    border-radius: 999px;
+    color: white;
+    border: none;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 2em;
+  }
+}
