@@ -4,7 +4,7 @@ import Login from '@/components/Login';
 import { NextPage } from 'next';
 import { getServerSession } from 'next-auth';
 
-const ProfilePage: NextPage = async () => {
+const ProfileEditPage: NextPage = async () => {
   const session = await getServerSession(options);
   if (!session) {
     return <Login />;
@@ -12,4 +12,8 @@ const ProfilePage: NextPage = async () => {
   return <EditProfile />;
 };
 
-export default ProfilePage;
+/* const ProfileEditPage:NextPage = () => {
+  return <EditProfile />;
+} */
+
+export default ProfileEditPage;

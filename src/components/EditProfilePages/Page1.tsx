@@ -1,49 +1,23 @@
 import cn from 'classnames';
-import React, { FormEvent } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import styles from './index.module.scss';
+import { Page1EditProfileFormData, Page1Props } from './types';
 
-/* перенести в types.ts */
-interface Page1Props {
-  data: {
-    username: string;
-    about: string;
-    user_sex: string;
-    birth_date: string;
-    residence_name: string;
-    email: string;
-    hide_subscribes: 'yes' | 'no';
-    private_profile: 'yes' | 'no';
-  };
-  updateData: (
-    data: Partial<{
-      username: string;
-      about: string;
-      user_sex: string;
-      birth_date: string;
-      residence_name: string;
-      email: string;
-      hide_subscribes: 'yes' | 'no';
-      private_profile: 'yes' | 'no';
-    }>,
-  ) => void;
-}
-
-const Page1: React.FC<Page1Props> = ({ data, updateData }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    updateData({ [name]: value });
-  };
-  const saveProfileData = async () => {
-    await new Promise((resolve) => setTimeout(() => alert('Данные сохранены'), 1000));
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    saveProfileData();
-  };
+const Page1: React.FC<Page1Props> = ({ data }) => {
+  const {
+    register,
+    formState: { errors, dirtyFields },
+    getValues,
+    setError,
+    reset,
+    handleSubmit,
+  } = useForm<Page1EditProfileFormData>({
+    mode: 'onChange',
+    shouldFocusError: true,
+  });
   return (
-    <form className={styles['profile-settings-form']} onSubmit={handleSubmit}>
+    <>
       <fieldset className={styles['profile-header']}>
         <legend className="visuallyhidden">Аватар профиля</legend>
         <div className={styles['profile__wallpaper']}>
@@ -56,19 +30,28 @@ const Page1: React.FC<Page1Props> = ({ data, updateData }) => {
       <fieldset className={'container'}>
         <legend className="visuallyhidden">Настройки профиля</legend>
         <label
-          htmlFor="userNickname"
+          htmlFor="username"
           className={cn(styles['profile-settings-form__username'], styles['profile-settings-form__label'])}
         >
           Никнейм
           <input
-            className={cn(styles['username__input'], styles['label__input'])}
-            id="userNickname"
+            {...register('username', {
+              minLength: {
+                value: 7,
+                message: 'Минимальная длина 7 символов',
+              },
+            })}
+            className={cn(styles['username__input'], styles['label__input'], {
+              [styles['label__input--error']]: errors?.username,
+            })}
             type="text"
-            name="username"
-            value={data.username}
-            onChange={handleChange}
+            id="username"
             placeholder="Введите никнейм"
+            defaultValue={data.username}
           />
+          {Boolean(errors?.username) && (
+            <p className={styles['profile-settings-form__error-text']}>{errors?.username?.message}</p>
+          )}
         </label>
         <label htmlFor="userAbout" className={styles['profile-settings-form__label']}>
           О себе
@@ -76,8 +59,7 @@ const Page1: React.FC<Page1Props> = ({ data, updateData }) => {
             className={styles['label__textarea']}
             id="userAbout"
             name="about"
-            value={data.about}
-            /* onChange={} */
+            defaultValue={data.about}
             placeholder="Предумайте описание"
           />
         </label>
@@ -92,8 +74,7 @@ const Page1: React.FC<Page1Props> = ({ data, updateData }) => {
               id="female"
               name="user_sex"
               value="female"
-              /* checked={data.user_sex === 'female'}
-                        onChange={handleChange} */
+              defaultChecked={data.user_sex === 'female'}
             />
             Женский
           </label>
@@ -105,8 +86,7 @@ const Page1: React.FC<Page1Props> = ({ data, updateData }) => {
               id="male"
               name="user_sex"
               value="male"
-              /* checked={data.user_sex === 'male'}
-                        onChange={handleChange} */
+              defaultChecked={data.user_sex === 'male'}
             />
             Мужской
           </label>
@@ -118,47 +98,67 @@ const Page1: React.FC<Page1Props> = ({ data, updateData }) => {
               id="notStated"
               name="user_sex"
               value="not_stated"
-              /* checked={data.user_sex === 'not_stated'}
-                        onChange={handleChange} */
+              defaultChecked={data.user_sex ? data.user_sex === 'not_stated' : true}
             />
             Не указан
           </label>
         </div>
-        <label htmlFor="userBirthDate" className={cn(styles['profile-settings-form__label'], styles['birth-date'])}>
+        <label htmlFor="birth_date" className={cn(styles['profile-settings-form__label'], styles['birth-date'])}>
           Дата рождения
           <input
-            className={cn(styles['label__input'], styles['birth-date__input'])}
-            id="userBirthDate"
+            {...register('birth_date', {
+              pattern: {
+                value: /^([0-2][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{2}$/,
+                message: 'Введите правильную дату рождения',
+              },
+            })}
+            className={cn(styles['birth-date__input'], styles['label__input'], {
+              [styles['label__input--error']]: errors?.birth_date,
+            })}
             type="text"
-            placeholder="ДД.ММ.ГГГГ"
-            name="birth_date"
-            value={data.birth_date}
-            onChange={handleChange}
+            id="birth_date"
+            placeholder="ДД.ММ.ГГ"
+            autoComplete="off"
+            defaultValue={data.birth_date}
           />
+          {Boolean(errors?.birth_date) && (
+            <p className={styles['profile-settings-form__error-text']}>{errors?.birth_date?.message}</p>
+          )}
         </label>
-        <label htmlFor="userTown" className={styles['profile-settings-form__label']}>
+        <label htmlFor="residence_name" className={styles['profile-settings-form__label']}>
           Ваш город
           <input
-            className={styles['label__input']}
-            id="userTown"
+            {...register('residence_name', {})}
+            className={cn(styles['label__input'], {
+              [styles['label__input--error']]: errors?.residence_name,
+            })}
             type="text"
-            name="residence_name"
-            value={data.residence_name}
-            onChange={handleChange}
+            id="residence_name"
             placeholder="Введите название города"
+            autoComplete="off"
+            defaultValue={data.residence_name}
           />
         </label>
-        <label htmlFor="userEmail" className={styles['profile-settings-form__label']}>
+        <label htmlFor="email" className={styles['profile-settings-form__label']}>
           E-mail
           <input
-            className={styles['label__input']}
-            id="userEmail"
-            type="text"
-            name="email"
-            value={data.email}
-            onChange={handleChange}
+            {...register('email', {
+              pattern: {
+                value: /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/,
+                message: 'Введите правильный email',
+              },
+            })}
+            className={cn(styles['label__input'], {
+              [styles['label__input--error']]: errors?.email,
+            })}
+            type="email"
+            id="email"
             placeholder="Введите e-mail"
+            defaultValue={data.email}
           />
+          {Boolean(errors?.email) && (
+            <p className={styles['profile-settings-form__error-text']}>{errors?.email?.message}</p>
+          )}
         </label>
 
         <p className={styles['profile-settings-form__text-label']}> Скрыть подписки</p>
@@ -169,12 +169,11 @@ const Page1: React.FC<Page1Props> = ({ data, updateData }) => {
           <span className={styles['radio-btn__circle']}></span>
           <input
             className={styles['radio-btn__input']}
-            type="radio"
+            type="checkbox"
             id="hideSubscribes"
             name="hide_subscribes"
             value="yes"
-            /* checked={data.hide_subscribes === 'yes'}
-                    onChange={handleChange} */
+            defaultChecked={data.hide_subscribes === 'yes'}
           />
           Скрыть
         </label>
@@ -186,12 +185,11 @@ const Page1: React.FC<Page1Props> = ({ data, updateData }) => {
           <span className={styles['radio-btn__circle']}></span>
           <input
             className={styles['radio-btn__input']}
-            type="radio"
+            type="checkbox"
             id="privateProfile"
             name="private_profile"
             value="yes"
-            /* checked={data.private_profile === 'yes'}
-                    onChange={handleChange} */
+            defaultChecked={data.private_profile === 'yes'}
           />
           Закрыть
         </label>
@@ -211,10 +209,7 @@ const Page1: React.FC<Page1Props> = ({ data, updateData }) => {
           Добавить
         </span>
       </fieldset>
-      <button type="submit" className={styles['save-btn']}>
-        Сохранить
-      </button>
-    </form>
+    </>
   );
 };
 

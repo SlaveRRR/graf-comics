@@ -59,6 +59,16 @@
       font-size: 0.85rem;
       line-height: 15px;
     }
+
+    &--error {
+      background: #e545451a;
+      color: #e54545;
+    }
+
+    &--success {
+      background: #0f99181a;
+      color: #0f9918;
+    }
   }
 
   &__textarea {
@@ -129,6 +139,22 @@
 }
 
 .profile-settings-form {
+  &__password-container {
+    position: relative;
+    width: 100%;
+  }
+
+  &__visibility {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+  }
+
   &__text-label {
     font-weight: 500;
     font-size: 1rem;
@@ -141,6 +167,7 @@
     line-height: 15px;
     @include flex($dir: column, $gap: 0.4em, $align: flex-start);
     margin-bottom: 1.8em;
+    position: relative;
   }
 
   &__radio-btn-container {
@@ -168,15 +195,20 @@
   &__new-password {
     margin-bottom: 0;
 
-    & input:last-of-type {
+    & .profile-settings-form__password-container:last-of-type {
       margin-top: 0.4em;
       margin-bottom: 2.15em;
     }
   }
-
+  &__error-text {
+    margin: 0.4em;
+    font-size: 0.8rem;
+    color: red;
+  }
   &__show-mature-content {
     margin-block: 2.25em;
   }
+
   &__notifications {
     & label {
       margin-bottom: 0.8em;
@@ -187,6 +219,7 @@
     }
   }
 }
+
 .save-btn {
   @include flex($gap: 0, $justify: center, $align: center, $dir: row, $wrap: nowrap);
   margin-bottom: 1.8em;
