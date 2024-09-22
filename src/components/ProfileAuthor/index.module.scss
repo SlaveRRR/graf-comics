@@ -1,348 +1,414 @@
 @use '../../styles/global' as *;
 
 .profile-header {
-    background: white;
-    margin-bottom: 1.1em;
-    margin-right: 8%;
-    margin-left: 8%;
-    border-radius: 10px;
+  background: white;
+  margin-bottom: 1.1em;
+  margin-right: 8%;
+  margin-left: 8%;
+  border-radius: 10px;
 
-    @media (max-width: 767px) {
-        margin: 0; // Значение для телефонов
-        margin-bottom: 1.1em;
-    }
+  @media (max-width: $device-M) {
+    margin: 0; // Значение для телефонов
+    margin-bottom: 1.1em;
+  }
 }
 
 .profile {
-    &__container {
-        @include flex($dir: column);
-    }
+  &__container {
+    @include flex($dir: column);
+  }
 
-    &__img {
-        position: relative;
-        top: 50px;
-        width: 85px;
-        height: 85px;
-        border: 6px solid white;
-        border-radius: 200px;
-    }
+  &__img {
+    position: relative;
+    top: 50px;
+    width: 85px;
+    height: 85px;
+    border: 6px solid white;
+    border-radius: 200px;
+  }
 
-    &__wallpaper {
-        display: flex;
-        justify-content: center;
-        align-items: end;
-        min-height: 155px;
-        height: 100%;
-        background-image: url('./../../../public/profile-wallpaper.svg');
-        background-position: center;
-        background-size: cover;
-        border: 1px solid transparent;
-        border-radius: 10px;
-        margin-bottom: 6.1em;
-    }
+  &__wallpaper {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    min-height: 155px;
+    height: 100%;
+    background-image: url('./../../../public/profile-wallpaper.svg');
+    background-position: center;
+    background-size: cover;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    margin-bottom: 6.1em;
+  }
 
-    &__name {
-        color: #2D283E;
-        font-size: 1.43rem;
-        font-weight: 600;
-        margin-bottom: .3em;
+  &__name {
+    color: #2d283e;
+    font-size: 1.43rem;
+    font-weight: 600;
+    margin-bottom: 0.3em;
+  }
 
-    }
+  &__status {
+    color: #2d283e;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.8em;
+  }
 
-    &__status {
-        color: #2D283E;
-        font-size: 1rem;
-        font-weight: 500;
-        margin-bottom: .8em;
+  &__details {
+    color: $main-color;
+    font-size: 0.72rem;
+    font-weight: 600;
+    @include flex($gap: 0.5em, $align: end);
+    line-height: normal;
 
-    }
+    margin-bottom: 2.5em;
+  }
 
-    &__details {
-        color: $main-color;
-        font-size: .72rem;
-        font-weight: 600;
-        @include flex($gap: .5em, $align: end);
-        line-height: normal;
+  &__details-btn {
+    background: transparent;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+  }
 
-        margin-bottom: 2.5em;
-    }
-
-    &__details-btn {
-        background: transparent;
-        height: 20px;
-        border: none;
-        cursor: pointer;
-    }
-
-    &__stats {
-        margin-bottom: 1.9em;
-    }
-
-    &__modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-
-    &__modal-cnt {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        max-width: 500px;
-        width: 100%;
-        position: relative;
-    }
-
-    &__modal-close {
-        position: absolute;
-        top: 1px;
-        right: 5px;
-        font-size: 2.5rem;
-        color:#7A5AF8;
-        cursor: pointer;
-    }
+  &__stats {
+    margin-bottom: 1.9em;
+  }
 }
 
 .tabs {
-    background-color: white;
-    margin-right: 8%;
-    margin-left: 8%;
-    border-radius: 10px;
+  background-color: white;
+  margin-right: 8%;
+  margin-left: 8%;
+  border-radius: 10px;
 
-    @media (max-width: 767px) {
-        margin: 0; // Значение для телефонов
-        margin-bottom: 1.1em;
+  @media (max-width: $device-M) {
+    margin: 0; // Значение для телефонов
+    margin-bottom: 1.1em;
+  }
+
+  &__container {
+    padding-top: 1em;
+  }
+
+  &__items {
+    margin-bottom: 2em;
+  }
+
+  &__public-btn {
+    display: block;
+    margin: 0 auto 1.8em;
+    border: 1px solid #7a5af8;
+    border-radius: 560px;
+    color: #7a5af8;
+    background: transparent;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: normal;
+    padding: 0.5em 4.7em;
+  }
+
+  &__search-label {
+    display: block;
+    position: relative;
+    margin-bottom: 1.1em;
+
+    &::before {
+      content: url('../../assets/search.svg');
+      top: 50%;
+      left: 11px;
+      transform: translateY(-50%);
+      color: #8a8a8a;
+      position: absolute;
     }
+  }
 
-    &__container {
-        padding-top: 1em;
+  &__search-field {
+    display: block;
+    border: none;
+    border-radius: 526px;
+    max-width: 490px;
+    width: 100%;
+    height: 35px;
+    padding: 0.3em 2.8em;
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 15px;
+
+    background-color: #f2effe;
+    color: #9991b9;
+    @include focus($outline: 1px solid #fdfdfd);
+
+    &::placeholder {
+      background-color: #f2effe;
+      color: #cabdfc;
+      font-size: 0.86rem;
+      font-weight: 600;
+      line-height: 15px;
     }
-
-    &__items {
-        margin-bottom: 2em;
-    }
-
-    &__public-btn{
-        display: block;
-        margin:0 auto 1.8em;
-        border: 1px solid #7A5AF8;
-        border-radius: 560px;
-        color:#7A5AF8;
-        background: transparent;
-        font-size: .78rem;
-        font-weight: 500;
-        line-height: normal;
-        padding: .5em 4.7em;
-        
-    }
-
-    &__search-label {
-        display: block;
-        position: relative;
-        margin-bottom: 1.1em;
-
-        &::before {
-            content: url('../../assets/search.svg');
-            top: 50%;
-            left: 11px;
-            transform: translateY(-50%);
-            color: #8a8a8a;
-            position: absolute;
-        }
-    }
-
-    &__search-field {
-        display: block;
-        border: none;
-        border-radius: 526px;
-        max-width: 490px;
-        width: 100%;
-        height: 35px;
-        padding: .3em 2.8em;
-        font-size: .86rem;
-        font-weight: 600;
-        line-height: 15px;
-
-        background-color: #F2EFFE;
-        color: #9991b9;
-        @include focus($outline: 1px solid #fdfdfd);
-
-
-
-
-        &::placeholder {
-            background-color: #F2EFFE;
-            color: #CABDFC;
-            font-size: .86rem;
-            font-weight: 600;
-            line-height: 15px;
-        }
-    }
+  }
 }
 
 .post {
-    &__text-field {
-        display: block;
-        border: none;
-        border-radius: 10px;
-        max-width: 490px;
-        min-height: 100px;
-        width: 100%;
-        height: 100px;
-        padding: 1em;
-        font-size: .86rem;
-        font-weight: 600;
-        line-height: 15px;
-        text-align: left;
-        overflow-y: visible;
-        text-wrap: wrap;
-        resize: vertical;
+  @include flex($justify: space-between, $gap: 3.214em);
 
-        background-color: #F2EFFE;
-        color: #9991b9;
-        @include focus($outline: 1px solid #fdfdfd);
+  &__text-field {
+    display: block;
+    border: none;
+    border-radius: 10px;
+    min-height: 100px;
+    width: 100%;
+    height: 100px;
+    padding: 1em;
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 15px;
+    text-align: left;
+    overflow-y: visible;
+    text-wrap: wrap;
+    resize: vertical;
 
-        &::placeholder {
-            background-color: #F2EFFE;
-            color: #CABDFC;
-            font-size: .86rem;
-            font-weight: 600;
-            line-height: 15px;
-        }
+    background-color: #f2effe;
+    color: #9991b9;
+    @include focus($outline: 1px solid #fdfdfd);
+
+    &::placeholder {
+      background-color: #f2effe;
+      color: #cabdfc;
+      font-size: 0.86rem;
+      font-weight: 600;
+      line-height: 15px;
     }
+  }
 
-    &__text-label {
-        display: block;
-        position: relative;
-        margin-bottom: 1.1em;
+  &__text-label {
+    display: block;
+    position: relative;
+    margin-bottom: 1.1em;
 
-        &::before {
-            top: 50%;
-            left: 11px;
-            transform: translateY(-50%);
-            color: #8a8a8a;
-            position: absolute;
-        }
+    &::before {
+      top: 50%;
+      left: 11px;
+      transform: translateY(-50%);
+      color: #8a8a8a;
+      position: absolute;
     }
+  }
 
-    &__send-btn {
-        margin:0 auto 1.8em;
-        height: 30px;
-        border: 1px solid #7A5AF8;
-        border-radius: 560px;
-        color:#7A5AF8;
-        background: transparent;
-        font-size: .78rem;
-        font-weight: 500;
-        line-height: normal;
-        padding: .5em 4.7em;
-        justify-content: start;
-        cursor: pointer;
-    }
+  &__send-btn {
+    margin: 0 auto 1.8em;
+    height: 30px;
+    border: 1px solid #7a5af8;
+    border-radius: 560px;
+    color: white;
+    background: $main-color;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: normal;
+    padding: 0.5em 4.7em;
+    justify-content: start;
+    cursor: pointer;
+  }
 
-    &__icon-btn {
-        margin:0 auto 1.4em;
-        margin-left: 1em;
-        height: 30px;
-        cursor: pointer;
-    }
+  &__reset {
+    margin: 0 auto 1.8em;
+    height: 30px;
+    border: 1px solid $main-color;
+    border-radius: 560px;
+    color: $main-color;
+    background: transparent;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: normal;
+    padding: 0.5em 4.7em;
+    justify-content: start;
+    cursor: pointer;
+  }
 
-    &__btn-cont {
-        width: 200px;
-        display: grid;
-        grid-template-columns: auto auto;
-        align-items: center;
+  &__icon-btn {
+    margin: 0 auto 1.4em;
+    margin-left: 1em;
+    height: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    & > img {
+      transform: rotate(90deg);
     }
+  }
+
+  &__btn-cont {
+    @include flex($dir: column, $gap: 1.714em);
+  }
+
+  &__text {
+    flex: 1 1 0;
+    position: relative;
+  }
 }
 
 .filter {
-    background-color: white;
-    padding: 1em;
+  background-color: white;
+  padding: 1em;
 }
 
 .gifts {
-    background: #FFFFFF;
-    border-radius: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 1.1em;
+  margin-right: 8%;
+  margin-left: 8%;
+
+  @media (max-width: $device-M) {
+    margin: 0; // Значение для телефонов
     margin-bottom: 1.1em;
-    margin-right: 8%;
-    margin-left: 8%;
+  }
 
-    @media (max-width: 767px) {
-        margin: 0; // Значение для телефонов
-        margin-bottom: 1.1em;
-    }
-  
-    &__container{
-        padding-top: 1.2em;
-        padding-bottom: 1.7em;
-    }
+  &__container {
+    padding-top: 1.2em;
+    padding-bottom: 1.7em;
+  }
 
-    &__header{
-        @include flex($justify:flex-end);
-        margin-bottom: .9em;
-    }
+  &__header {
+    @include flex($justify: flex-end);
+    margin-bottom: 0.9em;
+  }
 
-    &__header-desc {
-        color: #564F70;
-        font-size: .88rem;
-        font-weight: 600;
-        line-height: normal;
-    }
+  &__header-desc {
+    color: #564f70;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: normal;
+  }
 
-    &__btn {
-        background: transparent;
-        border: none;
-        color: $main-color;
-        font-family: Montserrat;
-        padding: 0;
-        font-size: .82rem;
-        font-weight: 600;
-        line-height: normal;
-        cursor: pointer;
-    }
+  &__btn {
+    background: transparent;
+    border: none;
+    color: $main-color;
+    font-family: Montserrat;
+    padding: 0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: normal;
+    cursor: pointer;
+  }
 
-    &__items{
-        display: grid;
-        grid-template-columns: repeat(4,1fr);
-        overflow: hidden;
-        column-gap: .5em;
-        row-gap: .8em;
-        justify-items: center;
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(1, 4fr);
 
-        height: auto;
-        overflow: hidden;
-        transition: all .6s linear;
-        max-height: 140px;
-        &--all{
-            max-height: 300px;
-        }
+    overflow: hidden;
+    column-gap: 0.5em;
+    row-gap: 0.8em;
+    justify-items: center;
 
-        @media (max-width: 767px) {
-            grid-template-columns: repeat(1,4fr);
-            &--all{
-                max-height: 1170px;
-            }
-        }
+    height: auto;
+    overflow: hidden;
+    transition: all 0.6s linear;
+    max-height: 140px;
+
+    &--all {
+      max-height: 300px;
     }
 
-    &__item-name{
-        font-family: Montserrat;
-        font-weight: 500;
+    @media (min-width: $device-XS) {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    &__item-wall{
-        height: 120px;
-    }
+    @media (min-width: $device-L) {
+      grid-template-columns: repeat(4, 1fr);
 
-    &__item{
-        max-width: 100%;
-        object-fit: cover;
+      &--all {
+        max-height: 1170px;
+      }
     }
+  }
+
+  &__item-name {
+    font-family: Montserrat;
+    font-weight: 500;
+  }
+
+  &__item-wall {
+    height: 120px;
+  }
+
+  &__item {
+    max-width: 100%;
+    object-fit: cover;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &__cnt {
+    border-radius: 15px;
+    background-color: white;
+    padding: 1.4em 1.6em 2.6em;
+    max-width: 890px;
+    max-height: 780px;
+    width: 100%;
+    position: relative;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1px;
+    right: 5px;
+    font-size: 2.5rem;
+    color: #7a5af8;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+  }
+
+  &__more {
+    font-weight: 600;
+    font-size: 2.28rem;
+    margin-bottom: 1em;
+    line-height: 39px;
+    color: #564f70;
+  }
+
+  &__subtitle {
+    font-weight: 600;
+    font-size: 1.42rem;
+    line-height: 24px;
+    color: $black-color;
+    margin-bottom: 1.25em;
+  }
+
+  &__items {
+    @include flex($gap: 1.42rem, $dir: column, $align: flex-start);
+    margin-bottom: 2.286em;
+  }
+
+  &__item {
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 20px;
+    color: $black-color;
+  }
+
+  &__link {
+    display: block;
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.143rem;
+    line-height: 20px;
+  }
 }

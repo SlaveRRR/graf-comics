@@ -10,7 +10,8 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write './src/**/*.{js,json,jsx,ts,tsx,css}'",
     "quick-format": "pretty-quick",
-    "prepare": "husky"
+    "prepare": "husky",
+    "studio": "prisma studio"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.1.0",
