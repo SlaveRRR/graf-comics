@@ -1,10 +1,10 @@
 import cn from 'classnames';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import styles from './index.module.scss';
-import { Page2EditProfileFormData, Page2Props } from './types';
+import { FC, useState } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+import styles from '../../index.module.scss';
+import { SecuritySettingsFormSchema } from './types';
 
-const Page2: React.FC<Page2Props> = ({ data }) => {
+const SecuritySettings: FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const {
     register,
@@ -13,11 +13,18 @@ const Page2: React.FC<Page2Props> = ({ data }) => {
     setError,
     reset,
     handleSubmit,
-  } = useForm<Page2EditProfileFormData>({
+    control,
+  } = useForm<SecuritySettingsFormSchema>({
     mode: 'onChange',
     shouldFocusError: true,
+    defaultValues: {
+      currentPassword: 'qwerty',
+    },
   });
-
+  const currentPassword = useWatch({
+    control,
+    name: 'currentPassword',
+  });
   return (
     <fieldset className={'container'}>
       <legend className="visuallyhidden">Настройки безопасности профиля</legend>
@@ -26,21 +33,21 @@ const Page2: React.FC<Page2Props> = ({ data }) => {
         Текущий пароль
         <div className={styles['profile-settings-form__password-container']}>
           <input
-            {...register('current_password', {
+            {...register('currentPassword', {
               required: 'Обязательное поле!',
-              validate: (value) => value === data.current_password || 'Неверный текущий пароль',
+              validate: (value) => value === currentPassword || 'Неверный текущий пароль',
             })}
             className={cn(styles['label__input'], {
-              [styles['label__input--error']]: errors?.current_password,
-              [styles['label__input--success']]: dirtyFields?.current_password && !errors?.current_password,
+              [styles['label__input--error']]: errors?.currentPassword,
+              [styles['label__input--success']]: dirtyFields?.currentPassword && !errors?.currentPassword,
             })}
             id="current_password"
             type={visible ? 'text' : 'password'}
             placeholder="Введите текущий пароль"
             autoComplete="off"
           />
-          {Boolean(errors?.current_password) && (
-            <p className={styles['profile-settings-form__error-text']}>{errors?.current_password?.message}</p>
+          {Boolean(errors?.currentPassword) && (
+            <p className={styles['profile-settings-form__error-text']}>{errors?.currentPassword?.message}</p>
           )}
           <button
             type="button"
@@ -66,26 +73,26 @@ const Page2: React.FC<Page2Props> = ({ data }) => {
         Новый пароль
         <div className={styles['profile-settings-form__password-container']}>
           <input
-            {...register('new_password', {
+            {...register('newPassword', {
               required: 'Обязательное поле!',
 
               validate: {
-                notIsCurrent: (value) => value !== data.current_password || 'Вы ввели текущий пароль',
+                notIsCurrent: (value) => value !== currentPassword || 'Вы ввели текущий пароль',
                 minLength: (value) => value.length >= 6 || 'Минимум 6 символов!',
                 maxLength: (value) => value.length <= 12 || 'Максимум 12 символов!',
               },
             })}
             className={cn(styles['label__input'], {
-              [styles['label__input--error']]: errors?.new_password,
-              [styles['label__input--success']]: dirtyFields?.new_password && !errors?.new_password,
+              [styles['label__input--error']]: errors?.newPassword,
+              [styles['label__input--success']]: dirtyFields?.newPassword && !errors?.newPassword,
             })}
             id="new_password"
             type={visible ? 'text' : 'password'}
             placeholder="Введите новый пароль"
             autoComplete="off"
           />
-          {Boolean(errors?.new_password) && (
-            <p className={styles['profile-settings-form__error-text']}>{errors?.new_password?.message}</p>
+          {Boolean(errors?.newPassword) && (
+            <p className={styles['profile-settings-form__error-text']}>{errors?.newPassword?.message}</p>
           )}
           <button
             type="button"
@@ -105,10 +112,10 @@ const Page2: React.FC<Page2Props> = ({ data }) => {
         </div>
         <div className={cn(styles['profile-settings-form__password-container'])}>
           <input
-            {...register('new_password_repeat', {
+            {...register('newPasswordRepeat', {
               onBlur(event) {
-                return getValues('new_password') !== getValues('new_password_repeat')
-                  ? setError('new_password_repeat', {
+                return getValues('newPassword') !== getValues('newPasswordRepeat')
+                  ? setError('newPasswordRepeat', {
                       type: 'Custom',
                       message: 'Пароли должны совпадать!',
                     })
@@ -125,16 +132,16 @@ const Page2: React.FC<Page2Props> = ({ data }) => {
               },
             })}
             className={cn(styles['label__input'], {
-              [styles['label__input--error']]: errors?.new_password_repeat,
-              [styles['label__input--success']]: dirtyFields?.new_password_repeat && !errors?.new_password_repeat,
+              [styles['label__input--error']]: errors?.newPasswordRepeat,
+              [styles['label__input--success']]: dirtyFields?.newPasswordRepeat && !errors?.newPasswordRepeat,
             })}
-            id="new_password_repeat"
+            id="newPasswordRepeat"
             type={visible ? 'text' : 'password'}
             placeholder="Подтвердите новый пароль"
             autoComplete="off"
           />
-          {Boolean(errors?.new_password_repeat) && (
-            <p className={styles['profile-settings-form__error-text']}>{errors?.new_password_repeat?.message}</p>
+          {Boolean(errors?.newPasswordRepeat) && (
+            <p className={styles['profile-settings-form__error-text']}>{errors?.newPasswordRepeat?.message}</p>
           )}
           <button
             type="button"
@@ -157,4 +164,4 @@ const Page2: React.FC<Page2Props> = ({ data }) => {
   );
 };
 
-export default Page2;
+export default SecuritySettings;

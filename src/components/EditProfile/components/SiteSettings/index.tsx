@@ -1,10 +1,11 @@
 import cn from 'classnames';
-import React from 'react';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './index.module.scss';
-import { Page3EditProfileFormData, Page3Props } from './types';
+import styles from '../../index.module.scss';
+import { defaultSettings } from './constants';
+import { SiteSettingsFormSchema } from './types';
 
-const Page3: React.FC<Page3Props> = ({ data }) => {
+const SiteSettings: FC = () => {
   const {
     register,
     formState: { errors, dirtyFields },
@@ -12,9 +13,10 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
     setError,
     reset,
     handleSubmit,
-  } = useForm<Page3EditProfileFormData>({
+  } = useForm<SiteSettingsFormSchema>({
     mode: 'onChange',
     shouldFocusError: true,
+    defaultValues: defaultSettings,
   });
 
   return (
@@ -31,21 +33,13 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
           id="show_mature_content"
           name="show_mature_content"
           value={null}
-          defaultChecked={data.show_mature_content == null}
         />
         Скрыть +18 тайтлы
       </label>
       <p className={styles['profile-settings-form__text-label']}> Ночная тема</p>
       <label htmlFor="night_mode" className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}>
         <span className={styles['radio-btn__circle']}></span>
-        <input
-          className={styles['radio-btn__input']}
-          type="checkbox"
-          id="night_mode"
-          name="night_mode"
-          value="yes"
-          defaultChecked={data.night_mode == 'yes'}
-        />
+        <input className={styles['radio-btn__input']} type="checkbox" id="night_mode" name="night_mode" value="yes" />
         Включить ночную тему
       </label>
 
@@ -62,7 +56,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_subscribes"
             name="show_notifications_subscribes"
             value={null}
-            defaultChecked={data.show_notifications_subscribes == null}
           />
           Отключить уведомления о подписках
         </label>
@@ -77,7 +70,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_comments"
             name="show_notifications_comments"
             value={null}
-            defaultChecked={data.show_notifications_comments == null}
           />
           Отключить уведомления о комментариях
         </label>
@@ -92,7 +84,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_paid_content"
             name="show_notifications_paid_content"
             value={null}
-            defaultChecked={data.show_notifications_paid_content == null}
           />
           Отключить уведомления о платных главах
         </label>
@@ -107,7 +98,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_likes"
             name="show_notifications_likes"
             value={null}
-            defaultChecked={data.show_notifications_likes == null}
           />
           Отключить уведомления о лайках
         </label>
@@ -122,7 +112,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_gifts"
             name="show_notifications_gifts"
             value={null}
-            defaultChecked={data.show_notifications_gifts == null}
           />
           Отключить уведомления о подарках
         </label>
@@ -137,7 +126,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_new_posts"
             name="show_notifications_new_posts"
             value={null}
-            defaultChecked={data.show_notifications_new_posts == null}
           />
           Отключить уведомления о новых постах
         </label>
@@ -160,7 +148,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_lists_reading"
             name="show_notifications_lists_reading"
             value="yes"
-            defaultChecked={data.show_notifications_lists_reading == 'yes'}
           />
           Читаю
         </label>
@@ -175,7 +162,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_lists_read"
             name="show_notifications_lists_read"
             value="yes"
-            defaultChecked={data.show_notifications_lists_read == 'yes'}
           />
           Прочитано
         </label>
@@ -190,7 +176,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_lists_planned"
             name="show_notifications_lists_planned"
             value="yes"
-            defaultChecked={data.show_notifications_lists_planned == 'yes'}
           />
           В планах
         </label>
@@ -205,7 +190,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_lists_liked"
             name="show_notifications_lists_liked"
             value="yes"
-            defaultChecked={data.show_notifications_lists_liked == 'yes'}
           />
           Любимые
         </label>
@@ -220,7 +204,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="show_notifications_lists_dropped "
             name="show_notifications_lists_dropped "
             value="yes"
-            defaultChecked={data.show_notifications_lists_dropped == 'yes'}
           />
           Брошено
         </label>
@@ -243,7 +226,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="email_notifications_updates"
             name="email_notifications_updates"
             value="yes"
-            defaultChecked={data.email_notifications_updates == 'yes'}
           />
           Сообщения и обновления Граф Комикса
         </label>
@@ -258,7 +240,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="email_notifications_surveys"
             name="email_notifications_surveys"
             value="yes"
-            defaultChecked={data.email_notifications_surveys == 'yes'}
           />
           Отзывы и опросы
         </label>
@@ -273,7 +254,6 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
             id="email_notifications_reports"
             name="email_notifications_reports"
             value="yes"
-            defaultChecked={data.email_notifications_reports == 'yes'}
           />
           Сообщения о нарушениях
         </label>
@@ -282,4 +262,4 @@ const Page3: React.FC<Page3Props> = ({ data }) => {
   );
 };
 
-export default Page3;
+export default SiteSettings;
