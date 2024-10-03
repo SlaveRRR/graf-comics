@@ -1,4 +1,17 @@
-export interface SiteSettingsFormSchema {
+export type BackendData = {
+  username: string;
+  about: string;
+  gender: string;
+  birthDate: string;
+  residenceName: string;
+  email: string;
+  currentPassword: string;
+  newPassword: string;
+  newPasswordRepeat: string;
+};
+export type LocalStorageData = {
+  hideSubscribes: boolean;
+  privateProfile: boolean;
   hideMatureContent: boolean;
   darkMode: boolean;
   hideNotificationsSubscribes: boolean;
@@ -15,4 +28,6 @@ export interface SiteSettingsFormSchema {
   emailNotificationsUpdates: boolean;
   emailNotificationsSurveys: boolean;
   emailNotificationsReports: boolean;
-}
+};
+
+export type EditProfileFormSchema = BackendData & LocalStorageData;

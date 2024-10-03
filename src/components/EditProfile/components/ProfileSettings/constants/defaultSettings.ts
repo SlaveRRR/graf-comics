@@ -7,6 +7,6 @@ export const defaultSettings: ProfileSettingsFormSchema = {
   birthDate: '12.12.12',
   residenceName: '',
   email: 'supro@ha.com',
-  hideSubscribes: null,
-  privateProfile: 'yes',
+  hideSubscribes: true,
+  privateProfile: true,
 };

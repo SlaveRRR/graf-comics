@@ -1,12 +1,11 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styles from '../../index.module.scss';
-import { defaultSettings } from './constants';
 import { ProfileSettingsFormSchema } from './types';
 
 const ProfileSettings: FC = () => {
-  const {
+  /*   const {
     register,
     formState: { errors, dirtyFields },
     getValues,
@@ -17,7 +16,13 @@ const ProfileSettings: FC = () => {
     mode: 'onChange',
     shouldFocusError: true,
     defaultValues: defaultSettings,
-  });
+  }); */
+
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<ProfileSettingsFormSchema>();
+
   return (
     <>
       <fieldset className={styles['profile-header']}>
@@ -57,6 +62,7 @@ const ProfileSettings: FC = () => {
         <label htmlFor="userAbout" className={styles['profile-settings-form__label']}>
           О себе
           <textarea
+            {...register('about')}
             className={styles['label__textarea']}
             id="userAbout"
             name="about"
@@ -68,21 +74,35 @@ const ProfileSettings: FC = () => {
         <div className={styles['profile-settings-form__radio-btn-container']}>
           <label htmlFor="female" className={styles['radio-btn__label']}>
             <span className={styles['radio-btn__circle']}></span>
-            <input className={styles['radio-btn__input']} type="radio" id="female" name="gender" value="female" />
+            <input
+              {...register('gender')}
+              className={styles['radio-btn__input']}
+              type="radio"
+              id="female"
+              name="gender"
+              value="female"
+            />
             Женский
           </label>
           <label htmlFor="male" className={styles['radio-btn__label']}>
             <span className={styles['radio-btn__circle']}></span>
-            <input className={styles['radio-btn__input']} type="radio" id="male" name="gender" value="male" />
+            <input
+              {...register('gender')}
+              className={styles['radio-btn__input']}
+              type="radio"
+              id="male"
+              name="gender"
+              value="male"
+            />
             Мужской
           </label>
           <label htmlFor="notStated" className={styles['radio-btn__label']}>
             <span className={styles['radio-btn__circle']}></span>
             <input
+              {...register('gender')}
               className={styles['radio-btn__input']}
               type="radio"
               id="notStated"
-              name="gender"
               value="not_stated"
             />
             Не указан
@@ -150,11 +170,11 @@ const ProfileSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('hideSubscribes')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="hideSubscribes"
-            name="hideSubscribes"
-            value="yes"
+            value="true"
           />
           Скрыть
         </label>
@@ -165,11 +185,11 @@ const ProfileSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('privateProfile')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="privateProfile"
-            name="privateProfile"
-            value="yes"
+            value="true"
           />
           Закрыть
         </label>

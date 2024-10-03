@@ -5,6 +5,6 @@ export interface ProfileSettingsFormSchema {
   birthDate: string;
   residenceName: string;
   email: string;
-  hideSubscribes: 'yes' | null;
-  privateProfile: 'yes' | null;
+  hideSubscribes: boolean;
+  privateProfile: boolean;
 }

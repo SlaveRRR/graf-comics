@@ -1,12 +1,11 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styles from '../../index.module.scss';
-import { defaultSettings } from './constants';
 import { SiteSettingsFormSchema } from './types';
 
 const SiteSettings: FC = () => {
-  const {
+  /*   const {
     register,
     formState: { errors, dirtyFields },
     getValues,
@@ -17,45 +16,55 @@ const SiteSettings: FC = () => {
     mode: 'onChange',
     shouldFocusError: true,
     defaultValues: defaultSettings,
-  });
+  }); */
 
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<SiteSettingsFormSchema>();
   return (
     <fieldset className={'container'}>
       <legend className="visuallyhidden">Настройки сайта</legend>
       <label
-        htmlFor="show_mature_content"
+        htmlFor="hideMatureContent"
         className={cn(styles['radio-btn__label'], styles['profile-settings-form__show-mature-content'])}
       >
         <span className={styles['radio-btn__circle']}></span>
         <input
+          {...register('hideMatureContent')}
           className={styles['radio-btn__input']}
           type="checkbox"
-          id="show_mature_content"
-          name="show_mature_content"
-          value={null}
+          id="hideMatureContent"
+          value={'true'}
         />
         Скрыть +18 тайтлы
       </label>
       <p className={styles['profile-settings-form__text-label']}> Ночная тема</p>
-      <label htmlFor="night_mode" className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}>
+      <label htmlFor="dark_mode" className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}>
         <span className={styles['radio-btn__circle']}></span>
-        <input className={styles['radio-btn__input']} type="checkbox" id="night_mode" name="night_mode" value="yes" />
+        <input
+          {...register('darkMode')}
+          className={styles['radio-btn__input']}
+          type="checkbox"
+          id="dark_mode"
+          value="true"
+        />
         Включить ночную тему
       </label>
 
       <div className={styles['profile-settings-form__notifications']}>
         <p className={cn(styles['profile-settings-form__text-label'])}> Уведомления</p>
         <label
-          htmlFor="show_notifications_subscribes"
+          htmlFor="hide_notifications_subscribes"
           className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('hideNotificationsSubscribes')}
             className={styles['radio-btn__input']}
             type="checkbox"
-            id="show_notifications_subscribes"
-            name="show_notifications_subscribes"
-            value={null}
+            id="hide_notifications_subscribes"
+            value={'true'}
           />
           Отключить уведомления о подписках
         </label>
@@ -65,67 +74,67 @@ const SiteSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('hideNotificationsComments')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="show_notifications_comments"
-            name="show_notifications_comments"
-            value={null}
+            value={'true'}
           />
           Отключить уведомления о комментариях
         </label>
         <label
-          htmlFor="show_notifications_paid_content"
+          htmlFor="hide_notifications_paid_content"
           className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('hideNotificationsPaidContent')}
             className={styles['radio-btn__input']}
             type="checkbox"
-            id="show_notifications_paid_content"
-            name="show_notifications_paid_content"
-            value={null}
+            id="hide_notifications_paid_content"
+            value={'true'}
           />
           Отключить уведомления о платных главах
         </label>
         <label
-          htmlFor="show_notifications_likes"
+          htmlFor="hide_notifications_likes"
           className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('hideNotificationsLikes')}
             className={styles['radio-btn__input']}
             type="checkbox"
-            id="show_notifications_likes"
-            name="show_notifications_likes"
-            value={null}
+            id="hide_notifications_likes"
+            value={'true'}
           />
           Отключить уведомления о лайках
         </label>
         <label
-          htmlFor="show_notifications_gifts"
+          htmlFor="hide_notifications_gifts"
           className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('hideNotificationsGifts')}
             className={styles['radio-btn__input']}
             type="checkbox"
-            id="show_notifications_gifts"
-            name="show_notifications_gifts"
-            value={null}
+            id="hide_notifications_gifts"
+            value={'true'}
           />
           Отключить уведомления о подарках
         </label>
         <label
-          htmlFor="show_notifications_new_posts"
+          htmlFor="hide_notifications_new_posts"
           className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('hideNotificationsNewPosts')}
             className={styles['radio-btn__input']}
             type="checkbox"
-            id="show_notifications_new_posts"
-            name="show_notifications_new_posts"
-            value={null}
+            id="hide_notifications_new_posts"
+            value={'true'}
           />
           Отключить уведомления о новых постах
         </label>
@@ -143,11 +152,11 @@ const SiteSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('showNotificationsListsReading')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="show_notifications_lists_reading"
-            name="show_notifications_lists_reading"
-            value="yes"
+            value="true"
           />
           Читаю
         </label>
@@ -157,11 +166,11 @@ const SiteSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('showNotificationsListsRead')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="show_notifications_lists_read"
-            name="show_notifications_lists_read"
-            value="yes"
+            value="true"
           />
           Прочитано
         </label>
@@ -171,11 +180,11 @@ const SiteSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('showNotificationsListsPlanned')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="show_notifications_lists_planned"
-            name="show_notifications_lists_planned"
-            value="yes"
+            value="true"
           />
           В планах
         </label>
@@ -185,11 +194,11 @@ const SiteSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('showNotificationsListsLiked')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="show_notifications_lists_liked"
-            name="show_notifications_lists_liked"
-            value="yes"
+            value="true"
           />
           Любимые
         </label>
@@ -199,11 +208,11 @@ const SiteSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('showNotificationsListsDropped')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="show_notifications_lists_dropped "
-            name="show_notifications_lists_dropped "
-            value="yes"
+            value="true"
           />
           Брошено
         </label>
@@ -221,11 +230,11 @@ const SiteSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('emailNotificationsUpdates')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="email_notifications_updates"
-            name="email_notifications_updates"
-            value="yes"
+            value="true"
           />
           Сообщения и обновления Граф Комикса
         </label>
@@ -235,11 +244,11 @@ const SiteSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('emailNotificationsSurveys')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="email_notifications_surveys"
-            name="email_notifications_surveys"
-            value="yes"
+            value="true"
           />
           Отзывы и опросы
         </label>
@@ -249,11 +258,11 @@ const SiteSettings: FC = () => {
         >
           <span className={styles['radio-btn__circle']}></span>
           <input
+            {...register('emailNotificationsReports')}
             className={styles['radio-btn__input']}
             type="checkbox"
             id="email_notifications_reports"
-            name="email_notifications_reports"
-            value="yes"
+            value="true"
           />
           Сообщения о нарушениях
         </label>

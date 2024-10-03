@@ -1,12 +1,12 @@
 import cn from 'classnames';
 import { FC, useState } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import styles from '../../index.module.scss';
 import { SecuritySettingsFormSchema } from './types';
 
 const SecuritySettings: FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
-  const {
+  /*   const {
     register,
     formState: { errors, dirtyFields },
     getValues,
@@ -16,11 +16,16 @@ const SecuritySettings: FC = () => {
     control,
   } = useForm<SecuritySettingsFormSchema>({
     mode: 'onChange',
-    shouldFocusError: true,
-    defaultValues: {
-      currentPassword: 'qwerty',
-    },
   });
+ */
+  const {
+    control,
+    register,
+    formState: { errors, dirtyFields },
+    getValues,
+    setError,
+  } = useFormContext<SecuritySettingsFormSchema>();
+
   const currentPassword = useWatch({
     control,
     name: 'currentPassword',
