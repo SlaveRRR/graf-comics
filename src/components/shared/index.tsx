@@ -10,6 +10,7 @@ import ActiveFilters from './ActiveFilters';
 import ShowMore from './ShowMore';
 import AddComics from './AddComics';
 import AddArticle from './AddArticle';
+import ProfileFilters from './ProfileFilters';
 import dynamic from 'next/dynamic';
 
 const TextEditor = dynamic(() => import('./TextEditor'), {
@@ -39,4 +40,5 @@ export {
   ShowMore,
   AddComics,
   AddArticle,
+  ProfileFilters
 };

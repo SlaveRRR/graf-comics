@@ -32,4 +32,13 @@
             color: $main-color;
         }
     }
+
+    @include mediaMin(1490px) {
+        justify-content: start;
+        font-size: 1.43rem;
+
+        &__item {
+            font-size: 1.43rem;
+        }
+    }
 }

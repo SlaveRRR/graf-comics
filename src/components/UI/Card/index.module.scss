@@ -1,3 +1,5 @@
+@use '../../../styles/global' as *;
+
 .card {
     &__img {
         position: relative;
@@ -6,6 +8,11 @@
         height: clamp(8.214em, 6.729em + 6.2vw, 15.643em);
         background: #E8E8E8;
         margin-bottom: .4em;
+
+        @include mediaMin(1490px) {
+            width: clamp(6.429em, 7.114em + 5.75vw, 13em);
+            height: clamp(8.214em, 9.729em + 6.2vw, 15.643em);
+        }
     }
 
     &__text {
@@ -23,6 +30,11 @@
         transition: all .3s;
         fill: white;
         transform: scale(1);
+
+        @include mediaMin(1490px) {
+            width: 25px;
+            height: 22px;
+        }
 
         &>path {
             fill: inherit;

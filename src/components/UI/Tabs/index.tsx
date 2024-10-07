@@ -35,21 +35,34 @@ const Tabs: FC<Props> = ({ tabs, children, mixClass }) => {
 
         setNumActive(index)
         const {left} = document.querySelectorAll(`.${styles["btns__item"]}`).item(index).getBoundingClientRect()
-     
-        setScrollActive({ ...scrollActive, width: tabsWidths[index], left: left - tabsWidths[index] / 8    })
+
+        if (window.innerWidth >= 1490) {
+            setScrollActive({ ...scrollActive, width: tabsWidths[index], left: left})
+        } else {
+            setScrollActive({ ...scrollActive, width: tabsWidths[index], left: left - tabsWidths[index] / 8    })
+        }
     }
 
 
     useLayoutEffect(() => {
         const widths: number[] = []
 
-        document.querySelectorAll(`.${styles["btns__item"]}`).forEach((v) => widths.push(v.clientWidth + v.clientWidth/4))
-      
+        if (window.innerWidth >= 1490) {
+            document.querySelectorAll(`.${styles["btns__item"]}`).forEach((v) => widths.push(v.clientWidth))
+        } else {
+            document.querySelectorAll(`.${styles["btns__item"]}`).forEach((v) => widths.push(v.clientWidth + v.clientWidth/4))
+        }
+
+
         setTabsWidths(widths)
 
         const { left } = document.querySelectorAll(`.${styles["btns__item"]}`).item(0).getBoundingClientRect()
-       
-        setScrollActive({ ...scrollActive, width: widths[0], left: left - widths[0] / 8  })
+
+        if (window.innerWidth >= 1490) {
+            setScrollActive({ ...scrollActive, width: widths[0], left: left  })
+        } else {
+            setScrollActive({ ...scrollActive, width: widths[0], left: left - widths[0] / 8  })
+        }
 
         setNumActive(0)
 
