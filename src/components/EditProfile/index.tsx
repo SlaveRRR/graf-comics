@@ -1,7 +1,7 @@
 'use client';
 import cn from 'classnames';
 import { FC, useEffect } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Tabs } from '../UI';
 import ProfileSettings from './components/ProfileSettings';
 import SecuritySettings from './components/SecuritySettings';
@@ -75,7 +75,10 @@ const EditProfile: FC = () => {
     defaultValues: {},
     mode: 'onChange',
   });
-  const { reset } = methods;
+  const {
+    reset,
+    formState: { isSubmitting },
+  } = methods;
 
   useEffect(() => {
     const loadDefaultValues = async () => {
@@ -86,28 +89,30 @@ const EditProfile: FC = () => {
     loadDefaultValues();
   }, [reset]);
 
-  const handler = (data: EditProfileFormSchema) => {
-    /* Как и в каком формате сохранять данные на бэк я не знаю */
+  const handler: SubmitHandler<EditProfileFormSchema> = (data) => {
+    try {
+      /* Как и в каком формате сохранять данные на бэк я не знаю */
 
-    /* Сохранения данных в localStorage */
-    localStorage.setItem('hideSubscribes', JSON.stringify(data.hideSubscribes));
-    localStorage.setItem('privateProfile', JSON.stringify(data.privateProfile));
-    localStorage.setItem('hideMatureContent', JSON.stringify(data.hideMatureContent));
-    localStorage.setItem('darkMode', JSON.stringify(data.darkMode));
-    localStorage.setItem('hideNotificationsSubscribes', JSON.stringify(data.hideNotificationsSubscribes));
-    localStorage.setItem('hideNotificationsComments', JSON.stringify(data.hideNotificationsComments));
-    localStorage.setItem('hideNotificationsPaidContent', JSON.stringify(data.hideNotificationsPaidContent));
-    localStorage.setItem('hideNotificationsLikes', JSON.stringify(data.hideNotificationsLikes));
-    localStorage.setItem('hideNotificationsGifts', JSON.stringify(data.hideNotificationsGifts));
-    localStorage.setItem('hideNotificationsNewPosts', JSON.stringify(data.hideNotificationsNewPosts));
-    localStorage.setItem('showNotificationsListsReading', JSON.stringify(data.showNotificationsListsReading));
-    localStorage.setItem('showNotificationsListsRead', JSON.stringify(data.showNotificationsListsRead));
-    localStorage.setItem('showNotificationsListsPlanned', JSON.stringify(data.showNotificationsListsPlanned));
-    localStorage.setItem('showNotificationsListsLiked', JSON.stringify(data.showNotificationsListsLiked));
-    localStorage.setItem('showNotificationsListsDropped', JSON.stringify(data.showNotificationsListsDropped));
-    localStorage.setItem('emailNotificationsUpdates', JSON.stringify(data.emailNotificationsUpdates));
-    localStorage.setItem('emailNotificationsSurveys', JSON.stringify(data.emailNotificationsSurveys));
-    localStorage.setItem('emailNotificationsReports', JSON.stringify(data.emailNotificationsReports));
+      /* Сохранения данных в localStorage */
+      localStorage.setItem('hideSubscribes', JSON.stringify(data.hideSubscribes));
+      localStorage.setItem('privateProfile', JSON.stringify(data.privateProfile));
+      localStorage.setItem('hideMatureContent', JSON.stringify(data.hideMatureContent));
+      localStorage.setItem('darkMode', JSON.stringify(data.darkMode));
+      localStorage.setItem('hideNotificationsSubscribes', JSON.stringify(data.hideNotificationsSubscribes));
+      localStorage.setItem('hideNotificationsComments', JSON.stringify(data.hideNotificationsComments));
+      localStorage.setItem('hideNotificationsPaidContent', JSON.stringify(data.hideNotificationsPaidContent));
+      localStorage.setItem('hideNotificationsLikes', JSON.stringify(data.hideNotificationsLikes));
+      localStorage.setItem('hideNotificationsGifts', JSON.stringify(data.hideNotificationsGifts));
+      localStorage.setItem('hideNotificationsNewPosts', JSON.stringify(data.hideNotificationsNewPosts));
+      localStorage.setItem('showNotificationsListsReading', JSON.stringify(data.showNotificationsListsReading));
+      localStorage.setItem('showNotificationsListsRead', JSON.stringify(data.showNotificationsListsRead));
+      localStorage.setItem('showNotificationsListsPlanned', JSON.stringify(data.showNotificationsListsPlanned));
+      localStorage.setItem('showNotificationsListsLiked', JSON.stringify(data.showNotificationsListsLiked));
+      localStorage.setItem('showNotificationsListsDropped', JSON.stringify(data.showNotificationsListsDropped));
+      localStorage.setItem('emailNotificationsUpdates', JSON.stringify(data.emailNotificationsUpdates));
+      localStorage.setItem('emailNotificationsSurveys', JSON.stringify(data.emailNotificationsSurveys));
+      localStorage.setItem('emailNotificationsReports', JSON.stringify(data.emailNotificationsReports));
+    } catch (error) {}
   };
 
   return (
@@ -119,7 +124,7 @@ const EditProfile: FC = () => {
             <SecuritySettings />
             <SiteSettings />
           </Tabs>
-          <button type="submit" className={styles['save-btn']}>
+          <button type="submit" className={styles['save-btn']} disabled={isSubmitting}>
             Сохранить
           </button>
         </form>
