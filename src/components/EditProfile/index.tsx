@@ -1,4 +1,5 @@
 'use client';
+import { toastError, toastSuccess } from '@/hooks/useToast';
 import cn from 'classnames';
 import { FC, useEffect } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
@@ -41,7 +42,6 @@ const EditProfile: FC = () => {
     E-mail
     Пароль
      */
-
     // Получение данных из localStorage
     const localStorageValues: LocalStorageData = {
       hideSubscribes: JSON.parse(localStorage.getItem('hideSubscribes') || 'false'),
@@ -89,7 +89,7 @@ const EditProfile: FC = () => {
     loadDefaultValues();
   }, [reset]);
 
-  const handler: SubmitHandler<EditProfileFormSchema> = (data) => {
+  const handler: SubmitHandler<EditProfileFormSchema> = async (data) => {
     try {
       /* Как и в каком формате сохранять данные на бэк я не знаю */
 
@@ -112,7 +112,11 @@ const EditProfile: FC = () => {
       localStorage.setItem('emailNotificationsUpdates', JSON.stringify(data.emailNotificationsUpdates));
       localStorage.setItem('emailNotificationsSurveys', JSON.stringify(data.emailNotificationsSurveys));
       localStorage.setItem('emailNotificationsReports', JSON.stringify(data.emailNotificationsReports));
-    } catch (error) {}
+    } catch (error) {
+      toastError(`${error}`);
+    } finally {
+      toastSuccess('Данные успешно сохранены');
+    }
   };
 
   return (
