@@ -43,7 +43,6 @@ const Tabs: FC<Props> = ({ tabs, children, mixClass }) => {
     const { left } = document.querySelectorAll(`.${styles['btns__item']}`).item(0).getBoundingClientRect();
 
     setScrollActive({ ...scrollActive, width: widths[0], left: left - widths[0] / 8 });
-
     setNumActive(0);
   }, []);
 
