@@ -1,8 +1,8 @@
 'use client';
-import React, { FC } from 'react';
-import styles from './index.module.scss';
 import { useGetArticlesQuery } from '@/store/api/articles';
+import { FC } from 'react';
 import { ArticleCard } from '../UI';
+import styles from './index.module.scss';
 
 const Articles: FC = () => {
   const { data, isLoading } = useGetArticlesQuery();

@@ -54,6 +54,7 @@ const Tabs: FC<Props> = ({ tabs, children, mixClass }) => {
             <button
               onClick={() => changeActive(index)}
               key={index}
+              type="button"
               className={cn(styles['btns__item'], {
                 [styles['btns__item--active']]: numActive === index,
               })}
