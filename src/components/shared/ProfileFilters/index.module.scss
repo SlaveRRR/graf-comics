@@ -32,7 +32,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(129, 129, 129, 0.41);;
+    background-color: rgba(129, 129, 129, 0.41);
     z-index: 1000;
   }
 
@@ -47,11 +47,12 @@
     }
   }
 
-  &__tabs, &__sort {
+  &__tabs,
+  &__sort {
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 0.645em;
-    color: #2D283E;
+    color: #2d283e;
 
     @include mediaMin(1490px) {
       font-size: 1.43rem;
@@ -62,7 +63,7 @@
   li {
     margin-bottom: 0.36em;
 
-    input[type="radio"] {
+    input[type='radio'] {
       cursor: pointer;
       position: relative;
       appearance: none;
@@ -70,7 +71,7 @@
       -moz-appearance: none;
       width: 1.2em;
       height: 1.2em;
-      border: 1px solid #7A5AF8;
+      border: 1px solid #7a5af8;
       border-radius: 50%;
       outline: none;
       margin-left: 0;
@@ -81,7 +82,7 @@
       &:checked::after {
         content: '';
         position: absolute;
-        background-color: #7A5AF8;
+        background-color: #7a5af8;
         width: 8px;
         height: 8px;
         border-radius: 50%;
@@ -117,7 +118,7 @@
 
   &__option-p {
     font-size: 0.79rem;
-    color: #2D283E;
+    color: #2d283e;
     font-weight: 500;
 
     @include mediaMin(1490px) {
@@ -127,7 +128,7 @@
 
   .create-tab-link {
     text-decoration: none;
-    color: #7A5AF8;
+    color: #7a5af8;
     font-weight: 500;
     font-size: 0.79rem;
 
@@ -148,19 +149,19 @@
 
   &__btn {
     border-radius: 249.85px;
-    border: 1px solid #7A5AF8;
+    border: 1px solid #7a5af8;
     font-weight: 500;
     padding: 0.455em 1.27em;
     font-size: 0.79rem;
 
     &--apply-btn {
-      background-color: #7A5AF8;
+      background-color: #7a5af8;
       color: white;
     }
 
     &--reset-btn {
       background-color: transparent;
-      color: #7A5AF8;
+      color: #7a5af8;
     }
 
     @include mediaMin(1490px) {

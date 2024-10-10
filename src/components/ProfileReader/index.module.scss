@@ -1,227 +1,235 @@
 @use '../../styles/global' as *;
 
 .profile-header {
-    background: white;
-    margin-bottom: 1.1em;
+  background: white;
+  margin-bottom: 1.1em;
 
-    @include mediaMin(1490px) {
-        width: 1490px;
-        margin: 0 auto 50px;
-        border-radius: 20px;
-    }
+  @include mediaMin(1490px) {
+    width: 1490px;
+    margin: 0 auto 50px;
+    border-radius: 20px;
+  }
 }
 
 .profile {
-    &__container {
-        @include flex($dir: column);
-        @include mediaMin(1490px) {
-            position: relative;
-            border-radius: 20px;
-        }
+  &__container {
+    @include flex($dir: column);
+
+    @include mediaMin(1490px) {
+      position: relative;
+      border-radius: 20px;
+    }
+  }
+
+  &__img {
+    position: relative;
+    top: 50px;
+    width: 85px;
+    height: 85px;
+    border: 6px solid white;
+    border-radius: 200px;
+
+    @include mediaMin(1490px) {
+      top: 116px;
+      width: 232px;
+      height: 232px;
+    }
+  }
+
+  &__wallpaper {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    min-height: 155px;
+    height: 100%;
+    background-image: url('./../../../public/profile-wallpaper.svg');
+    background-position: center;
+    background-size: cover;
+    border: 1px solid transparent;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-bottom: 6.1em;
+
+    @include mediaMin(1490px) {
+      min-height: 414px;
+      margin-bottom: 168px;
+    }
+  }
+
+  &__name {
+    color: #2d283e;
+    font-size: 1.43rem;
+    font-weight: 600;
+    margin-bottom: 0.3em;
+
+    @include mediaMin(1490px) {
+      font-size: 3.429rem;
+      margin-bottom: 0.5625em;
+    }
+  }
+
+  &__status {
+    color: #2d283e;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.8em;
+
+    @include mediaMin(1490px) {
+      font-size: 1.715rem;
+      margin-bottom: 0.35em;
+    }
+  }
+
+  &__details {
+    color: $main-color;
+    font-size: 0.72rem;
+    font-weight: 600;
+    @include flex($gap: 0.5em, $align: end);
+    line-height: normal;
+    margin-bottom: 2.5em;
+    cursor: pointer;
+
+    @include mediaMin(1490px) {
+      position: absolute;
+      top: -102px;
+      right: 78px;
+      font-size: 1.43rem;
     }
 
-    &__img {
-        position: relative;
-        top: 50px;
-        width: 85px;
-        height: 85px;
-        border: 6px solid white;
-        border-radius: 200px;
-
-        @include mediaMin(1490px) {
-            top: 116px;
-            width: 232px;
-            height: 232px;
-        }
+    svg {
+      @include mediaMin(1490px) {
+        width: 1.43rem;
+        height: 1.43rem;
+      }
     }
+  }
 
-    &__wallpaper {
-        display: flex;
-        justify-content: center;
-        align-items: end;
-        min-height: 155px;
-        height: 100%;
-        background-image: url('./../../../public/profile-wallpaper.svg');
-        background-position: center;
-        background-size: cover;
-        border: 1px solid transparent;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-        margin-bottom: 6.1em;
+  &__stats {
+    margin-bottom: 5.43em;
 
-        @include mediaMin(1490px) {
-            min-height: 414px;
-            margin-bottom: 168px;
-        }
-    }
-
-    &__name {
-        color: #2D283E;
+    p {
+      @include mediaMin(1490px) {
         font-size: 1.43rem;
-        font-weight: 600;
-        margin-bottom: .3em;
-        @include mediaMin(1490px) {
-            font-size: 3.429rem;
-            margin-bottom: .5625em;
-        }
+      }
     }
+  }
 
-    &__status {
-        color: #2D283E;
-        font-size: 1rem;
-        font-weight: 500;
-        margin-bottom: .8em;
-
-        @include mediaMin(1490px) {
-            font-size: 1.715rem;
-            margin-bottom: 0.35em;
-        }
+  &__stats-items {
+    @include mediaMin(1490px) {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 3px;
     }
+  }
 
-    &__details {
-        color: $main-color;
-        font-size: .72rem;
-        font-weight: 600;
-        @include flex($gap: .5em, $align: end);
-        line-height: normal;
-        margin-bottom: 2.5em;
-        cursor: pointer;
+  &__input-search-container {
+    display: none;
+    align-items: center;
+    border: 2px solid #564f70;
+    width: 100%;
+    border-radius: 20px;
+    padding-top: 0.86em;
+    padding-bottom: 0.86em;
+    margin-top: 3.22em;
+    margin-bottom: 3.5em;
 
-        @include mediaMin(1490px) {
-            position: absolute;
-            top: -102px;
-            right: 78px;
-            font-size: 1.43rem;
-        }
-
-        svg {
-            @include mediaMin(1490px) {
-                width: 1.43rem;
-                height: 1.43rem;
-            }
-
-        }
+    @include mediaMin(1490px) {
+      display: flex;
     }
-    &__stats {
-        margin-bottom: 5.43em;
+  }
 
-        p {
-            @include mediaMin(1490px) {
-                font-size: 1.43rem;
-            }
-        }
+  &__input-search {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  &__input-search::placeholder {
+    font-size: 1.43rem;
+    font-weight: 500;
+    color: #2d283e;
+  }
+
+  &__input-search[type='text'] {
+    font-size: 1.43rem;
+    font-weight: 500;
+    color: #2d283e;
+  }
+
+  &__input-search[type='text']:focus {
+    outline: none;
+  }
+
+  &__input-search-img {
+    margin-left: 0.86em;
+    margin-right: 2.64em;
+    cursor: pointer;
+  }
+
+  &__open-filters-btn {
+    display: block;
+    cursor: pointer;
+    margin-bottom: 0.5em;
+    border: none;
+    background-color: transparent;
+    margin-left: auto;
+
+    @include mediaMin(1490px) {
+      display: none;
     }
-
-    &__stats-items {
-        @include mediaMin(1490px) {
-            display: flex;
-            flex-direction: row-reverse;
-            gap: 3px;
-        }
-    }
-
-    &__input-search-container {
-        display: none;
-        align-items: center;
-        border: 2px solid #564F70;
-        width: 100%;
-        border-radius: 20px;
-        padding-top: 0.86em;
-        padding-bottom: 0.86em;
-        margin-top: 3.22em;
-        margin-bottom: 3.5em;
-        @include mediaMin(1490px) {
-            display: flex;
-        }
-    }
-
-    &__input-search {
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    &__input-search::placeholder {
-        font-size: 1.43rem;
-        font-weight: 500;
-        color: #2D283E;
-    }
-
-    &__input-search[type="text"] {
-        font-size: 1.43rem;
-        font-weight: 500;
-        color: #2D283E;
-    }
-
-    &__input-search[type="text"]:focus {
-        outline: none;
-    }
-
-    &__input-search-img {
-        margin-left: 0.86em;
-        margin-right: 2.64em;
-        cursor: pointer;
-    }
-
-    &__open-filters-btn {
-        display: block;
-        cursor: pointer;
-        margin-bottom: 0.5em;
-        border: none;
-        background-color: transparent;
-        margin-left: auto;
-
-        @include mediaMin(1490px) {
-            display: none;
-        }
-    }
+  }
 }
 
 .tabs {
-    background-color: white;
+  background-color: white;
 
-    &__container {
-        padding-top: 1em;
-
-        @include mediaMin(1490px) {
-            padding: 35px 86px 86px;
-        }
-    }
-
-    &__items {
-        margin-bottom: 2em;
-    }
-
-    &__public-btn {
-        display: block;
-        margin:0 auto;
-        border: 1px solid #7A5AF8;
-        border-radius: 560px;
-        color:#7A5AF8;
-        background: transparent;
-        font-size: .78rem;
-        font-weight: 500;
-        line-height: normal;
-        padding: .5em 4.7em;
-
-        @include mediaMin(1490px) {
-            font-size: 1.43rem;
-            padding: 0.6em 6.15em;
-        }
-    }
+  &__container {
+    padding-top: 1em;
 
     @include mediaMin(1490px) {
-        width: 1031px;
-        border-radius: 20px;
+      padding: 35px 86px 86px;
     }
+  }
+
+  &__items {
+    margin-bottom: 2em;
+  }
+
+  &__public-btn {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #7a5af8;
+    border-radius: 560px;
+    color: #7a5af8;
+    background: transparent;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: normal;
+    padding: 0.5em 4.7em;
+
+    @include mediaMin(1490px) {
+      font-size: 1.43rem;
+      padding: 0.6em 6.15em;
+    }
+  }
+
+  @include mediaMin(1490px) {
+    width: 1031px;
+    border-radius: 20px;
+  }
 }
 
 .profile-sections {
-    @include mediaMin(1490px) {
-        width: 1490px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1031px 410px;
-        gap: 30px;
-    }
+  @include mediaMin(1490px) {
+    width: 1490px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1031px 410px;
+    gap: 30px;
+  }
+}
+
+.filter {
+  background-color: white;
+  padding: 1em;
 }

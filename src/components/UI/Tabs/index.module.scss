@@ -1,44 +1,46 @@
 @use '../../../styles/global' as *;
 
 .tabs {
-    &__active {
-        position: absolute;
-        display: block;
-        width: 100%;
-        background-color: $main-color;
-        height: 2px;
-        -webkit-transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-        transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    }
-    &__content{
-        padding-bottom: 2.3em;
-    }
+  &__active {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: $main-color;
+    height: 2px;
+    -webkit-transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  }
+
+  &__content {
+    padding-bottom: 2.3em;
+  }
 }
 
 .btns {
-    @include flex($gap: 1.5em);
-    margin-bottom: .1em;
-   
-    &__item {
-        padding: 0;
-        border: none;
-        background: transparent;
-        color: #564F70;
-        font-size: .86rem;
-        font-weight: 600;
-        line-height: normal;
+  @include flex($gap: 1.5em);
+  margin-bottom: 0.1em;
 
-        &--active {
-            color: $main-color;
-        }
+  &__item {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #564f70;
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: normal;
+
+    &--active {
+      color: $main-color;
     }
 
-    @include mediaMin(1490px) {
-        justify-content: start;
-        font-size: 1.43rem;
-
-        &__item {
-            font-size: 1.43rem;
-        }
+    @include mediaMin($device-XXL) {
+      cursor: pointer;
+      font-size: 1.43rem;
     }
+  }
+
+  @include mediaMin($device-XXL) {
+    justify-content: start;
+    font-size: 1.43rem;
+  }
 }

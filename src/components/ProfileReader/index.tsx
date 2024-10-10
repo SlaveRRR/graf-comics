@@ -1,13 +1,11 @@
 'use client';
-import React, { FC, useState } from 'react';
-import cn from 'classnames';
-import { Stats, ProfileFilters } from '../shared';
-import { Cards, Tabs } from '../UI';
-import { useSession } from 'next-auth/react';
-import { ctx } from '@/context/contextProvider';
-import styles from './index.module.scss';
 import MoreDetailsPopup from '@/components/shared/MoreDetailsPopup';
-
+import cn from 'classnames';
+import { useSession } from 'next-auth/react';
+import { FC, useState } from 'react';
+import { Cards, Tabs } from '../UI';
+import { ProfileFilters, Stats } from '../shared';
+import styles from './index.module.scss';
 const ProfileReader: FC = () => {
   const { data } = useSession();
 
@@ -27,11 +25,7 @@ const ProfileReader: FC = () => {
 
   return (
     <>
-      <MoreDetailsPopup
-        mixClass={[]}
-        isOpen={isOpenMoreDetailsPopup}
-        onClose={handleCloseMoreDetailsPopup}
-      />
+      <MoreDetailsPopup mixClass={[]} isOpen={isOpenMoreDetailsPopup} onClose={handleCloseMoreDetailsPopup} />
 
       <section className={styles['profile-header']}>
         <div className={styles['profile__wallpaper']}>
@@ -66,7 +60,7 @@ const ProfileReader: FC = () => {
           </p>
           <Stats
             mixClass={[styles['profile__stats']]}
-            itemStyle={[styles['profile__stats-items']]}
+            itemClassName={styles['profile__stats-items']}
             stats={[
               {
                 name: 'Подписчики',
@@ -87,12 +81,19 @@ const ProfileReader: FC = () => {
             <Tabs mixClass={[styles['tabs__items']]} tabs={['Избранное', 'Закладки', 'Тайтлы']}>
               <div>
                 <div className={styles['profile__input-search-container']}>
-                  <svg className={styles['profile__input-search-img']} width="28" height="28" viewBox="0 0 28 28"
-                       fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    className={styles['profile__input-search-img']}
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <g clip-path="url(#clip0_114_272)">
                       <path
                         d="M27.6584 26.0085L20.6946 19.0447C22.5923 16.7237 23.5253 13.7621 23.3007 10.7725C23.0761 7.78286 21.711 4.99394 19.4878 2.9826C17.2645 0.971252 14.3533 -0.108636 11.3562 -0.0336988C8.35904 0.0412383 5.50539 1.26527 3.38545 3.38521C1.26551 5.50514 0.0414824 8.3588 -0.0334547 11.3559C-0.108392 14.353 0.971496 17.2643 2.98284 19.4875C4.99419 21.7107 7.7831 23.0759 10.7727 23.3005C13.7623 23.5251 16.7239 22.5921 19.0449 20.6943L26.0087 27.6582C26.2288 27.8707 26.5235 27.9883 26.8294 27.9856C27.1353 27.983 27.4279 27.8603 27.6442 27.6439C27.8605 27.4276 27.9832 27.135 27.9859 26.8291C27.9885 26.5232 27.8709 26.2285 27.6584 26.0085ZM11.6669 21C9.82094 21 8.01644 20.4526 6.48158 19.427C4.94672 18.4015 3.75044 16.9438 3.04402 15.2384C2.33761 13.5329 2.15278 11.6563 2.5129 9.84581C2.87303 8.03533 3.76195 6.37228 5.06724 5.06699C6.37253 3.7617 8.03557 2.87279 9.84606 2.51266C11.6565 2.15253 13.5332 2.33736 15.2386 3.04378C16.9441 3.7502 18.4017 4.94648 19.4273 6.48133C20.4528 8.01619 21.0002 9.8207 21.0002 11.6667C20.9975 14.1412 20.0132 16.5135 18.2635 18.2633C16.5138 20.013 14.1414 20.9972 11.6669 21Z"
-                        fill="#2D283E" />
+                        fill="#2D283E"
+                      />
                     </g>
                     <defs>
                       <clipPath id="clip0_114_272">
@@ -101,21 +102,32 @@ const ProfileReader: FC = () => {
                     </defs>
                   </svg>
 
-                  <input
-                    type="text"
-                    placeholder={'Поиск...'}
-                    className={styles['profile__input-search']}
-                  />
+                  <input type="text" placeholder={'Поиск...'} className={styles['profile__input-search']} />
                 </div>
 
                 <button className={styles['profile__open-filters-btn']} onClick={handleOpenFiltersPopup}>
                   <svg width="22" height="7" viewBox="0 0 22 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="3.89063" cy="3.12099" r="2.20703" transform="rotate(-44.5 3.89063 3.12099)"
-                            fill="#7A5AF8" />
-                    <circle cx="11.2461" cy="3.12099" r="2.20703" transform="rotate(-44.5 11.2461 3.12099)"
-                            fill="#7A5AF8" />
-                    <circle cx="18.6055" cy="3.12099" r="2.20703" transform="rotate(-44.5 18.6055 3.12099)"
-                            fill="#7A5AF8" />
+                    <circle
+                      cx="3.89063"
+                      cy="3.12099"
+                      r="2.20703"
+                      transform="rotate(-44.5 3.89063 3.12099)"
+                      fill="#7A5AF8"
+                    />
+                    <circle
+                      cx="11.2461"
+                      cy="3.12099"
+                      r="2.20703"
+                      transform="rotate(-44.5 11.2461 3.12099)"
+                      fill="#7A5AF8"
+                    />
+                    <circle
+                      cx="18.6055"
+                      cy="3.12099"
+                      r="2.20703"
+                      transform="rotate(-44.5 18.6055 3.12099)"
+                      fill="#7A5AF8"
+                    />
                   </svg>
                 </button>
 
@@ -130,19 +142,26 @@ const ProfileReader: FC = () => {
                     'Избранное',
                     'Избранное',
                     'Избранное',
-                    'Записи'
+                    'Записи',
                   ]}
                 />
               </div>
 
               <div>
                 <div className={styles['profile__input-search-container']}>
-                  <svg className={styles['profile__input-search-img']} width="28" height="28" viewBox="0 0 28 28"
-                       fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    className={styles['profile__input-search-img']}
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <g clip-path="url(#clip0_114_272)">
                       <path
                         d="M27.6584 26.0085L20.6946 19.0447C22.5923 16.7237 23.5253 13.7621 23.3007 10.7725C23.0761 7.78286 21.711 4.99394 19.4878 2.9826C17.2645 0.971252 14.3533 -0.108636 11.3562 -0.0336988C8.35904 0.0412383 5.50539 1.26527 3.38545 3.38521C1.26551 5.50514 0.0414824 8.3588 -0.0334547 11.3559C-0.108392 14.353 0.971496 17.2643 2.98284 19.4875C4.99419 21.7107 7.7831 23.0759 10.7727 23.3005C13.7623 23.5251 16.7239 22.5921 19.0449 20.6943L26.0087 27.6582C26.2288 27.8707 26.5235 27.9883 26.8294 27.9856C27.1353 27.983 27.4279 27.8603 27.6442 27.6439C27.8605 27.4276 27.9832 27.135 27.9859 26.8291C27.9885 26.5232 27.8709 26.2285 27.6584 26.0085ZM11.6669 21C9.82094 21 8.01644 20.4526 6.48158 19.427C4.94672 18.4015 3.75044 16.9438 3.04402 15.2384C2.33761 13.5329 2.15278 11.6563 2.5129 9.84581C2.87303 8.03533 3.76195 6.37228 5.06724 5.06699C6.37253 3.7617 8.03557 2.87279 9.84606 2.51266C11.6565 2.15253 13.5332 2.33736 15.2386 3.04378C16.9441 3.7502 18.4017 4.94648 19.4273 6.48133C20.4528 8.01619 21.0002 9.8207 21.0002 11.6667C20.9975 14.1412 20.0132 16.5135 18.2635 18.2633C16.5138 20.013 14.1414 20.9972 11.6669 21Z"
-                        fill="#2D283E" />
+                        fill="#2D283E"
+                      />
                     </g>
                     <defs>
                       <clipPath id="clip0_114_272">
@@ -151,11 +170,7 @@ const ProfileReader: FC = () => {
                     </defs>
                   </svg>
 
-                  <input
-                    type="text"
-                    placeholder={'Поиск...'}
-                    className={styles['profile__input-search']}
-                  />
+                  <input type="text" placeholder={'Поиск...'} className={styles['profile__input-search']} />
                 </div>
 
                 <Cards
@@ -170,17 +185,27 @@ const ProfileReader: FC = () => {
         </section>
 
         <section className={styles['filtration']}>
+          {/* <Filters
+            filters={[
+              {
+                filterType: '',
+              },
+            ]}
+          /> */}
+          {/* <div className={styles['filter']}>
+            <Filters
+              filters={[
+                { text: 'Вкладки', colorClass: 'author', filters: tabs, filterType: 'default', isActive: false },
+                { text: 'Сортировать', colorClass: 'author', filters: sort, filterType: 'sort', isActive: false },
+              ]}
+              mixClass={[styles['catalog__filter']]}
+            />
+          </div> */}
           <ProfileFilters
             mixClass={[]}
             isOpen={isOpenFilters}
             onClose={handleCloseFiltersPopup} // функция для закрытия
-            tabArray={[
-              'Все',
-              'Читаю',
-              'В планах',
-              'Прочитано',
-              'Брошено'
-            ]}
+            tabArray={['Все', 'Читаю', 'В планах', 'Прочитано', 'Брошено']}
             sortArray={[
               'по названию (А-Я)',
               'по дате добавления',

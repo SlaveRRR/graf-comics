@@ -1,15 +1,15 @@
 'use client';
-import React, { FC } from 'react';
+import { MixClass } from '@/types/mixClass.type';
 import cn from 'classnames';
+import { FC } from 'react';
 import styles from './index.module.scss';
 
 type Props = {
   tabArray: string[];
   sortArray: string[];
-  mixClass: string[];
   isOpen: boolean;
   onClose: () => void;
-}
+} & MixClass;
 
 const ProfileFilters: FC<Props> = ({ tabArray, isOpen, onClose, sortArray, mixClass }) => {
   return (
@@ -30,11 +30,15 @@ const ProfileFilters: FC<Props> = ({ tabArray, isOpen, onClose, sortArray, mixCl
             {tabArray.map((tab, index) => (
               <li key={index}>
                 <input type="radio" id={`tab-${index}`} name="tabs" />
-                <label htmlFor={`tab-${index}`} className={styles['profile-filters__option-p']}>{tab}</label>
+                <label htmlFor={`tab-${index}`} className={styles['profile-filters__option-p']}>
+                  {tab}
+                </label>
               </li>
             ))}
           </ul>
-          <a href="#" className={styles['create-tab-link']}>Создать вкладку</a>
+          <a href="#" className={styles['create-tab-link']}>
+            Создать вкладку
+          </a>
         </div>
 
         <div className={styles['profile-filters__sort-section']}>
@@ -43,16 +47,20 @@ const ProfileFilters: FC<Props> = ({ tabArray, isOpen, onClose, sortArray, mixCl
             {sortArray.map((sortOption, index) => (
               <li key={index}>
                 <input type="radio" id={`sort-${index}`} name="sort" />
-                <label htmlFor={`sort-${index}`} className={styles['profile-filters__option-p']}>{sortOption}</label>
+                <label htmlFor={`sort-${index}`} className={styles['profile-filters__option-p']}>
+                  {sortOption}
+                </label>
               </li>
             ))}
           </ul>
         </div>
 
         <div className={styles['profile-filters__action-buttons']}>
-          <button className={`${styles['profile-filters__btn']} ${styles['profile-filters__btn--apply-btn']}`}>Применить
+          <button className={`${styles['profile-filters__btn']} ${styles['profile-filters__btn--apply-btn']}`}>
+            Применить
           </button>
-          <button className={`${styles['profile-filters__btn']} ${styles['profile-filters__btn--reset-btn']}`}>Сбросить
+          <button className={`${styles['profile-filters__btn']} ${styles['profile-filters__btn--reset-btn']}`}>
+            Сбросить
           </button>
         </div>
       </div>

@@ -1,15 +1,15 @@
 'use client';
-import React, { FC } from 'react';
+import { MixClass } from '@/types/mixClass.type';
 import cn from 'classnames';
+import { FC } from 'react';
 import styles from './index.module.scss';
 
 type Props = {
-  mixClass: string[];
   isOpen: boolean;
   onClose: () => void;
-}
+} & MixClass;
 
-const MoreDetailsPoopup: FC<Props> = ({isOpen, onClose, mixClass }) => {
+const MoreDetailsPoopup: FC<Props> = ({ isOpen, onClose, mixClass }) => {
   return (
     <div>
       {isOpen && <div className={cn(styles['more-details__overlay'])} onClick={onClose}></div>}
@@ -58,9 +58,15 @@ const MoreDetailsPoopup: FC<Props> = ({isOpen, onClose, mixClass }) => {
           </p>
 
           <p className={styles['more-details__subtitle']}>Ссылки</p>
-          <a href="#" className={styles['more-details__link']}>Ссылка</a>
-          <a href="#" className={styles['more-details__link']}>Ссылка</a>
-          <a href="#" className={styles['more-details__link']}>Ссылка</a>
+          <a href="#" className={styles['more-details__link']}>
+            Ссылка
+          </a>
+          <a href="#" className={styles['more-details__link']}>
+            Ссылка
+          </a>
+          <a href="#" className={styles['more-details__link']}>
+            Ссылка
+          </a>
         </div>
       </div>
     </div>

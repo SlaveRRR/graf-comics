@@ -1,14 +1,14 @@
 @use '../../../styles/global' as *;
 
-.cards{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    column-gap: 10px;
-    row-gap: 17px;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+  row-gap: 17px;
 
-    @include mediaMin(1490px) {
-        grid-template-columns: repeat(4,1fr);
-        column-gap: 44px;
-        row-gap: 89.27px;
-    }
+  @include mediaMin($device-XXL) {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 44px;
+    row-gap: 89.27px;
+  }
 }
