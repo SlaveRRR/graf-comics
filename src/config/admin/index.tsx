@@ -1,5 +1,6 @@
-import { NextAdminOptions } from '@premieroctet/next-admin';
 import ArticleAdmin from '@/components/ArticleAdmin';
+import { imgUploader } from '@/services';
+import { NextAdminOptions } from '@premieroctet/next-admin';
 
 export const options: NextAdminOptions = {
   basePath: '/admin',
@@ -114,6 +115,82 @@ export const options: NextAdminOptions = {
             'use server';
             const { submitApproveArticle } = await import('../../actions/submitApproveArticle');
             await submitApproveArticle(...args);
+          },
+          successMessage: 'Successful approve!',
+          errorMessage: 'Approve error!',
+        },
+      ],
+    },
+    Comics: {
+      toString: (comics) => comics.title,
+      title: '📚 Comics',
+      aliases: {
+        id: 'ID',
+      },
+      list: {
+        display: ['id', 'title', 'author', 'createdAt'],
+        search: ['title'],
+        fields: {
+          author: {
+            formatter: (item) => item.name,
+          },
+        },
+      },
+      edit: {
+        display: [
+          'title',
+          'description',
+          'author',
+          'createdAt',
+          'banner',
+          'focus',
+          'genres',
+          'tags',
+          'banner',
+          // 'covers',
+          'rating',
+          'isApproved',
+        ],
+        styles: {
+          _form: 'grid-cols-2 gap-1 sm:gap-2 sm:grid-cols-4 items-center',
+          title: 'col-span-2 row-start-1',
+          author: 'col-span-2 row-start-2 sm:row-start-1',
+          description: 'col-span-2 row-start-3 sm:row-start-2',
+          focus: 'col-span-2 row-start-4 sm:row-start-3',
+          genres: 'col-span-2 row-start-5 sm:row-start-4',
+          tags: 'col-span-2 row-start-6 sm:row-start-5',
+          rating: 'col-span-2 row-start-7 sm:row-start-6',
+
+          banner: 'col-span-4 row-start-8 sm:row-start-7',
+          covers: 'col-span-4 row-start-9 sm:row-start-8',
+          createdAt: 'col-span-2 row-start-10 sm:row-start-9',
+          isApproved: 'col-span-2 row-start-11 sm:row-start-10',
+        },
+        fields: {
+          author: {
+            optionFormatter: (author) => `${author.name}`,
+          },
+          banner: {
+            format: 'file',
+            handler: {
+              upload: async (file: Buffer) => {
+                'use server';
+                const uploadedFile = await imgUploader({
+                  base64string: file.toString('base64'),
+                });
+                return uploadedFile.url;
+              },
+            },
+          },
+        },
+      },
+      actions: [
+        {
+          title: 'Approve comics',
+          action: async (...args) => {
+            'use server';
+            const { submitApproveComics } = await import('../../actions/submitApproveComics');
+            await submitApproveComics(...args);
           },
           successMessage: 'Successful approve!',
           errorMessage: 'Approve error!',

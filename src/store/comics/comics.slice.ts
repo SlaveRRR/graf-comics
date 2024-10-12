@@ -1,15 +1,14 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IComics, IFilter, Status } from './types';
-import { v4 as uuidv4 } from 'uuid';
 import { IChapter } from '@/components/Chapter/types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
+import { IComics, IFilter, Status } from './types';
 
-const defaultImages = ['/bg-default.svg', '/bg-default.svg', '/bg-default.svg', '/bg-default.svg'];
 const initialState: IComics = {
   title: 'Название',
   description: 'Описание',
   banner: '',
-  authorName: 'Автор',
-  cover: defaultImages,
+  author: 'Автор',
+  covers: [],
   focus: [],
   genres: [],
   rating: [
@@ -28,10 +27,10 @@ const initialState: IComics = {
         {
           chapterId: uuidv4(),
           title: 'Глава 0',
-          images: defaultImages,
+          images: [],
           likes: 0,
           timeCode: '00.00.00',
-          isRidden: false,
+          isRead: false,
         },
       ],
     },
@@ -42,15 +41,15 @@ const comicsSlice = createSlice({
   name: 'comics',
   initialState: initialState,
   reducers: {
-    addTitleDescription(state, action: PayloadAction<Pick<IComics, 'title' | 'description' | 'authorName'>>) {
-      const { description, title, authorName } = action.payload;
+    addTitleDescription(state, action: PayloadAction<Pick<IComics, 'title' | 'description' | 'author'>>) {
+      const { description, title, author } = action.payload;
       state['description'] = description;
       state['title'] = title;
-      state['authorName'] = authorName;
+      state['author'] = author;
     },
     addCover(state, action: PayloadAction<string[]>) {
       const { payload } = action;
-      state['cover'] = payload;
+      state['covers'] = payload;
     },
     addBanner(state, action: PayloadAction<string>) {
       const { payload } = action;
@@ -61,7 +60,6 @@ const comicsSlice = createSlice({
       const {
         payload: { type, element },
       } = action;
-  
 
       const arr = state[type];
       const ind = arr.findIndex((e) => e.text === element.text);
@@ -72,7 +70,7 @@ const comicsSlice = createSlice({
         title: 'Том 0',
         tomId: uuidv4(),
         chapters: [
-          { title: 'Глава 0', images: [], chapterId: uuidv4(), likes: 0, timeCode: '00.00.00', isRidden: false },
+          { title: 'Глава 0', images: [], chapterId: uuidv4(), likes: 0, timeCode: '00.00.00', isRead: false },
         ],
       });
     },
@@ -89,11 +87,11 @@ const comicsSlice = createSlice({
       const tom = state.toms.find((el) => el.tomId === payload.tomId);
       tom.chapters.push({
         title: 'Глава 0',
-        images: defaultImages,
+        images: [],
         chapterId: uuidv4(),
         likes: 0,
         timeCode: '00.00.00',
-        isRidden: false,
+        isRead: false,
       });
     },
     removeChapter(state, action: PayloadAction<{ tomId: string; chapter: IChapter }>) {

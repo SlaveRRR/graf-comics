@@ -1,10 +1,10 @@
 'use client';
-import React, { FC, useEffect, useState, useCallback } from 'react';
 import { AddArticle, TextEditor } from '@/components/shared';
-import { useActions, useAppSelector } from '@/hooks/redux';
+import { useAppSelector } from '@/hooks/redux';
+import { useGetUserByIdQuery } from '@/store/api';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { useGetUserByIdQuery } from '@/store/api';
+import { FC, useCallback } from 'react';
 
 const NewArticleText: FC = () => {
   const article = useAppSelector((state) => state.article);
@@ -14,15 +14,16 @@ const NewArticleText: FC = () => {
     selectFromResult: ({ data }) => ({ isArticleApprove: data?.isArticleApprove }),
     skip: status !== 'authenticated',
   });
-  if (!isArticleApprove) {
-    return redirect('/add-article/articles');
-  }
+
   const sendModerate = useCallback(async (result) => {
-    const resp = await fetch(`${process.env.NEXT_PUBLIC_AXIOS_URL}/api/article`, {
+    await fetch(`${process.env.NEXT_PUBLIC_AXIOS_URL}/api/article`, {
       method: 'POST',
       body: JSON.stringify({ ...article, article: result }),
     });
   }, []);
+  if (!isArticleApprove) {
+    return redirect('/add-article/articles');
+  }
   return (
     <AddArticle>
       <TextEditor onSave={sendModerate} rawHtml={article.htmlFromFile} />

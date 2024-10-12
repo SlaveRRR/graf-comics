@@ -92,7 +92,7 @@
       "title": "Том 0 Глава 1",
       "timeCode": "00.00.00",
       "images": [],
-      "isRidden": true
+      "isRead": true
     },
     {
       "chapterId": "1",
@@ -100,7 +100,7 @@
       "title": "Том 0 Глава 2",
       "timeCode": "00.00.00",
       "images": [],
-      "isRidden": false
+      "isRead": false
     },
     {
       "chapterId": "2",
@@ -108,7 +108,7 @@
       "title": "Том 0 Глава 3",
       "timeCode": "00.00.00",
       "images": [],
-      "isRidden": false
+      "isRead": false
     }
   ]
 }

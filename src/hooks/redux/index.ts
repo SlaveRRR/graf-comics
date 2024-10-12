@@ -1,11 +1,12 @@
 'use client';
-import { useMemo } from 'react';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store';
-import { bindActionCreators } from '@reduxjs/toolkit';
+import { actions as articleActions } from '@/store/article/article.slice';
 import { actions as comicsActions } from '@/store/comics/comics.slice';
 import { actions as userActions } from '@/store/user/user.slice';
-import { actions as articleActions } from '@/store/article/article.slice';
+import { bindActionCreators } from '@reduxjs/toolkit';
+import { useMemo } from 'react';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+
 const rootActions = {
   ...articleActions,
   ...comicsActions,

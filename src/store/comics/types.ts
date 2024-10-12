@@ -10,14 +10,14 @@ export enum Status {
 export interface IComics {
   title: string;
   description: string;
-  cover: string[];
+  covers: string[];
   banner: string;
   genres: FilterItem[];
   focus: FilterItem[];
   tags: FilterItem[];
   rating: FilterItem[];
   toms: ITom[];
-  authorName: string;
+  author: string;
   status: Status;
 }
 

@@ -1,12 +1,12 @@
 'use client';
-import React, { FC, useContext, useState } from 'react';
-import { chapters as defaultChapters } from '@/data/data.json';
-import cn from 'classnames';
-import { Chapters, SliderPreview, Tabs } from '../UI';
-import { IComics, Status } from '@/store/comics/types';
-import Link from 'next/link';
-import styles from './index.module.scss';
 import { ctx } from '@/context/contextProvider';
+import { chapters as defaultChapters } from '@/data/data.json';
+import { IComics, Status } from '@/store/comics/types';
+import cn from 'classnames';
+import Link from 'next/link';
+import { FC, useContext, useState } from 'react';
+import { Chapters, SliderPreview, Tabs } from '../UI';
+import styles from './index.module.scss';
 
 type Props = {
   comics?: IComics;
@@ -18,7 +18,7 @@ const obj: IComics = {
   Описание комикса. Avery is a vampire hunter! Who unfortunately gets bitten by and subsequently turned into, a vampire.
   Описание комикса. Avery is a vampire hunter! Who unfortunately gets bitten by and subsequently turned into, a vampire.
   Описание комикса. Avery is a vampire hunter! Who unfortunately gets bitten by and subsequently turned into, a vampire.`,
-  cover: ['/post.svg', '/post.svg', '/post.svg'],
+  covers: ['/post.svg', '/post.svg', '/post.svg'],
   banner: '',
   genres: [],
   focus: [],
@@ -36,13 +36,13 @@ const obj: IComics = {
       chapters: defaultChapters,
     },
   ],
-  authorName: 'Автор',
+  author: 'Автор',
   status: Status.WORK,
 };
 
 const ComicsPreview: FC<Props> = ({ comics = obj }) => {
   const { setActiveBookMarks } = useContext(ctx);
-  const { banner, cover, description, genres, title, toms, authorName, status, rating } = comics;
+  const { banner, covers, description, genres, title, toms, author, status, rating } = comics;
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
 
   return (
@@ -53,10 +53,10 @@ const ComicsPreview: FC<Props> = ({ comics = obj }) => {
         }}
         className={cn(styles['comics-page__container'], 'container')}
       >
-        <SliderPreview mixClass={[styles['comics-page__slider']]} items={cover} backgroundImage={banner} />
+        <SliderPreview mixClass={[styles['comics-page__slider']]} items={covers} backgroundImage={banner} />
         <div className={styles['comics-page__text-container']}>
           <h2 className={styles['comics-page__header']}>{title} </h2>
-          <p className={styles['comics-page__author']}> {authorName} </p>
+          <p className={styles['comics-page__author']}> {author} </p>
           <div className={styles['comics-page__details']}>
             <p className={styles['comics-page__age']}> {rating[0].text} </p>
             <p className={styles['comics-page__year']}> {new Date().getFullYear()} </p>
@@ -278,7 +278,7 @@ const ComicsPreview: FC<Props> = ({ comics = obj }) => {
                   chapters={toms
                     .map((el) => el.chapters)
                     .flat()
-                    .map((el) => ({ likes: el.likes, timeCode: el.timeCode, title: el.title, isRidden: el.isRidden }))}
+                    .map((el) => ({ likes: el.likes, timeCode: el.timeCode, title: el.title, isRead: el.isRead }))}
                 />
               </div>
               <div className={styles['comics-page__comments']}>
