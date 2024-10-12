@@ -1,11 +1,13 @@
 'use client';
-import React, { FC, useState, useRef, useEffect } from 'react';
-import { IChapter } from './types';
-import { readFiles } from '@/utils/filereader';
 import { useActions } from '@/hooks/redux';
-import Image from 'next/image';
+import { readFiles } from '@/utils/filereader';
 import cn from 'classnames';
+import Image from 'next/image';
+import { FC, useEffect, useRef, useState } from 'react';
 import styles from './index.module.scss';
+import { IChapter } from './types';
+
+const defaultImages = ['/bg-default.svg', '/bg-default.svg', '/bg-default.svg'];
 
 type Props = {
   chapter: IChapter;
@@ -126,7 +128,7 @@ const Chapter: FC<Props> = ({ chapter, tomId }) => {
             onChange={(e) => {
               if (e.target.files.length <= 10 && e.target.files.length >= 1) {
                 readFiles(e.target.files).then((data) =>
-                  saveChapterImages({ images: data, tomId: tomId, chapterId: chapterId })
+                  saveChapterImages({ images: data, tomId: tomId, chapterId: chapterId }),
                 );
               }
             }}
@@ -134,18 +136,23 @@ const Chapter: FC<Props> = ({ chapter, tomId }) => {
             multiple
           />
           <span className={styles['cover-img']}>
-            <Image width={83} height={100} className={styles['cover-img__item']} src={images[0]} alt="bg of comics" />
-          </span>
-          {images.slice(1).map((el) => (
             <Image
-              className={styles['cover-img__item']}
-              key={el.length}
               width={83}
               height={100}
-              src={el}
+              className={styles['cover-img__item']}
+              src={images[0] || '/bg-default.svg'}
               alt="bg of comics"
             />
-          ))}
+          </span>
+          {images.length >= 2
+            ? images
+                .slice(1)
+                .map((el) => (
+                  <Image className={styles['cover-img__item']} width={83} height={100} src={el} alt="bg of comics" />
+                ))
+            : defaultImages.map((el) => (
+                <Image className={styles['cover-img__item']} width={83} height={100} src={el} alt="bg of comics" />
+              ))}
         </div>
       )}
     </div>

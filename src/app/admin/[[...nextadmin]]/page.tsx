@@ -1,9 +1,9 @@
+import { deleteItem, searchResource, submitFormAction } from '@/actions/nextadmin';
+import { options } from '@/config/admin';
+import prisma from '@/services/prisma';
 import { NextAdmin } from '@premieroctet/next-admin';
 import { getPropsFromParams } from '@premieroctet/next-admin/dist/appRouter';
-import prisma from '@/services/prisma';
 import schema from '../../../../prisma/json-schema/json-schema.json';
-import { options } from '@/config/admin';
-import { deleteItem, submitFormAction, searchResource } from '@/actions/nextadmin';
 import '../../../styles/styles.css';
 export default async function AdminPage({
   params,

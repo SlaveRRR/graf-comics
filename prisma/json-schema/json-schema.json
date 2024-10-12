@@ -8,59 +8,33 @@
           "type": "string"
         },
         "avatar": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "default": ""
         },
         "email": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "name": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "password": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "role": {
           "type": "string",
           "default": "BASIC",
-          "enum": [
-            "BASIC",
-            "AUTHOR",
-            "ADMIN"
-          ]
+          "enum": ["BASIC", "AUTHOR", "ADMIN"]
         },
         "link": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "gender": {
           "type": "string",
           "default": "NONE",
-          "enum": [
-            "NONE",
-            "MALE",
-            "FEMALE"
-          ]
+          "enum": ["NONE", "MALE", "FEMALE"]
         },
         "emailVerified": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "format": "date-time"
         },
         "subscribers": {
@@ -68,12 +42,13 @@
           "default": 0
         },
         "about": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "isArticleApprove": {
+          "type": "boolean",
+          "default": true
+        },
+        "isComicsApprove": {
           "type": "boolean",
           "default": true
         },
@@ -150,36 +125,71 @@
         },
         "genres": {
           "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "enum": [
+            "COMEDY",
+            "ACTION",
+            "DRAMA",
+            "DETECTIVE",
+            "THRILLER",
+            "ROMANCE",
+            "MELODRAMA",
+            "DAILY_LIFE",
+            "SPORT",
+            "HORROR",
+            "FANTASY_FICTION",
+            "SCI_FI",
+            "HISTORICAL_DRAMA",
+            "HAREM",
+            "CYBERPUNK",
+            "STEAMPUNK",
+            "SUPERHERO",
+            "SPACE_OPERA",
+            "APOCALYPSE",
+            "POST_APOCALYPSE",
+            "MARTIAL_ARTS",
+            "IDOLS",
+            "MECHA",
+            "FAN_SERVICE",
+            "ECHI"
+          ]
         },
         "focus": {
           "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "enum": ["WEB_COMIC", "MANGA", "SINGLE", "MINI", "MAXI", "OMNIBUS"]
         },
-        "labels": {
+        "tags": {
           "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "age": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "enum": [
+            "AU",
+            "ANGST",
+            "NSFW",
+            "HURT_COMFORT",
+            "PSYCHOLOGY",
+            "CHARACTER_DEATH",
+            "FRIENDSHIP",
+            "VIOLENCE",
+            "FANTASY"
+          ]
         },
         "author": {
           "$ref": "#/definitions/User"
+        },
+        "rating": {
+          "type": "string"
         },
         "toms": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Tom"
           }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isApproved": {
+          "type": "boolean",
+          "default": false
         }
       },
       "required": [
@@ -190,9 +200,9 @@
         "banner",
         "genres",
         "focus",
-        "labels",
-        "age",
-        "authorId"
+        "tags",
+        "authorId",
+        "rating"
       ]
     },
     "Tom": {
@@ -201,7 +211,7 @@
         "id": {
           "type": "string"
         },
-        "name": {
+        "title": {
           "type": "string"
         },
         "chapters": {
@@ -214,10 +224,7 @@
           "$ref": "#/definitions/Comics"
         }
       },
-      "required": [
-        "name",
-        "comicsId"
-      ]
+      "required": ["title", "comicsId"]
     },
     "Chapter": {
       "type": "object",
@@ -237,16 +244,17 @@
             "type": "string"
           }
         },
-        "isRidden": {
+        "isRead": {
           "type": "boolean"
+        },
+        "likes": {
+          "type": "integer"
+        },
+        "timeCode": {
+          "type": "string"
         }
       },
-      "required": [
-        "name",
-        "tomId",
-        "images",
-        "isRidden"
-      ]
+      "required": ["name", "tomId", "images", "isRead", "likes", "timeCode"]
     },
     "Comment": {
       "type": "object",
@@ -284,11 +292,7 @@
           "$ref": "#/definitions/User"
         }
       },
-      "required": [
-        "text",
-        "likes",
-        "userId"
-      ]
+      "required": ["text", "likes", "userId"]
     },
     "Account": {
       "type": "object",
@@ -306,57 +310,31 @@
           "type": "string"
         },
         "refresh_token": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "access_token": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "expires_at": {
-          "type": [
-            "integer",
-            "null"
-          ]
+          "type": ["integer", "null"]
         },
         "token_type": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "scope": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "id_token": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "session_state": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "user": {
           "$ref": "#/definitions/User"
         }
       },
-      "required": [
-        "userId",
-        "type",
-        "provider",
-        "providerAccountId"
-      ]
+      "required": ["userId", "type", "provider", "providerAccountId"]
     },
     "Article": {
       "type": "object",
@@ -375,51 +353,27 @@
           "type": "string"
         },
         "cover": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "content": {
-          "type": [
-            "number",
-            "string",
-            "boolean",
-            "object",
-            "array",
-            "null"
-          ]
+          "type": ["number", "string", "boolean", "object", "array", "null"]
         },
         "author": {
           "$ref": "#/definitions/User"
         },
         "isApproved": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": false
         },
         "authorName": {
           "type": "string"
         },
         "category": {
           "type": "string",
-          "enum": [
-            "SCENARIO",
-            "LIFESTYLE",
-            "CHARACTERS",
-            "ENVIROMENT",
-            "PROMOTION",
-            "GRAPHIC"
-          ]
+          "enum": ["SCENARIO", "LIFESTYLE", "CHARACTERS", "ENVIROMENT", "PROMOTION", "GRAPHIC"]
         }
       },
-      "required": [
-        "title",
-        "description",
-        "content",
-        "authorId",
-        "isApproved",
-        "authorName",
-        "category"
-      ]
+      "required": ["title", "description", "content", "authorId", "authorName", "category"]
     },
     "ArticleImage": {
       "type": "object",
@@ -437,11 +391,7 @@
           "$ref": "#/definitions/User"
         }
       },
-      "required": [
-        "name",
-        "image",
-        "userId"
-      ]
+      "required": ["name", "image", "userId"]
     },
     "Session": {
       "type": "object",
@@ -460,11 +410,7 @@
           "$ref": "#/definitions/User"
         }
       },
-      "required": [
-        "sessionToken",
-        "userId",
-        "expires"
-      ]
+      "required": ["sessionToken", "userId", "expires"]
     },
     "VerificationToken": {
       "type": "object",
@@ -483,11 +429,7 @@
           "format": "date-time"
         }
       },
-      "required": [
-        "identifier",
-        "token",
-        "expires"
-      ]
+      "required": ["identifier", "token", "expires"]
     }
   },
   "type": "object",

@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
 import { IChapter } from '@/components/Chapter/types';
 import cn from 'classnames';
+import { FC } from 'react';
 import styles from './index.module.scss';
 
-type Props = Pick<IChapter, 'title' | 'timeCode' | 'likes' | 'isRidden'>;
+type Props = Pick<IChapter, 'title' | 'timeCode' | 'likes' | 'isRead'>;
 
-const ChapterCard: FC<Props> = ({ likes, title, timeCode, isRidden }) => {
+const ChapterCard: FC<Props> = ({ likes, title, timeCode, isRead }) => {
   return (
     <div
       className={cn(styles['chapter'], {
-        [styles['chapter--ridden']]: isRidden,
+        [styles['chapter--ridden']]: isRead,
       })}
     >
       <svg

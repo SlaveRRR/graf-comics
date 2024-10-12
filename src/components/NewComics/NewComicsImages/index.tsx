@@ -1,21 +1,23 @@
 'use client';
-import React, { FC } from 'react';
 import { AddComics } from '@/components/shared';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useActions, useAppSelector } from '@/hooks/redux';
+import { IComics } from '@/store/comics/types';
+import { readFiles, readImageFile } from '@/utils/filereader';
+import { File } from 'buffer';
 import cn from 'classnames';
-import styles from './index.module.scss';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { IComics } from '@/store/comics/types';
-import { useActions, useAppSelector } from '@/hooks/redux';
-import { File } from 'buffer';
-import { readFiles, readImageFile } from '@/utils/filereader';
-import { useSession } from 'next-auth/react';
+import { FC } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import styles from './index.module.scss';
 
 type FormData = {
-  cover: FileList | string[];
+  covers: FileList | string[];
   banner: File | string;
 } & Pick<IComics, 'title' | 'description'>;
+
+const defaultImages = ['/bg-default.svg', '/bg-default.svg', '/bg-default.svg'];
 
 const NewComicsImages: FC = () => {
   const { addTitleDescription, addCover, addBanner } = useActions();
@@ -39,7 +41,7 @@ const NewComicsImages: FC = () => {
     addTitleDescription({
       title: data.title,
       description: data.description,
-      authorName: session?.user?.name,
+      author: session?.user?.name,
     });
   };
 
@@ -48,7 +50,7 @@ const NewComicsImages: FC = () => {
       <form onSubmit={handleSubmit(handler)}>
         <fieldset>
           <legend className="visuallyhidden">Название и описание</legend>
-          {Boolean(errors?.title) && <p className={styles['error']}>{errors?.title?.message}</p>}
+
           <label className={styles['title']} htmlFor="Title">
             Название
             <input
@@ -60,8 +62,9 @@ const NewComicsImages: FC = () => {
                 required: 'Это поле обязательное!',
               })}
             />
+            {Boolean(errors?.title) && <p className={styles['error']}>{errors?.title?.message}</p>}
           </label>
-          {Boolean(errors?.description) && <p className={styles['error']}>{errors?.description?.message}</p>}
+
           <label className={styles['description']} htmlFor="description">
             Описание
             <Controller
@@ -80,6 +83,7 @@ const NewComicsImages: FC = () => {
                 required: 'Это поле обязательное!',
               }}
             />
+            {Boolean(errors?.description) && <p className={styles['error']}>{errors?.description?.message}</p>}
           </label>
         </fieldset>
         <fieldset>
@@ -102,11 +106,11 @@ const NewComicsImages: FC = () => {
               type="file"
               id="cover"
               className={cn(styles['cover__input'], 'myvisuallyhidden')}
-              {...register('cover', {
+              {...register('covers', {
                 required: true,
                 onChange(event) {
-                  if (getValues('cover').length <= 4) {
-                    readFiles(getValues('cover') as FileList).then((data) => addCover(data));
+                  if (getValues('covers').length <= 4) {
+                    readFiles(getValues('covers') as FileList).then((data) => addCover(data));
                   }
                 },
               })}
@@ -118,13 +122,19 @@ const NewComicsImages: FC = () => {
                 width={83}
                 height={100}
                 className={styles['cover-img__item']}
-                src={comics.cover[0]}
+                src={comics.covers[0] || '/bg-default.svg'}
                 alt="bg of comics"
               />
             </span>
-            {comics.cover.slice(1).map((el) => (
-              <Image className={styles['cover-img__item']} width={83} height={100} src={el} alt="bg of comics" />
-            ))}
+            {comics.covers.length >= 2
+              ? comics.covers
+                  .slice(1)
+                  .map((el) => (
+                    <Image className={styles['cover-img__item']} width={83} height={100} src={el} alt="bg of comics" />
+                  ))
+              : defaultImages.map((el) => (
+                  <Image className={styles['cover-img__item']} width={83} height={100} src={el} alt="bg of comics" />
+                ))}
           </div>
           <p className={styles['text-label']}>Баннер(фон)</p>
           <label className={styles['banner']} htmlFor="banner">
@@ -155,7 +165,7 @@ const NewComicsImages: FC = () => {
           />
         </fieldset>
         <button
-          disabled={isValid ? false : !isValid && comics.banner && comics.cover.length >= 1 ? false : true}
+          disabled={isValid ? false : !isValid && comics.banner && comics.covers.length >= 1 ? false : true}
           onClick={() => router.push('/add-comics/tags')}
           className={styles['next-btn']}
         >

@@ -32,6 +32,7 @@ model User {
   subscribers       Int            @default(0)
   about             String?
   isArticleApprove  Boolean        @default(true)
+  isComicsApprove   Boolean        @default(true)
   closedProfile     Boolean        @default(false)
   closedSubscribers Boolean        @default(false)
   comics            Comics[]
@@ -47,32 +48,36 @@ model Comics {
   title       String
   description String
   status      String
-  covers      Bytes[]
-  banner      Bytes
-  genres      String[]
-  focus       String[]
-  labels      String[]
-  age         String[]
-  author      User     @relation(fields: [authorId], references: [id])
+  covers      String[]
+  banner      String
+  genres      Genre[]
+  focus       Focus[]
+  tags        Tag[]
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId    String   @db.ObjectId
+  rating      String
   toms        Tom[]
+  createdAt   DateTime @default(now())
+  isApproved  Boolean  @default(false)
 }
 
 model Tom {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
+  title    String
   chapters Chapter[]
   comics   Comics    @relation(fields: [comicsId], references: [id])
   comicsId String    @db.ObjectId
 }
 
 model Chapter {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
   name     String
-  tom      Tom     @relation(fields: [tomId], references: [id])
-  tomId    String  @db.ObjectId
-  images   Bytes[]
-  isRidden Boolean
+  tom      Tom      @relation(fields: [tomId], references: [id])
+  tomId    String   @db.ObjectId
+  images   String[]
+  isRead   Boolean
+  likes    Int
+  timeCode String
 }
 
 model Comment {
@@ -115,7 +120,7 @@ model Article {
   content     Json
   author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId    String   @db.ObjectId
-  isApproved  Boolean
+  isApproved  Boolean  @default(false)
   authorName  String
   category    Category
 }
@@ -164,4 +169,53 @@ enum Category {
   ENVIROMENT
   PROMOTION
   GRAPHIC
+}
+
+enum Tag {
+  AU
+  ANGST
+  NSFW
+  HURT_COMFORT
+  PSYCHOLOGY
+  CHARACTER_DEATH
+  FRIENDSHIP
+  VIOLENCE
+  FANTASY
+}
+
+enum Focus {
+  WEB_COMIC
+  MANGA
+  SINGLE
+  MINI
+  MAXI
+  OMNIBUS
+}
+
+enum Genre {
+  COMEDY
+  ACTION
+  DRAMA
+  DETECTIVE
+  THRILLER
+  ROMANCE
+  MELODRAMA
+  DAILY_LIFE
+  SPORT
+  HORROR
+  FANTASY_FICTION
+  SCI_FI
+  HISTORICAL_DRAMA
+  HAREM
+  CYBERPUNK
+  STEAMPUNK
+  SUPERHERO
+  SPACE_OPERA
+  APOCALYPSE
+  POST_APOCALYPSE
+  MARTIAL_ARTS
+  IDOLS
+  MECHA
+  FAN_SERVICE
+  ECHI
 }

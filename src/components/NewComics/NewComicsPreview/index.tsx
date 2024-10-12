@@ -1,17 +1,22 @@
 'use client';
-import React, { FC } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/hooks/redux';
-import styles from './index.module.scss';
 import ComicsPreview from '@/components/ComicsPreview';
+import { useAppSelector } from '@/hooks/redux';
+import { useRouter } from 'next/navigation';
+import { FC, useCallback } from 'react';
+import styles from './index.module.scss';
 
 const NewComicsPreview: FC = () => {
   const comics = useAppSelector((state) => state.comics);
   const router = useRouter();
-  const handleClick = () => {
-    router.push('/add-comics/final');
-  };
 
+  console.log(comics);
+  const sendModerate = useCallback(async () => {
+    await fetch(`${process.env.NEXT_PUBLIC_AXIOS_URL}/api/comics`, {
+      method: 'POST',
+      body: JSON.stringify({ ...comics }),
+    });
+    // router.push('/add-comics/final');
+  }, []);
   return (
     <>
       <p className={styles['preview-text']}>Предпросмотр</p>
@@ -21,7 +26,7 @@ const NewComicsPreview: FC = () => {
         <button onClick={() => router.back()} className={styles['btns-container__back-btn']}>
           Редактировать
         </button>
-        <button onClick={() => handleClick()} className={styles['btns-container__next-btn']}>
+        <button onClick={sendModerate} className={styles['btns-container__next-btn']}>
           Опубликовать
         </button>
       </div>

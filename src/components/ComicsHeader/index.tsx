@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
 import cn from 'classnames';
-import { BackLink } from '../shared';
-import { ChaptersButton } from '../UI';
+import { FC } from 'react';
 import { IChapter } from '../Chapter/types';
+import { ChaptersButton } from '../UI';
+import { BackLink } from '../shared';
 import styles from './index.module.scss';
 
 type Props = {
@@ -13,7 +13,7 @@ const chapters: IChapter[] = [
     chapterId: '5',
     timeCode: '00.00.00',
     images: [],
-    isRidden: false,
+    isRead: false,
     title: 'глава 0',
     likes: 5,
   },
@@ -21,7 +21,7 @@ const chapters: IChapter[] = [
     chapterId: '8',
     timeCode: '00.00.00',
     images: [],
-    isRidden: false,
+    isRead: false,
     title: 'глава 1',
     likes: 5,
   },
@@ -29,7 +29,7 @@ const chapters: IChapter[] = [
     chapterId: '4',
     timeCode: '00.00.00',
     images: [],
-    isRidden: false,
+    isRead: false,
     title: 'глава 2',
     likes: 5,
   },
