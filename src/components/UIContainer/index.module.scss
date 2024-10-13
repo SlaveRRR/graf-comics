@@ -1,0 +1,46 @@
+.sonner-toast {
+  background-color: white;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: rgba(45, 40, 62, 1);
+  padding: 10px 10px;
+  border-radius: 10px;
+  gap: 10px;
+  &__success {
+    color: rgba(15, 153, 24, 1);
+    background-color: rgba(225, 252, 227, 1);
+  }
+
+  &__error {
+    color: rgba(229, 69, 69, 1);
+    background-color: rgba(255, 208, 208, 1);
+  }
+  &__warning {
+    color: rgba(255, 136, 0, 1);
+    background-color: rgba(255, 234, 210, 1);
+  }
+
+  &__cancel-btn {
+    background-color: inherit !important;
+    border: none;
+    outline: none;
+    font-size: 1.15rem !important;
+    font-weight: 500;
+    color: rgba(122, 90, 248, 1) !important;
+  }
+
+  &__description {
+    margin-top: 8px;
+    font-size: 1rem !important;
+    font-weight: 500;
+    color: rgba(129, 129, 129, 1);
+  }
+
+  &__icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
