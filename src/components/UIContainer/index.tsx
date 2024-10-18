@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { BookMarkMenu, Loader, ModalAuth } from '../UI';
+import { FC } from 'react';
+import { BookMarkMenu, Loader, ModalAuth, Toast } from '../UI';
 
 const UIContainer: FC = () => {
   return (
@@ -7,6 +7,7 @@ const UIContainer: FC = () => {
       <Loader />
       <ModalAuth />
       <BookMarkMenu />
+      <Toast />
     </div>
   );
 };

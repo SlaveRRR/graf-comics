@@ -1,18 +1,17 @@
 'use client';
+
 import cn from 'classnames';
 import { FC, useEffect } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { Tabs } from '../UI';
 import ProfileSettings from './components/ProfileSettings';
 import SecuritySettings from './components/SecuritySettings';
 import SiteSettings from './components/SiteSettings';
 import styles from './index.module.scss';
 import { BackendData, EditProfileFormSchema, LocalStorageData } from './types';
-
 const EditProfile: FC = () => {
   const getDefaultValues = async (): Promise<EditProfileFormSchema> => {
-    /* Тут должа быть логика получения данных из бэка */
-
     const fetchBackendData = async (): Promise<BackendData> => {
       await new Promise((resolve) => setTimeout(resolve, 1500)); // Эмуляция задержки
       const backendValues: BackendData = {
@@ -41,7 +40,6 @@ const EditProfile: FC = () => {
     E-mail
     Пароль
      */
-
     // Получение данных из localStorage
     const localStorageValues: LocalStorageData = {
       hideSubscribes: JSON.parse(localStorage.getItem('hideSubscribes') || 'false'),
@@ -89,7 +87,7 @@ const EditProfile: FC = () => {
     loadDefaultValues();
   }, [reset]);
 
-  const handler: SubmitHandler<EditProfileFormSchema> = (data) => {
+  const handler: SubmitHandler<EditProfileFormSchema> = async (data) => {
     try {
       /* Как и в каком формате сохранять данные на бэк я не знаю */
 
@@ -112,7 +110,11 @@ const EditProfile: FC = () => {
       localStorage.setItem('emailNotificationsUpdates', JSON.stringify(data.emailNotificationsUpdates));
       localStorage.setItem('emailNotificationsSurveys', JSON.stringify(data.emailNotificationsSurveys));
       localStorage.setItem('emailNotificationsReports', JSON.stringify(data.emailNotificationsReports));
-    } catch (error) {}
+    } catch (error) {
+      toast.error(`${error.message}`);
+    } finally {
+      toast.success('Данные успешно сохранены');
+    }
   };
 
   return (

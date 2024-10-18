@@ -1,6 +1,6 @@
 import BurgerMenu from './BurgerMenu';
-import Search from './Search';
 import Logo from './Logo';
+import Search from './Search';
 
 import Badge from './Badge';
 import Button from './Button';
@@ -8,9 +8,9 @@ import Button from './Button';
 import SliderArticles from './SliderArticles';
 import SliderPreview from './SliderPreview';
 
-import RouterLoader from './RouterLoader';
 import Loader from './Loader';
 import ModalAuth from './ModalAuth';
+import RouterLoader from './RouterLoader';
 import Tabs from './Tabs';
 
 import Card from './Card';
@@ -18,33 +18,35 @@ import Cards from './Cards';
 
 import Chapters from './Chapters';
 
-import Switch from './Switch';
-import Progress from './Progress';
+import ArticleCard from './ArticleCard';
 import Avatar from './Avatar';
-import SearchSelect from './SearchSelect';
 import BookMarkMenu from './BookMarkMenu';
 import ChaptersButton from './ChaptersButton';
-import ArticleCard from './ArticleCard';
+import Progress from './Progress';
+import SearchSelect from './SearchSelect';
+import Switch from './Switch';
+import Toast from './Toaster';
 export {
   ArticleCard,
-  BurgerMenu,
-  Search,
-  Logo,
-  Loader,
+  Avatar,
   Badge,
-  SliderArticles,
+  BookMarkMenu,
+  BurgerMenu,
   Button,
   Card,
   Cards,
-  RouterLoader,
-  Tabs,
-  SliderPreview,
   Chapters,
-  Switch,
+  ChaptersButton,
+  Loader,
+  Logo,
   ModalAuth,
   Progress,
-  Avatar,
+  RouterLoader,
+  Search,
   SearchSelect,
-  BookMarkMenu,
-  ChaptersButton,
+  SliderArticles,
+  SliderPreview,
+  Switch,
+  Tabs,
+  Toast,
 };
