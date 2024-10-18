@@ -1,6 +1,4 @@
-export default function toastInfoIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M11 16.2695C11.3797 16.2695 11.6875 15.9617 11.6875 15.582V10.082C11.6875 9.70235 11.3797 9.39453 11 9.39453C10.6203 9.39453 10.3125 9.70235 10.3125 10.082V15.582C10.3125 15.9617 10.6203 16.2695 11 16.2695Z"
         fill="#2D283E"
@@ -16,5 +14,3 @@ export default function toastInfoIcon() {
         fill="#2D283E"
       />
     </svg>
-  );
-}

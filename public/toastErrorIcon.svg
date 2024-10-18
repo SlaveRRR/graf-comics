@@ -1,6 +1,4 @@
-export default function toastErrorIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M11 13.2969C11.3797 13.2969 11.6875 12.9891 11.6875 12.6094V7.10938C11.6875 6.72969 11.3797 6.42188 11 6.42188C10.6203 6.42188 10.3125 6.72969 10.3125 7.10938V12.6094C10.3125 12.9891 10.6203 13.2969 11 13.2969Z"
         fill="#E54545"
@@ -16,5 +14,3 @@ export default function toastErrorIcon() {
         fill="#E54545"
       />
     </svg>
-  );
-}

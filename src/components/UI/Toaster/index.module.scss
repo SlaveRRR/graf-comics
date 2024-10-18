@@ -1,3 +1,5 @@
+@use '../../../styles/global' as *;
+
 .sonner-toast {
   background-color: white;
   font-size: 1.15rem;
@@ -6,6 +8,7 @@
   padding: 10px 10px;
   border-radius: 10px;
   gap: 10px;
+
   &__success {
     color: rgba(15, 153, 24, 1);
     background-color: rgba(225, 252, 227, 1);
@@ -15,6 +18,7 @@
     color: rgba(229, 69, 69, 1);
     background-color: rgba(255, 208, 208, 1);
   }
+
   &__warning {
     color: rgba(255, 136, 0, 1);
     background-color: rgba(255, 234, 210, 1);
@@ -31,7 +35,12 @@
 
   &__description {
     margin-top: 8px;
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
+
+    @include mediaMin($device-L) {
+      font-size: 1rem !important;
+    }
+
     font-weight: 500;
     color: rgba(129, 129, 129, 1);
   }
@@ -42,5 +51,14 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+  }
+
+  &__title {
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    @include mediaMin($device-L) {
+      font-size: 1.14rem;
+    }
   }
 }
