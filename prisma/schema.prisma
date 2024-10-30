@@ -20,27 +20,44 @@ datasource db {
 }
 
 model User {
-  id                String         @id @default(auto()) @map("_id") @db.ObjectId
-  avatar            String?        @default("")
-  email             String?        @unique
-  name              String?
-  password          String?
-  role              Role           @default(BASIC)
-  link              String?
-  gender            Gender         @default(NONE)
-  emailVerified     Boolean        @default(false)
-  subscribers       Int            @default(0)
-  about             String?
-  isArticleApprove  Boolean        @default(true)
-  isComicsApprove   Boolean        @default(true)
-  closedProfile     Boolean        @default(false)
-  closedSubscribers Boolean        @default(false)
-  comics            Comics[]
-  comments          Comment[]
-  accounts          Account[]
-  sessions          Session[]
-  Article           Article[]
-  ArticleImage      ArticleImage[]
+  id                            String         @id @default(auto()) @map("_id") @db.ObjectId
+  avatar                        String?        @default("")
+  email                         String?        @unique
+  name                          String?
+  password                      String?
+  role                          Role           @default(BASIC)
+  link                          String?
+  gender                        Gender         @default(NONE)
+  emailVerified                 Boolean        @default(false)
+  birthDate                     DateTime?
+  subscribers                   Int            @default(0)
+  about                         String?
+  isArticleApprove              Boolean        @default(true)
+  isComicsApprove               Boolean        @default(true)
+  closedProfile                 Boolean        @default(false)
+  closedSubscribers             Boolean        @default(false)
+  comics                        Comics[]
+  comments                      Comment[]
+  accounts                      Account[]
+  sessions                      Session[]
+  Article                       Article[]
+  ArticleImage                  ArticleImage[]
+  showMatureContent             Boolean        @default(false)
+  showNotificationsSubscribes   Boolean        @default(true)
+  showNotificationsComments     Boolean        @default(true)
+  showNotificationsPaidContent  Boolean        @default(true)
+  showNotificationsLikes        Boolean        @default(true)
+  showNotificationsGifts        Boolean        @default(true)
+  showNotificationsNewPosts     Boolean        @default(true)
+  showNotificationsListsReading Boolean        @default(true)
+  showNotificationsListsRead    Boolean        @default(true)
+  showNotificationsListsPlanned Boolean        @default(true)
+  showNotificationsListsLiked   Boolean        @default(true)
+  showNotificationsListsDropped Boolean        @default(true)
+  emailNotificationsUpdates     Boolean        @default(true)
+  emailNotificationsSurveys     Boolean        @default(true)
+  emailNotificationsReports     Boolean        @default(true)
+  residenceName                 String?
 }
 
 model Comics {
