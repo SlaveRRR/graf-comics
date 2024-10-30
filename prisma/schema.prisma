@@ -28,7 +28,7 @@ model User {
   role              Role           @default(BASIC)
   link              String?
   gender            Gender         @default(NONE)
-  emailVerified     DateTime?
+  emailVerified     Boolean        @default(false)
   subscribers       Int            @default(0)
   about             String?
   isArticleApprove  Boolean        @default(true)
@@ -65,14 +65,14 @@ model Tom {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   title    String
   chapters Chapter[]
-  comics   Comics    @relation(fields: [comicsId], references: [id])
+  comics   Comics    @relation(fields: [comicsId], references: [id], onDelete: Cascade)
   comicsId String    @db.ObjectId
 }
 
 model Chapter {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
   name     String
-  tom      Tom      @relation(fields: [tomId], references: [id])
+  tom      Tom      @relation(fields: [tomId], references: [id], onDelete: Cascade)
   tomId    String   @db.ObjectId
   images   String[]
   isRead   Boolean

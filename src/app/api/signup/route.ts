@@ -1,6 +1,6 @@
-import { NextResponse, type NextRequest } from 'next/server';
 import prisma from '@/services/prisma';
 import bcrypt from 'bcrypt';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const POST = async (request: NextRequest) => {
   try {
@@ -13,7 +13,13 @@ export const POST = async (request: NextRequest) => {
     });
 
     if (existingUser) {
-      return NextResponse.json({ error: 'Email taken' });
+      return NextResponse.json(
+        { message: 'Email already taken' },
+        {
+          status: 409,
+          statusText: 'Email already taken',
+        },
+      );
     }
     const hashedPassword = await bcrypt.hash(password, 15);
     await prisma.user.create({
@@ -29,7 +35,7 @@ export const POST = async (request: NextRequest) => {
       { message: error },
       {
         status: 500,
-      }
+      },
     );
   }
 };

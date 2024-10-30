@@ -1,20 +1,15 @@
-import { api } from '@/api'
+import { api } from '@/api';
 
-
-interface IUser{
-    email:string;
-    password:string;
-    name:string
+interface IUser {
+  email: string;
+  password: string;
+  name: string;
 }
-
-
 
 class AuthService {
-   async signup(user : IUser) {
-    const {data} = await api.post('/signup',user)
-    console.log(data);
-    return data
+  async signup(user: IUser) {
+    const { data, status, statusText } = await api.post('/signup', user);
+    return data;
   }
 }
-
-export default new AuthService()
+export const authService = new AuthService();
