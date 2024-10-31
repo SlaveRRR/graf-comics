@@ -27,7 +27,7 @@ export const POST = async (request: NextRequest) => {
         email,
       },
       select: {
-        password: true,
+        name: true,
         email: true,
       },
       data: {
