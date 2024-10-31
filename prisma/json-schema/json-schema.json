@@ -34,8 +34,8 @@
           "enum": ["NONE", "MALE", "FEMALE"]
         },
         "emailVerified": {
-          "type": ["string", "null"],
-          "format": "date-time"
+          "type": "boolean",
+          "default": false
         },
         "birthDate": {
           "type": ["string", "null"],

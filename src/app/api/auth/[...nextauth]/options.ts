@@ -1,12 +1,12 @@
-import type { NextAuthOptions, DefaultSession, DefaultUser } from 'next-auth';
-import { Role } from '@prisma/client';
 import prisma from '@/services/prisma';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import YandexProvider from 'next-auth/providers/yandex';
-import VkProvider from 'next-auth/providers/vk';
-import GoogleProvider from 'next-auth/providers/google';
+import { Role } from '@prisma/client';
 import bcrypt from 'bcrypt';
+import type { DefaultSession, DefaultUser, NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import VkProvider from 'next-auth/providers/vk';
+import YandexProvider from 'next-auth/providers/yandex';
 import { v4 as uuid } from 'uuid';
 
 import { type DefaultJWT } from 'next-auth/jwt';
@@ -89,10 +89,10 @@ export const options: NextAuthOptions = {
           email: string;
           password: string;
         };
-        console.log(credentials, 'credentials ');
+
         if (credentials !== undefined) {
           const user = await prisma.user.findUnique({ where: { email: email } });
-          console.log(user);
+
           if (!user) {
             throw new Error('Invalid  email!');
           }
@@ -100,6 +100,9 @@ export const options: NextAuthOptions = {
 
           if (!isPasswordMatched) {
             throw new Error('Invalid password!');
+          }
+          if (!user.emailVerified) {
+            throw new Error('Email is not verified!');
           }
           return user as any;
         }
