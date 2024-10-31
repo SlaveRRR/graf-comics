@@ -1,13 +1,13 @@
 'use client';
-import React, { FC, useContext, useState } from 'react';
-import { BackLink, SocialAuthLinks } from '../shared';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import cn from 'classnames';
-import { ctx } from '../../context/contextProvider';
-import { Logo } from '../UI';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
+import { FC, useContext, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { ctx } from '../../context/contextProvider';
+import { Logo } from '../UI';
+import { BackLink, SocialAuthLinks } from '../shared';
 
 import styles from './index.module.scss';
 
@@ -37,7 +37,6 @@ const Login: FC = () => {
         redirect: false,
       });
       if (isSignin?.ok) {
-        alert('Вы вошли');
         router.replace('/');
         return;
       }

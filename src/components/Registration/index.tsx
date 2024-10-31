@@ -1,10 +1,12 @@
 'use client';
 import { api } from '@/api';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { authService } from '@/services/auth';
 import cn from 'classnames';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useContext, useRef, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useContext, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CSSTransition } from 'react-transition-group';
 import { toast } from 'sonner';
@@ -25,23 +27,27 @@ const Registration = () => {
   const [visible, setVisible] = useState(false);
   const [isVisibleAlert, setAlert] = useState(false);
   const { setActiveLoader } = useContext(ctx);
-  const timer = useRef(60 * 1000);
+  const [seconds, setSeconds] = useState(60);
   const [activationButton, setActivationButton] = useState(false);
+  const [isTimer, setIsTimer] = useState(false);
+  const { setItem, getItem, removeItem } = useLocalStorage();
   const router = useRouter();
+  const params = useSearchParams();
+  const [verify, setVerify] = useState(false);
   const {
     register,
     formState: { errors, dirtyFields },
     getValues,
     setError,
+    setValue,
     reset,
     handleSubmit,
   } = useForm<FormData>({
     mode: 'onChange',
     shouldFocusError: true,
   });
-  const handleClick = (): void => {
-    setAlert(true);
-    setTimeout(() => setAlert(false), 2000);
+  const handleVerifyEmail = (): void => {
+    setActivationButton(true);
   };
   const handler: SubmitHandler<FormData> = async (data) => {
     const user = {
@@ -50,15 +56,68 @@ const Registration = () => {
       password: data['password'],
     };
     try {
-      await authService.signup(user);
       const response = await api.post('/send-email-link', {
         email: user.email,
       });
       toast.success(`Мы отправили ссылку для активации на ${data['email']}`);
+      setItem('verify', user.email);
+      setIsTimer(true);
     } catch (error) {
       toast.error(error.response.statusText);
     }
   };
+  const signUpHanlder: SubmitHandler<FormData> = async (data) => {
+    const user = {
+      email: data['email'],
+      name: data['username'],
+      password: data['password'],
+    };
+    try {
+      const response = await authService.signup(user);
+      setActiveLoader(true);
+      if (response.status !== 200) {
+        throw new Error(response.statusText);
+      }
+
+      const isSignin = await signIn('credentials', {
+        password: getValues('password'),
+        email: getValues('email'),
+        redirect: false,
+      });
+      if (isSignin?.ok) {
+        router.replace('/');
+        toast.success('Вы успешно зарегистрировались!');
+        return;
+      }
+    } catch (error) {
+      toast.error(error);
+    } finally {
+      setActiveLoader(false);
+    }
+  };
+  useEffect(() => {
+    if (getItem('verify') && params.get('activate')) {
+      setValue('email', getItem('verify') as string);
+      setVerify(true);
+      return;
+    }
+    removeItem('verify');
+  }, []);
+  useEffect(() => {
+    if (!isTimer) {
+      return;
+    }
+    if (seconds === 0) {
+      setSeconds(60);
+      return setIsTimer(false);
+    }
+    const timerId = setInterval(() => {
+      setSeconds((prev) => prev - 1);
+    }, 1000);
+    return () => {
+      clearInterval(timerId);
+    };
+  }, [isTimer, seconds]);
 
   return (
     <section className={styles['registration']}>
@@ -98,47 +157,55 @@ const Registration = () => {
             <form>
               <fieldset className={styles['registration__fieldset']}>
                 <legend className="visuallyhidden">Пользовательские данные</legend>
-                <label className={styles['registration__label']} htmlFor="username">
-                  Никнейм
-                </label>
-                <input
-                  {...register('username', {
-                    required: true,
-                    minLength: {
-                      value: 7,
-                      message: 'Минимальная длина 7 символов',
-                    },
-                  })}
-                  className={cn(styles['registration__input'], {
-                    [styles['registration__input--error']]: errors?.username,
-                    [styles['registration__input--success']]: dirtyFields?.username && !errors?.username,
-                  })}
-                  type="text"
-                  placeholder="Придумайте никнейм"
-                />
-
-                <label className={styles['registration__label']} htmlFor="mail">
-                  Электронная почта
-                </label>
-                <input
-                  {...register('email', {
-                    required: true,
-                    pattern: {
-                      value:
-                        /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu,
-                      message: 'Введите правильный email',
-                    },
-                  })}
-                  className={cn(styles['registration__input'], styles['registration__input--marginNo'], {
-                    [styles['registration__input--error']]: errors?.email,
-                    [styles['registration__input--success']]: dirtyFields?.email && !errors?.email,
-                  })}
-                  type="email"
-                  placeholder="Введите e-mail"
-                />
+                {verify && (
+                  <>
+                    <label className={styles['registration__label']} htmlFor="username">
+                      Никнейм
+                    </label>
+                    <input
+                      {...register('username', {
+                        required: true,
+                        minLength: {
+                          value: 7,
+                          message: 'Минимальная длина 7 символов',
+                        },
+                      })}
+                      className={cn(styles['registration__input'], {
+                        [styles['registration__input--error']]: errors?.username,
+                        [styles['registration__input--success']]: dirtyFields?.username && !errors?.username,
+                      })}
+                      type="text"
+                      placeholder="Придумайте никнейм"
+                    />
+                  </>
+                )}
+                {!verify && (
+                  <>
+                    <label className={styles['registration__label']} htmlFor="mail">
+                      Электронная почта
+                    </label>
+                    {Boolean(errors?.email) && <p className={styles['registration__error']}>Заполние e-mail!</p>}
+                    <input
+                      {...register('email', {
+                        required: true,
+                        pattern: {
+                          value:
+                            /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu,
+                          message: 'Введите правильный email',
+                        },
+                      })}
+                      className={cn(styles['registration__input'], {
+                        [styles['registration__input--error']]: errors?.email,
+                        [styles['registration__input--success']]: dirtyFields?.email && !errors?.email,
+                      })}
+                      type="email"
+                      placeholder="Введите e-mail"
+                    />
+                  </>
+                )}
               </fieldset>
 
-              {!errors?.email && !errors?.username && dirtyFields?.email && dirtyFields?.username ? (
+              {!errors?.username && dirtyFields?.username ? (
                 <>
                   <fieldset className={styles['registration__fieldset-password']}>
                     <label className={styles['registration__label']} htmlFor="pass">
@@ -260,18 +327,13 @@ const Registration = () => {
                       />
                     </div>
                   </fieldset>
-                  <button
-                    className={styles['registration__ready']}
-                    type="button"
-                    onClick={() => setActivationButton(true)}
-                  >
+                  <button className={styles['registration__ready']} type="button" onClick={handleSubmit(signUpHanlder)}>
                     Готово
                   </button>
                 </>
               ) : (
                 <>
-                  {isVisibleAlert && <p className={styles['registration__error']}>Заполние никнейм и e-mail!</p>}
-                  <button onClick={handleClick} className={styles['registration__next']} type="button">
+                  <button onClick={handleVerifyEmail} className={styles['registration__next']} type="button">
                     Далее
                   </button>
                 </>
@@ -298,9 +360,10 @@ const Registration = () => {
               >
                 Ввести почту заново
               </button>
-              <button className={styles['registration__next']} onClick={handleSubmit(handler)}>
+              <button disabled={isTimer} className={styles['registration__next']} onClick={handleSubmit(handler)}>
                 Отправить ссылку для активации почты
               </button>
+              {isTimer && <p className={styles['registration__timer-text']}>До повторной отправки {seconds} сек.</p>}
             </div>
           </CSSTransition>
         </div>

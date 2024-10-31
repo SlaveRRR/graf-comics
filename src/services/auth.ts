@@ -8,8 +8,7 @@ interface IUser {
 
 class AuthService {
   async signup(user: IUser) {
-    const { data, status, statusText } = await api.post('/signup', user);
-    return data;
+    return await api.post('/signup', user);
   }
 }
 export const authService = new AuthService();

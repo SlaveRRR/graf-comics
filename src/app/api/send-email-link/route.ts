@@ -6,7 +6,7 @@ export const POST = async (request: NextRequest) => {
     const body = await request.json();
 
     const token = jwt.sign(body, process.env.NEXTAUTH_SECRET, {
-      expiresIn: '1m',
+      expiresIn: '2m',
     });
     await mailer({
       to: body.email,
@@ -14,7 +14,7 @@ export const POST = async (request: NextRequest) => {
       html: `<div>
       <p>Здравствуйте!</p>
 
-<p>Спасибо за регистрацию на нашем сайте. Чтобы завершить процесс регистрации, пожалуйста, подтвердите свой адрес электронной почты, перейдя по следующей ссылке:</p>
+<p>Спасибо за регистрацию на нашем сайте. Чтобы подтвердить свою личность, пожалуйста, подтвердите адрес электронной почты, перейдя по следующей ссылке:</p>
 
 <a href="${process.env.NEXTAUTH_URL}/api/verify?token=${token}">Активировать почту</a>
 

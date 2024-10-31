@@ -76,7 +76,6 @@
 
   &__fieldset {
     @include flex($dir: column, $align: flex-start);
-    margin-bottom: 1.9em;
   }
 
   &__fieldset-password {
@@ -155,6 +154,19 @@
     font-weight: 500;
     line-height: 13px;
     margin-bottom: 2.3em;
+
+    &:disabled {
+      color: rgba($color: $main-color, $alpha: 0.3);
+      border: 1px solid rgba($color: $main-color, $alpha: 0.3);
+    }
+  }
+
+  &__timer-text {
+    font-size: 0.79rem;
+    font-weight: 500;
+    line-height: 13px;
+    text-align: center;
+    padding-bottom: 1em;
   }
 
   &__reset-email {

@@ -89,10 +89,10 @@ export const options: NextAuthOptions = {
           email: string;
           password: string;
         };
-        console.log(credentials, 'credentials ');
+
         if (credentials !== undefined) {
           const user = await prisma.user.findUnique({ where: { email: email } });
-          console.log(user);
+
           if (!user) {
             throw new Error('Invalid  email!');
           }
