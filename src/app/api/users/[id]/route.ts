@@ -2,6 +2,9 @@ import prisma from '@/services/prisma';
 import bcrypt from 'bcrypt';
 import { NextResponse, type NextRequest } from 'next/server';
 
+// Регулярное выражение для проверки пароля
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
   try {
     const user = await prisma.user.findUnique({
@@ -25,6 +28,16 @@ export const PUT = async (request: NextRequest, { params }: { params: { id: stri
     const { password, ...updateData } = body;
 
     if (password) {
+      // Валидация пароля
+      if (!passwordRegex.test(password)) {
+        return NextResponse.json(
+          {
+            message: 'Пароль должен содержать не менее 8 символов, включая хотя бы одну букву и одну цифру.',
+          },
+          { status: 400 },
+        );
+      }
+
       const hashedPassword = await bcrypt.hash(password, 15);
       updateData.password = hashedPassword;
     }
@@ -33,7 +46,6 @@ export const PUT = async (request: NextRequest, { params }: { params: { id: stri
       where: { id: params.id },
       data: updateData,
     });
-
     return NextResponse.json(updatedUser);
   } catch (error) {
     console.error(error);
