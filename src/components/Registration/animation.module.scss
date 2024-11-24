@@ -1,0 +1,45 @@
+.form-enter {
+  // opacity: 0;
+  transform: translateX(100%);
+}
+
+.form-enterActive {
+  // opacity: 1;
+  transform: translateX(0);
+  transition: transform 0.5s ease;
+}
+
+.form-exit {
+  transform: translateX(0);
+  // transform: translateY(0);
+}
+
+.form-exitActive {
+  opacity: 0;
+  transform: translateX(100%);
+  // transform: translateY(-100%);
+  transition: transform 0.5s ease;
+}
+
+.btn-enter {
+  // opacity: 0;
+  transform: translateX(100%);
+}
+
+.btn-enterActive {
+  // opacity: 1;
+  transform: translateX(0);
+  transition: transform 0.5s ease;
+}
+
+.btn-exit {
+  transform: translateX(0);
+  // transform: translateY(0);
+}
+
+.btn-exitActive {
+  opacity: 0;
+  transform: translateX(100%);
+  // transform: translateY(-100%);
+  transition: transform 0.5s ease;
+}

@@ -1,14 +1,15 @@
 'use client';
-import React, { FC, useContext, useState } from 'react';
-import { BackLink, SocialAuthLinks } from '../shared';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import cn from 'classnames';
-import { ctx } from '../../context/contextProvider';
-import { Logo } from '../UI';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
+import { FC, useContext, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { ctx } from '../../context/contextProvider';
+import { Logo } from '../UI';
+import { BackLink, SocialAuthLinks } from '../shared';
 
+import { toast } from 'sonner';
 import styles from './index.module.scss';
 
 type FormData = {
@@ -36,13 +37,15 @@ const Login: FC = () => {
         ...data,
         redirect: false,
       });
+      if (isSignin?.error) {
+        return toast.error(isSignin.error);
+      }
       if (isSignin?.ok) {
-        alert('Вы вошли');
         router.replace('/');
         return;
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     } finally {
       setActiveLoader(false);
     }
