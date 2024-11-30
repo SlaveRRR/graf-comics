@@ -23,7 +23,7 @@ const SiteSettings: FC = () => {
     formState: { errors },
   } = useFormContext<SiteSettingsFormSchema>();
   return (
-    <fieldset className={'container'}>
+    <fieldset className={cn(styles['edit-container'], 'container')}>
       <legend className="visuallyhidden">Настройки сайта</legend>
       <label
         htmlFor="hideMatureContent"

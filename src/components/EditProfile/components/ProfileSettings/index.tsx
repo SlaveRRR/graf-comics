@@ -34,7 +34,7 @@ const ProfileSettings: FC = () => {
           <p className={styles['profile__change']}>Изменить</p>
         </div>
       </fieldset>
-      <fieldset className={'container'}>
+      <fieldset className={cn(styles['profile-footer'], 'container')}>
         <legend className="visuallyhidden">Настройки профиля</legend>
         <label
           htmlFor="username"

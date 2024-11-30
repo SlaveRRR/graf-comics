@@ -20,8 +20,7 @@
     background-position: center;
     background-size: cover;
     border: 1px solid transparent;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 20px;
     margin-bottom: 4em;
   }
 
@@ -46,8 +45,6 @@
 }
 
 .tabs {
-  background-color: white;
-
   &__items {
     padding-top: 1em;
     background-color: #f6f6f6;
@@ -76,7 +73,6 @@
 
 .save-btn {
   @include flex($gap: 0, $justify: center, $align: center, $dir: row, $wrap: nowrap);
-  margin-bottom: 1.8em;
   padding: 10px 24px;
   gap: 10px;
   background: #7a5af8;
@@ -85,11 +81,24 @@
   border: none;
   width: fit-content;
   margin: 0 auto;
-  margin-bottom: 2em;
+  margin-bottom: 1.1em;
 }
 
 .profile-header {
-  background: white;
+  background-color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.profile-footer {
+  background-color: white;
+  border-radius: 0 0 20px 20px;
+  padding-bottom: 2em;
+}
+
+.edit-container {
+  background-color: white;
+  border-radius: 20px;
+  padding-bottom: 2em;
 }
 
 .label {

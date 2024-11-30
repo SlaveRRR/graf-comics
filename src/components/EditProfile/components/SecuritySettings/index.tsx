@@ -31,7 +31,7 @@ const SecuritySettings: FC = () => {
     name: 'currentPassword',
   });
   return (
-    <fieldset className={'container'}>
+    <fieldset className={cn(styles['edit-container'], 'container')}>
       <legend className="visuallyhidden">Настройки безопасности профиля</legend>
       <p className={styles['profile-settings-form__text-change-password']}>Изменить пароль</p>
       <label htmlFor="current_password" className={styles['profile-settings-form__label']}>
