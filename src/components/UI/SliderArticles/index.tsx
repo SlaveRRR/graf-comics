@@ -1,38 +1,52 @@
 'use client';
-import React, { FC } from 'react';
+import cn from 'classnames';
+import Link from 'next/link';
+import { FC, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/scss'
-import cn from 'classnames'
+import 'swiper/scss';
 import styles from './index.module.scss';
-import Link from 'next/link'
 
 import 'swiper/css/pagination';
 
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 
 type Props = {
   arr: string[];
 };
 // || (slidesPerView === 1 && activeColIndexWithShift > (slides.length - slidesPerView * 2) - 1 )
 const SliderArticles: FC<Props> = ({ arr }) => {
+  const [slidesPerView, setSlidesPerView] = useState(1); // Устанавливаем начальное значение
+  useEffect(() => {
+    const updateMedia = () => {
+      if (window.innerWidth >= 1490) {
+        setSlidesPerView(0.9);
+      } else {
+        setSlidesPerView(1);
+      }
+    };
+    window.addEventListener('resize', updateMedia);
+    updateMedia();
+
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
+
   return (
     <div className={styles['slider']}>
       <Swiper
-        slidesPerView={1}
+        slidesPerView={slidesPerView}
         spaceBetween={50}
         loop={true}
         autoplay={{
           delay: 3500,
           disableOnInteraction: true,
         }}
-        
         pagination={{
           renderBullet: function (index, className) {
             return '<span class="' + className + '">' + '' + '</span>';
           },
-          clickable:true,
+          clickable: true,
         }}
-        className={cn('swiper',styles['my-swiper'])}
+        className={cn('swiper', styles['my-swiper'])}
         modules={[Pagination]}
       >
         {arr.map((text, ind) => (

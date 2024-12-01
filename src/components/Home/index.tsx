@@ -1,56 +1,26 @@
 'use client';
-import React, { FC, useEffect } from 'react';
+import { FC } from 'react';
 
 import styles from './index.module.scss';
 
 import cn from 'classnames';
-import { ArrowLink } from '../shared/index';
-import { Badge, Button, SliderArticles, Card } from '../UI';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
 import Articles from '../Articles';
+import { Badge, Card, SliderArticles } from '../UI';
+import GridGallery from '../shared/GridGallery';
+import { ArrowLink } from '../shared/index';
 
 const Home: FC = () => {
   const { data, status } = useSession();
 
   return (
     <>
-      <section className={styles['image-section']}>
-        <div className={styles['cards']}>
-          <div className={cn(styles['cards__item--start'], styles['cards__item'])} />
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
-        </div>
-        <div className={styles['image-container']}>
-          <div className={styles['image-container__text-container']}>
-            <h1 className={styles['image-container__slogan']}>Создаем вселенную комиксов вместе</h1>
-            <p className={styles['image-container__text']}>Здесь каждый комикс находит своего читателя</p>
-            <Button mixClass={[styles['image-container__btn']]}>Добавить комикс</Button>
-          </div>
-        </div>
-        <div className={styles['cards-pc']}>
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-subgrid']}>
-            <div className={styles['cards-subgrid__item']} />
-            <div className={styles['cards-subgrid__item']} />
-          </div>
-          <div className={styles['cards-subgrid-bottom']}>
-            <div className={styles['cards-subgrid-bottom__item']} />
-            <div className={styles['cards-subgrid-bottom__item']} />
-          </div>
-        </div>
-        <div className={styles['cards']}>
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
-        </div>
-      </section>
+      <GridGallery
+        mixClass={['additional-class']}
+        sloganText="Создаем вселенную комиксов вместе"
+        descriptionText={<>Здесь каждый комикс находит своего читателя</>}
+        buttonText={'Добавить комикс'}
+      />
       <section className={styles['popular-section']}>
         <div className={cn(styles['popular-container'], 'container')}>
           <ArrowLink mixClass={[styles['popular-container__link']]} text="Популярные" url="/popular" />
