@@ -8,9 +8,10 @@ import { useRouter } from 'next/navigation';
 type Props = {
     text: string;
     mixClass?: string[];
+    isNew?: boolean;
 }
 
-const Card: FC<Props> = ({ text, mixClass = [] }) => {
+const Card: FC<Props> = ({ text, mixClass = [], isNew = false }) => {
     const [isLiked, setLike] = useState(false);
     const router = useRouter();
 
@@ -18,6 +19,12 @@ const Card: FC<Props> = ({ text, mixClass = [] }) => {
         <div className={styles["card"]}>
 
             <div onClick={() => router.push('/preview')} className={cn(styles["card__img"], ...mixClass)}>
+                { isNew ? (
+                    <div className={styles["image-container"]}>
+                        <img src="/box-new.svg" alt="new box" className={styles["image-container__image"]} />
+                        <div className={styles["image-container__text"]}>NEW</div>
+                    </div>
+                ) : null }
                 <svg onClick={(e) => {
                     e.stopPropagation();
                     setLike(!isLiked)

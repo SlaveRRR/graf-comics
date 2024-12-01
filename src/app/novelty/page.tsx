@@ -1,9 +1,8 @@
-import { RouterLoader } from '@/components/UI';
-import dynamic from 'next/dynamic';
+import Novelty from '@/components/Novelty';
+import { NextPage } from 'next'
 
-const NoveltyPage = dynamic(() => import('@/components/Novelty'), {
-  loading: () => <RouterLoader />,
-  ssr: false,
-});
+const NoveltyPage : NextPage = () => {
+  return <Novelty />
+};
 
 export default NoveltyPage;
