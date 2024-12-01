@@ -6,7 +6,7 @@ import BackLink from '../shared/BackLink';
 import styles from './index.module.scss';
 
 const Novelty: FC = () => {
-  return (
+  return ( 
     <div className={styles['novetly__container']}>
       <div className={'container'}>
         <BackLink mixClass={[styles['novelty__backLink']]}/>
