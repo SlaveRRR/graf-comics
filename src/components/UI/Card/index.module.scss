@@ -49,3 +49,26 @@
     }
   }
 }
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  top: 7%;
+  width: clamp(1rem, 1.5rem + 1vw, 3rem);
+
+  &__image {
+    display: block;
+    width: 150%;
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: clamp(0.6rem, 0.7rem + 0.25vw, 1rem);
+    text-align: center;
+    font-weight: 600;
+  }
+}
