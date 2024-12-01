@@ -1,28 +1,68 @@
 @use '../../styles/global' as *;
 
+.profile-header {
+  background: white;
+
+  @include mediaMin($device-XL) {
+    position: relative;
+    top: 25px;
+    background: transparent;
+    max-width: calc(2560px + 2 * clamp(5rem, 12.587vw - 1.905rem, 15.357rem));
+    padding-left: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
+    padding-right: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
+  }
+}
+
 .profile {
   &__img {
-    position: relative;
-    top: 50px;
     width: 85px;
     height: 85px;
     border: 6px solid white;
     border-radius: 200px;
+
+    @include mediaMin($device-XL) {
+      width: 120px;
+      height: 120px;
+    }
+
+    @include mediaMin($device-XXL) {
+      width: 181px;
+      height: 181px;
+    }
+  }
+
+  &__avatar-container {
+    z-index: 10;
+    position: relative;
+    top: 80px;
+
+    @include mediaMin($device-XL) {
+      top: 70px;
+    }
+
+    @include mediaMin($device-XXL) {
+      top: 95px;
+    }
   }
 
   &__wallpaper {
     display: flex;
     justify-content: center;
     align-items: end;
-    max-height: 62px;
-    height: 100%;
-    background-image: url('./../../../public/profile-wallpaper.svg');
+    height: clamp(4.429rem, 7.688vw + 2.671rem, 13.214rem);
+
+    background-image: url('./../../../public/profile-wallpaper-new.svg');
     background-position: center;
     background-size: cover;
     border: 1px solid transparent;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     margin-bottom: 4em;
+
+    @include mediaMin($device-XL) {
+      background-position: top;
+      margin-bottom: 0;
+    }
   }
 
   &__details {
@@ -48,11 +88,20 @@
 .tabs {
   background-color: white;
 
+  @include mediaMin($device-XL) {
+    background-color: transparent;
+  }
+
   &__items {
     padding-top: 1em;
     background-color: #f6f6f6;
     padding-bottom: 0.5em;
-    /* margin-left:  0.9375em;; */
+
+    @include mediaMin($device-XXL) {
+      padding-top: 5em;
+      margin-left: 22.9em;
+      margin-bottom: clamp(1.786rem, 4.231vw - 2.445rem, 3.357rem);
+    }
   }
 
   &__public-btn {
@@ -86,10 +135,6 @@
   width: fit-content;
   margin: 0 auto;
   margin-bottom: 2em;
-}
-
-.profile-header {
-  background: white;
 }
 
 .label {
@@ -272,5 +317,30 @@
     & label:last-of-type {
       margin-bottom: 2.25em;
     }
+  }
+}
+
+.settings-container {
+  position: relative;
+  z-index: 2;
+
+  @include mediaMax($device-XL) {
+    background: white;
+  }
+}
+
+.fieldset-container {
+  @include mediaMin($device-XL) {
+    padding: 12.7em 9em 2.2em;
+    border-radius: 20px;
+    background-color: white;
+  }
+}
+
+.fieldset-container--without-pt {
+  @include mediaMin($device-XL) {
+    padding: 2.5em 9em 2.2em;
+    border-radius: 20px;
+    background-color: white;
   }
 }

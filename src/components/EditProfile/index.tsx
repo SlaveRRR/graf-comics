@@ -73,10 +73,7 @@ const EditProfile: FC = () => {
     defaultValues: {},
     mode: 'onChange',
   });
-  const {
-    reset,
-    formState: { isSubmitting },
-  } = methods;
+  const { reset } = methods;
 
   useEffect(() => {
     const loadDefaultValues = async () => {
@@ -126,9 +123,6 @@ const EditProfile: FC = () => {
             <SecuritySettings />
             <SiteSettings />
           </Tabs>
-          <button type="submit" className={styles['save-btn']} disabled={isSubmitting}>
-            Сохранить
-          </button>
         </form>
       </FormProvider>
     </section>
