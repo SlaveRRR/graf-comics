@@ -73,10 +73,7 @@ const EditProfile: FC = () => {
     defaultValues: {},
     mode: 'onChange',
   });
-  const {
-    reset,
-    formState: { isSubmitting },
-  } = methods;
+  const { reset } = methods;
 
   useEffect(() => {
     const loadDefaultValues = async () => {
@@ -118,7 +115,7 @@ const EditProfile: FC = () => {
   };
 
   return (
-    <section className={cn(styles['tabs'], styles['container'])}>
+    <section className={cn(styles['tabs'], styles['container'], 'container')}>
       <FormProvider {...methods}>
         <form className={styles['profile-settings-form']} onSubmit={methods.handleSubmit(handler)}>
           <Tabs mixClass={[styles['tabs__items']]} tabs={['Профиль', 'Безопасность', 'Настройки сайта']}>
@@ -126,9 +123,6 @@ const EditProfile: FC = () => {
             <SecuritySettings />
             <SiteSettings />
           </Tabs>
-          <button type="submit" className={styles['save-btn']} disabled={isSubmitting}>
-            Сохранить
-          </button>
         </form>
       </FormProvider>
     </section>
