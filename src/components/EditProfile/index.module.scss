@@ -55,8 +55,7 @@
     background-position: center;
     background-size: cover;
     border: 1px solid transparent;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 20px;
     margin-bottom: 4em;
 
     @include mediaMin($device-XL) {
@@ -125,7 +124,6 @@
 
 .save-btn {
   @include flex($gap: 0, $justify: center, $align: center, $dir: row, $wrap: nowrap);
-  margin-bottom: 1.8em;
   padding: 10px 24px;
   gap: 10px;
   background: #7a5af8;
@@ -134,7 +132,7 @@
   border: none;
   width: fit-content;
   margin: 0 auto;
-  margin-bottom: 2em;
+  margin-bottom: 1.1em;
 }
 
 .label {
@@ -317,6 +315,31 @@
     & label:last-of-type {
       margin-bottom: 2.25em;
     }
+  }
+}
+
+.settings-container {
+  position: relative;
+  z-index: 2;
+
+  @include mediaMax($device-XL) {
+    background: white;
+  }
+}
+
+.fieldset-container {
+  @include mediaMin($device-XL) {
+    padding: 12.7em 9em 2.2em;
+    border-radius: 20px;
+    background-color: white;
+  }
+}
+
+.fieldset-container--without-pt {
+  @include mediaMin($device-XL) {
+    padding: 2.5em 9em 2.2em;
+    border-radius: 20px;
+    background-color: white;
   }
 }
 

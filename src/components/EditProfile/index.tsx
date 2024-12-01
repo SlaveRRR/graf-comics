@@ -115,7 +115,7 @@ const EditProfile: FC = () => {
   };
 
   return (
-    <section className={cn(styles['tabs'], styles['container'])}>
+    <section className={cn(styles['tabs'], styles['container'], 'container')}>
       <FormProvider {...methods}>
         <form className={styles['profile-settings-form']} onSubmit={methods.handleSubmit(handler)}>
           <Tabs mixClass={[styles['tabs__items']]} tabs={['Профиль', 'Безопасность', 'Настройки сайта']}>
