@@ -1,0 +1,39 @@
+.achievement-detail {
+  padding: 0 1.072em;
+
+  &__backlink {
+    margin-bottom: 0.75em;
+  }
+
+  &__main-content {
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 1.72em;
+    padding-bottom: 2.93em;
+  }
+
+  &__img {
+    display: block;
+    margin: 0 auto;
+    height: 251.26px;
+    width: 228.37px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 1.91em;
+  }
+
+  &__title {
+    font-size: 1.43rem;
+    font-weight: 600;
+    text-align: center;
+    color: #2d283e;
+    margin-bottom: 1.1em;
+  }
+
+  &__description {
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-align: center;
+    color: #2d283e;
+  }
+}

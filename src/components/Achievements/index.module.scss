@@ -1,0 +1,51 @@
+@use '../../styles/global' as *;
+
+.achievements {
+  padding: 0 1.072em;
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.64em;
+  }
+
+  &__counter {
+    font-size: 0.86rem;
+    color: #7a5af8;
+    font-weight: 600;
+  }
+
+  &__section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1.64em 0.4645em 2em;
+  }
+
+  &__title {
+    font-size: 1.43rem;
+    font-weight: 600;
+    text-align: center;
+    color: #2d283e;
+    margin-bottom: 1.3em;
+  }
+
+  &__subtitle {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: #2d283e;
+    margin-bottom: 1.42em;
+
+    &--author {
+      margin-top: 2.5em;
+    }
+  }
+
+  &__cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(5.62em, 1fr));
+    gap: 1.46em;
+    align-items: center;
+    justify-items: center;
+  }
+}

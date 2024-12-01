@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import AchievementCard from './AchievementCard';
 import ActiveFilters from './ActiveFilters';
 import AddArticle from './AddArticle';
 import AddComics from './AddComics';
@@ -25,6 +26,7 @@ const ArticleView = dynamic(() => import('./ArticleView'), {
 });
 
 export {
+  AchievementCard,
   ActiveFilters,
   AddArticle,
   AddComics,
