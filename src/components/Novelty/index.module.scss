@@ -1,0 +1,50 @@
+@use '../../styles/global' as *;
+
+.novelty {
+  margin-bottom: 1em;
+  padding-top: 1.2em;
+  padding-bottom: 1.2em;
+  background: white;
+  border-radius: 0px;
+
+  @include mediaMin($device-M) {
+    margin-bottom: 3.5em;
+    border-radius: 20px;
+  }
+
+  &__backLink {
+    align-self: flex-start;
+    margin-bottom: 0.8em;
+  }
+
+  &__cards {
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(6.429rem, 5.75vw + 5.114rem, 13rem), 1fr));
+    @include mediaMin($device-M) {
+      column-gap: clamp(0.714rem, 2.951vw - 0.905rem, 3.143rem);
+    }
+  }
+
+  &__cards-container {
+    @include mediaMin($device-M) {
+      padding: clamp(1.071rem, 1.736vw + 0.119rem, 2.5rem) clamp(1.429rem, 5.729vw - 1.714rem, 6.143rem) 0;
+      border-radius: 20px;
+      grid-area: cards;
+      margin-bottom: 1.5em;
+    }
+  }
+
+  &__container {
+    max-width: calc(2560px + 2 * 0.9375em);
+    margin: 0 auto;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+
+    @media (min-width: 768px) {
+      max-width: calc(2560px + 2 * clamp(5rem, 12.587vw - 1.905rem, 15.357rem));
+      padding-left: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
+      padding-right: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
+    }
+  }
+}

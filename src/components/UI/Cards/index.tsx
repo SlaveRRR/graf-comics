@@ -1,21 +1,21 @@
-
-
-import React,{FC} from 'react'
-import { Card } from '..'
 import cn from 'classnames';
-import styles from './index.module.scss'
+import { FC } from 'react';
+import { Card } from '..';
+import styles from './index.module.scss';
 type Props = {
-    names:string[];
-    mixClass:string[];
-}
+  names: string[];
+  mixClass: string[];
+  isNew?: boolean;
+};
 
-const Cards : FC<Props> = ({names,mixClass}) => {
+const Cards: FC<Props> = ({ names, mixClass, isNew = false }) => {
   return (
-    <div className={cn(styles["cards"],...mixClass)}>
-       {names.map((v,i) => <Card key={`${v}${i}`} text={v} />)} 
+    <div className={cn(styles['cards'], ...mixClass)}>
+      {names.map((v, i) => (
+        <Card key={`${v}${i}`} text={v} isNew={isNew} />
+      ))}
     </div>
-    
-  )
-}
+  );
+};
 
-export default Cards
+export default Cards;
