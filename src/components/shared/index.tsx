@@ -7,6 +7,7 @@ import ArrowLink from './ArrowLink';
 import BackLink from './BackLink';
 import Filter from './Filter';
 import Filters from './Filters';
+import GridGallery from './GridGallery';
 import ProfileFilters from './ProfileFilters';
 import SearchFilter from './SearchFilter';
 import ShowMore from './ShowMore';
@@ -36,6 +37,7 @@ export {
   BackLink,
   Filter,
   Filters,
+  GridGallery,
   ProfileFilters,
   SearchFilter,
   ShowMore,
