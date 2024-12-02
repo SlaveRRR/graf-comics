@@ -30,7 +30,7 @@ const Novelty: FC = () => {
                 'Название',
                 'Название',
               ]}
-              isNews={[true, true, true, true, true, true, true, true, true, true, true, true]}
+              isNew={true}
             />
           </div>
         </section>
