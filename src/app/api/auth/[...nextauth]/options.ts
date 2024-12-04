@@ -8,6 +8,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import VkProvider from 'next-auth/providers/vk';
 import YandexProvider from 'next-auth/providers/yandex';
 import { v4 as uuid } from 'uuid';
+import { z } from 'zod';
 
 import { type DefaultJWT } from 'next-auth/jwt';
 
@@ -31,10 +32,14 @@ declare module 'next-auth/jwt' {
   }
 }
 
+// Схема валидации пароля
+const passwordSchema = z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, {
+  message: 'Пароль должен содержать 8 символов или более, включая 1 цифру.',
+});
+
 export const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    // не добавляется почта, с новой версией next-auth это пофиксили
     VkProvider({
       clientId: process.env.VK_CLIENT_ID,
       clientSecret: process.env.VK_SECRET,
@@ -91,10 +96,17 @@ export const options: NextAuthOptions = {
         };
 
         if (credentials !== undefined) {
+          // Проверка пароля на соответствие схеме
+          try {
+            passwordSchema.parse(password);
+          } catch (err) {
+            throw new Error(err.errors[0]?.message || 'Invalid password!');
+          }
+
           const user = await prisma.user.findUnique({ where: { email: email } });
 
           if (!user) {
-            throw new Error('Invalid  email!');
+            throw new Error('Invalid email!');
           }
           const isPasswordMatched = await bcrypt.compare(password, user.password);
 

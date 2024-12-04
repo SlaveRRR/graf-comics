@@ -1,6 +1,13 @@
 import prisma from '@/services/prisma';
 import bcrypt from 'bcrypt';
 import { NextResponse, type NextRequest } from 'next/server';
+import { z } from 'zod';
+
+// Схема валидации пароля
+const passwordSchema = z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, {
+  message: 'Пароль должен содержать 8 символов или более, включая 1 цифру.',
+});
+
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
   try {
     const user = await prisma.user.findUnique({
@@ -23,7 +30,17 @@ export const PUT = async (request: NextRequest, { params }: { params: { id: stri
     const body = await request.json();
     const { password, ...updateData } = body;
 
+    // Проверяем пароль, если он предоставлен
     if (password) {
+      try {
+        passwordSchema.parse(password);
+      } catch (err) {
+        return NextResponse.json(
+          { message: err.errors[0]?.message || 'Некорректный пароль!' },
+          { status: 400 }
+        );
+      }
+
       const hashedPassword = await bcrypt.hash(password, 15);
       updateData.password = hashedPassword;
     }
