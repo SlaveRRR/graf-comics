@@ -9,6 +9,7 @@ import { ctx } from '../../context/contextProvider';
 import { Logo } from '../UI';
 import { BackLink, SocialAuthLinks } from '../shared';
 
+import { emailRegexp, passwordRegexp } from '@/constants';
 import { toast } from 'sonner';
 import styles from './index.module.scss';
 
@@ -72,8 +73,7 @@ const Login: FC = () => {
                 {...register('email', {
                   required: true,
                   pattern: {
-                    value:
-                      /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu,
+                    value: emailRegexp,
                     message: 'Введите правильный email',
                   },
                 })}
@@ -94,13 +94,9 @@ const Login: FC = () => {
                 <input
                   {...register('password', {
                     required: 'Обязательное поле!',
-                    minLength: {
-                      value: 6,
-                      message: 'Минимум 6 символов!',
-                    },
-                    maxLength: {
-                      value: 12,
-                      message: 'Максимум 12 символов!',
+                    pattern: {
+                      value: passwordRegexp,
+                      message: 'Пароль должен содержать 8 символов или более, включая 1 цифру.',
                     },
                   })}
                   className={cn(styles['login__input'], {

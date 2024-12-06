@@ -212,8 +212,11 @@
   }
 
   &__error {
+    text-wrap: balance;
+    max-width: 200px;
     margin: 0.4em 0;
     font-size: 1.1em;
+    line-height: normal;
     color: red;
   }
 

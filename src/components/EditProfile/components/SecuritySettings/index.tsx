@@ -1,3 +1,4 @@
+import { passwordRegexp } from '@/constants';
 import cn from 'classnames';
 import { FC, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -81,7 +82,10 @@ const SecuritySettings: FC = () => {
             <input
               {...register('newPassword', {
                 required: 'Обязательное поле!',
-
+                pattern: {
+                  value: passwordRegexp,
+                  message: 'Пароль должен содержать 8 символов или более, включая 1 цифру.',
+                },
                 validate: {
                   notIsCurrent: (value) => value !== currentPassword || 'Вы ввели текущий пароль',
                   minLength: (value) => value.length >= 6 || 'Минимум 6 символов!',

@@ -1,5 +1,6 @@
 'use client';
 import { api } from '@/api';
+import { emailRegexp, passwordRegexp } from '@/constants';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { authService } from '@/services/auth';
 import cn from 'classnames';
@@ -74,6 +75,7 @@ const Registration = () => {
     };
     try {
       const response = await authService.signup(user);
+
       setActiveLoader(true);
       if (response.status !== 200) {
         throw new Error(response.statusText);
@@ -189,8 +191,7 @@ const Registration = () => {
                       {...register('email', {
                         required: true,
                         pattern: {
-                          value:
-                            /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu,
+                          value: emailRegexp,
                           message: 'Введите правильный email',
                         },
                       })}
@@ -218,6 +219,10 @@ const Registration = () => {
                       <input
                         {...register('password', {
                           required: 'Обязательное поле!',
+                          pattern: {
+                            value: passwordRegexp,
+                            message: 'Пароль должен содержать 8 символов или более, включая 1 цифру.',
+                          },
                           onBlur(event) {
                             return getValues('password') !== getValues('repeatPassword')
                               ? setError('repeatPassword', {
@@ -225,15 +230,6 @@ const Registration = () => {
                                   message: 'Пароли должны совпадать!',
                                 })
                               : false;
-                          },
-
-                          minLength: {
-                            value: 6,
-                            message: 'Минимум 6 символов!',
-                          },
-                          maxLength: {
-                            value: 12,
-                            message: 'Максимум 12 символов!',
                           },
                         })}
                         className={cn(styles['registration__input'], {
@@ -277,13 +273,9 @@ const Registration = () => {
                               : false;
                           },
                           required: 'Обязательное поле!',
-                          minLength: {
-                            value: 6,
-                            message: 'Минимум 6 символов!',
-                          },
-                          maxLength: {
-                            value: 12,
-                            message: 'Максимум 12 символов!',
+                          pattern: {
+                            value: passwordRegexp,
+                            message: 'Пароль должен содержать 8 символов или более, включая 1 цифру.',
                           },
                         })}
                         className={cn(styles['registration__input'], {
