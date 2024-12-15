@@ -1,14 +1,14 @@
 'use client';
-import React, { FC, useEffect } from 'react';
+import { FC } from 'react';
 
 import styles from './index.module.scss';
 
 import cn from 'classnames';
-import { ArrowLink } from '../shared/index';
-import { Badge, Button, SliderArticles, Card } from '../UI';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Articles from '../Articles';
+import { Badge, Button, Card, SliderArticles } from '../UI';
+import { ArrowLink } from '../shared/index';
 
 const Home: FC = () => {
   const { data, status } = useSession();
@@ -29,6 +29,7 @@ const Home: FC = () => {
             <Button mixClass={[styles['image-container__btn']]}>Добавить комикс</Button>
           </div>
         </div>
+
         <div className={styles['cards-pc']}>
           <div className={styles['cards-pc__item']} />
           <div className={styles['cards-pc__item']} />
@@ -49,6 +50,20 @@ const Home: FC = () => {
           <div className={styles['cards__item']} />
           <div className={styles['cards__item']} />
           <div className={styles['cards__item']} />
+        </div>
+      </section>
+      {
+        //**
+        // TODO: доделать */
+      }
+      <section className={styles['co-author-section']}>
+        <div className={cn('container', styles['co-author__container'])}>
+          <p className={styles['co-author__text']}>
+            Хочешь помочь с <span className={styles['co-author__idea']}>идеей</span> или есть своя?
+          </p>
+          <Link href="/co-author" className={styles['co-author__link']}>
+            Стать соавтором
+          </Link>
         </div>
       </section>
       <section className={styles['popular-section']}>

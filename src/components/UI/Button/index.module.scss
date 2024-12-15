@@ -1,24 +1,21 @@
 @use '../../../styles/global' as *;
 
 .button {
-    display: block;
-    margin: 0 auto;
-    font-size: clamp(.58rem, .4rem + .75vw, 1.42rem);
-    font-weight: 500;
-    line-height: 10px;
-    width: max-content;
-    padding: .8em 2em;
-    min-width: 55px;
-    background: $primary-color;
-    border: 1px solid transparent;
-    border-radius: 562px;
-    color: white;
+  display: block;
+  margin: 0 auto;
+  font-size: clamp(0.58rem, 0.4rem + 0.75vw, 1.42rem);
+  font-weight: 500;
+  line-height: 10px;
+  width: max-content;
+  padding: 0.8em 2em;
+  min-width: 55px;
+  background: $primary-color;
+  border: 1px solid transparent;
+  border-radius: 562px;
+  color: white;
 
-    &__transparent {
-        border: 2px solid $primary-color;
-        color: $primary-color;
-    }
-
-
-
+  &__transparent {
+    border: 2px solid $primary-color;
+    color: $primary-color;
+  }
 }
