@@ -1,16 +1,16 @@
 @use '../../styles/global' as *;
 
 .header {
-    @include flex($justify: space-evenly);
-    padding-top: .78em;
-    padding-bottom: .78em;
-    background-color: #F6F6F6;
-    z-index: 100;
-    position: fixed;
+  @include flex($gap: 55px);
+  padding-top: 0.78em;
+  padding-bottom: 0.78em;
+  background-color: #f6f6f6;
+  z-index: 100;
+  position: fixed;
 
-    &__title {
-        font-weight: 600;
-        font-size: .85rem;
-        line-height: 15px;
-    }
+  &__title {
+    font-weight: 600;
+    font-size: 0.85rem;
+    line-height: 15px;
+  }
 }

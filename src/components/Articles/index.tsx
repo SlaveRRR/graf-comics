@@ -11,7 +11,7 @@ const Articles: FC = () => {
     <>
       {isLoading ? (
         <p>Загрузка...</p>
-      ) : data.length > 0 ? (
+      ) : data?.length > 0 ? (
         <div className={styles['articles']}>
           {data.map((el) => (
             <ArticleCard title={el.title} id={el.id} description={el.description} />
