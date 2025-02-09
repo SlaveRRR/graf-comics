@@ -2,7 +2,7 @@
 import { FC, useContext } from 'react';
 import { ctx } from '../../../context/contextProvider';
 
-import { Avatar, BurgerMenu } from '../../UI/index';
+import { Avatar, BurgerMenu } from '@UI/index';
 
 import { routes, sideMenuRoutes } from '@/config/routing';
 import cn from 'classnames';
