@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Запуск проекта
 
-First, run the development server:
+Если запускаете проект впервые, нужно выполнить следующие команды
 
-```bash
-npm run dev
-# or
+```
+yarn
+
+npx prisma generate
+
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+После запуска сайт доступен локально по адресу [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+В дальнейшем запускать нужно одной командой
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+yarn dev
+```
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Работа над задачами
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- ### Вы получаете таску с определенным номером, допустим ```GRAF-15```. Ваш порядок действий
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- ### перейти в ветку мастер
 
-## Deploy on Vercel
+```
+git checkout master
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- ### сделать ```pull```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+git pull --rebase
+```
+
+- ### создать свою ветку для задачи
+
+```
+git checkout -b feature/GRAF-15
+```
+
+- ### закоммитить и отправить изменения на гитхаб
+
+```
+git add .
+
+git commit -m "feat: добавил новую фишку"
+
+git push origin feature/GRAF-15
+
+```
+- ### создать PR и отправить на code review
+<img width="1277" alt="Снимок экрана 2025-02-09 135535" src="https://github.com/user-attachments/assets/e320c446-0833-4f0f-92f4-6408a419d83d" />
+
+
+### В title указываем номер задачи, в description небольше описание. 
+### В reviewers выбираем slaveRRR
+<img width="1251" alt="Снимок экрана 2025-02-09 135843" src="https://github.com/user-attachments/assets/128bd890-f8d5-487a-8dba-289c35df4f83" />
+
+
+#### Наименование веток
+- feature/branch_name - новый функционал.
+- fix/branch_name - исправление ошибок/багов.
+
+#### Наименование коммитов аналогично
+- feat: "message" - новый функционал.
+- fix: "message" - исправление ошибок/багов.
+
+
