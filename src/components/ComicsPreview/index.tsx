@@ -6,6 +6,8 @@ import cn from 'classnames';
 import Link from 'next/link';
 import { FC, useContext, useState } from 'react';
 import { Chapters, SliderPreview, Tabs } from '../UI';
+import ComicsComment from './ComicsComments/comment';
+import dataComments from './ex-comments.json';
 import styles from './index.module.scss';
 
 type Props = {
@@ -44,6 +46,8 @@ const ComicsPreview: FC<Props> = ({ comics = obj }) => {
   const { setActiveBookMarks } = useContext(ctx);
   const { banner, covers, description, genres, title, toms, author, status, rating } = comics;
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
+
+  console.log(dataComments);
 
   return (
     <section className={styles['comics-page']}>
@@ -311,6 +315,13 @@ const ComicsPreview: FC<Props> = ({ comics = obj }) => {
                     </svg>
                   </button>
                 </label>
+                <p className={styles['comments__counter']}>{dataComments.length} комментариев</p>
+                {dataComments.map((comment) => (
+                  <>
+                    <ComicsComment key={comment.id} comment={comment} />
+                  </>
+                ))}
+                <button className={styles['buttons__download']}>Загрузить еще</button>
               </div>
             </Tabs>
           </div>
