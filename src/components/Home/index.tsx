@@ -71,12 +71,9 @@ const Home: FC = () => {
           <ArrowLink mixClass={[styles['popular-container__link']]} text="Популярные" url="/popular" />
 
           <div className={styles['popular-cards']}>
-            <Card text="Название" />
-            <Card text="Название" />
-            <Card text="Название" />
-            <Card text="Название" />
-            <Card text="Название" />
-            <Card text="Название" />
+            {Array.from({ length: 6 }).map((item) => (
+              <Card text="Название" />
+            ))}
           </div>
         </div>
       </section>
@@ -85,12 +82,11 @@ const Home: FC = () => {
           <ArrowLink mixClass={[styles['novelty-container__link']]} text="Новинки" url="/novelty" />
 
           <div className={styles['novelty-cards']}>
-            <Card mixClass={[styles['cards-comics']]} text="Название" />
-            <Card mixClass={[styles['cards-comics']]} text="Название" />
-            <Card mixClass={[styles['cards-comics']]} text="Название" />
-            <Card mixClass={[styles['cards-comics']]} text="Название" />
-            <Card mixClass={[styles['cards-comics']]} text="Название" />
-            <Card mixClass={[styles['cards-comics']]} text="Название" />
+            {Array.from({
+              length: 8,
+            }).map((item) => (
+              <Card isNew mixClass={[styles['cards-comics']]} text="Название" />
+            ))}
           </div>
         </div>
       </section>

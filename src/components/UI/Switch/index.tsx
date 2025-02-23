@@ -1,26 +1,36 @@
 'use client';
-import React, { FC, useState } from 'react'
-import cn from 'classnames'
-import styles from './index.module.scss'
+import cn from 'classnames';
+import { FC, useState } from 'react';
+import styles from './index.module.scss';
 type Props = {
-    checked: any;
-    unchecked: any;
-    mixClass?: string[];
-}
+  checked: any;
+  unchecked: any;
+  mixClass?: string[];
+  value?: boolean;
+  onChange?: () => void;
+};
 
-const Switch: FC<Props> = ({ checked, unchecked, mixClass = [] }) => {
-    const [isChecked,setIsChecked] = useState<boolean>(true)
-    return (
-        <button onClick={() => setIsChecked(prev => !prev)} type='button' role='switch' className={cn(styles['switch'], ...mixClass,{
-            [styles['switch--checked']] : isChecked
-        })}>
-            <div className={styles['switch-handle']}></div>
-            <span className={styles["switch-inner"]}>
-                <span className={styles["switch-inner-checked"]}> {checked}</span>
-                <span className={styles["switch-inner-unchecked"]}>{unchecked}</span>
-            </span>
-        </button>
-    )
-}
+const Switch: FC<Props> = ({ checked, unchecked, mixClass = [], value = true, onChange }) => {
+  const [isChecked, setIsChecked] = useState<boolean>(value);
+  return (
+    <button
+      onClick={() => {
+        setIsChecked((prev) => !prev);
+        onChange();
+      }}
+      type="button"
+      role="switch"
+      className={cn(styles['switch'], ...mixClass, {
+        [styles['switch--checked']]: isChecked,
+      })}
+    >
+      <div className={styles['switch-handle']}></div>
+      <span className={styles['switch-inner']}>
+        <span className={styles['switch-inner-checked']}> {checked}</span>
+        <span className={styles['switch-inner-unchecked']}>{unchecked}</span>
+      </span>
+    </button>
+  );
+};
 
-export default Switch
+export default Switch;

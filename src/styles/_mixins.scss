@@ -7,6 +7,71 @@
   align-items: $align;
 }
 
+@mixin themeBackground {
+  background: var(--background-color);
+  transition: background-color 0.5s ease-out;
+}
+
+@mixin themeText {
+  color: var(--text-color);
+  transition: color 0.5s ease-out;
+}
+
+@mixin themeSectionBackground {
+  background: var(--section-background-color);
+  transition: background-color 0.5s ease-out;
+}
+
+@mixin themeSideBarBackground {
+  background: var(--sidebar-background-color);
+  transition: background-color 0.5s ease-out;
+}
+
+@mixin themeSideBarLine {
+  background: var(--sidebar-line);
+  transition: background-color 0.3s ease-out;
+}
+
+@mixin themeArrowLink {
+  color: var(--arrow-link);
+  transition: background-color 0.5s ease-out;
+}
+
+@mixin themeBadge {
+  color: var(--badge-color);
+  background-color: var(--badge-background);
+  transition: all 0.5s ease-out;
+}
+
+@mixin themeAvatar {
+  border: 2px solid var(--avatar-border-color);
+  transition: all 0.2s ease-out;
+}
+
+@mixin themeSvg {
+  fill: var(--svg-color);
+  transition: fill 0.3s ease-out;
+}
+
+@mixin themeFooterIcons {
+  & path {
+    fill: var(--footer-icons);
+  }
+
+  transition: fill 0.3s ease-out;
+}
+
+@mixin themeBurgerMenu {
+  & > * {
+    stroke: var(--burger-menu) !important;
+    transition: fill 0.3s ease-out;
+  }
+}
+
+@mixin themeTabText {
+  color: var(--theme-tab-text);
+  transition: color 0.5s ease-out;
+}
 
 @mixin focus($outline: none) {
   &:focus {
@@ -19,174 +84,169 @@
 }
 
 @mixin mediaMin($size) {
-  @media (min-width:$size) {
+  @media (min-width: $size) {
     @content;
   }
 }
 
 @mixin mediaMax($size) {
-  @media (max-width:$size) {
+  @media (max-width: $size) {
     @content;
   }
 }
 
 @mixin filterNames {
   &--genres {
-    background: #82BCFC;
+    background: #82bcfc;
   }
 
   &--tags {
-    background: #F590D7;
+    background: #f590d7;
   }
 
   &--viewcounts {
-    background: #AF9CFB;
+    background: #af9cfb;
   }
 
   &--rating {
-    background: #7A5AF8;
+    background: #7a5af8;
   }
 
   &--status {
-
-    background: #4D37A5;
+    background: #4d37a5;
   }
 
   &--naprav {
-    background: #2E90FA;
+    background: #2e90fa;
   }
 
   &--size {
-    background: #2573C8;
+    background: #2573c8;
   }
 
   &--theme {
-    background: #AF9CFB;
+    background: #af9cfb;
   }
 
   &--author {
-    background: #7A5AF8;
+    background: #7a5af8;
   }
 
   &--violet {
-    background: #7A5AF8;
+    background: #7a5af8;
   }
 }
 
 @mixin colorFilters {
   &--genres {
     &:has(input:checked) {
-      color: #FFF;
-      background: #82BCFC;
+      color: #fff;
+      background: #82bcfc;
     }
 
     @include mediaMin(768px) {
-      border: 2px solid #82BCFC;
+      border: 2px solid #82bcfc;
       border-radius: 562px;
-      color: #82BCFC;
+      color: #82bcfc;
     }
   }
 
-
   &--tags {
     &:has(input:checked) {
-      color: #FFF;
-      background: #F590D7;
+      color: #fff;
+      background: #f590d7;
     }
 
     @include mediaMin(768px) {
-      border: 2px solid #F590D7;
+      border: 2px solid #f590d7;
       border-radius: 562px;
-      color: #F590D7;
+      color: #f590d7;
     }
   }
 
   &--viewcounts {
     &:has(input:checked) {
-      color: #FFF;
-      background: #AF9CFB;
+      color: #fff;
+      background: #af9cfb;
     }
 
     @include mediaMin(768px) {
-      border: 2px solid #AF9CFB;
+      border: 2px solid #af9cfb;
       border-radius: 562px;
-      color: #AF9CFB;
+      color: #af9cfb;
     }
-
-
   }
 
   &--rating {
     &:has(input:checked) {
-      color: #FFF;
-      background: #7A5AF8;
+      color: #fff;
+      background: #7a5af8;
     }
 
     @include mediaMin(768px) {
-      border: 2px solid #7A5AF8;
+      border: 2px solid #7a5af8;
       border-radius: 562px;
-      color: #7A5AF8;
+      color: #7a5af8;
     }
   }
 
   &--status {
     &:has(input:checked) {
-      color: #FFF;
-      background: #4D37A5;
+      color: #fff;
+      background: #4d37a5;
     }
 
     @include mediaMin(768px) {
-      border: 2px solid #4D37A5;
+      border: 2px solid #4d37a5;
       border-radius: 562px;
-      color: #4D37A5;
+      color: #4d37a5;
     }
   }
 
   &--naprav {
     &:has(input:checked) {
-      color: #FFF;
-      background: #2E90FA;
+      color: #fff;
+      background: #2e90fa;
     }
 
     @include mediaMin(768px) {
-      border: 2px solid #2E90FA;
+      border: 2px solid #2e90fa;
       border-radius: 562px;
-      color: #2E90FA;
+      color: #2e90fa;
     }
   }
 
   &--size {
     &:has(input:checked) {
-      color: #FFF;
-      background: #2573C8;
+      color: #fff;
+      background: #2573c8;
     }
 
     @include mediaMin(768px) {
-      border: 2px solid #2573C8;
+      border: 2px solid #2573c8;
       border-radius: 562px;
-      color: #2573C8;
+      color: #2573c8;
     }
   }
 
   &--theme:has(input:checked) {
-    color: #FFF;
-    background: #AF9CFB;
+    color: #fff;
+    background: #af9cfb;
   }
 
   &--author:has(input:checked) {
-    color: #FFF;
-    background: #7A5AF8;
+    color: #fff;
+    background: #7a5af8;
   }
 
   &--violet:has(input:checked) {
-    color: #FFF;
-    background: #7A5AF8;
+    color: #fff;
+    background: #7a5af8;
   }
-
 }
 
 @mixin addCursorElement($size) {
-  @media (min-width:$size) {
+  @media (min-width: $size) {
     cursor: pointer;
   }
 }

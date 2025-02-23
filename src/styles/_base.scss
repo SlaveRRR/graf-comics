@@ -1,7 +1,7 @@
 *,
 *::after,
 *::before {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
@@ -85,18 +85,17 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-	border-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  border-width: 0;
 }
 
-
 button {
-	font: inherit;
+  font: inherit;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -111,101 +110,97 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
+  display: block;
 }
 
 body {
-	line-height: 1;
+  line-height: 1;
 }
 
 input,
 textarea,
 select,
 option {
-	font-family: inherit;
+  font-family: inherit;
 }
 
 ol,
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 blockquote,
 q {
-	quotes: none;
+  quotes: none;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .visuallyhidden:not(:focus):not(:active) {
-	position: absolute;
+  position: absolute;
 
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	border: 0;
-	padding: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
 
-	white-space: nowrap;
+  white-space: nowrap;
 
-	clip-path: inset(100%);
-	clip: rect(0 0 0 0);
-	overflow: hidden;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 .myvisuallyhidden {
-	position: absolute;
+  position: absolute;
 
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	border: 0;
-	padding: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
 
-	white-space: nowrap;
+  white-space: nowrap;
 
-	clip-path: inset(100%);
-	clip: rect(0 0 0 0);
-	overflow: hidden;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 .container {
-	max-width: calc(2560px + 2 * .9375em);
-	margin: 0 auto;
-	width: 100%;
-	padding-left: .9375em;
-	padding-right: .9375em;
+  max-width: calc(2560px + 2 * 0.9375em);
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
 
-	@media (min-width:768px) {
-		max-width: calc(2560px + 2 * clamp(5rem, 12.587vw - 1.905rem, 15.357rem));
-		padding-left: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
-		padding-right: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
-	}
+  @media (min-width: 768px) {
+    max-width: calc(2560px + 2 * clamp(5rem, 12.587vw - 1.905rem, 15.357rem));
+    padding-left: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
+    padding-right: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
+  }
 }
 
 .header-container {
-	max-width: calc(2560px + 2 * .9375em);
-	margin: 0 auto;
-	width: 100%;
-	padding-left: .9375em;
-	padding-right: .9375em;
-}
-
-body {
-	background: #F6F6F6;
+  max-width: calc(2560px + 2 * 0.9375em);
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
 }
 
 .next-admin__root {
-	height: 100% !important;
+  height: 100% !important;
 }

@@ -1,13 +1,15 @@
+@use '../../../styles/mixins' as *;
+
 .link {
-    display: block;
-    width: max-content;
-    color: #564F70;
-    font-size: clamp(.858rem, 0.74rem + 0.5vw, 1.42rem);
-    font-weight: 600;
-    line-height: 15px;
-    text-decoration: none;   
+  display: block;
+  width: max-content;
+  @include themeArrowLink;
+  font-size: clamp(0.858rem, 0.74rem + 0.5vw, 1.42rem);
+  font-weight: 600;
+  line-height: 15px;
+  text-decoration: none;
 }
 
-.arrow{
-    margin-left: 6px;
+.arrow {
+  margin-left: 6px;
 }
