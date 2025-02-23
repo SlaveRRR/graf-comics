@@ -1,0 +1,51 @@
+@use '../../../styles/global' as *;
+
+.card {
+  font-weight: 500;
+  line-height: normal;
+  font-size: 10px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #aaa;
+  }
+
+  &__img {
+    display: flex;
+    border-radius: 10px;
+    width: 69px;
+    height: 48px;
+    background: #e8e8e8;
+    margin-bottom: 0.4em;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__currency-text {
+    color: #2d283e;
+  }
+
+  &__discount-text {
+    color: #cabdfc;
+    text-decoration: line-through;
+  }
+
+  &__amount-text {
+    color: $main-color;
+  }
+
+  &__rub-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+}
+
+.card.active {
+  border: 1px solid $main-color;
+}

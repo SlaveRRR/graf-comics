@@ -1,0 +1,132 @@
+@use '../../styles/global' as *;
+
+.deposit {
+  margin-bottom: 1em;
+  padding-top: 1.2em;
+  padding-bottom: 1.2em;
+  background: white;
+  border-radius: 20px;
+  font-weight: 600;
+
+  @include mediaMin($device-M) {
+    margin-bottom: 3.5em;
+  }
+
+  &__backLink-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__backLink {
+    align-self: flex-start;
+    margin-bottom: 0.8em;
+  }
+
+  &__backLink-count-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8em;
+  }
+
+  &__backLink-count {
+    font-size: 0.86rem;
+    color: $main-color;
+    font-weight: 600;
+    line-height: 15px;
+    margin-right: 5px;
+  }
+
+  &__backLink-count-icon {
+    width: 7px;
+    height: 7px;
+  }
+
+  &__count {
+    font-size: 1.3rem;
+    color: $main-color;
+    margin-right: 5px;
+  }
+
+  &__count-icon {
+    width: 13px;
+    height: 13px;
+  }
+
+  &__count-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 26px;
+  }
+
+  &__amount-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 20px;
+  }
+
+  &__h3 {
+    text-align: center;
+    font-size: 0.86rem;
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+
+  &__promo-field {
+    display: block;
+    border: none;
+    border-radius: 526px;
+    width: 100%;
+    height: 35px;
+    padding: 1em 1em;
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 15px;
+    margin-bottom: 30px;
+
+    background-color: #f2effe;
+    color: #9991b9;
+    @include focus($outline: 1px solid #fdfdfd);
+
+    &::placeholder {
+      background-color: #f2effe;
+      color: #cabdfc;
+      font-size: 0.86rem;
+      font-weight: 600;
+      line-height: 15px;
+    }
+  }
+
+  &__final-text {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-right: 20px;
+  }
+
+  &__final-amount {
+    text-align: center;
+    font-size: 1.4rem;
+    color: $main-color;
+  }
+
+  &__final-container {
+    display: flex;
+    margin-bottom: 35px;
+    justify-content: center;
+  }
+
+  &__promo-title {
+    font-size: 0.86rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
