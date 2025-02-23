@@ -3,115 +3,110 @@
 .registration {
   &__inner-container {
     border-radius: 10px;
-    background: white;
+    position: relative;
+    z-index: 1;
+    text-align: left;
     @include flex($dir: column);
     padding-top: 1em;
     margin-bottom: 0.9em;
+    padding-bottom: 50px;
+    height: 100%;
+    &::before {
+      content: '';
+      height: 500px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('../../../public/login-background.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.3;
+      border-radius: 10px;
+      z-index: 0;
+    }
   }
-
-  &__flex {
-    @include flex($dir: column);
+  &__inner-box {
+    width: 50%;
+    background-color: #fff;
+    height: 450px;
+    z-index: 1;
+    padding: 28px 34px;
+    text-align: center;
   }
 
   &__head {
-    font-size: clamp(1.43rem, 0.5rem + 3.8vw, 3.72rem);
+    font-size: 2.3rem;
     font-weight: 600;
     line-height: 24px;
     text-align: center;
-    margin-bottom: 0.3em;
-
-    @include mediaMin($size: $device-XM) {
-      line-height: 59px;
-    }
+    margin-bottom: 0.1em;
   }
 
   &__backLink {
-    align-self: flex-start;
-    margin-bottom: 0.9em;
+    text-align: left;
+    margin-bottom: 0.8em;
   }
 
   &__logo {
     margin-bottom: 1em;
-
+    z-index: 1;
     @include mediaMin($size: $device-XM) {
       display: none;
     }
   }
 
   &__with-social {
-    font-size: 1rem;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: 0em;
     margin-bottom: 1em;
-
-    @include mediaMin($size: $device-XM) {
-      font-size: 1.72rem;
-      font-weight: 500;
-      line-height: 29px;
-      margin-bottom: 0.7em;
-    }
   }
 
   &__social {
     margin-bottom: 0.86em;
-
-    @include mediaMin($size: $device-XM) {
-      margin-bottom: 2em;
-    }
   }
 
   &__or {
-    font-size: clamp(0.876rem, 0.7rem + 1.6vw, 2.15rem);
     font-weight: 400;
     line-height: 17px;
     margin-bottom: 0.8em;
-
-    @include mediaMin($size: $device-XM) {
-      font-weight: 500;
-      line-height: 29px;
-      margin-bottom: 1.2em;
-    }
   }
 
   &__fieldset {
     @include flex($dir: column, $align: flex-start);
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &__fieldset-password {
     @include flex($dir: column, $align: flex-start);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &__input {
-    @include focus($outline: 1px solid #807d7d);
+    @include focus($outline: 1px solid #6c697a);
     border: none;
+    width: 100%;
     border-radius: 2em;
-    padding: 0.5em 2em;
-
-    font-size: clamp(0.86rem, 1.9vw, 1.72rem);
+    padding: 0.5em 1em;
+    font-size: 0.87rem;
+    min-width: 17.5em;
     font-weight: 600;
     line-height: 15px;
     background-color: #f2effe;
     margin-bottom: 1.5em;
-
-    width: clamp(210px, 50vw, 510px);
-
-    @include mediaMin($size: $device-XM) {
-      padding: 0.8em 1.8em;
-      font-weight: 500;
-      line-height: 24px;
-    }
-
+    margin-left: auto;
+    margin-right: auto;
     &::placeholder {
       font-size: 0.86em;
       font-weight: 600;
       line-height: 15px;
-      font-size: clamp(0.86rem, 1.9vw, 1.72rem);
-
-      @include mediaMin($size: $device-XM) {
-        font-weight: 500;
-        line-height: 24px;
-      }
+      color: #cabdfc;
     }
 
     &--marginNo {
@@ -130,16 +125,9 @@
   }
 
   &__label {
-    font-size: clamp(1rem, 1rem + 0.1vw, 2rem);
     margin-bottom: 0.4em;
     font-weight: 500;
     line-height: 17px;
-
-    @include mediaMin($size: $device-XM) {
-      line-height: 29px;
-
-      font-size: clamp(1rem, 1rem + 1.1vw, 2.1rem);
-    }
   }
 
   &__next {
@@ -212,16 +200,17 @@
   }
 
   &__error {
-    text-wrap: balance;
-    max-width: 200px;
     margin: 0.4em 0;
-    font-size: 1.1em;
-    line-height: normal;
+    font-size: 12px;
     color: red;
+    max-width: 240px;
+    width: 100%;
+    text-align: left;
   }
 
   &__password-container {
     position: relative;
+    width: 100%;
   }
 
   &__visibility {

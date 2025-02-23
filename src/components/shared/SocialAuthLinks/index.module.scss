@@ -1,21 +1,21 @@
 @use '../../../styles/global' as *;
 
-.social-links{
-    @include flex($gap:1.86em);
+.social-links {
+  @include flex($gap: 1.86em);
 
-    @include mediaMin($size:$device-XM){
-        gap: 2.2em;
-    }
+  @include mediaMin($size: $device-XM) {
+    gap: 2.2em;
+  }
 
-    &__item{
-        @include mediaMin($size:$device-XM){
-            width: 42px;
-            height: 40px;
-        }
+  &__item {
+    @include mediaMin($size: $device-XM) {
+      width: 32px;
+      height: 30px;
     }
+  }
 }
-.auth-btn{
-    border: 0;
-    padding: 0;
-    background-color: transparent;
+.auth-btn {
+  border: 0;
+  padding: 0;
+  background-color: transparent;
 }

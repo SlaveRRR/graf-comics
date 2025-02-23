@@ -3,14 +3,37 @@
 .login {
   &__inner-container {
     border-radius: 10px;
-    background: white;
+    position: relative;
+    z-index: 1;
+    text-align: center;
     @include flex($dir: column);
     padding-top: 1em;
     margin-bottom: 0.9em;
+    padding: 50px 50px;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('../../../public/login-background.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.3;
+      border-radius: 10px;
+      z-index: 0;
+    }
   }
-
+  &__inner-box {
+    width: 50%;
+    background-color: #fff;
+    height: auto;
+    z-index: 1;
+    padding: 36px 68px;
+  }
   &__head {
-    font-size: 1.43rem;
+    font-size: 2.3rem;
     font-weight: 600;
     line-height: 24px;
     text-align: center;
@@ -18,12 +41,13 @@
   }
 
   &__backLink {
-    align-self: flex-start;
+    text-align: left;
     margin-bottom: 0.8em;
   }
 
   &__logo {
     margin-bottom: 1em;
+    z-index: 1;
   }
 
   &__with-social {
@@ -46,6 +70,9 @@
   &__fieldset {
     @include flex($dir: column, $align: flex-start);
     margin-bottom: 1.9em;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &__fieldset-password {
@@ -55,8 +82,9 @@
   &__input {
     @include focus($outline: 1px solid #6c697a);
     border: none;
+    width: 100%;
     border-radius: 2em;
-    padding: 0.5em 2em;
+    padding: 0.5em 1em;
     font-size: 0.87rem;
     min-width: 17.5em;
     font-weight: 600;
@@ -68,6 +96,7 @@
       font-size: 0.86em;
       font-weight: 600;
       line-height: 15px;
+      color: #cabdfc;
     }
 
     &--marginNo {
@@ -135,13 +164,16 @@
 
   &__error {
     margin: 0.4em 0;
-    font-size: 1.1em;
+    font-size: 12px;
     color: red;
     max-width: 240px;
+    width: 100%;
+    text-align: left;
   }
 
   &__password-container {
     position: relative;
+    width: 100%;
   }
 
   &__visibility {
