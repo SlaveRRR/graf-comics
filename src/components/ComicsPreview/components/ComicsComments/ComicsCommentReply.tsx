@@ -19,8 +19,7 @@ interface ComicsCommentProps {
   replyName: string;
 }
 
-const ComicsCommentReply: FC<ComicsCommentProps> = ({ comment, replyName }) => {
-  console.log(comment);
+export const ComicsCommentReply: FC<ComicsCommentProps> = ({ comment, replyName }) => {
   let dateComment = new Date(comment.createdAt);
   const formattedDate = dateComment.toLocaleString('ru', {
     day: 'numeric',
@@ -71,5 +70,3 @@ const ComicsCommentReply: FC<ComicsCommentProps> = ({ comment, replyName }) => {
     </section>
   );
 };
-
-export default ComicsCommentReply;

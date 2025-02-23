@@ -1,53 +1,18 @@
 'use client';
 import { ctx } from '@/context/contextProvider';
-import { chapters as defaultChapters } from '@/data/data.json';
-import { IComics, Status } from '@/store/comics/types';
 import cn from 'classnames';
 import Link from 'next/link';
 import { FC, useContext, useState } from 'react';
 import { Chapters, SliderPreview, Tabs } from '../UI';
-import ComicsComment from './ComicsComments/comment';
-import dataComments from './ex-comments.json';
+import { ComicsComment } from './components';
+import { comicsData, comments } from './data';
 import styles from './index.module.scss';
+import { ComicsPreviewProps } from './types';
 
-type Props = {
-  comics?: IComics;
-};
-
-const obj: IComics = {
-  title: 'Название',
-  description: `Описание комикса. Avery is a vampire hunter! Who unfortunately gets bitten by and subsequently turned into, a vampire.
-  Описание комикса. Avery is a vampire hunter! Who unfortunately gets bitten by and subsequently turned into, a vampire.
-  Описание комикса. Avery is a vampire hunter! Who unfortunately gets bitten by and subsequently turned into, a vampire.
-  Описание комикса. Avery is a vampire hunter! Who unfortunately gets bitten by and subsequently turned into, a vampire.`,
-  covers: ['/post.svg', '/post.svg', '/post.svg'],
-  banner: '',
-  genres: [],
-  focus: [],
-  tags: [],
-  rating: [
-    {
-      colorClass: 'author',
-      text: '18+',
-    },
-  ],
-  toms: [
-    {
-      title: 'Том 0',
-      tomId: '0',
-      chapters: defaultChapters,
-    },
-  ],
-  author: 'Автор',
-  status: Status.WORK,
-};
-
-const ComicsPreview: FC<Props> = ({ comics = obj }) => {
+const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
   const { setActiveBookMarks } = useContext(ctx);
   const { banner, covers, description, genres, title, toms, author, status, rating } = comics;
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
-
-  console.log(dataComments);
 
   return (
     <section className={styles['comics-page']}>
@@ -315,8 +280,8 @@ const ComicsPreview: FC<Props> = ({ comics = obj }) => {
                     </svg>
                   </button>
                 </label>
-                <p className={styles['comments__counter']}>{dataComments.length} комментариев</p>
-                {dataComments.map((comment) => (
+                <p className={styles['comments__counter']}>{comments.length} комментариев</p>
+                {comments.map((comment) => (
                   <>
                     <ComicsComment key={comment.id} comment={comment} />
                   </>

@@ -1,6 +1,6 @@
 'use client';
 import { FC } from 'react';
-import ComicsCommentReply from './ReplyComment';
+import { ComicsCommentReply } from './ComicsCommentReply';
 import styles from './index.module.scss';
 
 interface ComComment {
@@ -20,16 +20,13 @@ interface ComicsCommentProps {
 }
 function toNormalTime(min) {
   min = min.toString();
-  console.log(min.length);
   if (min.length < 2) {
     min = '0' + min;
     return min;
   } else return min;
 }
-const ComicsComment: FC<ComicsCommentProps> = ({ comment }) => {
-  //console.log(comment);
+export const ComicsComment: FC<ComicsCommentProps> = ({ comment }) => {
   let dateComment = new Date(comment.createdAt);
-  console.log(dateComment.getMinutes());
   const dateTimeComment = `${dateComment.getHours()}:${toNormalTime(dateComment.getMinutes())}`;
   const formattedDate = dateComment.toLocaleString('ru', {
     day: 'numeric',
@@ -82,5 +79,3 @@ const ComicsComment: FC<ComicsCommentProps> = ({ comment }) => {
     </section>
   );
 };
-
-export default ComicsComment;
