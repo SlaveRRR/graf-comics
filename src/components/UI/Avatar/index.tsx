@@ -1,7 +1,7 @@
 'use client';
-import React, { FC, useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { useGetUserByIdQuery } from '@/store/api';
+import { useSession } from 'next-auth/react';
+import { FC } from 'react';
 import styles from './index.module.scss';
 
 const Avatar: FC = () => {
@@ -22,7 +22,7 @@ const Avatar: FC = () => {
         <img
           alt="аватарка пользователя"
           className={styles['avatar']}
-          src={avatar ? avatar.includes('https') ? avatar : `data:image/jpeg;base64,${avatar}` : '/avatar.svg'}
+          src={avatar ? (avatar.includes('https') ? avatar : `data:image/jpeg;base64,${avatar}`) : '/avatar.svg'}
         />
       )}
     </>

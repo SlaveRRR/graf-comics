@@ -11,7 +11,7 @@
   }
 
   &__text {
-    color: #2d283e;
+    @include themeText;
     font-weight: 500;
     line-height: normal;
     font-size: clamp(1rem, 0.92rem + 0.25vw, 1.28rem);

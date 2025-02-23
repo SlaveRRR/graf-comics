@@ -1,43 +1,36 @@
 @use '../../../styles/global' as *;
 
 .burger-btn {
-    display: block;
-    border: none;
-    background: transparent;
-   
+  display: block;
+  border: none;
+  background: transparent;
 
-    @include mediaMin($size: $device-M) {
-        display: none;
-    }
-    
+  @include mediaMin($size: $device-M) {
+    display: none;
+  }
 }
+
 .burger-container {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 
-    &__item{
-        transition: all .3s;
+  @include themeBurgerMenu;
+
+  &__item {
+    transition: all 0.3s;
+  }
+
+  &--active {
+    & > .burger-container__item:nth-child(2) {
+      transform: rotate(40deg) translate(4px, -6px);
     }
 
-    &--active{
-        & > .burger-container__item:nth-child(2){
-            transform: rotate(40deg) translate(4px,-6px);
-        }
-
-        & > .burger-container__item:nth-child(3){
-            opacity: 0;
-        }
-
-        & > .burger-container__item:nth-child(4){
-            transform: rotate(-40deg) translate(-9px);
-        }
+    & > .burger-container__item:nth-child(3) {
+      opacity: 0;
     }
 
+    & > .burger-container__item:nth-child(4) {
+      transform: rotate(-40deg) translate(-9px);
+    }
+  }
 }
-
-
-
-
-
-
-

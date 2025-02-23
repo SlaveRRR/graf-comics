@@ -1,7 +1,7 @@
 @use '../../styles/global' as *;
 
 .profile-header {
-  background: white;
+  @include themeSectionBackground;
   margin-bottom: 1.1em;
 
   @include mediaMin(1490px) {
@@ -57,7 +57,7 @@
   }
 
   &__name {
-    color: #2d283e;
+    @include themeText;
     font-size: 1.43rem;
     font-weight: 600;
     margin-bottom: 0.3em;
@@ -69,7 +69,7 @@
   }
 
   &__status {
-    color: #2d283e;
+    @include themeText;
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 0.8em;
@@ -181,7 +181,7 @@
 }
 
 .tabs {
-  background-color: white;
+  @include themeSectionBackground;
 
   &__container {
     padding-top: 1em;

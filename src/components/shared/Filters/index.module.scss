@@ -1,108 +1,112 @@
 @use '../../../styles/global' as *;
 
 .aplly-filters {
-    @include flex($justify: flex-start, $gap: .2em);
-    overflow-x: scroll;
-    margin-bottom: 1em;
+  @include flex($justify: flex-start, $gap: 0.2em);
+  overflow-x: scroll;
+  margin-bottom: 1em;
 
-    @include mediaMin($device-M) {
-        display: none;
-    }
+  @include mediaMin($device-M) {
+    display: none;
+  }
 
-    &::-webkit-scrollbar {
-        width: 0;
-    }
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 
-    &__item {
-        padding: 0.43em 0.72em;
+  &__item {
+    padding: 0.43em 0.72em;
 
-        @include flex($gap: .36em);
-        border-radius: 10px;
-        @include filterNames;
+    @include flex($gap: 0.36em);
+    border-radius: 10px;
+    @include filterNames;
+  }
 
-    }
+  &__text {
+    display: block;
 
-    &__text {
-        display: block;
+    width: max-content;
+    min-width: 38px;
+    color: white;
+    text-align: center;
+    font-size: 0.79rem;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.3s;
+  }
 
-        width: max-content;
-        min-width: 38px;
-        color: white;
-        text-align: center;
-        font-size: .79rem;
-        font-weight: 600;
-        line-height: normal;
-        transition: all .3s;
-    }
-
-    &__btn {
-        border: none;
-        width: 16px;
-        height: 16px;
-        background: url('../../../assets/close.svg');
-        background-size: cover;
-    }
+  &__btn {
+    border: none;
+    width: 16px;
+    height: 16px;
+    background: url('../../../assets/close.svg');
+    background-size: cover;
+  }
 }
 
 .filter {
-    &__reset-btn {
-        display: block;
-        background: $main-color;
-        color: white;
-        border: none;
-        border-radius: 10px;
-        padding: .5em 1em;
-        margin: 0 auto 1.5em;
-        @include mediaMin($device-M){
-            border: 2px solid $main-color;
-            font-weight: 500;
-            color: $main-color;
-            border-radius: 562px;
-            margin-left: 0;
-            background-color: transparent;
-        }
+  &__reset-btn {
+    display: block;
+    background: $main-color;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    margin: 0 auto 1.5em;
+
+    @include mediaMin($device-M) {
+      border: 2px solid $main-color;
+      font-weight: 500;
+      color: $main-color;
+      border-radius: 562px;
+      margin-left: 0;
+      background-color: transparent;
     }
+  }
 
-    &__button {
-        @include flex($gap: .3em);
-        border: none;
-        background-color: transparent;
-        color: #000;
-        font-size: .86rem;
-        font-weight: 600;
-        line-height: normal;
-        margin: 0 auto 1em;
+  &__button {
+    @include flex($gap: 0.3em);
+    border: none;
+    background-color: transparent;
+    @include themeText;
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0 auto 1em;
 
-        @include mediaMin($device-M) {
-            display: none;
-        }
+    @include mediaMin($device-M) {
+      display: none;
     }
+  }
 
-    &__arrow-icon {
-        transition: transform .8s linear;
+  &__settings-icon {
+    @include themeSvg;
+  }
 
-        &--active {
-            transform: rotateX(180deg);
-        }
+  &__arrow-icon {
+    @include themeSvg;
+    transition: transform 0.2s linear;
+
+    &--active {
+      transform: rotateX(180deg);
     }
+  }
 
-    &__items {
-        margin-bottom: .8em;
-    }
+  &__items {
+    margin-bottom: 0.8em;
+  }
 }
 
 .filter-pc {
-   
-    @include flex($gap:10px);
-    width: max-content;
-    font-size: clamp(0.857rem, 0.694vw + 0.476rem, 1.429rem);
-    font-weight: 600;
-    line-height: 24px;
-    margin-bottom: .5em;
+  @include flex($gap: 10px);
+  width: max-content;
+  font-size: clamp(0.857rem, 0.694vw + 0.476rem, 1.429rem);
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 0.5em;
 
-    display: none;
+  display: none;
 
-    @include mediaMin($device-M){
-        display: flex;
-    }
+  @include mediaMin($device-M) {
+    display: flex;
+  }
 }

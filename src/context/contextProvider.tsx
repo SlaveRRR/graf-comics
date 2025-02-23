@@ -53,6 +53,8 @@ const ContextProvider: FC<Props> = ({ children }) => {
   // меню закладок
   const [activeBookMarks, setActiveBookMarks] = useState<boolean>(false);
 
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
   const toggleFilters = (val: any) => {
     const ind = activeFilters.findIndex((e) => e.text === val.text);
     ind === -1 ? setFilters((prev) => [val, ...prev]) : setFilters((prev) => prev.filter((el) => el.text !== val.text));
@@ -76,7 +78,7 @@ const ContextProvider: FC<Props> = ({ children }) => {
       activeBookMarks,
       setActiveBookMarks,
     }),
-    [activeLoader, activeBurger, activeModal, activeAvatar, activeFilters, visibleMenu, activeBookMarks]
+    [activeLoader, activeBurger, activeModal, activeAvatar, activeFilters, visibleMenu, activeBookMarks],
   );
   return <ctx.Provider value={obj}>{children}</ctx.Provider>;
 };

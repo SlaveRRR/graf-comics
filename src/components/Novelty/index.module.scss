@@ -4,7 +4,7 @@
   margin-bottom: 1em;
   padding-top: 1.2em;
   padding-bottom: 1.2em;
-  background: white;
+  @include themeSectionBackground;
   border-radius: 0px;
 
   @include mediaMin($device-M) {
@@ -20,6 +20,7 @@
   &__cards {
     grid-auto-rows: min-content;
     grid-template-columns: repeat(auto-fit, minmax(clamp(6.429rem, 5.75vw + 5.114rem, 13rem), 1fr));
+
     @include mediaMin($device-M) {
       column-gap: clamp(0.714rem, 2.951vw - 0.905rem, 3.143rem);
     }

@@ -1,65 +1,70 @@
 @use '../../styles/global' as *;
+
 .section {
-    margin-bottom: 1em;
-    @include mediaMin($device-M) {
-        margin-bottom: 3.5em;
-    }
+  margin-bottom: 1em;
+
+  @include mediaMin($device-M) {
+    margin-bottom: 3.5em;
+  }
 }
+
 .container {
-    padding-top: 0.78em;
-    padding-bottom: 1.43em;
-    background: #ffffff;
-    border-radius: 0px;
-    padding-left: 1.1em;
-    padding-right: 1.1em;
-  
-    &__slogan {
-      color: $black-color;
-      font-size: clamp(0.86rem, 0.685rem + 0.75vw, 1.71rem);
-      font-weight: 600;
-      line-height: normal;
-      margin-bottom: 0.7em;
+  padding-top: 0.78em;
+  padding-bottom: 1.43em;
+  @include themeSectionBackground;
+
+  border-radius: 0px;
+  padding-left: 1.1em;
+  padding-right: 1.1em;
+
+  &__slogan {
+    @include themeText;
+    font-size: clamp(0.86rem, 0.685rem + 0.75vw, 1.71rem);
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 0.7em;
+    text-align: left;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      width: clamp(16px, 1.5vw, 32px);
+      height: clamp(16px, 1.5vw, 32px);
+    }
+
+    @include mediaMin($size: $device-M) {
       text-align: left;
-      gap: 8px;
-      display: flex;
-      align-items: center;
-  
-      .icon {
-        width: clamp(16px, 1.5vw, 32px);
-        height: clamp(16px, 1.5vw, 32px);
-      }
-  
-      @include mediaMin($size: $device-M) {
-        text-align: left;
-        max-width: 527px;
-        margin-bottom: 0.4em;
-      }
+      max-width: 527px;
+      margin-bottom: 0.4em;
     }
-  
-    @include mediaMin($device-M) {
-      border-radius: 20px;
-      padding-top: 2.2em;
-      padding-bottom: 2.3em;
-    }
+  }
+
+  @include mediaMin($device-M) {
+    border-radius: 20px;
+    padding-top: 2.2em;
+    padding-bottom: 2.3em;
+  }
 }
+
 .popular-cards {
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-  
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
-  
-    & > * {
-      scroll-snap-align: start;
-    }
-  
-    @include flex($gap: 0.71em, $justify: flex-start);
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  & > * {
+    scroll-snap-align: start;
+  }
+
+  @include flex($gap: 0.71em, $justify: flex-start);
 }
-  
+
 .cards-comics {
-    width: clamp(6.429em, 5.114em + 5.75vw, 13em);
-    height: clamp(8.214em, 6.729em + 6.2vw, 15.643em);
+  width: clamp(6.429em, 5.114em + 5.75vw, 13em);
+  height: clamp(8.214em, 6.729em + 6.2vw, 15.643em);
 }
