@@ -1,0 +1,26 @@
+@use '../../styles/global' as *;
+
+.container {
+  max-width: calc(2560px + 2 * 0.9375em);
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
+
+  @media (min-width: 768px) {
+    max-width: calc(2560px + 2 * clamp(5rem, 12.587vw - 1.905rem, 15.357rem));
+    padding-left: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
+    padding-right: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
+  }
+}
+
+.authorship-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.authorship-nav select {
+  outline: none;
+  border: none;
+  background-color: inherit;
+}
