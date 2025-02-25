@@ -1,0 +1,53 @@
+.comBox {
+  width: 100%;
+  max-width: 861px;
+  padding: 21px;
+  background-color: #ffffff;
+  margin: 28px 0px;
+  border-radius: 20px;
+}
+.comBox_header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.com_name {
+  font-size: 16px;
+  line-height: 19.5px;
+  font-weight: 600;
+  color: #2d283e;
+}
+.com_roles,
+.comGenres,
+.comTags {
+  display: flex;
+  gap: 5px 5px;
+}
+.com_roles span {
+  color: #818181;
+  font-size: 15px;
+  line-height: 18.3px;
+}
+
+.comGenres span,
+.comTags span {
+  background-color: #f2effe;
+  color: #cabdfc;
+  padding: 4px 12px;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 5px 0px;
+}
+.writed {
+  font-size: 14px;
+  line-height: 17px;
+  color: #9e9e9e;
+}
+
+.writed-div {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}

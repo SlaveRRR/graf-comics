@@ -1,13 +1,14 @@
 'use client';
 import { FC, useState } from 'react';
 import { BackLink } from '../shared';
+import CoAuthorshipComics from './coAuthorshipComics';
 import styles from './index.module.scss';
 
 const CoAuthorship: FC = () => {
   const select = [
-    { name: 'Комиксы', component: <div>ll</div> },
+    { name: 'Комиксы', component: <CoAuthorshipComics /> },
     { name: 'Мои комиксы', component: <div>ww</div> },
-    { name: 'Новый комикс', component: <div>dd</div> },
+    { name: 'Новый комикс', component: <div>ww</div> },
   ];
 
   const [content, setContent] = useState(select[0]);
