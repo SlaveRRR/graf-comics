@@ -22,7 +22,6 @@ const Header: FC = () => {
 
   const handleSignOut = () => {
     signOut();
-    router.replace('/');
   };
 
   const handleBurgerClick = () => {
@@ -143,7 +142,7 @@ const Header: FC = () => {
               <Link className={styles['signin-link']} href={'/auth/signin'}>
                 Войти
               </Link>
-              <button onClick={() => handleSignOut()} className={styles['signin-btn']}>
+              <button onClick={() => setActiveModal(true)} className={styles['signin-btn']}>
                 Войти
               </button>
             </>

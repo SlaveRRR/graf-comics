@@ -1,236 +1,255 @@
 @use '../../../styles/global' as *;
 
+.container {
+  width: 40%;
+  background-color: #fff;
+  height: 450px;
+  z-index: 1;
+  padding: 28px 34px;
+  text-align: center;
+  border-radius: 15px;
+  &__backLink {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    font-size: 0.86rem;
+    padding: 0;
+    font-weight: 600;
+    line-height: 15px;
+    text-align: left;
+    text-decoration: none;
+    color: $main-color;
+    &--arrow {
+      margin-left: 0.3em;
+    }
+  }
+}
 .login {
-    background: white;
+  width: 50%;
+  background-color: #fff;
+  height: 450px;
+  z-index: 1;
+  padding: 28px 34px;
+  text-align: center;
 
-    &__container {
-        @include flex($dir: column);
-        padding-top: 1em;
+  &__container {
+    @include flex($dir: column);
+    padding-top: 1em;
+  }
+
+  &__head {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 0.1em;
+  }
+
+  &__logo {
+    margin-bottom: 1em;
+  }
+
+  &__with-social {
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    margin-bottom: 1em;
+  }
+
+  &__social {
+    margin-bottom: 0.86em;
+  }
+
+  &__or {
+    font-weight: 400;
+    line-height: 17px;
+    margin-bottom: 0.8em;
+  }
+
+  &__fieldset {
+    @include flex($dir: column, $align: flex-start);
+    margin-bottom: 1.9em;
+    align-items: center;
+  }
+
+  &__fieldset-password {
+    @include flex($dir: column, $align: flex-start);
+  }
+
+  &__input {
+    @include focus($outline: 1px solid #6c697a);
+    border: none;
+    border-radius: 2em;
+    padding: 0.5em 2em;
+    font-size: 0.87rem;
+    min-width: 17.5em;
+    font-weight: 600;
+    line-height: 15px;
+    background-color: #f2effe;
+    margin-bottom: 1.5em;
+
+    &::placeholder {
+      font-size: 0.86em;
+      font-weight: 600;
+      line-height: 15px;
+      color: #cabdfc;
     }
 
-    &__head {
-        font-size: 1.43rem;
-        font-weight: 600;
-        line-height: 24px;
-        text-align: center;
-        margin-bottom: .1em;
-
+    &--marginNo {
+      margin: 0;
     }
 
-    &__backLink {
-        align-self: flex-start;
-        margin-bottom: 2em;
+    &--error {
+      background: #e545451a;
+      color: #e54545;
     }
 
-    &__logo {
-        margin-bottom: 1em;
+    &--success {
+      background: #0f99181a;
+      color: #0f9918;
     }
+  }
 
-    &__with-social {
-        font-weight: 400;
-        line-height: 17px;
-        letter-spacing: 0em;
-        margin-bottom: 1em;
-    }
+  &__label {
+    display: flex;
+    margin-bottom: 0.4em;
+    font-weight: 500;
+    line-height: 17px;
+  }
 
-    &__social {
-        margin-bottom: .86em;
-    }
+  &__next {
+    display: block;
+    background: transparent;
+    color: $main-color;
+    margin: 0 auto;
+    border: 1px solid $main-color;
+    border-radius: 2em;
+    padding: 0.63em 2.5em;
+    font-size: 0.79rem;
+    font-weight: 500;
+    line-height: 13px;
+    margin-bottom: 2.3em;
+  }
 
-    &__or {
-        font-weight: 400;
-        line-height: 17px;
-        margin-bottom: .8em;
-    }
+  &__signin-btn {
+    display: block;
+    border: 1px solid $main-color;
+    background-color: white;
+    color: $main-color;
+    padding: 0.7em 1.6em;
+    margin: 0 auto 2.4em;
+    border-radius: 2em;
+    font-size: 0.79rem;
+    font-weight: 500;
+    line-height: 13px;
+  }
 
-    &__fieldset {
-        @include flex($dir: column, $align: flex-start);
-        margin-bottom: 1.9em;
-    }
+  &__signin {
+    font-size: 0.79rem;
+    font-weight: 500;
+    line-height: 13px;
+    margin-top: auto; // Убедитесь, что это срабатывает
+    text-align: center; // Для центрирования текста, если необходимо
+  }
 
-    &__fieldset-password {
-        @include flex($dir: column, $align: flex-start);
-    }
+  &__link {
+    font-size: 0.79rem;
+    font-weight: 400;
+    line-height: 13px;
+    text-decoration: none;
+    text-align: center;
+  }
 
-    &__input {
-        @include focus($outline: 1px solid #6c697a);
-        border: none;
-        border-radius: 2em;
-        padding: .5em 2em;
-        font-size: .87rem;
-        min-width: 17.5em;
-        font-weight: 600;
-        line-height: 15px;
-        background-color: #F2EFFE;
-        margin-bottom: 1.5em;
+  &__error {
+    width: 40%;
+    margin: 0.4em 0;
+    font-size: 8px;
+    color: red;
+  }
 
-        &::placeholder {
-            font-size: .86em;
-            font-weight: 600;
-            line-height: 15px;
-        }
+  &__password-container {
+    position: relative;
+  }
 
-        &--marginNo {
-            margin: 0;
-        }
-
-        &--error {
-            background: #E545451A;
-            color: #e54545;
-
-
-        }
-
-        &--success {
-            background: #0f99181a;
-            color: #0f9918;
-
-        }
-    }
-
-    &__label {
-        margin-bottom: .4em;
-        font-weight: 500;
-        line-height: 17px;
-    }
-
-    &__next {
-        display: block;
-        background: transparent;
-        color: $main-color;
-        margin: 0 auto;
-        border: 1px solid $main-color;
-        border-radius: 2em;
-        padding: .63em 2.5em;
-        font-size: .79rem;
-        font-weight: 500;
-        line-height: 13px;
-        margin-bottom: 2.3em;
-    }
-
-    &__signin-btn {
-        display: block;
-        border: 1px solid $main-color;
-        background-color: white;
-        color: $main-color;
-        padding: .7em 1.6em;
-        margin: 0 auto 2.4em;
-        border-radius: 2em;
-        font-size: .79rem;
-        font-weight: 500;
-        line-height: 13px;
-
-    }
-
-    &__signin {
-
-        font-size: .79rem;
-        font-weight: 500;
-        line-height: 13px;
-        margin-bottom: 2em;
-
-    }
-
-    &__link {
-
-        font-size: .79rem;
-        font-weight: 400;
-        line-height: 13px;
-        text-decoration: none;
-        text-align: center;
-    }
-
-    &__error {
-        margin: .4em 0;
-        font-size: 1.1em;
-        color: red;
-    }
-
-    &__password-container {
-        position: relative;
-    }
-
-    &__visibility {
-        position: absolute;
-        top: 6px;
-        right: 10px;
-        background: none;
-        border: none;
-        padding: 0;
-        width: 20px;
-        height: 20px;
-    }
+  &__visibility {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+  }
 }
 
-    .appear{
-        transform: translateY(100%);
-    }
+.appear {
+  transform: translateY(100%);
+}
 
-    .appearActive{
-        transform: translateY(0);
-        transition: transform 1.5s ease;
-    }
+.appearActive {
+  transform: translateY(0);
+  transition: transform 1.5s ease;
+}
 
-   .enter {
-        // opacity: 0;
-        transform: translateY(100%);
-    }
+.enter {
+  // opacity: 0;
+  transform: translateY(100%);
+}
 
-    .enterActive {
-        // opacity: 1;
-        transform: translateY(0);
-        transition: transform 1.5s ease;
-    }
+.enterActive {
+  // opacity: 1;
+  transform: translateY(0);
+  transition: transform 1.5s ease;
+}
 
-    .exit {
-        transform: translateY(0);
-        // transform: translateY(0);
-    }
+.exit {
+  transform: translateY(0);
+  // transform: translateY(0);
+}
 
-    .exitActive {
-        opacity: 0;
-        transform: translateY(100%);
-        // transform: translateY(-100%);
-        transition: transform 1.5s ease;
-    }
-    .exitDone {
-        transform: translateY(100%) !important;
-    }
-
+.exitActive {
+  opacity: 0;
+  transform: translateY(100%);
+  // transform: translateY(-100%);
+  transition: transform 1.5s ease;
+}
+.exitDone {
+  transform: translateY(100%) !important;
+}
 
 .modal {
-    @include flex;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('../../../assets/bg-pc.jpg');
-    background-position: center center;
-    background-size: cover;
+  @include flex;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../../assets/bg-pc.jpg');
+  background-position: center center;
+  background-size: cover;
 
-    // &--active{
-    //     @include flex;
-    // }
+  // &--active{
+  //     @include flex;
+  // }
 
+  //   &--exit-done {
+  //     opacity: 0;
+  //   }
 
-    //   &--exit-done {
-    //     opacity: 0;
-    //   }
-
-
-    &__content {
-        @include flex($dir: column);
-        padding-left: 1em;
-        border-radius: 15px;
-        padding-top: 2.5em;
-        background: #fff;
-    }
+  &__content {
+    @include flex($dir: column);
+    padding-left: 1em;
+    border-radius: 15px;
+    padding-top: 2.5em;
+    background: #fff;
+  }
 }
 
 .backlink {
-    cursor: pointer;
-    margin-bottom: 2em;
-    align-self: flex-start;
+  cursor: pointer;
+  margin-bottom: 2em;
+  align-self: flex-start;
 }
