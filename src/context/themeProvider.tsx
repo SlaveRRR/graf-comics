@@ -18,7 +18,7 @@ const ThemeProvider = ({ children }) => {
 
   const [theme, setTheme] = useState<Theme>(() => {
     const result = getItem('theme');
-    return (result as Context).theme;
+    return (result as Context)?.theme ?? 'light';
   });
 
   useEffect(() => {
