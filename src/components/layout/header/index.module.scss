@@ -15,7 +15,8 @@
 
   padding-top: 0.93em;
   padding-bottom: 1em;
-  background: #f6f6f6;
+  @include themeBackground;
+
   @include flex($justify: space-between);
 
   @include mediaMin($size: $device-M) {
@@ -38,7 +39,7 @@
     padding: 0.5em 1.2em 0 1.2em;
     @include flex($dir: column, $justify: flex-start, $gap: 1em, $align: flex-start);
     position: fixed;
-    background-color: #f6f6f6;
+    @include themeSideBarBackground;
     top: 0;
     left: -70%;
     width: 70vw;
@@ -66,7 +67,7 @@
 }
 
 .menu-link {
-  color: #000000;
+  @include themeText;
   text-decoration: none;
   font-size: clamp(1.143rem, 0.694vw + 0.762rem, 1.714rem);
   font-weight: 600;
@@ -83,7 +84,7 @@
   @include flex($dir: column, $justify: flex-start, $gap: 1em, $align: flex-end);
   padding: 0.64em 1.2em 0 1.2em;
   position: fixed;
-  background-color: #f6f6f6;
+  @include themeSideBarBackground;
   top: 0;
   right: -70%;
   width: 70vw;
@@ -173,7 +174,7 @@
 }
 
 .line {
-  background-color: #dfdfdf;
+  @include themeSideBarLine;
   display: inline-block;
   width: 100%;
   height: 2px;

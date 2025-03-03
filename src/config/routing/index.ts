@@ -8,6 +8,7 @@ export const routes = {
   Блог: '/blog',
   Комикс: '/comics/1',
   // "Популярное": '/popular',
+  Достижения: '/achievements',
 };
 
 export const sideMenuRoutes = {

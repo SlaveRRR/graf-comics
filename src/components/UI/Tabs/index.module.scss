@@ -24,7 +24,7 @@
     padding: 0;
     border: none;
     background: transparent;
-    color: #564f70;
+    @include themeTabText;
     font-size: 0.86rem;
     font-weight: 600;
     line-height: normal;

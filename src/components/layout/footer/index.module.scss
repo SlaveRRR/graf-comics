@@ -40,6 +40,10 @@
   }
 }
 
+.footer-icon {
+  @include themeFooterIcons;
+}
+
 .dot {
   position: absolute;
   top: 50%;

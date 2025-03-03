@@ -1,384 +1,385 @@
 @use '../../styles/global' as *;
 
 .comics-page {
-    &__text-container {
-        padding-top: 1em;
-        background: white;
-        border-radius: 10px;
-        @include flex($dir: column);
+  &__text-container {
+    padding-top: 1em;
+    background: white;
+    border-radius: 10px;
+    @include flex($dir: column);
+  }
+
+  &__header {
+    color: #2d283e;
+    font-size: 1.43rem;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 0.3em;
+  }
+
+  &__author {
+    color: #2d283e;
+    font-size: 0.86rem;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 0.6em;
+  }
+
+  &__details {
+    margin-bottom: 1em;
+    @include flex($gap: 0.8em);
+  }
+
+  &__age,
+  &__year,
+  &__status {
+    color: #2d283e;
+    font-size: 0.72rem;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__stats {
+    margin-bottom: 1.42em;
+    @include flex($gap: 0.9em);
+  }
+
+  &__views,
+  &__likes,
+  &__starred,
+  &__bookmarks {
+    @include flex($gap: 0.2em);
+    color: #2d283e;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__description-container {
+    padding-top: 2em;
+  }
+
+  &__description {
+    display: -webkit-box;
+    color: #2d283e;
+    font-size: 0.73rem;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 0.2em;
+    height: auto;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    transition: max-height 0.4s ease;
+    -webkit-line-clamp: unset;
+    animation: close 0.5s linear forwards;
+
+    max-height: 47px;
+
+    &--open {
+      animation: open 0.1s linear 0s forwards;
+      max-height: 150px;
     }
 
-    &__header {
-        color: #2D283E;
-        font-size: 1.43rem;
-        font-weight: 600;
-        line-height: normal;
-        margin-bottom: .3em;
+    @keyframes open {
+      from {
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+      }
+
+      to {
+        line-clamp: initial;
+        -webkit-line-clamp: initial;
+      }
     }
 
-    &__author {
-        color: #2D283E;
-        font-size: .86rem;
-        font-weight: 500;
-        line-height: normal;
-        margin-bottom: .6em;
+    @keyframes close {
+      from {
+        line-clamp: initial;
+        -webkit-line-clamp: initial;
+      }
+
+      to {
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+      }
     }
+  }
 
-    &__details {
-        margin-bottom: 1em;
-        @include flex($gap: .8em);
+  &__show-more {
+    min-height: 16px;
+    @include flex($gap: 0.3em);
+    color: $main-color;
+    font-size: 0.73rem;
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 1.5em;
+  }
+
+  &__arrow {
+    &--active {
+      transform: rotateX(180deg);
     }
+  }
 
-    &__age,
-    &__year,
-    &__status {
-        color: #2D283E;
-        font-size: .72rem;
-        font-weight: 500;
-        line-height: normal;
-    }
+  &__chapters {
+    padding-top: 0.5em;
+    @include flex($dir: column, $gap: 0.5em);
+  }
 
-    &__stats {
-        margin-bottom: 1.42em;
-        @include flex($gap: .9em);
-    }
-
-    &__views,
-    &__likes,
-    &__starred,
-    &__bookmarks {
-        @include flex($gap: .2em);
-        color: #2D283E;
-        font-size: .72rem;
-        font-weight: 600;
-        line-height: normal;
-    }
-
-    &__description-container {
-        padding-top: 2em;
-    }
-
-    &__description {
-        display: -webkit-box;
-        color: #2D283E;
-        font-size: .73rem;
-        font-weight: 500;
-        line-height: normal;
-        margin-bottom: .2em;
-        height: auto;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        transition: max-height .4s ease;
-        -webkit-line-clamp: unset;
-        animation: close 0.5s linear forwards;
-
-        max-height: 47px;
-
-
-        &--open {
-            animation: open 0.1s linear 0s forwards;
-            max-height: 150px;
-        }
-
-
-
-        @keyframes open {
-            from {
-                line-clamp: 3;
-                -webkit-line-clamp: 3;
-            }
-
-            to {
-                line-clamp: initial;
-                -webkit-line-clamp: initial;
-            }
-        }
-
-        @keyframes close {
-            from {
-                line-clamp: initial;
-                -webkit-line-clamp: initial;
-            }
-
-            to {
-                line-clamp: 3;
-                -webkit-line-clamp: 3;
-            }
-        }
-    }
-
-    &__show-more {
-        min-height: 16px;
-        @include flex($gap: .3em);
-        color: $main-color;
-        font-size: .73rem;
-        border: none;
-        background: transparent;
-        padding: 0;
-        font-weight: 500;
-        line-height: normal;
-        margin-bottom: 1.5em;
-    }
-
-    &__arrow {
-        &--active {
-            transform: rotateX(180deg);
-        }
-    }
-
-    &__chapters {
-        padding-top: .5em;
-        @include flex($dir: column, $gap: .5em);
-
-    }
-
-    &__comments {
-        padding-top: .5em;
-    }
+  &__comments {
+    padding-top: 0.5em;
+  }
 }
 
 .filters {
-    margin-bottom: 2.4em;
+  margin-bottom: 2.4em;
 
-    &__header {
-        color: #564F70;
-        font-size: .72rem;
-        font-weight: 600;
-        line-height: normal;
-        margin-bottom: 1em;
+  &__header {
+    color: #564f70;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 1em;
+  }
+
+  &__container {
+    @include flex($wrap: wrap, $justify: flex-start, $gap: 0.5em);
+  }
+
+  &__label {
+    display: block;
+    padding: 0.6em 1em;
+    border-radius: 10px;
+    background: #fafafa;
+
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.3s;
+
+    &:has(input:active) {
+      color: #fff;
+      background: #82bcfc;
     }
-
-    &__container {
-        @include flex($wrap: wrap, $justify: flex-start, $gap: .5em)
-    }
-
-    &__label {
-
-
-        display: block;
-        padding: .6em 1em;
-        border-radius: 10px;
-        background: #FAFAFA;
-
-
-        text-align: center;
-        font-size: .72rem;
-        font-weight: 600;
-        line-height: normal;
-        transition: all .3s;
-
-        &:has(input:active) {
-            color: #FFF;
-            background: #82BCFC;
-        }
-
-    }
+  }
 }
 
 .same {
+  &__header {
+    @include flex($justify: space-between);
+    margin-bottom: 1em;
+  }
 
-    &__header {
-        @include flex($justify: space-between);
-        margin-bottom: 1em;
+  &__text {
+    color: #564f70;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__btn {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: $main-color;
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__container {
+    @include flex($justify: flex-start, $gap: 0.5em);
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      width: 0;
     }
+  }
 
-    &__text {
-        color: #564F70;
-        font-size: .72rem;
-        font-weight: 600;
-        line-height: normal;
-
-    }
-
-    &__btn {
-        padding: 0;
-        border: none;
-        background: transparent;
-        color: $main-color;
-        font-size: .6rem;
-        font-weight: 600;
-        line-height: normal;
-    }
-
-    &__container {
-        @include flex($justify: flex-start, $gap: .5em);
-        overflow-x: scroll;
-
-        &::-webkit-scrollbar {
-            width: 0;
-        }
-
-    }
-
-    &__item {
-
-        width: 100%;
-        padding: 1em;
-        background: white;
-        box-shadow: 5px 5px 5px 5px #FAFAFA;
-
-    }
-
-
+  &__item {
+    width: 100%;
+    padding: 1em;
+    background: white;
+    box-shadow: 5px 5px 5px 5px #fafafa;
+  }
 }
 
 .card {
-    padding: 0.8em 2.4em 0.6em 0.9em;
-    border-radius: 10px;
-    min-width: 190px;
-    border: 4px solid #FAFAFA;
-    @include flex($align: flex-start, $gap: .8em);
+  padding: 0.8em 2.4em 0.6em 0.9em;
+  border-radius: 10px;
+  min-width: 190px;
+  border: 4px solid #fafafa;
+  @include flex($align: flex-start, $gap: 0.8em);
 
-    position: relative;
+  position: relative;
 
-    &__left {
-        flex: 1 0 68px;
+  &__left {
+    flex: 1 0 68px;
+  }
+
+  &__img {
+    border-radius: 8px;
+    width: 100%;
+    height: 90px;
+    background: #e8e8e8;
+  }
+
+  &__text {
+    width: max-content;
+    color: #2d283e;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__like {
+    position: absolute;
+    top: 14px;
+    left: 54px;
+    transition: all 0.3s;
+    fill: white;
+    transform: scale(1);
+
+    & > path {
+      fill: inherit;
+      transition: all 0.2s;
     }
 
-    &__img {
-        border-radius: 8px;
-        width: 100%;
-        height: 90px;
-        background: #E8E8E8;
-    }
+    &--liked {
+      fill: red;
+      animation: like 0.3s ease-in-out 1 forwards;
 
-    &__text {
-        width: max-content;
-        color: #2D283E;
-        font-weight: 500;
-        line-height: normal;
-    }
-
-    &__like {
-        position: absolute;
-        top: 14px;
-        left: 54px;
-        transition: all .3s;
-        fill: white;
-        transform: scale(1);
-
-        &>path {
-            fill: inherit;
-            transition: all .2s;
+      @keyframes like {
+        0% {
+          transform: scale(0.5);
         }
 
-        &--liked {
-            fill: red;
-            animation: like .3s ease-in-out 1 forwards;
-
-            @keyframes like {
-                0% {
-                    transform: scale(0.5);
-                }
-
-                100% {
-                    transform: scale(1.3);
-                }
-            }
+        100% {
+          transform: scale(1.3);
         }
+      }
     }
-
+  }
 }
 
 .chapters {
-    &__sort-btn {
-        padding: 0;
-        border: none;
-        background: transparent;
-        align-self: flex-start;
-        color: #2D283E;
-        font-size: .73rem;
-        font-weight: 600;
-        line-height: normal;
+  &__sort-btn {
+    padding: 0;
+    border: none;
+    background: transparent;
+    align-self: flex-start;
+    color: #2d283e;
+    font-size: 0.73rem;
+    font-weight: 600;
+    line-height: normal;
 
-        &>svg {
-            margin-right: .2em;
-        }
-
-        margin-bottom: .8em;
+    & > svg {
+      margin-right: 0.2em;
     }
 
+    margin-bottom: 0.8em;
+  }
 }
 
 .comments {
-    &__label {
-        position: relative;
-        display: block;
+  &__label {
+    position: relative;
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 30px;
+    color: #767283;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: normal;
+    border-radius: 562px;
+    border: 1px solid #f2effe;
+    background: #f2effe;
+    padding: 0.4em 2.1em;
+
+    @include focus() {
+      border: 1px solid #808080;
     }
 
-    &__input {
-        width: 100%;
-        min-height: 30px;
-        color: #767283;
-        font-size: .72rem;
-        font-weight: 600;
-        line-height: normal;
-        border-radius: 562px;
-        border: 1px solid #F2EFFE;
-        background: #F2EFFE;
-        padding: .4em 2.1em;
-
-        @include focus() {
-            border: 1px solid #808080;
-        }
-
-        &::placeholder {
-            color: #CABDFC;
-            font-size: .72rem;
-            font-weight: 600;
-            line-height: normal;
-        }
+    &::placeholder {
+      color: #cabdfc;
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: normal;
     }
+  }
 
-    &__send {
-        padding: .1em .4em;
-        border-radius: 50%;
-        background: #ffffff;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
-        border: none;
-        position: absolute;
+  &__send {
+    padding: 0.1em 0.4em;
+    border-radius: 50%;
+    background: #ffffff;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    border: none;
+    position: absolute;
+  }
+
+  &__sort-btn {
+    padding: 0;
+    border: none;
+    background: transparent;
+    align-self: flex-start;
+    color: #2d283e;
+    font-size: 0.73rem;
+    font-weight: 600;
+    line-height: normal;
+
+    & > svg {
+      margin-right: 0.2em;
     }
-
-    &__sort-btn {
-        padding: 0;
-        border: none;
-        background: transparent;
-        align-self: flex-start;
-        color: #2D283E;
-        font-size: .73rem;
-        font-weight: 600;
-        line-height: normal;
-
-        &>svg {
-            margin-right: .2em;
-        }
-
-        margin-bottom: 1em;
-    }
+    margin-bottom: 1em;
+  }
+  &__counter {
+    color: $black-color;
+    font-size: 0.6rem;
+    font-weight: 500;
+    line-height: 0.7rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .buttons {
-    @include flex($gap: .57em);
-    margin-bottom: 1.42em;
+  @include flex($gap: 0.57em);
+  margin-bottom: 1.42em;
 
-    &__bookmark {
-        border: 1px solid $main-color;
-        font-size: .86rem;
-        padding: .5em 2em;
-        background: white;
-        color: $main-color;
-        border-radius: 250px;
+  &__bookmark {
+    border: 1px solid $main-color;
+    font-size: 0.86rem;
+    padding: 0.5em 2em;
+    background: white;
+    color: $main-color;
+    border-radius: 250px;
+  }
 
-    }
-
-    &__read {
-        padding: .5em 3.7em;
-        border: none;
-        font-size: .86rem;
-        color: white;
-        background-color: $main-color;
-        border-radius: 250px;
-    }
+  &__read {
+    padding: 0.5em 3.7em;
+    border: none;
+    font-size: 0.86rem;
+    color: white;
+    background-color: $main-color;
+    border-radius: 250px;
+  }
+  &__download {
+    display: block;
+    width: 90px;
+    height: 20px;
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #7a5af8;
+    background: transparent;
+    border-radius: 10px;
+    border: 1px solid #7a5af8;
+    margin: 0 auto;
+  }
 }

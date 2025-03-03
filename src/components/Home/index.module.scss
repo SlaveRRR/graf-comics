@@ -1,7 +1,7 @@
 @use '../../styles/global' as *;
 
 .image-section {
-  background: #ffffff;
+  @include themeSectionBackground;
   margin-bottom: 1.1em;
   padding-top: 1.2em;
   padding-bottom: 1.5em;
@@ -36,7 +36,7 @@
   }
 
   &__slogan {
-    color: $black-color;
+    @include themeText;
     font-size: clamp(1.43rem, 1rem + 1.6vw, 3.42rem);
     font-weight: 600;
     line-height: normal;
@@ -51,6 +51,7 @@
   }
 
   &__text {
+    @include themeText;
     text-align: center;
     font-size: clamp(0.86rem, 0.685rem + 0.75vw, 1.71rem);
     font-weight: 500;
@@ -252,7 +253,7 @@
 .popular-container {
   padding-top: 0.78em;
   padding-bottom: 1.43em;
-  background: #ffffff;
+  @include themeSectionBackground;
 
   &__link {
     margin: 0 0 0.9em;
@@ -297,7 +298,7 @@
   padding-top: 0.78em;
   padding-bottom: 1.43em;
 
-  background: #ffffff;
+  @include themeSectionBackground;
 
   &__link {
     margin: 0 0 0.9em;
@@ -404,7 +405,9 @@
 .co-author {
   &__container {
     padding: 1.1em 2.35em;
-    background: white;
+
+    @include themeSectionBackground;
+
     @include flex($dir: column, $gap: 0.71em);
 
     @include mediaMin($device-M) {
@@ -416,7 +419,7 @@
     font-weight: 600;
     font-size: 0.86rem;
     line-height: 15px;
-    color: #2d283e;
+    @include themeText;
   }
 
   &__idea {

@@ -42,14 +42,14 @@
   }
 
   &__name {
-    color: #2d283e;
+    @include themeText;
     font-size: 1.43rem;
     font-weight: 600;
     margin-bottom: 0.3em;
   }
 
   &__status {
-    color: #2d283e;
+    @include themeText;
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 0.8em;
