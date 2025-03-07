@@ -1,7 +1,7 @@
 'use client';
-import React, { FC } from 'react';
-import { signIn } from 'next-auth/react';
 import cn from 'classnames';
+import { signIn } from 'next-auth/react';
+import { FC } from 'react';
 import styles from './index.module.scss';
 
 type Props = {
@@ -14,8 +14,8 @@ const SocialAuthLinks: FC<Props> = ({ mixClass }) => {
       <button onClick={() => signIn('google', { callbackUrl: '/' })} className={styles['auth-btn']}>
         <svg
           className={styles['social-links__item']}
-          width="33"
-          height="30"
+          width="27"
+          height="24"
           viewBox="0 0 33 30"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

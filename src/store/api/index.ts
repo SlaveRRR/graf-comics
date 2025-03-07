@@ -1,7 +1,6 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IUser } from './types';
 import { User } from '@prisma/client';
-import { USERTAG, ARTICLETAG } from './tags';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ARTICLETAG, USERTAG } from './tags';
 const users = 'users';
 
 export const api = createApi({

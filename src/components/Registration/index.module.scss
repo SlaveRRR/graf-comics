@@ -1,81 +1,84 @@
 @use '../../styles/global' as *;
+.box {
+  @include flex;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../assets/bg-pc.jpg');
+  background-position: center center;
+  background-size: cover;
+}
 
-.registration {
-  &__inner-container {
-    border-radius: 10px;
-    background: white;
+.container__backLink {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  font-size: 0.86rem;
+  padding: 0;
+  font-weight: 600;
+  line-height: 15px;
+  text-align: left;
+  text-decoration: none;
+  color: $main-color;
+  &--arrow {
+    margin-left: 0.3em;
+  }
+}
+
+.registration-box {
+  width: 40%;
+  background-color: #fff;
+  height: 450px;
+  z-index: 1;
+  padding: 28px 34px;
+  text-align: center;
+  border-radius: 15px;
+  &__container {
     @include flex($dir: column);
     padding-top: 1em;
-    margin-bottom: 0.9em;
   }
-
-  &__flex {
-    @include flex($dir: column);
-  }
-
   &__head {
-    font-size: clamp(1.43rem, 0.5rem + 3.8vw, 3.72rem);
+    margin-top: 25px;
+    font-size: 32px;
     font-weight: 600;
     line-height: 24px;
     text-align: center;
-    margin-bottom: 0.3em;
-
-    @include mediaMin($size: $device-XM) {
-      line-height: 59px;
-    }
+    margin-bottom: 0.1em;
   }
 
   &__backLink {
     align-self: flex-start;
-    margin-bottom: 0.9em;
+    margin-bottom: 2em;
   }
 
   &__logo {
     margin-bottom: 1em;
-
-    @include mediaMin($size: $device-XM) {
-      display: none;
-    }
   }
 
   &__with-social {
-    font-size: 1rem;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: 0em;
     margin-bottom: 1em;
-
-    @include mediaMin($size: $device-XM) {
-      font-size: 1.72rem;
-      font-weight: 500;
-      line-height: 29px;
-      margin-bottom: 0.7em;
-    }
   }
 
   &__social {
     margin-bottom: 0.86em;
-
-    @include mediaMin($size: $device-XM) {
-      margin-bottom: 2em;
-    }
   }
 
   &__or {
-    font-size: clamp(0.876rem, 0.7rem + 1.6vw, 2.15rem);
     font-weight: 400;
     line-height: 17px;
     margin-bottom: 0.8em;
-
-    @include mediaMin($size: $device-XM) {
-      font-weight: 500;
-      line-height: 29px;
-      margin-bottom: 1.2em;
-    }
   }
-
   &__fieldset {
     @include flex($dir: column, $align: flex-start);
+    margin-bottom: 1.9em;
+    align-items: center;
   }
 
   &__fieldset-password {
@@ -83,35 +86,22 @@
   }
 
   &__input {
-    @include focus($outline: 1px solid #807d7d);
+    @include focus($outline: 1px solid #6c697a);
     border: none;
     border-radius: 2em;
     padding: 0.5em 2em;
-
-    font-size: clamp(0.86rem, 1.9vw, 1.72rem);
+    font-size: 0.87rem;
+    min-width: 17.5em;
     font-weight: 600;
     line-height: 15px;
     background-color: #f2effe;
     margin-bottom: 1.5em;
 
-    width: clamp(210px, 50vw, 510px);
-
-    @include mediaMin($size: $device-XM) {
-      padding: 0.8em 1.8em;
-      font-weight: 500;
-      line-height: 24px;
-    }
-
     &::placeholder {
       font-size: 0.86em;
       font-weight: 600;
       line-height: 15px;
-      font-size: clamp(0.86rem, 1.9vw, 1.72rem);
-
-      @include mediaMin($size: $device-XM) {
-        font-weight: 500;
-        line-height: 24px;
-      }
+      color: #cabdfc;
     }
 
     &--marginNo {
@@ -128,61 +118,25 @@
       color: #0f9918;
     }
   }
-
-  &__label {
-    font-size: clamp(1rem, 1rem + 0.1vw, 2rem);
-    margin-bottom: 0.4em;
-    font-weight: 500;
-    line-height: 17px;
-
-    @include mediaMin($size: $device-XM) {
-      line-height: 29px;
-
-      font-size: clamp(1rem, 1rem + 1.1vw, 2.1rem);
-    }
+  &__error {
+    margin: 0.4em 0;
+    font-size: 8px;
+    color: red;
+  }
+  &__password-container {
+    position: relative;
   }
 
-  &__next {
-    display: block;
-    background: transparent;
-    color: $main-color;
-    margin: 0 auto;
-    border: 1px solid $main-color;
-    border-radius: 2em;
-    padding: 0.63em 2.5em;
-    font-size: 0.79rem;
-    font-weight: 500;
-    line-height: 13px;
-    margin-bottom: 2.3em;
-
-    &:disabled {
-      color: rgba($color: $main-color, $alpha: 0.3);
-      border: 1px solid rgba($color: $main-color, $alpha: 0.3);
-    }
+  &__visibility {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 20px;
+    height: 20px;
   }
-
-  &__timer-text {
-    font-size: 0.79rem;
-    font-weight: 500;
-    line-height: 13px;
-    text-align: center;
-    padding-bottom: 1em;
-  }
-
-  &__reset-email {
-    display: block;
-    background: $main-color;
-    color: white;
-    margin: 0 auto;
-    border: 1px solid $main-color;
-    border-radius: 2em;
-    padding: 0.63em 2.5em;
-    font-size: 0.79rem;
-    font-weight: 500;
-    line-height: 13px;
-    margin-bottom: 2.3em;
-  }
-
   &__ready {
     display: block;
     background-color: $main-color;
@@ -195,28 +149,175 @@
     line-height: 13px;
     border: none;
   }
+}
+
+.registration {
+  &__container {
+    @include flex($dir: column);
+    padding-top: 1em;
+  }
+
+  &__head {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 0.1em;
+  }
+
+  &__backLink {
+    align-self: flex-start;
+    margin-bottom: 2em;
+  }
+
+  &__logo {
+    margin-bottom: 1em;
+  }
+
+  &__with-social {
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    margin-bottom: 1em;
+  }
+
+  &__social {
+    margin-bottom: 0.86em;
+  }
+
+  &__or {
+    font-weight: 400;
+    line-height: 17px;
+    margin-bottom: 0.8em;
+  }
+
+  &__fieldset {
+    @include flex($dir: column, $align: flex-start);
+    margin-bottom: 1.9em;
+    align-items: center;
+  }
+
+  &__fieldset-password {
+    @include flex($dir: column, $align: flex-start);
+  }
+
+  &__input {
+    @include focus($outline: 1px solid #6c697a);
+    border: none;
+    border-radius: 2em;
+    padding: 0.5em 2em;
+    font-size: 0.87rem;
+    min-width: 17.5em;
+    font-weight: 600;
+    line-height: 15px;
+    background-color: #f2effe;
+    margin-bottom: 1.5em;
+
+    &::placeholder {
+      font-size: 0.86em;
+      font-weight: 600;
+      line-height: 15px;
+      color: #cabdfc;
+    }
+
+    &--marginNo {
+      margin: 0;
+    }
+
+    &--error {
+      background: #e545451a;
+      color: #e54545;
+      font-size: 8px;
+    }
+
+    &--success {
+      background: #0f99181a;
+      color: #0f9918;
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__label {
+    margin-bottom: 0.4em;
+    font-weight: 500;
+    line-height: 17px;
+  }
+  &__reset-email {
+    width: 50%;
+    display: block;
+    background: $main-color;
+    color: white;
+    margin: 0 auto;
+    border: 1px solid $main-color;
+    border-radius: 2em;
+    padding: 0.63em 2.5em;
+    font-size: 0.79rem;
+    font-weight: 500;
+    line-height: 13px;
+    margin-bottom: 2.3em;
+  }
+  &__next--button {
+    display: block;
+    background: transparent;
+    color: $main-color;
+    margin: 0 auto;
+    border: 1px solid $main-color;
+    border-radius: 2em;
+    padding: 0.63em 2.5em;
+    font-size: 0.79rem;
+    font-weight: 500;
+    line-height: 13px;
+    margin-bottom: 2.3em;
+  }
+  &__next {
+    width: 50%;
+    display: block;
+    background: transparent;
+    color: $main-color;
+    margin: 0 auto;
+    border: 1px solid $main-color;
+    border-radius: 2em;
+    padding: 0.63em 2.5em;
+    font-size: 0.79rem;
+    font-weight: 500;
+    line-height: 13px;
+    margin-bottom: 2.3em;
+  }
+
+  &__signin-btn {
+    display: block;
+    border: 1px solid $main-color;
+    background-color: white;
+    color: $main-color;
+    padding: 0.7em 1.6em;
+    margin: 0 auto 2.4em;
+    border-radius: 2em;
+    font-size: 0.79rem;
+    font-weight: 500;
+    line-height: 13px;
+  }
 
   &__signin {
     font-size: 0.79rem;
     font-weight: 500;
     line-height: 13px;
-    text-align: center;
+    margin-bottom: 2em;
   }
 
   &__link {
     font-size: 0.79rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 13px;
     text-decoration: none;
     text-align: center;
   }
 
   &__error {
-    text-wrap: balance;
-    max-width: 200px;
     margin: 0.4em 0;
-    font-size: 1.1em;
-    line-height: normal;
+    font-size: 8px;
     color: red;
   }
 
@@ -233,6 +334,9 @@
     padding: 0;
     width: 20px;
     height: 20px;
+  }
+  &__timer-text {
+    margin-bottom: 15px;
   }
 }
 

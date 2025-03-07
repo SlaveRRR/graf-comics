@@ -1,12 +1,8 @@
-import React from 'react'
-import { NextPage } from 'next'
-import Registration from '@/components/Registration'
+import { Registration } from '@/components/Registration';
+import { NextPage } from 'next';
 
+const SignupPage: NextPage = () => {
+  return <Registration />;
+};
 
-
-
-const SignupPage : NextPage  = () => {
-  return <Registration/>
-}
-
-export default SignupPage
+export default SignupPage;
