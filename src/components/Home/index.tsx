@@ -85,7 +85,7 @@ const Home: FC = () => {
             {Array.from({
               length: 8,
             }).map((item) => (
-              <Card isNew mixClass={[styles['cards-comics']]} text="Название" />
+              <Card type="" mixClass={[styles['cards-comics']]} text="Название" />
             ))}
           </div>
         </div>

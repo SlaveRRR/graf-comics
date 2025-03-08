@@ -146,6 +146,7 @@ const ProfileAuthor: FC = () => {
               </div>
             )}
           </div>
+          <button className={styles['profile__support-btn']}>Поддержать</button>
           <Stats
             mixClass={[styles['profile__stats']]}
             stats={[
@@ -309,6 +310,7 @@ const ProfileAuthor: FC = () => {
                   'Название',
                   'Название',
                 ]}
+                types={['moder', 'edit', 'new']}
               />
             </>
           </Tabs>

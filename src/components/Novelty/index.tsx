@@ -30,7 +30,7 @@ const Novelty: FC = () => {
                 'Название',
                 'Название',
               ]}
-              isNew={true}
+              types={['new', 'new', 'new', 'new', 'new', 'new', 'new', 'new', 'new', 'new', 'new', 'new']}
             />
           </div>
         </section>

@@ -5,14 +5,14 @@ import styles from './index.module.scss';
 type Props = {
   names: string[];
   mixClass: string[];
-  isNew?: boolean;
+  types?: string[];
 };
 
-const Cards: FC<Props> = ({ names, mixClass, isNew = false }) => {
+const Cards: FC<Props> = ({ names, mixClass, types = [] }) => {
   return (
     <div className={cn(styles['cards'], ...mixClass)}>
       {names.map((v, i) => (
-        <Card key={`${v}${i}`} text={v} isNew={isNew} />
+        <Card key={`${v}${i}`} text={v} type={types[i]} />
       ))}
     </div>
   );
