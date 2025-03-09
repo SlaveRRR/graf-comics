@@ -315,9 +315,9 @@
   }
 
   &__send {
-    padding: 0.1em 0.4em;
-    border-radius: 50%;
-    background: #ffffff;
+    padding: 0.2em;
+    border-radius: 100%;
+    background: inherit;
     top: 50%;
     transform: translateY(-50%);
     right: 0;
