@@ -16,21 +16,20 @@ const Novelty: FC = () => {
           <div className={styles['novetly__cards-container']}>
             <Cards
               mixClass={[styles['novetly__cards']]}
-              names={[
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
-                'Название',
+              cards={[
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
+                { name: 'Название', type: 'new' },
               ]}
-              types={['new', 'new', 'new', 'new', 'new', 'new', 'new', 'new', 'new', 'new', 'new', 'new']}
             />
           </div>
         </section>

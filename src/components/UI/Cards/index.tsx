@@ -2,17 +2,22 @@ import cn from 'classnames';
 import { FC } from 'react';
 import { Card } from '..';
 import styles from './index.module.scss';
+
+interface ICard {
+  name: string;
+  type?: string;
+}
+
 type Props = {
-  names: string[];
+  cards: ICard[];
   mixClass: string[];
-  types?: string[];
 };
 
-const Cards: FC<Props> = ({ names, mixClass, types = [] }) => {
+const Cards: FC<Props> = ({ cards, mixClass }) => {
   return (
     <div className={cn(styles['cards'], ...mixClass)}>
-      {names.map((v, i) => (
-        <Card key={`${v}${i}`} text={v} type={types[i]} />
+      {cards.map((v, i) => (
+        <Card key={`${v}${i}`} text={v.name} type={v.type} />
       ))}
     </div>
   );
