@@ -1,0 +1,64 @@
+@use '../../styles/global' as *;
+
+.text {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 17px;
+
+  @include themeText;
+
+  &--mb {
+    margin-bottom: 1.1em;
+  }
+}
+
+.list {
+  padding-left: 2em;
+
+  & li {
+    @include themeText;
+    @extend .text;
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-bottom: 0.2em;
+  }
+
+  & li::marker {
+    font-size: 0.5em;
+  }
+
+  &--mb {
+    margin-bottom: 1.43em;
+  }
+}
+
+.link {
+  @extend .text;
+  color: #7a5af8;
+}
+
+.policy {
+  &__container {
+    padding: 1.28em 0.78em 2.14em;
+    @include themeSectionBackground;
+    border-radius: 10px;
+  }
+
+  &__header {
+    @include themeText;
+    font-weight: 600;
+    font-size: 1.43rem;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  &__subheader {
+    @include themeText;
+
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 17px;
+    margin-bottom: 1em;
+  }
+}
