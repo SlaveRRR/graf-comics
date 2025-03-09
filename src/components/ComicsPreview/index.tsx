@@ -269,14 +269,22 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
                   />
 
                   <button className={styles['comments__send']}>
-                    <svg
-                      fill="#7A5AF8"
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="24"
-                      viewBox="0 -960 960 960"
-                      width="24"
-                    >
-                      <path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
+                    <svg width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="22" height="22" rx="11" fill="#7A5AF8" />
+                      <path
+                        d="M11 6L11 16"
+                        stroke="white"
+                        stroke-width="1.42857"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M16 11L11 6L6 11"
+                        stroke="white"
+                        stroke-width="1.42857"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
                     </svg>
                   </button>
                 </label>
