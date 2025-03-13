@@ -1,0 +1,52 @@
+@use '../../styles/global' as *;
+
+.text {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 17px;
+  margin-bottom: 1.1em;
+  @include themeText;
+}
+
+.list {
+  padding-left: 0.9em;
+  margin-bottom: 1.43em;
+
+  & li {
+    @include themeText;
+    @extend .text;
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-bottom: 0.2em;
+  }
+
+  & li::marker {
+    font-size: 0.5em;
+  }
+}
+
+.about {
+  &__container {
+    padding: 1.28em 0.78em 2.14em;
+    @include themeSectionBackground;
+    border-radius: 10px;
+  }
+
+  &__header {
+    @include themeText;
+    font-weight: 600;
+    font-size: 1.43rem;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  &__subheader {
+    @include themeText;
+
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 17px;
+    margin-bottom: 1em;
+  }
+}

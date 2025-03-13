@@ -119,7 +119,7 @@ const Footer: FC = () => {
           <Link className={styles['links__item']} href="/help">
             Помощь <span className={styles['dot']}></span>
           </Link>
-          <Link className={styles['links__item']} href="/copyright">
+          <Link className={styles['links__item']} href="/author-rights">
             Авторское право
           </Link>
           <Link className={styles['links__item']} href="/user-agreement">
@@ -131,7 +131,7 @@ const Footer: FC = () => {
           <Link className={styles['links__item']} href="/contacts">
             Контакты <span className={styles['dot']}></span>
           </Link>
-          <Link className={styles['links__item']} href="/agreement">
+          <Link className={styles['links__item']} href="/contract">
             Агентский договор
           </Link>
         </div>
