@@ -1,4 +1,4 @@
-import { Registration } from '@/components/Registration';
+import Registration from '@/components/Registration';
 import { NextPage } from 'next';
 
 const SignupPage: NextPage = () => {

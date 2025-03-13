@@ -14,8 +14,8 @@ const SocialAuthLinks: FC<Props> = ({ mixClass }) => {
       <button onClick={() => signIn('google', { callbackUrl: '/' })} className={styles['auth-btn']}>
         <svg
           className={styles['social-links__item']}
-          width="27"
-          height="24"
+          width="33"
+          height="30"
           viewBox="0 0 33 30"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
