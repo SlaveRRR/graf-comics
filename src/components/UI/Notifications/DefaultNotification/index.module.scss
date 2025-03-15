@@ -1,0 +1,16 @@
+@use '../../../../styles/global' as *;
+.notification {
+  background-color: #ffffff;
+  width: 290px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 12px;
+}
+.detail {
+  color: #818181;
+  font-size: 10px;
+}
