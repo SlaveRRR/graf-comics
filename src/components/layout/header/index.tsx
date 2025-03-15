@@ -145,9 +145,9 @@ const Header: FC = () => {
             </button>
           ) : (
             <>
-              <Link className={styles['signin-link']} href={'/auth/signin'}>
+              <button className={styles['signin-link']} onClick={() => setActiveModal(true)}>
                 Войти
-              </Link>
+              </button>
               <button onClick={() => setActiveModal(true)} className={styles['signin-btn']}>
                 Войти
               </button>
