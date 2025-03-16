@@ -1,6 +1,6 @@
 .comics-page {
   scroll-snap-align: center;
-  height: 100dvh; // Высота секции — эквивалент экрана
+  height: 100%; // Высота секции — эквивалент экрана
   width: 100%; // Полная ширина
 
   &__scrollable {

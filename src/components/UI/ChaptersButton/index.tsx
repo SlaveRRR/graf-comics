@@ -1,8 +1,8 @@
 'use client';
-import React, { FC, useState } from 'react';
-import styles from './index.module.scss';
 import { IChapter } from '@/components/Chapter/types';
+import { FC, useState } from 'react';
 import Chapters from '../Chapters';
+import styles from './index.module.scss';
 
 type Props = {
   chapters: IChapter[];
@@ -15,7 +15,7 @@ const ChaptersButton: FC<Props> = ({ chapters }) => {
     <>
       <button onClick={() => setActive((prev) => !prev)} className={styles['chapters__btn']}>
         {active ? (
-          <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="auto" height="auto" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_1528_10593)">
               <g clip-path="url(#clip1_1528_10593)">
                 <path d="M4.75586 12.2426L13.2411 3.75736" stroke="#7A5AF8" stroke-width="1.8" stroke-linecap="round" />
@@ -32,7 +32,7 @@ const ChaptersButton: FC<Props> = ({ chapters }) => {
             </defs>
           </svg>
         ) : (
-          <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="auto" height="auto" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 4H14M6 8H14M6 12H14" stroke="#7A5AF8" strokeWidth="2" strokeLinejoin="round" />
             <circle cx="3" cy="4" r="1" fill="#7A5AF8" />
             <circle cx="3" cy="8" r="1" fill="#7A5AF8" />
