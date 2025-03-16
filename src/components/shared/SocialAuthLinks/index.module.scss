@@ -9,8 +9,8 @@
 
   &__item {
     @include mediaMin($size: $device-XM) {
-      width: 32px;
-      height: 30px;
+      width: 42px;
+      height: 40px;
     }
   }
 }

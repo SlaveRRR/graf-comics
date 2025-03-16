@@ -1,53 +1,83 @@
 @use '../../styles/global' as *;
 
 .post {
-    &__container {
-        padding-top: .4em;
-    }
+  &__container {
+    padding-top: 0.4em;
+  }
 
-    &__header {
-        height: 45px;
-        @include flex($justify: space-between);
-        margin-bottom: .7em;
-    }
+  &__header {
+    height: 45px;
+    @include flex($justify: space-between);
+    margin-bottom: 0.7em;
+  }
 
-    &__header-text {
-        color: #2D283E;
-        font-size: .78rem;
-        font-weight: 500;
-        line-height: normal;
-    }
+  &__header-text {
+    color: #2d283e;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 10px;
+  }
 
-    &__more-btn {
-        padding: 0;
-        border: none;
-        background: transparent;
-        align-self: flex-start;
-    }
+  &__user-info {
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-    &__poster {
-        width: 100%;
-        object-fit: cover;
-        margin-bottom: .8em;
-    }
-    &__info{
-        @include flex($justify:space-between);
-    }
-    &__actions{
-        @include flex($gap:.8em);
-    }
-    &__like-btn,&__comment-btn{
-        padding: 0;
-        border: none;
-        background: transparent;
-    }
+  &__avatar {
+    background-color: #d9d9d9;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
 
-    
-    &__views-count{
-        bottom: 8px;
-        left: 3px;;
-        position: relative;
+  &__username {
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
 
-    }
-   
+  &__date {
+    font-weight: 600;
+    color: #564f70;
+    font-size: 10px;
+  }
+
+  &__more-btn {
+    padding: 0;
+    border: none;
+    background: transparent;
+    align-self: flex-start;
+  }
+
+  &__poster {
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 0.8em;
+  }
+  &__info {
+    @include flex($justify: space-between);
+  }
+  &__actions {
+    @include flex($gap: 0.8em);
+  }
+  &__like-btn,
+  &__comment-btn {
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
+  &__views {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3em;
+  }
+
+  &__views-count {
+    position: relative;
+  }
 }

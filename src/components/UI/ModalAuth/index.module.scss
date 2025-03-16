@@ -1,37 +1,7 @@
 @use '../../../styles/global' as *;
 
-.container {
-  width: 40%;
-  background-color: #fff;
-  height: 450px;
-  z-index: 1;
-  padding: 28px 34px;
-  text-align: center;
-  border-radius: 15px;
-  &__backLink {
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-    border: 0;
-    font-size: 0.86rem;
-    padding: 0;
-    font-weight: 600;
-    line-height: 15px;
-    text-align: left;
-    text-decoration: none;
-    color: $main-color;
-    &--arrow {
-      margin-left: 0.3em;
-    }
-  }
-}
 .login {
-  width: 50%;
-  background-color: #fff;
-  height: 450px;
-  z-index: 1;
-  padding: 28px 34px;
-  text-align: center;
+  background: white;
 
   &__container {
     @include flex($dir: column);
@@ -39,11 +9,16 @@
   }
 
   &__head {
-    font-size: 32px;
+    font-size: 1.43rem;
     font-weight: 600;
     line-height: 24px;
     text-align: center;
     margin-bottom: 0.1em;
+  }
+
+  &__backLink {
+    align-self: flex-start;
+    margin-bottom: 2em;
   }
 
   &__logo {
@@ -70,7 +45,6 @@
   &__fieldset {
     @include flex($dir: column, $align: flex-start);
     margin-bottom: 1.9em;
-    align-items: center;
   }
 
   &__fieldset-password {
@@ -93,7 +67,6 @@
       font-size: 0.86em;
       font-weight: 600;
       line-height: 15px;
-      color: #cabdfc;
     }
 
     &--marginNo {
@@ -112,7 +85,6 @@
   }
 
   &__label {
-    display: flex;
     margin-bottom: 0.4em;
     font-weight: 500;
     line-height: 17px;
@@ -149,8 +121,7 @@
     font-size: 0.79rem;
     font-weight: 500;
     line-height: 13px;
-    margin-top: auto; // Убедитесь, что это срабатывает
-    text-align: center; // Для центрирования текста, если необходимо
+    margin-bottom: 2em;
   }
 
   &__link {
@@ -162,9 +133,8 @@
   }
 
   &__error {
-    width: 40%;
     margin: 0.4em 0;
-    font-size: 8px;
+    font-size: 1.1em;
     color: red;
   }
 
