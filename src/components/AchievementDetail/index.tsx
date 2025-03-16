@@ -2,11 +2,6 @@
 import { BackLink } from '@/components/shared';
 import { useRouter } from 'next/navigation';
 import { FC } from 'react';
-import DefaultNotification from '../UI/Notifications/DefaultNotification';
-import ErrorNotification from '../UI/Notifications/ErrorNotification';
-import AwardNotification from '../UI/Notifications/NewAward';
-import SuccessNotification from '../UI/Notifications/SuccessNotification';
-import WarningNotification from '../UI/Notifications/WarnigNotification';
 import styles from './index.module.scss';
 type Props = {};
 
@@ -19,12 +14,7 @@ const AchievementDetail: FC<Props> = ({}) => {
 
       <section className={styles['achievement-detail__main-content']}>
         <img src="/post.svg" alt="Иконка достижения" className={styles['achievement-detail__img']} />
-        <AwardNotification awardName={'ТЕСТ'}></AwardNotification>
-        <ErrorNotification errorText={'ТЕСТ'}></ErrorNotification>
-        <SuccessNotification successText={'ТЕСТ'}></SuccessNotification>
-        <DefaultNotification notificationText={'ТЕСТ'} detailText={'Lol'}></DefaultNotification>
-        <DefaultNotification notificationText={'ТЕСТ'} detailText={''}></DefaultNotification>
-        <WarningNotification warningText={'ТЕСТ'}></WarningNotification>
+
         <p className={styles['achievement-detail__title']}>Название достижения</p>
         <p className={styles['achievement-detail__description']}>Описание достижения</p>
       </section>
