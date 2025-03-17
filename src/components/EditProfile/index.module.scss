@@ -209,7 +209,8 @@
 
     &:has(input:checked) {
       & > span {
-        background: radial-gradient(6px 6px at center, #7a5af8 70%, white 30%);
+        background-image: url('/si_check-fill.svg');
+        background-repeat: no-repeat;
       }
     }
 
@@ -225,7 +226,7 @@
     min-width: 16px;
     height: 16px;
     border: 1px solid $main-color;
-    border-radius: 100px;
+    border-radius: 4px;
     transition: all 0.4s;
   }
 
