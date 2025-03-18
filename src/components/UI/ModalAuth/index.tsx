@@ -56,6 +56,7 @@ const ModalAuth: FC = () => {
         return toast.error(isSignin.error);
       }
       if (isSignin?.ok) {
+        setActiveModal(false);
         router.replace('/');
         return;
       }
