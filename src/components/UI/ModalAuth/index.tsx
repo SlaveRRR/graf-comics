@@ -12,6 +12,7 @@ import { FC, useContext, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CSSTransition } from 'react-transition-group';
 import { toast } from 'sonner';
+import Logo from '../Logo';
 import styles from './index.module.scss';
 
 type FormData = {
@@ -25,6 +26,16 @@ const ModalAuth: FC = () => {
   const router = useRouter();
 
   const { activeModal, setActiveModal, setActiveLoader } = useContext(ctx);
+
+  const validateUsernameOrEmail = (value) => {
+    if (!value) {
+      return 'Поле обязательно для заполнения';
+    }
+    if (!emailRegexp.test(value) && !/^[a-zA-Z0-9_-]{3,}$/.test(value)) {
+      return 'Введите никнейм или e-mail';
+    }
+    return true;
+  };
 
   const {
     handleSubmit,
@@ -45,6 +56,7 @@ const ModalAuth: FC = () => {
         return toast.error(isSignin.error);
       }
       if (isSignin?.ok) {
+        setActiveModal(false);
         router.replace('/');
         return;
       }
@@ -63,6 +75,9 @@ const ModalAuth: FC = () => {
             <BackSvg />
             <p className={styles['container__backLink--arrow']}>Вернуться назад</p>
           </div>
+          <div className={styles['login__logo']}>
+            <Logo mixClass={['login__logo']} />
+          </div>
           {auth ? (
             <>
               <h2 className={styles['login__head']}>Вход</h2>
@@ -79,17 +94,14 @@ const ModalAuth: FC = () => {
                   <input
                     {...register('email', {
                       required: true,
-                      pattern: {
-                        value: emailRegexp,
-                        message: 'Введите никнейм или e-mail',
-                      },
+                      validate: validateUsernameOrEmail,
                     })}
                     className={cn(styles['login__input'], {
                       [styles['login__input--success']]: dirtyFields?.email && !errors?.email,
                     })}
                     type="text"
                     id="email"
-                    placeholder="Введите e-mail"
+                    placeholder="Введите ник или e-mail"
                     autoComplete="on"
                   />
                   <label className={styles['login__label']} htmlFor="pass">

@@ -1,11 +1,16 @@
 @use '../../../styles/global' as *;
 
 .container {
-  width: 40%;
+  @media (min-width: 768px) {
+    width: 40%;
+    height: 450px;
+  }
   background-color: #fff;
-  height: 450px;
+  height: 90%;
   z-index: 1;
   padding: 28px 34px;
+  @include flex($dir: column);
+  padding-top: 1em;
   text-align: center;
   border-radius: 15px;
   &__backLink {
@@ -17,7 +22,7 @@
     padding: 0;
     font-weight: 600;
     line-height: 15px;
-    text-align: left;
+    margin-right: auto;
     text-decoration: none;
     color: $main-color;
     &--arrow {
@@ -32,22 +37,33 @@
   z-index: 1;
   padding: 28px 34px;
   text-align: center;
-
   &__container {
     @include flex($dir: column);
     padding-top: 1em;
   }
 
   &__head {
+    margin-top: 25px;
     font-size: 32px;
     font-weight: 600;
     line-height: 24px;
     text-align: center;
     margin-bottom: 0.1em;
+    @include mediaMax($size: 768px) {
+      line-height: 59px;
+      margin-top: 0;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 24px;
+      text-align: center;
+      margin-bottom: 0.1em;
+    }
   }
 
   &__logo {
-    margin-bottom: 1em;
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 
   &__with-social {
@@ -55,6 +71,12 @@
     line-height: 17px;
     letter-spacing: 0em;
     margin-bottom: 1em;
+    @include mediaMax($size: 768px) {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 29px;
+      margin-bottom: 0.7em;
+    }
   }
 
   &__social {
@@ -71,6 +93,7 @@
     @include flex($dir: column, $align: flex-start);
     margin-bottom: 1.9em;
     align-items: center;
+    width: 200px;
   }
 
   &__fieldset-password {
@@ -113,6 +136,7 @@
 
   &__label {
     display: flex;
+    margin-right: auto;
     margin-bottom: 0.4em;
     font-weight: 500;
     line-height: 17px;
@@ -162,7 +186,6 @@
   }
 
   &__error {
-    width: 40%;
     margin: 0.4em 0;
     font-size: 8px;
     color: red;
@@ -250,6 +273,6 @@
 
 .backlink {
   cursor: pointer;
-  margin-bottom: 2em;
+  margin-top: 0;
   align-self: flex-start;
 }
