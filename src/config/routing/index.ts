@@ -2,13 +2,14 @@ export const routes = {
   // 'Главная':'/',
   // 'Регистрация': '/signup',
   // 'Авторизация': '/signin',
-  Профиль: '/profile',
+  //Профиль: '/profile',
   // 'Профиль автора': '/author',
   Каталог: '/catalog',
+  Популярное: '/popular',
   Блог: '/blog',
-  Комикс: '/comics/1',
+  //Комикс: '/comics/1',
   // "Популярное": '/popular',
-  Достижения: '/achievements',
+  //Достижения: '/achievements',
 };
 
 export const sideMenuRoutes = {

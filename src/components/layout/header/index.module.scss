@@ -12,13 +12,13 @@
   // box-shadow: 0px 1px 2px 1px rgba($color: #000000, $alpha: .1);
   z-index: 999;
   position: fixed;
-
+  padding-left: 0;
   padding-top: 0.93em;
   padding-bottom: 1em;
   @include themeBackground;
-
+  padding-right: 0;
   @include flex($justify: space-between);
-
+  align-items: center;
   @include mediaMin($size: $device-M) {
     height: 75px;
     padding-top: 0;
@@ -32,6 +32,7 @@
 
 .nav {
   z-index: 1000;
+  margin-left: 1%;
   @include flex($gap: 2.8em);
 
   @include mediaMax($size: $device-M) {
@@ -72,7 +73,6 @@
   font-size: clamp(1.143rem, 0.694vw + 0.762rem, 1.714rem);
   font-weight: 600;
   line-height: 29px;
-
   &--active {
     color: $main-color;
   }
@@ -186,7 +186,50 @@
 }
 
 .logo-mobile {
+  margin-left: auto;
   @include mediaMin($device-M) {
     display: none;
+  }
+}
+
+.logo {
+  margin-left: 30px;
+  height: 85px;
+  @include mediaMax($device-M) {
+    display: none;
+  }
+}
+
+.search {
+  &-pc {
+    width: 20px;
+    height: 20px;
+    z-index: 99999;
+    @include mediaMax($device-M) {
+      display: none;
+    }
+  }
+  &-mobile {
+    width: 20px;
+    height: 20px;
+    @include mediaMin($device-M) {
+      display: none;
+    }
+  }
+}
+
+.view-button {
+  &-pc {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto;
+    margin-right: 30px;
+  }
+  &-mobile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: 20px;
   }
 }

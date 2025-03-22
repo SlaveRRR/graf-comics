@@ -14,7 +14,9 @@
   user-select: none;
   padding: revert;
   @include addCursorElement($device-M);
-
+  @include mediaMax($device-M) {
+    display: none;
+  }
   &--checked {
     background: #7a5af8;
 
