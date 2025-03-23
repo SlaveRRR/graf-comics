@@ -1,6 +1,6 @@
+import cn from 'classnames';
 import React, { FC } from 'react';
 import styles from './index.module.scss';
-import cn from 'classnames';
 type Props = {
   children: React.ReactNode;
   bg?: boolean;
@@ -10,10 +10,12 @@ type Props = {
 const Button: FC<Props> = ({ children, bg = false, mixClass = [] }) => {
   return (
     <button
-      className={cn(styles['button'], {
-        [styles['button__transparent']]: bg,
-      },
-      ...mixClass
+      className={cn(
+        styles['button'],
+        {
+          [styles['button__transparent']]: bg,
+        },
+        ...mixClass,
       )}
     >
       {children}

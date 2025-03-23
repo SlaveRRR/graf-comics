@@ -66,6 +66,7 @@
   }
 
   &__btn {
+    text-decoration: none;
     @include mediaMin($size: $device-M) {
       margin: 0 0;
     }
@@ -244,7 +245,6 @@
 
 .popular-section {
   margin-bottom: 1em;
-
   @include mediaMin($device-M) {
     margin-bottom: 3.5em;
   }
@@ -254,7 +254,10 @@
   padding-top: 0.78em;
   padding-bottom: 1.43em;
   @include themeSectionBackground;
-
+  border-radius: 20px;
+  width: 80%;
+  padding-left: 32.9px;
+  padding-right: 0;
   &__link {
     margin: 0 0 0.9em;
 
@@ -273,7 +276,7 @@
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-
+  padding-right: 32.5px;
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
@@ -283,7 +286,7 @@
     scroll-snap-align: start;
   }
 
-  @include flex($gap: 0.71em, $justify: flex-start);
+  @include flex($gap: 35px, $justify: flex-start);
 }
 
 .novelty-section {
@@ -297,7 +300,12 @@
 .novelty-container {
   padding-top: 0.78em;
   padding-bottom: 1.43em;
-
+  width: 80%;
+  padding-left: 32.9px;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
   @include themeSectionBackground;
 
   &__link {
@@ -318,13 +326,12 @@
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
-
-  @include flex($gap: 0.71em, $justify: flex-start);
+  padding-right: 32.5px;
+  @include flex($gap: 35px, $justify: flex-start);
 
   & > * {
     scroll-snap-align: start;
@@ -396,7 +403,10 @@
 
 .co-author-section {
   margin-bottom: 0.72em;
+  width: 80%;
 
+  margin-left: auto;
+  margin-right: auto;
   @include mediaMin($device-M) {
     margin-bottom: 3.5em;
   }
@@ -405,7 +415,7 @@
 .co-author {
   &__container {
     padding: 1.1em 2.35em;
-
+    border-radius: 20px;
     @include themeSectionBackground;
 
     @include flex($dir: column, $gap: 0.71em);

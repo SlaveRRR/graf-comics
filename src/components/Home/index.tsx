@@ -26,7 +26,9 @@ const Home: FC = () => {
           <div className={styles['image-container__text-container']}>
             <h1 className={styles['image-container__slogan']}>Создаем вселенную комиксов вместе</h1>
             <p className={styles['image-container__text']}>Здесь каждый комикс находит своего читателя</p>
-            <Button mixClass={[styles['image-container__btn']]}>Добавить комикс</Button>
+            <a href={'/add-comics/images'} className={styles['image-container__btn']}>
+              <Button mixClass={[styles['image-container__btn']]}>Добавить комикс</Button>
+            </a>
           </div>
         </div>
 
@@ -83,7 +85,7 @@ const Home: FC = () => {
 
           <div className={styles['novelty-cards']}>
             {Array.from({
-              length: 8,
+              length: 6,
             }).map((item) => (
               <Card isNew mixClass={[styles['cards-comics']]} text="Название" />
             ))}

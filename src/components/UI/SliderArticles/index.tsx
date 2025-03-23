@@ -1,19 +1,18 @@
 'use client';
-import React, { FC } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/scss'
-import cn from 'classnames'
-import styles from './index.module.scss';
-import Link from 'next/link'
 
+import cn from 'classnames';
+import Link from 'next/link';
+import { FC } from 'react';
 import 'swiper/css/pagination';
-
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Autoplay, Mousewheel, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/scss';
+import styles from './index.module.scss';
 
 type Props = {
   arr: string[];
 };
-// || (slidesPerView === 1 && activeColIndexWithShift > (slides.length - slidesPerView * 2) - 1 )
+
 const SliderArticles: FC<Props> = ({ arr }) => {
   return (
     <div className={styles['slider']}>
@@ -25,15 +24,15 @@ const SliderArticles: FC<Props> = ({ arr }) => {
           delay: 3500,
           disableOnInteraction: true,
         }}
-        
         pagination={{
           renderBullet: function (index, className) {
-            return '<span class="' + className + '">' + '' + '</span>';
+            return '<span class="' + className + '">' + '</span>';
           },
-          clickable:true,
+          clickable: true,
         }}
-        className={cn('swiper',styles['my-swiper'])}
-        modules={[Pagination]}
+        className={cn('swiper', styles['my-swiper'])}
+        modules={[Pagination, Autoplay, Mousewheel]}
+        mousewheel={true}
       >
         {arr.map((text, ind) => (
           <SwiperSlide key={ind} className={styles['slide']}>
