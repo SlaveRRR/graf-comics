@@ -109,6 +109,19 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  events: {
+    linkAccount: async ({ user, account, profile }) => {
+      console.log(user, account, profile);
+      await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          emailVerified: true,
+        },
+      });
+
+      return;
+    },
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
