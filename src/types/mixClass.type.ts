@@ -1,4 +1,3 @@
-
-export type MixClass ={
-    mixClass:string[] | []
-} 
+export type MixClass = {
+  mixClass: string[] | [];
+};

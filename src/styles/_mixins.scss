@@ -250,3 +250,8 @@
     cursor: pointer;
   }
 }
+
+@mixin themeSideBar {
+  background-color: var(--sidebar-color);
+  border-color: var(--sidebar-color);
+}

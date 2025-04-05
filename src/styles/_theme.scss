@@ -14,6 +14,8 @@
   --burger-menu: rgb(100, 72, 206);
   --footer-icons: #2d283e;
   --theme-tab-text: #564f70;
+  --sidebar-color: #dfdfdf;
+  --sidebar-line: #ffffff;
 }
 
 :root[data-theme='dark'] {
@@ -30,6 +32,8 @@
   --burger-menu: white;
   --footer-icons: #7a5af8;
   --theme-tab-text: white;
+  --sidebar-color: #201452;
+  --sidebar-line: #37257b;
 }
 
 body {

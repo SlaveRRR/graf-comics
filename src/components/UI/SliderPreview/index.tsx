@@ -1,12 +1,12 @@
 'use client';
-import React, { FC } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import cn from 'classnames';
+import { FC } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
 import styles from './index.module.scss';
 
 import 'swiper/css/pagination';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 
 type Props = {
   items: string[];

@@ -8,7 +8,20 @@ export const comicsData: IComics = {
     Описание комикса. Avery is a vampire hunter! Who unfortunately gets bitten by and subsequently turned into, a vampire.`,
   covers: ['/post.svg', '/post.svg', '/post.svg'],
   banner: '',
-  genres: [],
+  genres: [
+    {
+      text: 'Ужасы',
+      colorClass: 'genres',
+    },
+    {
+      text: 'Фэнтези',
+      colorClass: 'genres',
+    },
+    {
+      text: 'Приключения',
+      colorClass: 'genres',
+    },
+  ],
   focus: [],
   tags: [],
   rating: [
