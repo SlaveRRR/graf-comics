@@ -5,11 +5,12 @@ import styles from './index.module.scss';
 
 import cn from 'classnames';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Articles from '../Articles';
 import { Badge, Button, Card, SliderArticles } from '../UI';
 import { ArrowLink } from '../shared/index';
-
+import { genresRoutes } from './constants';
 const Home: FC = () => {
   const { data, status } = useSession();
 
@@ -93,18 +94,15 @@ const Home: FC = () => {
       <section className={styles['genre-section']}>
         <ArrowLink mixClass={[styles['genre-container__link']]} text="Жанры" url="/catalog" />
         <div className={styles['genres']}>
-          <Badge
-            mixClass={[styles['genre-container__badge']]}
-            text="Повседневность"
-            url="/catalog?genre=повседневность"
-          />
-          <Badge mixClass={[styles['genre-container__badge']]} text="Фантастика" url="/catalog?genre=фантастика" />
-          <Badge mixClass={[styles['genre-container__badge']]} text="Детектив" url="/catalog?genre=детектив" />
-          <Badge mixClass={[styles['genre-container__badge']]} text="Трагедия" url="/catalog?genre=трагедия" />
-          <Badge mixClass={[styles['genre-container__badge']]} text="Романтика" url="/catalog?genre=романтика" />
-          <Badge mixClass={[styles['genre-container__badge']]} text="Драма" url="/catalog?genre=драма" />
-          <Badge mixClass={[styles['genre-container__badge']]} text="Спорт" url="/catalog?genre=спорт" />
-          <Badge mixClass={[styles['genre-container__badge']]} text="Ужасы" url="/catalog?genre=ужасы" />
+          {genresRoutes.map(({ src, text, url }) => (
+            <Badge mixClass={[styles['genres__badge']]} text={text} url={url} />
+          ))}
+
+          {genresRoutes.map(({ src, text, url }) => (
+            <Link className={styles['genres__card']} href={url}>
+              <Image src={src} height={200} width={290} alt="genre" />
+            </Link>
+          ))}
         </div>
       </section>
       <section className={styles['slider-section']}>

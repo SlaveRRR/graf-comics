@@ -348,25 +348,56 @@
       margin-bottom: 3.5em;
     }
   }
-
-  &__badge {
-    @include mediaMin($device-M) {
-      padding-top: 1.8em;
-      padding-left: 1.4em;
-      padding-right: 0;
-      height: clamp(5.714rem, 10.59vw - 0.095rem, 14.429rem);
-      width: clamp(8.429rem, 15.712vw - 0.19rem, 21.357rem);
-    }
-  }
 }
 
 .genres {
   padding: 0.9375em;
+
   @include flex($gap: 0.72em, $justify: flex-start);
 
-  @include mediaMin($device-M) {
-    flex-wrap: wrap;
+  @include mediaMin($device-L) {
+    display: grid;
     gap: 2.14em;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  }
+
+  &__badge {
+    @include mediaMin($device-L) {
+      display: none;
+    }
+  }
+
+  &__card {
+    display: none;
+
+    @include mediaMin($device-L) {
+      display: inline;
+      width: max-content;
+      box-shadow: var(--animated-box-shadow-init);
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    & {
+      animation: float 2s ease-in-out infinite;
+    }
+
+    &:hover {
+      animation: none;
+      box-shadow: var(--animated-box-shadow-animation);
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
   }
 
   overflow-x: scroll;
