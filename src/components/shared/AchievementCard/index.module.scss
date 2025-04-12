@@ -11,6 +11,11 @@
     padding: 11px;
   }
 
+  &--active {
+    border: 1px solid #7a5af8;
+    border-radius: 10px;
+  }
+
   &__image {
     display: block;
     margin: 0 auto;

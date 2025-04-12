@@ -18,7 +18,7 @@ const ProfileReader: FC = () => {
   ];
 
   return (
-    <>
+    <div className={'container'}>
       <section className={styles['achievements']}>
         <section className={styles['achievements__heading']}>
           <BackLink mixClass={[styles['achievements__backlink']]} />
@@ -44,7 +44,7 @@ const ProfileReader: FC = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

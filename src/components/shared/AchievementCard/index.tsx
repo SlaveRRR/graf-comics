@@ -1,7 +1,7 @@
 'use client';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './index.module.scss';
 
 type Props = {
@@ -13,18 +13,23 @@ type Props = {
 const AchievementCard: FC<Props> = ({ text, mixClass = [], imagePath }) => {
   const router = useRouter();
 
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(!isActive);
+    router.push('/achievement-detail');
+  };
+
   return (
-    <div className={styles['achievement-card']}>
-      <div
-        onClick={() => router.push('/achievement-detail')}
-        className={cn(styles['achievement-card__container'], ...mixClass)}
-      >
+    <div
+      onClick={handleClick}
+      className={cn(styles['achievement-card'], { [styles['achievement-card--active']]: isActive })}
+    >
+      <div className={cn(styles['achievement-card__container'], ...mixClass)}>
         <img src={imagePath} alt={text} className={styles['achievement-card__image']} />
       </div>
 
-      <p onClick={() => router.push('/achievement-detail')} className={styles['achievement-card__text']}>
-        {text}
-      </p>
+      <p className={styles['achievement-card__text']}>{text}</p>
     </div>
   );
 };
