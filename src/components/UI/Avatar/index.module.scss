@@ -7,6 +7,12 @@
   @include themeAvatar;
   border-radius: 30px;
   max-width: none;
+
+  @include mediaMin($device-L) {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+  }
 }
 
 .loader {
@@ -15,13 +21,26 @@
   border: 1px solid #000000;
   border-radius: 30px;
   animation: loading 1.5s ease-in-out infinite;
+  position: relative;
+
+  @include mediaMin($device-L) {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+  }
 
   &__round {
+    position: absolute;
+    top: 0;
     display: block;
     background-color: $main-color;
     width: 10px;
     height: 10px;
     border-radius: 50%;
+
+    @include mediaMin($device-L) {
+      top: 10px;
+    }
   }
 
   @keyframes loading {

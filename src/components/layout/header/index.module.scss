@@ -19,10 +19,15 @@
 
   @include flex($justify: space-between);
 
+  max-width: calc(2560px + 2 * 0.9375em);
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
+
   @include mediaMin($size: $device-M) {
-    height: 75px;
-    padding-top: 0;
-    padding-bottom: 0;
+    height: 120px;
+    padding: 1.3em 4.5em 1.3em 4em;
   }
 }
 
@@ -188,4 +193,43 @@
   @include mediaMin($device-M) {
     display: none;
   }
+}
+
+.theme-switch {
+  @include mediaMax($device-L) {
+    // чтобы скрыть на мобилке приходится повышать специфичность
+    display: none !important;
+  }
+}
+
+.btn-container {
+  @include flex($gap: 3.14em);
+}
+
+.logo-header {
+  @include mediaMax($device-L) {
+    display: none;
+  }
+}
+
+.close-sidebar {
+  @include mediaMin($device-L) {
+    display: none;
+  }
+
+  font-weight: 600;
+  font-size: clamp(1.143rem, 0.694vw + 0.762rem, 1.714rem);
+  line-height: 15px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  color: #7a5af8;
+}
+
+.arrow {
+  margin-right: 0.3em;
 }
