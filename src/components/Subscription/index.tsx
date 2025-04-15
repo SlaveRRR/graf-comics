@@ -4,19 +4,11 @@ import cn from 'classnames';
 import { useSession } from 'next-auth/react';
 import { FC } from 'react';
 import { Button } from '../UI';
+import { SubscriptionCard } from './components';
 import { subscriptionData } from './data';
 import styles from './index.module.scss';
+import { SubscriptionProps } from './types';
 
-export interface SubscriptionCard {
-  id: number;
-  price: number;
-  duration: string;
-  description: string;
-  benefits: string;
-}
-interface SubscriptionProps {
-  plans?: SubscriptionCard[];
-}
 const Subscription: FC<SubscriptionProps> = ({ plans = subscriptionData }) => {
   const { data: session } = useSession();
   return (
@@ -40,21 +32,8 @@ const Subscription: FC<SubscriptionProps> = ({ plans = subscriptionData }) => {
       </section>
 
       <section className={styles['cards']}>
-        {plans.map((plan: SubscriptionCard) => (
-          <div key={plan.id} className={styles['cards__subscribe']}>
-            <div className={styles['cards__content']}>
-              <div className={styles['balance__count-container']}>
-                <p className={styles['cards__price']}>{plan.price}</p>
-                <img src="/currency.svg" alt="icon" className={styles['balance__count-icon']} />
-              </div>
-
-              <h2 className={styles['cards__title']}>{plan.duration}</h2>
-              <p className={styles['cards__text']}>{plan.description}</p>
-              <br />
-              <p className={styles['cards__text']}>{plan.benefits}</p>
-            </div>
-            <button className={styles['cards__button']}>Оформить</button>
-          </div>
+        {plans.map((plan) => (
+          <SubscriptionCard key={plan.id} {...plan} />
         ))}
       </section>
 

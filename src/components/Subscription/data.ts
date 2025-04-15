@@ -1,5 +1,5 @@
-import { SubscriptionCard } from './index';
-export const subscriptionData: SubscriptionCard[] = [
+import { SubscriptionCardType } from './types';
+export const subscriptionData: SubscriptionCardType[] = [
   {
     id: 1,
     price: 0,
