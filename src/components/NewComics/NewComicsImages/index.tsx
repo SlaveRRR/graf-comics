@@ -145,7 +145,7 @@ const NewComicsImages: FC = () => {
                       <button
                         onClick={() => {
                           if (getValues('covers').length <= 4) {
-                            readFiles(getValues('covers') as FileList).then((data) => addCover([croppedImage]));
+                            readFiles(getValues('covers') as FileList).then((data) => addCover([croppedImage])); //
                           }
                         }}
                         className={styles['modal__confirm']}
