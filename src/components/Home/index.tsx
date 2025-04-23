@@ -18,10 +18,18 @@ const Home: FC = () => {
     <>
       <section className={styles['image-section']}>
         <div className={styles['cards']}>
-          <div className={cn(styles['cards__item--start'], styles['cards__item'])} />
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
+          <div className={styles['cards__item']}>
+            <img src={'/homePage6.svg'} alt="" />
+          </div>
+          <div className={styles['cards__item']}>
+            <img className={styles['cards__item--right']} src={'/homePage3.svg'} alt="" />
+          </div>
+          <div className={styles['cards__item']}>
+            <img src={'/homePage4.svg'} alt="" />
+          </div>
+          <div className={styles['cards__item']}>
+            <img src={'/homePage5.svg'} alt="" />
+          </div>
         </div>
         <div className={styles['image-container']}>
           <div className={styles['image-container__text-container']}>
@@ -32,25 +40,57 @@ const Home: FC = () => {
         </div>
 
         <div className={styles['cards-pc']}>
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-pc__item']} />
-          <div className={styles['cards-subgrid']}>
-            <div className={styles['cards-subgrid__item']} />
-            <div className={styles['cards-subgrid__item']} />
+          <div className={styles['cards-pc__item']}>
+            <img src={'/homePage2.svg'} alt="Card 2" />
           </div>
+
+          <div className={styles['cards-pc__item']}>
+            <img src={'/homePage1.svg'} alt="Card 1" />
+          </div>
+
+          <div className={styles['cards-pc__item']}>
+            <img src={'/homePage3.svg'} alt="Card 3" />
+          </div>
+
+          <div className={styles['cards-pc__item']}>
+            <img src={'/homePage7.svg'} alt="Card 7" />
+          </div>
+
+          <div className={styles['cards-pc__item']}>
+            <img src={'/homePage4.svg'} alt="Card 4" />
+          </div>
+
+          <div className={styles['cards-subgrid']}>
+            <div className={styles['cards-subgrid__item']}>
+              <img src={'/homePage5.svg'} alt="Card 5" />
+            </div>
+            <div className={styles['cards-subgrid__item']}>
+              <img src={'/homePage6.svg'} alt="Card 6" />
+            </div>
+          </div>
+
           <div className={styles['cards-subgrid-bottom']}>
-            <div className={styles['cards-subgrid-bottom__item']} />
-            <div className={styles['cards-subgrid-bottom__item']} />
+            <div className={styles['cards-subgrid-bottom__item']}>
+              <img src={'/homePage8.svg'} alt="Card 8" />
+            </div>
+            <div className={styles['cards-subgrid-bottom__item']}>
+              <img src={'/homePage9.svg'} alt="Card 9" />
+            </div>
           </div>
         </div>
         <div className={styles['cards']}>
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
-          <div className={styles['cards__item']} />
+          <div className={styles['cards__item']}>
+            <img src={'/homePage9.svg'} alt="" />
+          </div>
+          <div className={styles['cards__item']}>
+            <img src={'/homePage1.svg'} alt="" />
+          </div>
+          <div className={styles['cards__item']}>
+            <img src={'/homePage7.svg'} alt="" />
+          </div>
+          <div className={styles['cards__item']}>
+            <img className={styles['cards__item--left']} src={'/homePage8.svg'} alt="" />
+          </div>
         </div>
       </section>
       {
