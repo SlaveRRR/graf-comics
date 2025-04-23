@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import { theme, author, sortSmall } from '@/data/data.json';
-import cn from 'classnames';
-import Link from 'next/link';
-import { ArrowLink } from '../shared';
-import { SliderArticles } from '../UI';
 import { routes } from '@/config/routing';
-import styles from './index.module.scss';
+import { author, sortSmall, theme } from '@/data/data.json';
+import cn from 'classnames';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { FC } from 'react';
+import { SliderArticles } from '../UI';
+import { ArrowLink } from '../shared';
+import styles from './index.module.scss';
 
 const Filters = dynamic(() => import('@/components/shared/Filters/index'), {
   ssr: false,
@@ -72,70 +72,70 @@ const Blog: FC = () => {
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>
             <div className={styles['articles__item-card']}>
               <header className={styles['articles__header']}>Название статьи</header>
               <p className={styles['articles__short']}>Кратко о статье</p>
-              <Link className={styles['articles__link']} href={'/article'}>
+              <Link className={styles['articles__link']} href={'/article/1'}>
                 Читать статью
               </Link>
             </div>

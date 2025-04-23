@@ -1,12 +1,12 @@
 'use client';
-import React, { FC } from 'react';
-import { useParams } from 'next/navigation';
-import { ArticleView, BackLink } from '../shared';
-import cn from 'classnames';
 import { useGetArticleByIdQuery } from '@/store/api/articles';
-import styles from './index.module.scss';
 import { Category } from '@prisma/client';
+import cn from 'classnames';
+import { useParams } from 'next/navigation';
+import { FC } from 'react';
 import { Avatar } from '../UI';
+import { ArticleView, BackLink } from '../shared';
+import styles from './index.module.scss';
 
 // prettier-ignore
 const categoryObj = {
@@ -39,6 +39,7 @@ const Article: FC = () => {
     );
   }
   console.log(data);
+  console.log('ОШИБКА');
   //@ts-ignore
   const dataJson = JSON.parse(data.content);
   return (
