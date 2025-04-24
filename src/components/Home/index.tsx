@@ -49,7 +49,7 @@ const Home: FC = () => {
           </div>
 
           <div className={styles['cards-pc__item']}>
-            <img src={'/homePage3.svg'} alt="Card 3" />
+            <img src={'/homePage3.svg'} className={styles['cards-pc__item--right']} alt="Card 3" />
           </div>
 
           <div className={styles['cards-pc__item']}>
