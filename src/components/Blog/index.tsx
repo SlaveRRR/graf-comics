@@ -1,4 +1,3 @@
-import { routes } from '@/config/routing';
 import { author, sortSmall, theme } from '@/data/data.json';
 import cn from 'classnames';
 import dynamic from 'next/dynamic';
@@ -28,7 +27,7 @@ const Blog: FC = () => {
           </label>
           <header className={styles['blog__header']}>
             <p className={styles['blog__header-text']}>Есть чем поделиться?</p>
-            <Link className={styles['blog__header-link']} href={routes['Профиль']}>
+            <Link className={styles['blog__header-link']} href={'/'}>
               Напиши статью
             </Link>
           </header>
