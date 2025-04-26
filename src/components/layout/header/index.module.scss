@@ -202,6 +202,12 @@
   }
 }
 
+.theme-switch-mobile {
+  @include mediaMin($device-L) {
+    display: none !important;
+  }
+}
+
 .btn-container {
   @include flex($gap: 3.14em);
 }

@@ -16,4 +16,8 @@ export const routes = {
 export const sideMenuRoutes = {
   Уведомления: '/notifications',
   'Изменить профиль': '/profile/edit',
+  Достижения: '/achievements',
+  'Добавить комикс': '/add-comics/images',
+  Кошелек: '/balance',
+  Подписка: '/subscription',
 };
