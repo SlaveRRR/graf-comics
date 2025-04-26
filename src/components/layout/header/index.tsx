@@ -11,7 +11,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import styles from './index.module.scss';
 
 import { useTheme } from '@/context/themeProvider';
-import Logo from '@assets/logo-header.svg';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 
@@ -49,7 +48,23 @@ const Header: FC = () => {
               [styles['nav--active']]: activeBurger,
             })}
           >
-            <Image className={styles['logo-header']} alt="logo-header" src={Logo} height={85} width={164} />
+            {theme === 'light' ? (
+              <Image
+                className={styles['logo-header']}
+                alt="logo-header"
+                src="/logoBlackHeader.png"
+                height={85}
+                width={164}
+              />
+            ) : (
+              <Image
+                className={styles['logo-header']}
+                alt="logo-header"
+                src="/logoWhiteHeader.png"
+                height={85}
+                width={164}
+              />
+            )}
             <button className={styles['close-sidebar']} onClick={() => setActiveBurger(false)}>
               <svg
                 className={styles['arrow']}
