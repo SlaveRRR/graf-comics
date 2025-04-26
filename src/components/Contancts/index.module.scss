@@ -1,0 +1,46 @@
+@use '../../styles/global' as *;
+
+.contacts__container {
+  @include themeSectionBackground;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 18px 11px 19px 11px;
+}
+
+.contacts__title {
+  text-align: center;
+  font-size: 1.43em;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.contacts__text {
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.contacts__span {
+  color: $primary-color;
+}
+
+.contacts__list {
+  margin-bottom: 40px;
+}
+
+.contacts__link-block {
+  margin-bottom: 12px;
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+}
+
+.contacts__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.contacts__link {
+  color: $primary-color;
+  font-weight: 600;
+}
