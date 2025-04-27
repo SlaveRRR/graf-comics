@@ -1,4 +1,3 @@
-import { routes } from '@/config/routing';
 import { author, sortSmall, theme } from '@/data/data.json';
 import cn from 'classnames';
 import dynamic from 'next/dynamic';
@@ -28,7 +27,7 @@ const Blog: FC = () => {
           </label>
           <header className={styles['blog__header']}>
             <p className={styles['blog__header-text']}>Есть чем поделиться?</p>
-            <Link className={styles['blog__header-link']} href={routes['Профиль']}>
+            <Link className={styles['blog__header-link']} href={'/'}>
               Напиши статью
             </Link>
           </header>
@@ -39,7 +38,7 @@ const Blog: FC = () => {
       </section>
       <section className={styles['blog-articles']}>
         <div className="container">
-          <ArrowLink mixClass={[styles['blog__link']]} text="Полезные статьи" url="/articles" />
+          <ArrowLink mixClass={[styles['blog__link']]} text="Популярные статьи" url="/popular-article" />
           <div className={styles['articles']}>
             <div className={styles['articles__item']}>
               <header className={styles['articles__header']}>Название статьи</header>
