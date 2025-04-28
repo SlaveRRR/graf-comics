@@ -30,26 +30,26 @@ const SiteSettings: FC = () => {
           htmlFor="hideMatureContent"
           className={cn(styles['radio-btn__label'], styles['profile-settings-form__show-mature-content'])}
         >
-          <span className={styles['radio-btn__circle']}></span>
           <input
             {...register('hideMatureContent')}
-            className={styles['radio-btn__input']}
+            className={styles['radio-btn__switch']}
             type="checkbox"
             id="hideMatureContent"
             value={'true'}
           />
+          <span className={styles['radio-btn__switch-move']}></span>
           Скрыть +18 тайтлы
         </label>
         <p className={styles['profile-settings-form__text-label']}> Ночная тема</p>
         <label htmlFor="dark_mode" className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}>
-          <span className={styles['radio-btn__circle']}></span>
           <input
             {...register('darkMode')}
-            className={styles['radio-btn__input']}
+            className={styles['radio-btn__switch']}
             type="checkbox"
             id="dark_mode"
             value="true"
           />
+          <span className={styles['radio-btn__switch-move']}></span>
           Включить ночную тему
         </label>
 
@@ -59,7 +59,6 @@ const SiteSettings: FC = () => {
             htmlFor="hide_notifications_subscribes"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('hideNotificationsSubscribes')}
               className={styles['radio-btn__input']}
@@ -67,13 +66,13 @@ const SiteSettings: FC = () => {
               id="hide_notifications_subscribes"
               value={'true'}
             />
+            <span className={styles['radio-btn__circle']}></span>
             Отключить уведомления о подписках
           </label>
           <label
             htmlFor="show_notifications_comments"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('hideNotificationsComments')}
               className={styles['radio-btn__input']}
@@ -81,13 +80,13 @@ const SiteSettings: FC = () => {
               id="show_notifications_comments"
               value={'true'}
             />
+            <span className={styles['radio-btn__circle']}></span>
             Отключить уведомления о комментариях
           </label>
           <label
             htmlFor="hide_notifications_paid_content"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('hideNotificationsPaidContent')}
               className={styles['radio-btn__input']}
@@ -95,13 +94,13 @@ const SiteSettings: FC = () => {
               id="hide_notifications_paid_content"
               value={'true'}
             />
+            <span className={styles['radio-btn__circle']}></span>
             Отключить уведомления о платных главах
           </label>
           <label
             htmlFor="hide_notifications_likes"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('hideNotificationsLikes')}
               className={styles['radio-btn__input']}
@@ -109,13 +108,13 @@ const SiteSettings: FC = () => {
               id="hide_notifications_likes"
               value={'true'}
             />
+            <span className={styles['radio-btn__circle']}></span>
             Отключить уведомления о лайках
           </label>
           <label
             htmlFor="hide_notifications_gifts"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('hideNotificationsGifts')}
               className={styles['radio-btn__input']}
@@ -123,13 +122,13 @@ const SiteSettings: FC = () => {
               id="hide_notifications_gifts"
               value={'true'}
             />
+            <span className={styles['radio-btn__circle']}></span>
             Отключить уведомления о подарках
           </label>
           <label
             htmlFor="hide_notifications_new_posts"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('hideNotificationsNewPosts')}
               className={styles['radio-btn__input']}
@@ -137,6 +136,7 @@ const SiteSettings: FC = () => {
               id="hide_notifications_new_posts"
               value={'true'}
             />
+            <span className={styles['radio-btn__circle']}></span>
             Отключить уведомления о новых постах
           </label>
         </div>
@@ -151,7 +151,6 @@ const SiteSettings: FC = () => {
             htmlFor="show_notifications_lists_reading"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('showNotificationsListsReading')}
               className={styles['radio-btn__input']}
@@ -159,13 +158,13 @@ const SiteSettings: FC = () => {
               id="show_notifications_lists_reading"
               value="true"
             />
+            <span className={styles['radio-btn__circle']}></span>
             Читаю
           </label>
           <label
             htmlFor="show_notifications_lists_read"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('showNotificationsListsRead')}
               className={styles['radio-btn__input']}
@@ -173,13 +172,13 @@ const SiteSettings: FC = () => {
               id="show_notifications_lists_read"
               value="true"
             />
+            <span className={styles['radio-btn__circle']}></span>
             Прочитано
           </label>
           <label
             htmlFor="show_notifications_lists_planned"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('showNotificationsListsPlanned')}
               className={styles['radio-btn__input']}
@@ -187,13 +186,12 @@ const SiteSettings: FC = () => {
               id="show_notifications_lists_planned"
               value="true"
             />
-            В планах
+            <span className={styles['radio-btn__circle']}></span>В планах
           </label>
           <label
             htmlFor="show_notifications_lists_liked"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('showNotificationsListsLiked')}
               className={styles['radio-btn__input']}
@@ -201,13 +199,13 @@ const SiteSettings: FC = () => {
               id="show_notifications_lists_liked"
               value="true"
             />
+            <span className={styles['radio-btn__circle']}></span>
             Любимые
           </label>
           <label
             htmlFor="show_notifications_lists_dropped "
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('showNotificationsListsDropped')}
               className={styles['radio-btn__input']}
@@ -215,6 +213,7 @@ const SiteSettings: FC = () => {
               id="show_notifications_lists_dropped "
               value="true"
             />
+            <span className={styles['radio-btn__circle']}></span>
             Брошено
           </label>
         </div>
@@ -229,7 +228,6 @@ const SiteSettings: FC = () => {
             htmlFor="email_notifications_updates"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('emailNotificationsUpdates')}
               className={styles['radio-btn__input']}
@@ -237,13 +235,13 @@ const SiteSettings: FC = () => {
               id="email_notifications_updates"
               value="true"
             />
+            <span className={styles['radio-btn__circle']}></span>
             Сообщения и обновления Граф Комикса
           </label>
           <label
             htmlFor="email_notifications_surveys"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('emailNotificationsSurveys')}
               className={styles['radio-btn__input']}
@@ -251,13 +249,13 @@ const SiteSettings: FC = () => {
               id="email_notifications_surveys"
               value="true"
             />
+            <span className={styles['radio-btn__circle']}></span>
             Отзывы и опросы
           </label>
           <label
             htmlFor="email_notifications_reports"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('emailNotificationsReports')}
               className={styles['radio-btn__input']}
@@ -265,6 +263,7 @@ const SiteSettings: FC = () => {
               id="email_notifications_reports"
               value="true"
             />
+            <span className={styles['radio-btn__circle']}></span>
             Сообщения о нарушениях
           </label>
         </div>
