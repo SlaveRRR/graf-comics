@@ -250,3 +250,7 @@
     cursor: pointer;
   }
 }
+
+@mixin filterLine {
+  background-color: var(--filter-line);
+}

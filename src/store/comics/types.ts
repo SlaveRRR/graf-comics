@@ -25,3 +25,21 @@ export interface IFilter {
   type: keyof Pick<IComics, 'focus' | 'genres' | 'rating' | 'tags'>;
   element: FilterItem;
 }
+
+export interface IUserComment {
+  id: string;
+  name: string;
+  profileAvatar: string | null;
+}
+
+export interface IComicsComment {
+  id: string;
+  text: string;
+  replyId: string | null;
+  reply: IComicsComment | null;
+  replies: IComicsComment[];
+  likes: number;
+  createdAt: string;
+  User: IUserComment;
+  userId: string;
+}

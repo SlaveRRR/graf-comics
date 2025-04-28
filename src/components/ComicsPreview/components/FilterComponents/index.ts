@@ -1,0 +1,1 @@
+export { FilterBarComponent } from './FilterBarComponent';
