@@ -33,7 +33,7 @@ const Blog: FC = () => {
           </header>
 
           <ArrowLink mixClass={[styles['blog__link']]} text="Новости" url="/news" />
-          <SliderArticles arr={['Статья №1', 'Статья №2', 'Статья №3']} />
+          <SliderArticles slides={['Статья №1', 'Статья №2', 'Статья №3']} />
         </div>
       </section>
       <section className={styles['blog-articles']}>
