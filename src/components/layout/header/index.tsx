@@ -122,7 +122,15 @@ const Header: FC = () => {
             })}
           >
             <figure className={styles['avatar']}>
-              <figcaption className={styles['avatar__name']}>{data?.user.name}</figcaption>
+              <figcaption
+                onClick={() => {
+                  setActiveAvatar(false);
+                  router.push('/profile');
+                }}
+                className={styles['avatar__name']}
+              >
+                {data?.user.name}
+              </figcaption>
               <Avatar />
             </figure>
             <span className={styles['line']}></span>
