@@ -63,13 +63,12 @@
     font-weight: 600;
     line-height: 15px;
 
-    background-color: #f2effe;
-    color: #9991b9;
+    @include themeInputBackground;
+    @include themeInputPlaceholder;
     @include focus($outline: 1px solid #8a8a8a);
 
     &::placeholder {
-      background-color: #f2effe;
-      color: #cabdfc;
+      @include themeInputPlaceholder;
       font-size: 0.86rem;
       font-weight: 600;
       line-height: 15px;

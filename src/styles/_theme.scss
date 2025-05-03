@@ -14,6 +14,10 @@
   --burger-menu: rgb(100, 72, 206);
   --footer-icons: #2d283e;
   --theme-tab-text: #564f70;
+  --input-background-color: #f2effe;
+  --input-placeholder-color: #cabdfc;
+  --logo-src: url('/logo-light.svg');
+  --logo-login: url('/logo-light.svg');
   --animated-box-shadow-init: 0 4px 8px rgba(0, 0, 0, 0.1);
   --animated-box-shadow-animation: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -32,6 +36,10 @@
   --burger-menu: white;
   --footer-icons: #7a5af8;
   --theme-tab-text: white;
+  --input-background-color: #37257b;
+  --input-placeholder-color: #7a5af8;
+  --logo-src: url('/logo-dark.svg');
+  --logo-login: url('/logo-purple.svg');
   --animated-box-shadow-init: 0 4px 8px rgba(255, 255, 255, 0.117);
   --animated-box-shadow-animation: 0 8px 16px rgba(255, 255, 255, 0.782);
 }

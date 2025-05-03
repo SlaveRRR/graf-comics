@@ -2,7 +2,7 @@
 import { FC, useContext } from 'react';
 import { ctx } from '../../../context/contextProvider';
 
-import { Avatar, BurgerMenu, Switch } from '@UI/index';
+import { Avatar, BurgerMenu, Logo, Switch } from '@UI/index';
 
 import { routes, sideMenuRoutes } from '@/config/routing';
 import cn from 'classnames';
@@ -11,9 +11,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import styles from './index.module.scss';
 
 import { useTheme } from '@/context/themeProvider';
-import Logo from '@assets/logo-header.svg';
 import { signOut, useSession } from 'next-auth/react';
-import Image from 'next/image';
 
 const Header: FC = () => {
   const { status, data } = useSession();
@@ -49,7 +47,7 @@ const Header: FC = () => {
               [styles['nav--active']]: activeBurger,
             })}
           >
-            <Image className={styles['logo-header']} alt="logo-header" src={Logo} height={85} width={164} />
+            <Logo isHeader={true} mixClass={[styles['logo-header']]} />
             <button className={styles['close-sidebar']} onClick={() => setActiveBurger(false)}>
               <svg
                 className={styles['arrow']}
