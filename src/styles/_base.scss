@@ -187,6 +187,7 @@ table {
   padding-right: 0.9375em;
 
   @media (min-width: 768px) {
+    padding-top: 60px;
     max-width: calc(2560px + 2 * clamp(5rem, 12.587vw - 1.905rem, 15.357rem));
     padding-left: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
     padding-right: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
