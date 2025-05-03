@@ -1,144 +1,150 @@
 @use '../../styles/global' as *;
 
 .catalog {
-    &__container {
+  &__container {
+    @include mediaMin($device-M) {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      column-gap: 1em;
+      grid-template-areas: 'cards filters';
+    }
+  }
 
-        padding-top: 1em;
-        @include mediaMin($device-M){
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            column-gap: 1em;
-            grid-template-areas: "cards filters";
-        }
+  &__search-label {
+    display: block;
+    position: relative;
+    margin-bottom: 1.1em;
+
+    &::before {
+      content: url('../../assets/search.svg');
+      top: 50%;
+      left: 11px;
+      transform: translateY(-50%);
+      color: #8a8a8a;
+      position: absolute;
+    }
+  }
+
+  &__search-field {
+    display: block;
+    border: none;
+    border-radius: 526px;
+    max-width: 290px;
+    width: 100%;
+    height: 35px;
+    padding: 0.3em 2.8em;
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 15px;
+
+    background-color: #f2effe;
+    color: #9991b9;
+    @include focus($outline: 1px solid #fdfdfd);
+
+    &::placeholder {
+      background-color: #f2effe;
+      color: #cabdfc;
+      font-size: 0.86rem;
+      font-weight: 600;
+      line-height: 15px;
+    }
+  }
+
+  &__filter {
+    @include mediaMin($device-M) {
+      grid-area: filters;
+      border-radius: 20px;
+      padding-top: 12px;
+      padding-left: 35px;
+      padding-right: 35px;
+      background-color: white;
     }
 
-    &__search-label {
-        display: block;
-        position: relative;
-        margin-bottom: 1.1em;
+    margin-bottom: 1em;
+  }
 
-        &::before {
-            content: url('../../assets/search.svg');
-            top: 50%;
-            left: 11px;
-            transform: translateY(-50%);
-            color: #8a8a8a;
-            position: absolute;
-        }
+  &__cards-container {
+    @include mediaMin($device-M) {
+      padding: clamp(1.071rem, 1.736vw + 0.119rem, 2.5rem) clamp(1.429rem, 5.729vw - 1.714rem, 6.143rem) 0;
+      // padding-top: 35px;
+      // padding-left: 86px;
+      // padding-right: 86px;
+      background: white;
+      border-radius: 20px;
+      grid-area: cards;
+      margin-bottom: 1.5em;
+    }
+  }
+
+  &__cards {
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(6.429rem, 5.75vw + 5.114rem, 13rem), 1fr));
+
+    @include mediaMin($device-M) {
+      column-gap: clamp(0.714rem, 2.951vw - 0.905rem, 3.143rem);
+    }
+  }
+
+  &__active-filters {
+    display: none;
+
+    @include mediaMin($device-M) {
+      display: flex;
+      overflow: visible;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__load-more {
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+    border: 1px solid #7a5af8;
+    border-radius: 250px;
+    padding: 0.6em 1em;
+    color: #7a5af8;
+    text-align: center;
+
+    font-size: 0.7em;
+
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__start-btn {
+    position: fixed;
+    right: 15px;
+    bottom: 18px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #7a5af8;
+    border-radius: 250px;
+    background-color: #7a5af8;
+    z-index: 999;
+
+    &-enter {
+      opacity: 0;
+      bottom: -18px;
     }
 
-    &__search-field {
-        display: block;
-        border: none;
-        border-radius: 526px;
-        max-width: 290px;
-        width: 100%;
-        height: 35px;
-        padding: .3em 2.8em;
-        font-size: .86rem;
-        font-weight: 600;
-        line-height: 15px;
-
-        background-color: #F2EFFE;
-        color: #9991b9;
-        @include focus($outline: 1px solid #fdfdfd);
-
-
-
-
-        &::placeholder {
-            background-color: #F2EFFE;
-            color: #CABDFC;
-            font-size: .86rem;
-            font-weight: 600;
-            line-height: 15px;
-        }
+    &-enter-active {
+      bottom: 18px;
+      opacity: 1;
+      transition:
+        opacity 200ms,
+        bottom 300ms;
     }
 
-    &__filter {
-        @include mediaMin($device-M){
-            grid-area: filters;
-            border-radius: 20px;
-            padding-top: 12px;
-            padding-left: 35px;
-            padding-right: 35px;
-            background-color: white;
-        }
-    
-        margin-bottom: 1em;
-    }
-    &__cards-container{
-        @include mediaMin($device-M){
-            padding: clamp(1.071rem, 1.736vw + 0.119rem, 2.5rem) clamp(1.429rem, 5.729vw - 1.714rem, 6.143rem) 0;
-            // padding-top: 35px;
-            // padding-left: 86px;
-            // padding-right: 86px;
-            background: white;
-            border-radius: 20px;
-            grid-area: cards;
-            margin-bottom: 1.5em;
-        }
-    }
-    &__cards {
-        grid-auto-rows: min-content;
-        grid-template-columns: repeat(auto-fit,minmax(clamp(6.429rem, 5.75vw + 5.114rem, 13rem),1fr));
-        @include mediaMin($device-M){
-            column-gap: clamp(0.714rem, 2.951vw - 0.905rem, 3.143rem);
-        }
-        
-    }
-    &__active-filters{
-        display: none;
-        @include mediaMin($device-M){
-            display: flex;
-            overflow: visible;
-            flex-wrap: wrap;
-        }
+    &-exit {
+      opacity: 1;
     }
 
-    &__load-more {
-        display: block;
-        margin: 0 auto;
-        background: transparent;
-        border: 1px solid #7A5AF8;
-        border-radius: 250px;
-        padding: .6em 1em;
-        color: #7A5AF8;
-        text-align: center;
-
-        font-size: .7em;
-
-        font-weight: 500;
-        line-height: normal;
+    &-exit-active {
+      opacity: 0;
+      bottom: -18px;
+      transition:
+        opacity 200ms,
+        bottom 300ms;
     }
-
-    &__start-btn {
-        position: fixed;
-        right: 15px;
-        bottom: 18px;
-        width: 50px;
-        height: 50px;
-        border: 1px solid #7A5AF8;
-        border-radius: 250px;
-        background-color: #7A5AF8;
-        z-index: 999;
-        &-enter {
-            opacity: 0;
-            bottom: -18px;
-        }
-        &-enter-active {
-            bottom: 18px;
-            opacity: 1;
-            transition: opacity 200ms, bottom 300ms;
-        }
-        &-exit {
-            opacity: 1;
-        }
-        &-exit-active {
-            opacity: 0;
-            bottom: -18px;
-            transition: opacity 200ms, bottom 300ms;
-        }
-    }
-
+  }
 }
