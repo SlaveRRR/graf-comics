@@ -250,3 +250,8 @@
     cursor: pointer;
   }
 }
+
+@mixin themeInputBg {
+  background-color: var(--theme-input-background);
+  transition: color 0.5s ease-out;
+}

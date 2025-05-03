@@ -61,7 +61,7 @@
     font-weight: 600;
     line-height: normal;
     border-radius: 10px;
-    background: white;
+    @include themeSectionBackground;
     transition: all 0.3s;
     @include colorFilters;
   }

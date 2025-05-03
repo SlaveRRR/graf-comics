@@ -4,6 +4,7 @@ import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 
 import { ActiveFilters } from '@/components/shared/index';
 import { ctx } from '@/context/contextProvider';
+import { useTheme } from '@/context/themeProvider';
 import { MixClass } from '@/types/mixClass.type';
 import cn from 'classnames';
 import { Filter, SearchFilter, SortFilter } from '..';
@@ -18,7 +19,8 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
   const [isVisibleFilter, setVisible] = useState(false);
 
   const [visbileFilters, setVisibleFilters] = useState<IFilter[]>(filters);
-
+  const { theme, setTheme } = useTheme();
+  const [colorBorder, setColorBorder] = useState<string>(theme === 'light' ? 'white' : 'black');
   const initialState = urlFilter ? [{ text: urlFilter, colorClass: 'genres' }] : [];
 
   const { activeFilters, toggleFilters, setFilters } = useContext(ctx);
@@ -64,23 +66,36 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
     return () => match.removeEventListener('change', handleChange);
   }, []);
 
+  useEffect(() => {
+    if (theme === 'light') {
+      setColorBorder('black');
+    } else {
+      setColorBorder('white');
+    }
+  }, [theme]);
   return (
     <div className={cn(styles['filter__container'], ...mixClass)}>
       <div className={styles['filter__filters']}>
         <button onClick={() => handleClick()} className={styles['filter__button']}>
           <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.5 5H9.5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M13.5 5L16.5 5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M1.5 5H9.5" stroke={colorBorder} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M13.5 5L16.5 5"
+              stroke={colorBorder}
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
             <path
               d="M8.5 12L16.5 12"
-              stroke="black"
-              stroke-width="1.3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              stroke={colorBorder}
+              strokeWidth="1.3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
-            <path d="M1.5 12H4.5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="6.5" cy="12" r="2" stroke="black" stroke-width="1.3" />
-            <circle cx="11.5" cy="5" r="2" stroke="black" stroke-width="1.3" />
+            <path d="M1.5 12H4.5" stroke={colorBorder} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="6.5" cy="12" r="2" stroke={colorBorder} strokeWidth="1.3" />
+            <circle cx="11.5" cy="5" r="2" stroke={colorBorder} strokeWidth="1.3" />
           </svg>
           Фильтр
           <svg
@@ -107,18 +122,36 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
         </button>
         <p className={styles['filter-pc']}>
           <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.5 5H9.5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M13.5 5L16.5 5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
             <path
-              d="M8.5 12L16.5 12"
-              stroke="black"
+              d="M1.5 5H9.5"
+              stroke={colorBorder}
               stroke-width="1.3"
               stroke-linecap="round"
               stroke-linejoin="round"
             />
-            <path d="M1.5 12H4.5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="6.5" cy="12" r="2" stroke="black" stroke-width="1.3" />
-            <circle cx="11.5" cy="5" r="2" stroke="black" stroke-width="1.3" />
+            <path
+              d="M13.5 5L16.5 5"
+              stroke={colorBorder}
+              stroke-width="1.3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M8.5 12L16.5 12"
+              stroke={colorBorder}
+              stroke-width="1.3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M1.5 12H4.5"
+              stroke={colorBorder}
+              stroke-width="1.3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="6.5" cy="12" r="2" stroke={colorBorder} stroke-width="1.3" />
+            <circle cx="11.5" cy="5" r="2" stroke={colorBorder} stroke-width="1.3" />
           </svg>
           Фильтр
         </p>
