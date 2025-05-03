@@ -113,7 +113,7 @@ const Home: FC = () => {
 
           <div className={styles['popular-cards']}>
             {Array.from({ length: 6 }).map((item) => (
-              <Card text="Название" />
+              <Card mixClass={[styles['poppading']]} text="Название" />
             ))}
           </div>
         </div>
@@ -149,6 +149,18 @@ const Home: FC = () => {
         <div className={cn(styles['slider-container'], 'container')}>
           <ArrowLink mixClass={[styles['slider-container__link']]} text="Новости" url="/news" />
           <SliderArticles className={styles['slider']} slides={['Статья №1', 'Статья №2', 'Статья №3']} />
+        </div>
+      </section>
+      ..{' '}
+      <section className={cn(styles['co-author-section'], styles['evidence'])}>
+        <div className={cn('container', styles['co-author__container'])}>
+          <p className={styles['co-author__text']}>
+            Есть чем поделиться с миром? Знаешь интересные{' '}
+            <span className={styles['co-author__idea']}>факты о комиксах</span>? Не стесняйся!
+          </p>
+          <Link href="/co-author" className={styles['co-author__link']}>
+            Напиши статью
+          </Link>
         </div>
       </section>
       <section className="article-section">

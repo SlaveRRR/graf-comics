@@ -278,30 +278,43 @@
 
   @include mediaMin($device-M) {
     margin-bottom: 3.5em;
+    margin-left: 14.7em;
+    margin-right: 14.7em;
+  }
+  @include mediaMax($device-M) {
+    margin-bottom: 3.5em;
+    margin-left: 1em;
+    margin-right: 1em;
   }
 }
 
 .popular-container {
   padding-top: 0.78em;
   padding-bottom: 1.43em;
-  @include themeSectionBackground;
 
+  @include themeSectionBackground;
+  border-radius: 20px;
   &__link {
     margin: 0 0 0.9em;
-
-    @include mediaMin($device-M) {
-      margin: 0 0 2.2em;
-    }
   }
 
   @include mediaMin($device-M) {
-    padding-top: 2.2em;
-    padding-bottom: 5.3em;
+    padding-left: 3.6em;
+    padding-right: 3.6em;
   }
+  @include mediaMin($device-M) {
+    padding-top: 2.2em;
+    padding-bottom: 3.8em;
+  }
+}
+
+.poppading {
+  margin-right: 25px;
 }
 
 .popular-cards {
   overflow-x: scroll;
+  display: flex;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
 
@@ -318,30 +331,38 @@
 }
 
 .novelty-section {
-  margin-bottom: 1.9em;
+  margin-bottom: 1em;
 
   @include mediaMin($device-M) {
-    margin-bottom: 6em;
+    margin-bottom: 3.5em;
+    margin-left: 14.7em;
+    margin-right: 14.7em;
+  }
+  @include mediaMax($device-M) {
+    margin-bottom: 3.5em;
+    margin-left: 1em;
+    margin-right: 1em;
   }
 }
 
 .novelty-container {
   padding-top: 0.78em;
   padding-bottom: 1.43em;
-
+  border-radius: 20px;
   @include themeSectionBackground;
 
   &__link {
     margin: 0 0 0.9em;
-
-    @include mediaMin($device-M) {
-      margin: 0 0 2.2em;
-    }
   }
 
   @include mediaMin($device-M) {
+    //margin: 0 0 2em;
+    padding-left: 3.6em;
+    padding-right: 3.6em;
+  }
+  @include mediaMin($device-M) {
     padding-top: 2.2em;
-    padding-bottom: 5.3em;
+    padding-bottom: 3.8em;
   }
 }
 
@@ -359,6 +380,15 @@
 
   & > * {
     scroll-snap-align: start;
+  }
+}
+.cards-comics {
+  width: clamp(6.429em, 5.114em + 5.75vw, 13em);
+  height: clamp(8.214em, 6.729em + 6.2vw, 15.643em);
+
+  margin-right: 25px;
+  @include mediaMax($device-M) {
+    margin-right: 0px;
   }
 }
 
@@ -454,19 +484,31 @@
 .cards-comics {
   width: clamp(6.429em, 5.114em + 5.75vw, 13em);
   height: clamp(8.214em, 6.729em + 6.2vw, 15.643em);
+  margin-right: 20px;
 }
 
+.evidence {
+  margin-top: 2.5em;
+}
 .co-author-section {
   margin-bottom: 0.72em;
 
   @include mediaMin($device-M) {
     margin-bottom: 3.5em;
+    margin-left: 14.7em;
+    margin-right: 14.7em;
+  }
+  @include mediaMax($device-M) {
+    margin-bottom: 3.5em;
+    margin-left: 1em;
+    margin-right: 1em;
   }
 }
 
 .co-author {
   &__container {
-    padding: 1.1em 2.35em;
+    padding: 0.8em 3.7em;
+    border-radius: 20px;
 
     @include themeSectionBackground;
 
@@ -479,7 +521,7 @@
 
   &__text {
     font-weight: 600;
-    font-size: 0.86rem;
+    font-size: 1.4rem;
     line-height: 15px;
     @include themeText;
   }
@@ -496,7 +538,7 @@
     line-height: 11px;
     text-align: center;
     width: max-content;
-    padding: 0.7em 1.4em;
+    padding: 0.7em 2em;
     min-width: 110px;
     text-decoration: none;
     background: $primary-color;
