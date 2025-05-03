@@ -40,7 +40,10 @@ const ComicsHeader: FC<Props> = ({ title }) => {
     <div className={cn(styles['header'], 'container')}>
       <BackLink text="Назад" />
       <p className={styles['header__title']}>{title}</p>
-      <ChaptersButton chapters={chapters} />
+      <div className={styles['header__button']}>
+        <ChaptersButton chapters={chapters} />
+      </div>
+      {/* <ChaptersButton chapters={chapters} /> */}
     </div>
   );
 };
