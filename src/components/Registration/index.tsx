@@ -126,7 +126,7 @@ const Registration = () => {
       <div className={cn(styles['registration__container'], 'container')}>
         <BackLink mixClass={[styles['registration__backLink']]} />
         <div className={styles['registration__inner-container']}>
-          <Logo mixClass={[styles['registration__logo']]} />
+          <Logo isHeader={false} mixClass={[styles['registration__logo']]} />
           <CSSTransition
             timeout={500}
             in={!activationButton}

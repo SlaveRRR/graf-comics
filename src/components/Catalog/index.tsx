@@ -1,14 +1,14 @@
 'use client';
-import { FC, useEffect, useState, useCallback, useContext } from 'react';
-import { focus, genres, tags, rating, status, viewCounts, sort, size } from '@/data/data.json';
-import cn from 'classnames';
-import styles from './index.module.scss';
-import { Filters } from '../shared';
-import { Cards } from '../UI';
-import { useSearchParams } from 'next/navigation';
-import { CSSTransition } from 'react-transition-group';
-import { ctx } from '@/context/contextProvider';
 import { ActiveFilters } from '@/components/shared/index';
+import { ctx } from '@/context/contextProvider';
+import { focus, genres, rating, size, sort, status, tags, viewCounts } from '@/data/data.json';
+import cn from 'classnames';
+import { useSearchParams } from 'next/navigation';
+import { FC, useCallback, useContext, useEffect, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { Cards } from '../UI';
+import { Filters } from '../shared';
+import styles from './index.module.scss';
 
 const Catalog: FC = () => {
   const searchParams = useSearchParams();
@@ -74,19 +74,19 @@ const Catalog: FC = () => {
           />
           <Cards
             mixClass={[styles['catalog__cards']]}
-            names={[
-              'Название',
-              'Название',
-              'Название',
-              'Название',
-              'Название',
-              'Название',
-              'Название',
-              'Название',
-              'Название',
-              'Название',
-              'Название',
-              'Название',
+            cards={[
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
+              { name: 'Название' },
             ]}
           />
         </div>
