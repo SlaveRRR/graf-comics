@@ -2,6 +2,10 @@
 
 .catalog {
   &__container {
+    @include mediaMax($device-M) {
+      padding-top: 1em;
+    }
+
     @include mediaMin($device-M) {
       display: grid;
       grid-template-columns: 3fr 1fr;
@@ -20,7 +24,7 @@
       top: 50%;
       left: 11px;
       transform: translateY(-50%);
-      color: #8a8a8a;
+      @include themeInputPlaceholder;
       position: absolute;
     }
   }

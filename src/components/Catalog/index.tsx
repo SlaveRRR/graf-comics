@@ -37,6 +37,14 @@ const Catalog: FC = () => {
   return (
     <section className="catalog">
       <div className={cn(styles['catalog__container'], 'container')}>
+        <label htmlFor="search" className={styles['catalog__search-label']}>
+          <input
+            type="text"
+            id="search"
+            placeholder="Название, автор, персонаж..."
+            className={styles['catalog__search-field']}
+          />
+        </label>
         <Filters
           filters={[
             { text: 'Жанры', colorClass: 'genres', filters: genres, filterType: 'default', isActive: false },
@@ -58,14 +66,6 @@ const Catalog: FC = () => {
           urlFilter={searchParams.get('genre') ?? ''}
         />
         <div className={styles['catalog__cards-container']}>
-          <label htmlFor="search" className={styles['catalog__search-label']}>
-            <input
-              type="text"
-              id="search"
-              placeholder="Название, автор, персонаж..."
-              className={styles['catalog__search-field']}
-            />
-          </label>
           <ActiveFilters
             mixClass={[styles['catalog__active-filters']]}
             filters={activeFilters}
