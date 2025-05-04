@@ -2,6 +2,8 @@
 
 :root[data-theme='light'] {
   --background-color: #f6f6f6;
+  --input-background-color: #f2effe;
+  --input-placeholder-color: #cabdfc;
   --text-color: #2d283e;
   --section-background-color: #ffffff;
   --sidebar-background-color: #f6f6f6;
@@ -18,6 +20,8 @@
 
 :root[data-theme='dark'] {
   --background-color: #2d283e;
+  --input-background-color: #37257b;
+  --input-placeholder-color: #7a5af8;
   --text-color: #ffffff;
   --section-background-color: #322b56;
   --sidebar-background-color: #2d283e;

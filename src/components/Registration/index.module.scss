@@ -2,8 +2,8 @@
 
 .registration {
   &__inner-container {
+    @include themeSectionBackground;
     border-radius: 10px;
-    background: white;
     @include flex($dir: column);
     padding-top: 1em;
     margin-bottom: 0.9em;
@@ -14,6 +14,7 @@
   }
 
   &__head {
+    @include themeText;
     font-size: clamp(1.43rem, 0.5rem + 3.8vw, 3.72rem);
     font-weight: 600;
     line-height: 24px;
@@ -32,13 +33,10 @@
 
   &__logo {
     margin-bottom: 1em;
-
-    @include mediaMin($size: $device-XM) {
-      display: none;
-    }
   }
 
   &__with-social {
+    @include themeText;
     font-size: 1rem;
     font-weight: 400;
     line-height: 17px;
@@ -62,6 +60,7 @@
   }
 
   &__or {
+    @include themeText;
     font-size: clamp(0.876rem, 0.7rem + 1.6vw, 2.15rem);
     font-weight: 400;
     line-height: 17px;
@@ -83,6 +82,7 @@
   }
 
   &__input {
+    @include themeInputBackground;
     @include focus($outline: 1px solid #807d7d);
     border: none;
     border-radius: 2em;
@@ -91,7 +91,6 @@
     font-size: clamp(0.86rem, 1.9vw, 1.72rem);
     font-weight: 600;
     line-height: 15px;
-    background-color: #f2effe;
     margin-bottom: 1.5em;
 
     width: clamp(210px, 50vw, 510px);
@@ -103,6 +102,7 @@
     }
 
     &::placeholder {
+      @include themeInputPlaceholder;
       font-size: 0.86em;
       font-weight: 600;
       line-height: 15px;
@@ -130,6 +130,7 @@
   }
 
   &__label {
+    @include themeText;
     font-size: clamp(1rem, 1rem + 0.1vw, 2rem);
     margin-bottom: 0.4em;
     font-weight: 500;
@@ -143,6 +144,7 @@
   }
 
   &__next {
+    cursor: pointer;
     display: block;
     background: transparent;
     color: $main-color;
@@ -197,6 +199,7 @@
   }
 
   &__signin {
+    @include themeText;
     font-size: 0.79rem;
     font-weight: 500;
     line-height: 13px;
@@ -204,6 +207,7 @@
   }
 
   &__link {
+    color: #7a5af8;
     font-size: 0.79rem;
     font-weight: 500;
     line-height: 13px;
