@@ -61,7 +61,6 @@ const ProfileSettings: FC = () => {
           <p className={styles['profile-settings-form__text-label']}> Пол</p>
           <div className={styles['profile-settings-form__radio-btn-container']}>
             <label htmlFor="female" className={styles['radio-btn__label']}>
-              <span className={styles['radio-btn__circle']}></span>
               <input
                 {...register('gender')}
                 className={styles['radio-btn__input']}
@@ -70,10 +69,10 @@ const ProfileSettings: FC = () => {
                 name="gender"
                 value="female"
               />
+              <span className={styles['radio-btn__circle']}></span>
               Женский
             </label>
             <label htmlFor="male" className={styles['radio-btn__label']}>
-              <span className={styles['radio-btn__circle']}></span>
               <input
                 {...register('gender')}
                 className={styles['radio-btn__input']}
@@ -82,10 +81,10 @@ const ProfileSettings: FC = () => {
                 name="gender"
                 value="male"
               />
+              <span className={styles['radio-btn__circle']}></span>
               Мужской
             </label>
             <label htmlFor="notStated" className={styles['radio-btn__label']}>
-              <span className={styles['radio-btn__circle']}></span>
               <input
                 {...register('gender')}
                 className={styles['radio-btn__input']}
@@ -93,6 +92,7 @@ const ProfileSettings: FC = () => {
                 id="notStated"
                 value="not_stated"
               />
+              <span className={styles['radio-btn__circle']}></span>
               Не указан
             </label>
           </div>
@@ -156,14 +156,14 @@ const ProfileSettings: FC = () => {
             htmlFor="hideSubscribes"
             className={cn(styles['radio-btn__label'], styles['radio-btn__hide-subscribes'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('hideSubscribes')}
-              className={styles['radio-btn__input']}
+              className={styles['radio-btn__switch']}
               type="checkbox"
               id="hideSubscribes"
               value="true"
             />
+            <span className={styles['radio-btn__switch-move']}></span>
             Скрыть
           </label>
           <p className={styles['profile-settings-form__text-label']}> Закрытый профиль</p>
@@ -171,14 +171,14 @@ const ProfileSettings: FC = () => {
             htmlFor="privateProfile"
             className={cn(styles['radio-btn__label'], styles['radio-btn__private-profile'])}
           >
-            <span className={styles['radio-btn__circle']}></span>
             <input
               {...register('privateProfile')}
-              className={styles['radio-btn__input']}
+              className={styles['radio-btn__switch']}
               type="checkbox"
               id="privateProfile"
               value="true"
             />
+            <span className={styles['radio-btn__switch-move']}></span>
             Закрыть
           </label>
           <p className={styles['profile-settings-form__text-label']}> Ссылка</p>
