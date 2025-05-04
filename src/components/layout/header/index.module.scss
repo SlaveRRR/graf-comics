@@ -219,7 +219,7 @@
 }
 
 .close-sidebar {
-  @include mediaMin($device-L) {
+  @include mediaMin($device-M) {
     display: none;
   }
 
