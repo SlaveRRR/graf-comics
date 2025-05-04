@@ -1,8 +1,8 @@
 'use client';
-import React, { FC, useState } from 'react';
-import styles from './index.module.scss';
 import { IChapter } from '@/components/Chapter/types';
+import { FC, useState } from 'react';
 import Chapters from '../Chapters';
+import styles from './index.module.scss';
 
 type Props = {
   chapters: IChapter[];

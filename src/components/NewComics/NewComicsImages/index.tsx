@@ -8,7 +8,9 @@ import cn from 'classnames';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { FC } from 'react';
+import { FC, useCallback, useRef, useState } from 'react';
+import { Cropper, CropperRef } from 'react-advanced-cropper';
+import 'react-advanced-cropper/dist/style.css';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './index.module.scss';
 
@@ -20,6 +22,12 @@ type FormData = {
 const defaultImages = ['/bg-default.svg', '/bg-default.svg', '/bg-default.svg'];
 
 const NewComicsImages: FC = () => {
+  const cropperRef = useRef<CropperRef>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [croppedImage, setCroppedImage] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const { addTitleDescription, addCover, addBanner } = useActions();
   const comics = useAppSelector((state) => state.comics);
   const { data: session } = useSession();
@@ -29,6 +37,7 @@ const NewComicsImages: FC = () => {
     control,
     formState: { isValid, errors },
     getValues,
+    setValue,
   } = useForm<FormData>({
     mode: 'onChange',
     shouldFocusError: true,
@@ -43,6 +52,23 @@ const NewComicsImages: FC = () => {
       description: data.description,
       author: session?.user?.name,
     });
+  };
+
+  const onCrop = useCallback(() => {
+    if (cropperRef.current) {
+      const canvas = cropperRef.current.getCanvas();
+      if (canvas) {
+        setCroppedImage(canvas.toDataURL('image/jpeg'));
+      }
+    }
+  }, [setCroppedImage]);
+
+  const handlerCropper = () => {
+    setIsProcessing(true);
+    if (getValues('covers').length <= 4) {
+      addCover([croppedImage]);
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -89,7 +115,7 @@ const NewComicsImages: FC = () => {
         <fieldset>
           <p className={styles['text-label']}>Обложка и дополнительные страницы</p>
           <div className={styles['imgs']}>
-            <label className={styles['cover']} htmlFor="cover">
+            <label className={styles['cover']} onClick={() => setIsModalOpen(true)}>
               <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1324_9631)">
                   <path d="M1 13H25" stroke="#7A5AF8" stroke-width="1.8" stroke-linecap="round" />
@@ -172,6 +198,70 @@ const NewComicsImages: FC = () => {
           Далее
         </button>
       </form>
+      {isModalOpen && (
+        <div className={styles['modal']}>
+          <div className={styles['modal__content']}>
+            <span className={styles['close']} onClick={() => setIsModalOpen(false)}>
+              &times;
+            </span>
+            <h1 className={styles['modal__text']}>
+              Добавьте изображение<span className={styles['modal__text--span']}> 960x1160 </span>
+              <br />
+              или отредактируйте изображение для вашей обложки
+            </h1>
+            <div className={styles['modal__add']}>
+              <label htmlFor="cover" className={styles['modal__add--button']}>
+                Выберите файл
+              </label>
+              <p className={styles['modal__add--text']}>Загрузить файл .png .jpeg</p>
+            </div>
+
+            {previewImage && (
+              <div className={styles['modal__wrapper']}>
+                <div className={styles['modal__preview']}>
+                  <Cropper
+                    ref={cropperRef}
+                    src={previewImage}
+                    onChange={onCrop}
+                    className={styles['modal__preview--photo']}
+                    backgroundClassName="cropper-background"
+                    stencilProps={{
+                      aspectRatio: 960 / 1160,
+                      grid: true,
+                    }}
+                  />
+                </div>
+                <button
+                  onClick={handlerCropper}
+                  disabled={isProcessing || !croppedImage}
+                  className={styles['modal__confirm']}
+                >
+                  {isProcessing ? 'Обработка...' : 'Добавить обложку'}
+                </button>
+              </div>
+            )}
+            <input
+              type="file"
+              id="cover"
+              className={cn(styles['cover__input'], 'myvisuallyhidden')}
+              {...register('covers', {
+                required: true,
+                onChange(event) {
+                  const files = event.target.files;
+                  if (files && files.length > 0 && files.length <= 4) {
+                    const imgFile = files[0];
+                    const imageUrl = URL.createObjectURL(imgFile);
+                    setPreviewImage(imageUrl);
+                    setValue('covers', files);
+                  }
+                },
+              })}
+              accept="image/png, image/jpeg"
+              multiple
+            />
+          </div>
+        </div>
+      )}
     </AddComics>
   );
 };

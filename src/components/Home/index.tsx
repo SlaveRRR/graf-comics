@@ -148,7 +148,7 @@ const Home: FC = () => {
       <section className={styles['slider-section']}>
         <div className={cn(styles['slider-container'], 'container')}>
           <ArrowLink mixClass={[styles['slider-container__link']]} text="Новости" url="/news" />
-          <SliderArticles arr={['Статья №1', 'Статья №2', 'Статья №3']} />
+          <SliderArticles className={styles['slider']} slides={['Статья №1', 'Статья №2', 'Статья №3']} />
         </div>
       </section>
       <section className="article-section">

@@ -1,7 +1,7 @@
 @use '../../styles/global' as *;
 
 .profile-header {
-  background: white;
+  @include themeSectionBackground;
 
   @include mediaMin($device-XL) {
     position: relative;
@@ -86,14 +86,14 @@
 
 .tabs {
   background-color: white;
-
+  @include themeSectionBackground;
   @include mediaMin($device-XL) {
     background-color: transparent;
   }
 
   &__items {
     padding-top: 1em;
-    background-color: #f6f6f6;
+    @include themeSectionBackground;
     padding-bottom: 0.5em;
 
     @include mediaMin($device-XXL) {
@@ -144,11 +144,9 @@
     border: none;
     border-radius: 562px;
     padding: 0.5em 1em;
-    color: black;
-    background-color: #f2effe;
     text-align: left;
     width: 100%;
-
+    @include themeInput;
     &::placeholder {
       color: #cabdfc;
       font-weight: 600;
@@ -177,10 +175,9 @@
     line-height: 15px;
     border: none;
     padding: 0.5em 1em;
-    color: black;
-    background-color: #f2effe;
     text-align: left;
     border-radius: 10px;
+    @include themeInput;
 
     &::placeholder {
       color: #cabdfc;
@@ -199,23 +196,18 @@
 
 .radio-btn {
   &__label {
+    @include themeText;
     @include flex($gap: 0.8em, $justify: flex-start);
-    color: #000;
     font-size: 0.8rem;
     font-weight: 500;
     line-height: normal;
     margin-top: 0.8em;
     margin-bottom: 2.25em;
+    position: relative;
 
     &:has(input:checked) {
-      & > span {
-        background: radial-gradient(6px 6px at center, #7a5af8 70%, white 30%);
-      }
-    }
-
-    &:has(input:active) {
-      & > span {
-        box-shadow: 0px 0px 0px 4px #e4defe;
+      & > .radio-btn__circle {
+        border-color: #7a5af8;
       }
     }
   }
@@ -225,12 +217,68 @@
     min-width: 16px;
     height: 16px;
     border: 1px solid $main-color;
-    border-radius: 100px;
-    transition: all 0.4s;
+    border-radius: 4px;
+    transition: all 0.3s;
+    position: relative;
+    background-color: white;
+    cursor: pointer;
+  }
+  &__circle::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 8px;
+    border: solid $main-color;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
   }
 
   &__input {
     display: none;
+
+    &:checked + .radio-btn__circle::after {
+      border-color: $main-color;
+      display: inline; // Показываем галочку
+    }
+    &:focus-visible + .radio-btn__circle {
+      box-shadow: 0 0 0 2px rgba(122, 90, 248, 0.3);
+    }
+  }
+  &__switch {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    &:checked + .radio-btn__switch-move {
+      background: $main-color;
+    }
+    &:checked + .radio-btn__switch-move::before {
+      transform: translateX(15px);
+    }
+  }
+  &__switch-move {
+    position: relative;
+    background: #9e9e9e;
+    border-radius: 40px;
+    transition: 0.3s;
+    width: 36px;
+    height: 20px;
+    left: -8px;
+    cursor: pointer;
+    &::before {
+      position: absolute;
+      content: '';
+      background: #fff;
+      width: 15px;
+      height: 15px;
+      border-radius: 30px;
+      top: 2.5px;
+      left: 3px;
+      bottom: 0;
+      transition: 0.4s;
+    }
   }
 }
 
@@ -255,6 +303,7 @@
     font-weight: 500;
     font-size: 1rem;
     line-height: 15px;
+    @include themeText;
   }
 
   &__label {
@@ -264,6 +313,7 @@
     @include flex($dir: column, $gap: 0.4em, $align: flex-start);
     margin-bottom: 1.8em;
     position: relative;
+    @include themeText;
   }
 
   &__radio-btn-container {
@@ -281,11 +331,11 @@
   }
 
   &__text-change-password {
-    color: #2d283e;
     font-size: 1.43rem;
     font-weight: 600;
     margin: 1.5em 0;
     text-align: center;
+    @include themeText;
   }
 
   &__new-password {
@@ -318,20 +368,14 @@
   }
 }
 
-.settings-container {
-  position: relative;
-  z-index: 2;
-
-  @include mediaMax($device-XL) {
-    background: white;
-  }
-}
-
 .fieldset-container {
+  @include themeSectionBackground;
+  @include themeText;
+
   @include mediaMin($device-XL) {
     padding: 12.7em 9em 2.2em;
     border-radius: 20px;
-    background-color: white;
+    @include themeSectionBackground;
   }
 }
 
@@ -339,31 +383,14 @@
   @include mediaMin($device-XL) {
     padding: 2.5em 9em 2.2em;
     border-radius: 20px;
-    background-color: white;
+    @include themeSectionBackground;
   }
 }
 
 .settings-container {
   position: relative;
   z-index: 2;
-
   @include mediaMax($device-XL) {
-    background: white;
-  }
-}
-
-.fieldset-container {
-  @include mediaMin($device-XL) {
-    padding: 12.7em 9em 2.2em;
-    border-radius: 20px;
-    background-color: white;
-  }
-}
-
-.fieldset-container--without-pt {
-  @include mediaMin($device-XL) {
-    padding: 2.5em 9em 2.2em;
-    border-radius: 20px;
-    background-color: white;
+    @include themeSectionBackground;
   }
 }

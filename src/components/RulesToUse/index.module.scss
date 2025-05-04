@@ -1,0 +1,59 @@
+.container {
+  padding: 1.25em;
+  margin: 10px;
+  border-radius: 0.625rem;
+  word-break: normal;
+  text-overflow: ellipsis;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  word-break: normal;
+  text-align: center;
+
+  &--grey {
+    color: #818181;
+  }
+
+  &--margin-top-20 {
+    margin-top: 1.25em;
+  }
+
+  &--margin-bottom-20 {
+    margin-bottom: 1.25em;
+  }
+
+  &--margin-bottom-40 {
+    margin-bottom: 2.5em;
+  }
+
+  &--margin-bottom-10 {
+    margin-bottom: 0.625em;
+  }
+
+  &--bold {
+    font-weight: 600;
+  }
+
+  &--font-size-12 {
+    font-size: 0.857rem;
+  }
+
+  &--font-size-20 {
+    font-size: 1.25rem;
+  }
+
+  span.qwe {
+    color: #7a5af8;
+  }
+
+  &--left {
+    text-align: left;
+  }
+}

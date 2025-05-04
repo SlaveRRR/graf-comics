@@ -89,7 +89,7 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
               <div className={styles['comics-page__description-container']}>
                 <p
                   onKeyDown={(e) => (e.key === 'Enter' ? setIsVisibleMore(true) : false)}
-                  onClick={() => setIsVisibleMore(true)}
+                  onClick={() => setIsVisibleMore((prev) => !prev)}
                   className={cn(styles['comics-page__description'], {
                     [styles['comics-page__description--open']]: isVisibleMore,
                   })}

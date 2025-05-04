@@ -72,6 +72,10 @@
   color: var(--theme-tab-text);
   transition: color 0.5s ease-out;
 }
+@mixin themeInput {
+  color: var(--text-color);
+  background-color: var(--theme-input-background);
+}
 
 @mixin themeInputBackground {
   background: var(--input-background-color);

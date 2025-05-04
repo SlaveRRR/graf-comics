@@ -20,7 +20,7 @@
   }
 
   &__section {
-    background-color: #ffffff;
+    @include themeBadge;
     border-radius: 10px;
     padding: 1.64em 0.4645em 2em;
   }
@@ -29,14 +29,14 @@
     font-size: 1.43rem;
     font-weight: 600;
     text-align: center;
-    color: #2d283e;
+    @include themeText;
     margin-bottom: 1.3em;
   }
 
   &__subtitle {
     font-size: 12px;
     font-weight: 600;
-    color: #2d283e;
+    @include themeText;
     margin-bottom: 1.42em;
     padding: 0px 1.02em;
     &--author {

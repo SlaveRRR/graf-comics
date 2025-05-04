@@ -1,0 +1,1 @@
+export { PopularArticleItem } from './PopularArticleItem';
