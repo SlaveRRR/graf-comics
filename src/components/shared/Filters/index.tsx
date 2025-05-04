@@ -1,11 +1,10 @@
 'use client';
-import type { FilterItem, IFilter } from '@/types/filter.type';
-import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
-
 import { ActiveFilters } from '@/components/shared/index';
 import { ctx } from '@/context/contextProvider';
+import type { FilterItem, IFilter } from '@/types/filter.type';
 import { MixClass } from '@/types/mixClass.type';
 import cn from 'classnames';
+import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { Filter, SearchFilter, SortFilter } from '..';
 import styles from './index.module.scss';
 
@@ -16,13 +15,12 @@ type Props = {
 
 const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
   const [isVisibleFilter, setVisible] = useState(false);
-
   const [visbileFilters, setVisibleFilters] = useState<IFilter[]>(filters);
-
-  const initialState = urlFilter ? [{ text: urlFilter, colorClass: 'genres' }] : [];
+  const [sortText, setSort] = useState<string>();
 
   const { activeFilters, toggleFilters, setFilters } = useContext(ctx);
-  const [sortText, setSort] = useState<string>();
+
+  const initialState = urlFilter ? [{ text: urlFilter, colorClass: 'genres' }] : [];
 
   const handleClick = () => {
     setVisible(!isVisibleFilter);
@@ -123,7 +121,13 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
           Фильтр
         </p>
         {isVisibleFilter && (
-          <button onClick={() => setFilters([])} className={styles['filter__reset-btn']}>
+          <button
+            onClick={() => {
+              setFilters([]);
+              setSort('по названию');
+            }}
+            className={styles['filter__reset-btn']}
+          >
             Сбросить
           </button>
         )}
@@ -170,7 +174,9 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
                       <SortFilter
                         setActive={() => setActive(elem)}
                         header={elem['text']}
-                        setSort={setSort}
+                        setSort={(value) => {
+                          setSort(sortText === value ? undefined : value);
+                        }}
                         sortText={sortText}
                         isActive={elem['isActive']}
                         filters={elem['filters']}
