@@ -9,6 +9,7 @@
   }
 
   &__header-text {
+    @include themeText;
     font-size: 0.86rem;
     font-weight: 600;
     line-height: normal;
@@ -41,6 +42,7 @@
     margin-bottom: 1.1em;
     // max-width: 600px;
     width: 100%;
+
     &::before {
       content: url('../../assets/search.svg');
       top: 50%;
