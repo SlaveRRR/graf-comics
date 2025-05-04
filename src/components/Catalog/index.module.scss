@@ -29,7 +29,7 @@
     display: block;
     border: none;
     border-radius: 526px;
-    max-width: 290px;
+    max-width: 100%;
     width: 100%;
     height: 35px;
     padding: 0.3em 2.8em;
@@ -37,13 +37,12 @@
     font-weight: 600;
     line-height: 15px;
 
-    background-color: #f2effe;
-    color: #9991b9;
+    @include themeInputPlaceholder;
+    @include themeInputBackground;
     @include focus($outline: 1px solid #fdfdfd);
 
     &::placeholder {
-      background-color: #f2effe;
-      color: #cabdfc;
+      @include themeInputPlaceholder;
       font-size: 0.86rem;
       font-weight: 600;
       line-height: 15px;

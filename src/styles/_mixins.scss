@@ -77,6 +77,26 @@
   background-color: var(--theme-input-background);
 }
 
+@mixin themeInputBackground {
+  background: var(--input-background-color);
+  transition: fill 0.3s ease-out;
+}
+
+@mixin themeInputPlaceholder {
+  color: var(--input-placeholder-color);
+  transition: fill 0.3s ease-out;
+}
+
+@mixin themeLogoSrc {
+  background-image: var(--logo-src);
+  transition: background-image 0.3s ease-out;
+}
+
+@mixin themeLogoLogin {
+  background-image: var(--logo-login);
+  transition: background-image 0.3s ease-out;
+}
+
 @mixin focus($outline: none) {
   &:focus {
     outline: $outline;

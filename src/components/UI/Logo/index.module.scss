@@ -1,3 +1,20 @@
-.logo {
-  max-width: 100%;
+@use '../../../styles/global' as *;
+
+.header-logo {
+  @include themeLogoSrc;
+  width: 164px;
+  height: 86px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.login-logo {
+  @include themeLogoLogin;
+  width: 210px;
+  height: 112px;
+  max-height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

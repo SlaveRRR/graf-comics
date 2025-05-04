@@ -56,7 +56,7 @@ const Login: FC = () => {
       <div className={cn(styles['login__container'], 'container')}>
         <BackLink mixClass={[styles['login__backLink']]} />
         <div className={styles['login__inner-container']}>
-          <Logo mixClass={[styles['login__logo']]} />
+          <Logo isHeader={false} mixClass={[styles['login__logo']]} />
 
           <h2 className={styles['login__head']}>Вход</h2>
           <p className={styles['login__with-social']}>через соцсети</p>

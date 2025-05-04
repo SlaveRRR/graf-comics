@@ -15,6 +15,10 @@
   --footer-icons: #2d283e;
   --theme-tab-text: #564f70;
   --theme-input-background: #f2effe;
+  --input-background-color: #f2effe;
+  --input-placeholder-color: #cabdfc;
+  --logo-src: url('/logo-light.svg');
+  --logo-login: url('/logo-light.svg');
   --animated-box-shadow-init: 0 4px 8px rgba(0, 0, 0, 0.1);
   --animated-box-shadow-animation: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -34,6 +38,10 @@
   --footer-icons: #7a5af8;
   --theme-tab-text: white;
   --theme-input-background: #37257b;
+  --input-background-color: #37257b;
+  --input-placeholder-color: #7a5af8;
+  --logo-src: url('/logo-dark.svg');
+  --logo-login: url('/logo-purple.svg');
   --animated-box-shadow-init: 0 4px 8px rgba(255, 255, 255, 0.117);
   --animated-box-shadow-animation: 0 8px 16px rgba(255, 255, 255, 0.782);
 }
