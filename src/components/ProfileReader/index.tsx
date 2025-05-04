@@ -2,6 +2,7 @@
 import MoreDetailsPopup from '@/components/shared/MoreDetailsPopup';
 import cn from 'classnames';
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import { FC, useState } from 'react';
 import { Cards, Tabs } from '../UI';
 import { ProfileFilters, Stats } from '../shared';
@@ -58,6 +59,9 @@ const ProfileReader: FC = () => {
               </g>
             </svg>
           </p>
+          <Link className={styles['profile_edit']} href={'/profile/edit'}>
+            Редактировать
+          </Link>
           <Stats
             mixClass={[styles['profile__stats']]}
             itemClassName={styles['profile__stats-items']}
