@@ -1,18 +1,62 @@
 'use client';
 import { ctx } from '@/context/contextProvider';
+import { IComicsComment } from '@/store/comics/types';
 import cn from 'classnames';
 import Link from 'next/link';
 import { FC, useContext, useState } from 'react';
 import { Chapters, SliderPreview, Tabs } from '../UI';
-import { ComicsComment } from './components';
+import { ComicsComment, FilterBarComponent } from './components';
 import { comicsData, comments } from './data';
 import styles from './index.module.scss';
 import { ComicsPreviewProps } from './types';
-
 const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
   const { setActiveBookMarks } = useContext(ctx);
   const { banner, covers, description, genres, title, toms, author, status, rating } = comics;
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
+
+  //сортировка
+  const [commentsRender, setCommentsRender] = useState(comments);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [sortBy, setSortBy] = useState('newest');
+
+  const sortComments = (criteria: string, commentsRender: IComicsComment[]) => {
+    const sorted = [...commentsRender];
+    switch (criteria) {
+      case 'new':
+        sorted.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        break;
+      case 'oldest':
+        sorted.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+        break;
+      case 'popular':
+        sorted.sort((a, b) => b.likes - a.likes);
+        break;
+      default:
+        break;
+    }
+    console.log(sorted);
+    setCommentsRender(sorted);
+  };
+
+  const handleSortSelect = (criteria) => {
+    setSortBy(criteria);
+    sortComments(criteria, commentsRender);
+    setIsModalOpen(false);
+  };
+
+  function getSortBy() {
+    switch (sortBy) {
+      case 'new':
+        return 'Новое';
+        break;
+      case 'oldest':
+        return 'Старое';
+        break;
+      case 'popular':
+        return 'Популярное';
+        break;
+    }
+  }
 
   return (
     <section className={styles['comics-page']}>
@@ -251,7 +295,7 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
                 />
               </div>
               <div className={styles['comics-page__comments']}>
-                <button className={styles['comments__sort-btn']}>
+                <button onClick={() => setIsModalOpen(true)} className={styles['comments__sort-btn']}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
                     <path
                       d="M7.26011 0.144185C7.26106 0.144977 7.26209 0.14563 7.26305 0.146443L8.82836 1.47978C8.93832 1.57357 9.00005 1.70071 9 1.83326C8.99995 1.96581 8.9381 2.09292 8.82807 2.18664C8.71804 2.28037 8.56882 2.33304 8.41321 2.33309C8.2576 2.33314 8.10833 2.28055 7.99822 2.18689L7.43497 1.70711L7.43497 8.5C7.43497 8.63261 7.37312 8.75979 7.26304 8.85355C7.15296 8.94732 7.00366 9 6.84798 9C6.69229 9 6.54299 8.94732 6.43291 8.85355C6.32283 8.75979 6.26098 8.63261 6.26098 8.5L6.26098 1.70711L5.69773 2.18689C5.58762 2.28055 5.43835 2.33314 5.28274 2.33309C5.12713 2.33304 4.97791 2.28037 4.86788 2.18664C4.75785 2.09292 4.696 1.96581 4.69595 1.83326C4.6959 1.70071 4.75763 1.57357 4.86759 1.47978L6.4329 0.146443C6.43386 0.14563 6.43489 0.144979 6.43584 0.144185C6.44862 0.133423 6.46192 0.123108 6.47583 0.113382C6.48304 0.108337 6.49063 0.103943 6.49804 0.0992432C6.50597 0.0942173 6.51368 0.0889893 6.52192 0.0842896C6.53064 0.0793247 6.53967 0.0749912 6.54865 0.0704556C6.55613 0.0666714 6.56344 0.0626431 6.57115 0.0591221C6.5802 0.0550127 6.5895 0.0514927 6.59876 0.0478106C6.60688 0.0445356 6.61488 0.0410767 6.62322 0.038126C6.63223 0.0349522 6.6414 0.0323887 6.65052 0.0296221C6.65948 0.0268955 6.66829 0.0239668 6.67741 0.0216064C6.68663 0.0192261 6.69602 0.0174761 6.70534 0.0155029C6.71458 0.0135298 6.7237 0.0113115 6.73314 0.00970459C6.74393 0.00787354 6.75485 0.0067749 6.76574 0.00547218C6.77381 0.00449562 6.78177 0.00317383 6.78994 0.00250244C6.82854 -0.000753403 6.86742 -0.000753403 6.90602 0.00250244C6.91418 0.00317383 6.92214 0.00449562 6.93021 0.00547218C6.9411 0.0067749 6.95202 0.00787354 6.96281 0.00970459C6.97225 0.0113115 6.98137 0.0135298 6.99062 0.0155029C6.99993 0.0174761 7.00932 0.0192261 7.01854 0.0216064C7.02766 0.0239668 7.03647 0.0268974 7.04543 0.0296221C7.05455 0.0323887 7.06373 0.0349522 7.07273 0.038126C7.08107 0.0410767 7.08907 0.0445356 7.09719 0.0478106C7.10646 0.0514927 7.11575 0.0550127 7.1248 0.0591221C7.13251 0.0626421 7.13982 0.0666704 7.1473 0.0704556C7.15628 0.0749922 7.16531 0.0793266 7.17403 0.0842896C7.18227 0.0889893 7.18998 0.0942173 7.19791 0.0992432C7.20532 0.103943 7.21291 0.108337 7.22013 0.113382C7.23403 0.123108 7.24733 0.133423 7.26011 0.144185ZM1.80209 8.90076C1.81002 8.90578 1.81773 8.91101 1.82597 8.91571C1.83469 8.92067 1.84372 8.92501 1.8527 8.92954C1.86018 8.93333 1.86748 8.93736 1.8752 8.94088C1.88428 8.94501 1.89362 8.94853 1.90291 8.95223C1.911 8.95548 1.91896 8.95892 1.92725 8.96185C1.93628 8.96505 1.94549 8.96763 1.95467 8.9704C1.96358 8.97312 1.97236 8.97603 1.98146 8.97839C1.99068 8.98077 2.00007 8.98252 2.00939 8.9845C2.01863 8.98647 2.02775 8.98869 2.03719 8.9903C2.04798 8.99213 2.0589 8.99323 2.06979 8.99453C2.07786 8.9955 2.08582 8.99683 2.09399 8.9975C2.13258 9.00075 2.17147 9.00075 2.21006 8.9975C2.21823 8.99683 2.22619 8.9955 2.23426 8.99453C2.24515 8.99323 2.25607 8.99213 2.26686 8.9903C2.2763 8.98869 2.28542 8.98647 2.29467 8.9845C2.30398 8.98252 2.31337 8.98077 2.32259 8.97839C2.33168 8.97603 2.34048 8.97312 2.34939 8.9704C2.35856 8.96763 2.36778 8.96505 2.3768 8.96185C2.38509 8.95892 2.39304 8.95548 2.40114 8.95223C2.41043 8.94852 2.41977 8.94501 2.42885 8.94087C2.43656 8.93736 2.44387 8.93333 2.45135 8.92954C2.46033 8.925 2.46936 8.92067 2.47808 8.91571C2.48632 8.91101 2.49403 8.90578 2.50196 8.90075C2.50937 8.89606 2.51696 8.89166 2.52418 8.88662C2.53808 8.87689 2.55138 8.86657 2.56416 8.85581C2.56511 8.85502 2.56614 8.85437 2.5671 8.85355L4.13241 7.52022C4.24237 7.42643 4.30411 7.29929 4.30405 7.16674C4.304 7.03419 4.24216 6.90708 4.13212 6.81336C4.02209 6.71963 3.87287 6.66695 3.71726 6.66691C3.56165 6.66686 3.41238 6.71945 3.30227 6.81311L2.73902 7.29289L2.73902 0.5C2.73902 0.367392 2.67717 0.240214 2.56709 0.146446C2.45701 0.0526781 2.3077 0 2.15202 0C1.99634 0 1.84704 0.0526781 1.73696 0.146446C1.62687 0.240214 1.56503 0.367392 1.56503 0.5L1.56503 7.29289L1.00178 6.81311C0.891668 6.71945 0.742404 6.66686 0.586793 6.66691C0.431183 6.66696 0.281961 6.71963 0.171928 6.81336C0.0618948 6.90708 5.45784e-05 7.03419 3.61096e-08 7.16674C-5.45062e-05 7.29929 0.061681 7.42643 0.171637 7.52022L1.73695 8.85356C1.73791 8.85437 1.73894 8.85502 1.73989 8.85581C1.75267 8.86658 1.76597 8.87689 1.77987 8.88662C1.78709 8.89166 1.79468 8.89606 1.80209 8.90076Z"
@@ -259,7 +303,15 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
                     />
                   </svg>
                   Сортировка
+                  <span className={styles['curr-sort']}>{getSortBy()}</span>
                 </button>
+                {isModalOpen && (
+                  <FilterBarComponent
+                    currentSort={sortBy}
+                    onSelect={handleSortSelect}
+                    onClose={() => setIsModalOpen(false)}
+                  />
+                )}
                 <label className={styles['comments__label']} htmlFor="send-message-btn">
                   <input
                     className={styles['comments__input']}
@@ -289,7 +341,7 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
                   </button>
                 </label>
                 <p className={styles['comments__counter']}>{comments.length} комментариев</p>
-                {comments.map((comment) => (
+                {commentsRender.map((comment) => (
                   <>
                     <ComicsComment key={comment.id} comment={comment} />
                   </>
