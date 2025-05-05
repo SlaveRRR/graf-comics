@@ -1,18 +1,20 @@
+@use '../../styles/global' as *;
+
 .container {
   padding: 1.25em;
   margin: 10px;
   border-radius: 0.625rem;
   word-break: normal;
   text-overflow: ellipsis;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .text {
+  @include themeText;
   font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 100%;
-  letter-spacing: 0%;
+  font-size: 1rem;
+  line-height: 1.4;
   vertical-align: middle;
   word-break: normal;
   text-align: center;
@@ -49,11 +51,30 @@
     font-size: 1.25rem;
   }
 
+  &--left {
+    text-align: left;
+  }
+
   span.qwe {
     color: #7a5af8;
   }
+}
 
-  &--left {
-    text-align: left;
+.list {
+  padding-left: 1.25em;
+  margin-bottom: 1.43em;
+  text-align: left;
+
+  & li {
+    @include themeText;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 0.5em;
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  & li::marker {
+    font-size: 0.7em;
   }
 }
