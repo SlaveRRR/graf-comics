@@ -126,7 +126,7 @@ const Home: FC = () => {
             {Array.from({
               length: 8,
             }).map((item) => (
-              <Card isNew mixClass={[styles['cards-comics']]} text="Название" />
+              <Card isNew mixClass={[styles['poppading']]} text="Название" />
             ))}
           </div>
         </div>
@@ -152,7 +152,7 @@ const Home: FC = () => {
         </div>
       </section>
       ..{' '}
-      <section className={cn(styles['co-author-section'], styles['evidence'])}>
+      <section className={cn(styles['co-evidence-section'], styles['evidence'])}>
         <div className={cn('container', styles['co-author__container'])}>
           <p className={styles['co-author__text']}>
             Есть чем поделиться с миром? Знаешь интересные{' '}

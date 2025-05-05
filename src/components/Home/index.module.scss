@@ -282,9 +282,6 @@
     margin-right: 14.7em;
   }
   @include mediaMax($device-M) {
-    margin-bottom: 3.5em;
-    margin-left: 1em;
-    margin-right: 1em;
   }
 }
 
@@ -293,14 +290,15 @@
   padding-bottom: 1.43em;
 
   @include themeSectionBackground;
-  border-radius: 20px;
+
   &__link {
     margin: 0 0 0.9em;
   }
 
   @include mediaMin($device-M) {
-    padding-left: 3.6em;
+    padding-left: 8em;
     padding-right: 3.6em;
+    border-radius: 20px;
   }
   @include mediaMin($device-M) {
     padding-top: 2.2em;
@@ -309,7 +307,9 @@
 }
 
 .poppading {
-  margin-right: 25px;
+  @include mediaMin($device-M) {
+    margin-right: 25px;
+  }
 }
 
 .popular-cards {
@@ -338,17 +338,12 @@
     margin-left: 14.7em;
     margin-right: 14.7em;
   }
-  @include mediaMax($device-M) {
-    margin-bottom: 3.5em;
-    margin-left: 1em;
-    margin-right: 1em;
-  }
 }
 
 .novelty-container {
   padding-top: 0.78em;
   padding-bottom: 1.43em;
-  border-radius: 20px;
+
   @include themeSectionBackground;
 
   &__link {
@@ -356,9 +351,9 @@
   }
 
   @include mediaMin($device-M) {
-    //margin: 0 0 2em;
-    padding-left: 3.6em;
-    padding-right: 3.6em;
+    border-radius: 20px;
+    padding-left: 8em;
+    padding-right: 5.6em;
   }
   @include mediaMin($device-M) {
     padding-top: 2.2em;
@@ -492,23 +487,25 @@
 }
 .co-author-section {
   margin-bottom: 0.72em;
-
   @include mediaMin($device-M) {
     margin-bottom: 3.5em;
     margin-left: 14.7em;
     margin-right: 14.7em;
   }
   @include mediaMax($device-M) {
-    margin-bottom: 3.5em;
-    margin-left: 1em;
-    margin-right: 1em;
+    min-width: 280px;
   }
 }
 
 .co-author {
   &__container {
-    padding: 0.8em 3.7em;
-    border-radius: 20px;
+    @include mediaMin($device-M) {
+      padding: 0.8em 3.7em;
+      border-radius: 20px;
+    }
+    @include mediaMax($device-M) {
+      padding: 0.8em 0 0.8em 0;
+    }
 
     @include themeSectionBackground;
 
@@ -520,10 +517,18 @@
   }
 
   &__text {
-    font-weight: 600;
-    font-size: 1.4rem;
-    line-height: 15px;
-    @include themeText;
+    @include mediaMin($device-M) {
+      font-weight: 600;
+      font-size: 1.4rem;
+      line-height: 15px;
+      @include themeText;
+    }
+    @include mediaMax($device-M) {
+      font-weight: 600;
+      font-size: 0.8rem;
+      line-height: 15px;
+      @include themeText;
+    }
   }
 
   &__idea {
@@ -545,5 +550,18 @@
     border: 1px solid transparent;
     border-radius: 562px;
     color: white;
+  }
+}
+
+.co-evidence-section {
+  margin-bottom: 0.72em;
+  @include mediaMin($device-M) {
+    margin-bottom: 3.5em;
+    margin-left: 14.7em;
+    margin-right: 14.7em;
+  }
+  @include mediaMax($device-M) {
+    min-width: 280px;
+    display: none;
   }
 }
