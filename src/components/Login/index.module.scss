@@ -3,13 +3,14 @@
 .login {
   &__inner-container {
     border-radius: 10px;
-    background: white;
+    @include themeSectionBackground;
     @include flex($dir: column);
     padding-top: 1em;
     margin-bottom: 0.9em;
   }
 
   &__head {
+    @include themeText;
     font-size: 1.43rem;
     font-weight: 600;
     line-height: 24px;
@@ -27,6 +28,7 @@
   }
 
   &__with-social {
+    @include themeText;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: 0em;
@@ -38,6 +40,7 @@
   }
 
   &__or {
+    @include themeText;
     font-weight: 400;
     line-height: 17px;
     margin-bottom: 0.8em;
@@ -54,6 +57,7 @@
 
   &__input {
     @include focus($outline: 1px solid #6c697a);
+    @include themeInput;
     border: none;
     border-radius: 2em;
     padding: 0.5em 2em;
@@ -61,10 +65,10 @@
     min-width: 17.5em;
     font-weight: 600;
     line-height: 15px;
-    background-color: #f2effe;
     margin-bottom: 1.5em;
 
     &::placeholder {
+      @include themeInputPlaceholder;
       font-size: 0.86em;
       font-weight: 600;
       line-height: 15px;
@@ -86,6 +90,7 @@
   }
 
   &__label {
+    @include themeText;
     margin-bottom: 0.4em;
     font-weight: 500;
     line-height: 17px;
@@ -108,8 +113,7 @@
   &__signin-btn {
     display: block;
     border: 1px solid $main-color;
-    background-color: white;
-    color: $main-color;
+    @include themeAuthButton;
     padding: 0.7em 1.6em;
     margin: 0 auto 2.4em;
     border-radius: 2em;
@@ -119,6 +123,7 @@
   }
 
   &__signin {
+    @include themeText;
     font-size: 0.79rem;
     font-weight: 500;
     line-height: 13px;
@@ -126,6 +131,7 @@
   }
 
   &__link {
+    color: $main-color;
     font-size: 0.79rem;
     font-weight: 500;
     line-height: 13px;
@@ -145,6 +151,7 @@
   }
 
   &__visibility {
+    @include themeFooterIcons;
     position: absolute;
     top: 6px;
     right: 10px;

@@ -3,7 +3,7 @@
 .registration {
   &__inner-container {
     border-radius: 10px;
-    background: white;
+    @include themeSectionBackground;
     @include flex($dir: column);
     padding-top: 1em;
     margin-bottom: 0.9em;
@@ -14,6 +14,7 @@
   }
 
   &__head {
+    @include themeText;
     font-size: clamp(1.43rem, 0.5rem + 3.8vw, 3.72rem);
     font-weight: 600;
     line-height: 24px;
@@ -39,6 +40,7 @@
   }
 
   &__with-social {
+    @include themeText;
     font-size: 1rem;
     font-weight: 400;
     line-height: 17px;
@@ -62,6 +64,7 @@
   }
 
   &__or {
+    @include themeText;
     font-size: clamp(0.876rem, 0.7rem + 1.6vw, 2.15rem);
     font-weight: 400;
     line-height: 17px;
@@ -84,6 +87,7 @@
 
   &__input {
     @include focus($outline: 1px solid #807d7d);
+    @include themeInput;
     border: none;
     border-radius: 2em;
     padding: 0.5em 2em;
@@ -91,7 +95,6 @@
     font-size: clamp(0.86rem, 1.9vw, 1.72rem);
     font-weight: 600;
     line-height: 15px;
-    background-color: #f2effe;
     margin-bottom: 1.5em;
 
     width: clamp(210px, 50vw, 510px);
@@ -103,6 +106,7 @@
     }
 
     &::placeholder {
+      @include themeInputPlaceholder;
       font-size: 0.86em;
       font-weight: 600;
       line-height: 15px;
@@ -130,6 +134,7 @@
   }
 
   &__label {
+    @include themeText;
     font-size: clamp(1rem, 1rem + 0.1vw, 2rem);
     margin-bottom: 0.4em;
     font-weight: 500;
@@ -143,9 +148,8 @@
   }
 
   &__next {
+    @include themeAuthButton;
     display: block;
-    background: transparent;
-    color: $main-color;
     margin: 0 auto;
     border: 1px solid $main-color;
     border-radius: 2em;
@@ -197,6 +201,7 @@
   }
 
   &__signin {
+    @include themeText;
     font-size: 0.79rem;
     font-weight: 500;
     line-height: 13px;
@@ -204,6 +209,7 @@
   }
 
   &__link {
+    color: $main-color;
     font-size: 0.79rem;
     font-weight: 500;
     line-height: 13px;
@@ -225,6 +231,7 @@
   }
 
   &__visibility {
+    @include themeFooterIcons;
     position: absolute;
     top: 6px;
     right: 10px;
