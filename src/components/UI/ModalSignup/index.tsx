@@ -3,22 +3,20 @@ import { api } from '@/api';
 import { emailRegexp, passwordRegexp } from '@/constants';
 import { useModal } from '@/context/modalProvider';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { useWindowSize } from '@/hooks/useWindowSize';
 import { authService } from '@/services/auth';
+import { ModalAuth } from '@UI';
 import cn from 'classnames';
 import { signIn } from 'next-auth/react';
-import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CSSTransition } from 'react-transition-group';
 import { toast } from 'sonner';
-import { ctx } from '../../context/contextProvider';
-import { Logo } from '../UI';
-import { ModalSignup } from '../UI/ModalSignup';
-import { BackLink, SocialAuthLinks } from '../shared';
+import { ctx } from '../../../context/contextProvider';
+import { SocialAuthLinks } from '../../shared';
 import animantionStyles from './animation.module.scss';
 import styles from './index.module.scss';
+
 type FormData = {
   username: string;
   email: string;
@@ -27,7 +25,7 @@ type FormData = {
   isAgree: boolean;
 };
 
-const Registration = () => {
+export const ModalSignup = () => {
   const [visible, setVisible] = useState(false);
   const { setActiveLoader } = useContext(ctx);
   const [seconds, setSeconds] = useState(60);
@@ -37,6 +35,7 @@ const Registration = () => {
   const router = useRouter();
   const params = useSearchParams();
   const [verify, setVerify] = useState(false);
+  const { openModal } = useModal();
   const {
     register,
     formState: { errors, dirtyFields },
@@ -53,9 +52,7 @@ const Registration = () => {
     setActivationButton(true);
   };
 
-  const { size } = useWindowSize();
-
-  const { openModal } = useModal();
+  const { closeModal } = useModal();
 
   const handler: SubmitHandler<FormData> = async (data) => {
     const user = {
@@ -71,6 +68,7 @@ const Registration = () => {
       setItem('verify', user.email);
       setIsTimer(true);
     } catch (error) {
+      console.log(error);
       toast.error(error.response.statusText);
     }
   };
@@ -89,31 +87,23 @@ const Registration = () => {
       }
 
       const isSignin = await signIn('credentials', {
-        password: getValues('password'),
-        email: getValues('email'),
+        password: user.password,
+        email: user.email,
         redirect: false,
       });
       if (isSignin?.ok) {
-        setActiveLoader(true);
         router.replace('/');
+        closeModal();
         toast.success('Вы успешно зарегистрировались!');
-        setActiveLoader(false);
         return;
       }
     } catch (error) {
-      toast.error(error);
+      toast.error(error?.message);
     } finally {
       setActiveLoader(false);
     }
   };
-  useEffect(() => {
-    if (getItem('verify') && params.get('activate')) {
-      setValue('email', getItem('verify') as string);
-      setVerify(true);
-      return;
-    }
-    removeItem('verify');
-  }, []);
+
   useEffect(() => {
     if (!isTimer) {
       return;
@@ -130,18 +120,19 @@ const Registration = () => {
     };
   }, [isTimer, seconds]);
 
-  useEffect(() => {
-    if (size !== 'mobile') {
-      return openModal(<ModalSignup />);
+  useLayoutEffect(() => {
+    if (getItem('verify') && params.get('activate')) {
+      setValue('email', getItem('verify') as string);
+      setVerify(true);
+      return;
     }
-  }, [size]);
+    removeItem('verify');
+  }, []);
 
   return (
     <section className={styles['registration']}>
       <div className={cn(styles['registration__container'], 'container')}>
-        <BackLink mixClass={[styles['registration__backLink']]} />
         <div className={styles['registration__inner-container']}>
-          <Logo isHeader={false} mixClass={[styles['registration__logo']]} />
           <CSSTransition
             timeout={500}
             in={!activationButton}
@@ -376,14 +367,12 @@ const Registration = () => {
         </div>
 
         <p className={styles['registration__signin']}>
-          Уже есть аккаунт?{' '}
-          <Link className={styles['registration__link']} href={'/auth/signin'}>
+          Уже есть аккаунт?
+          <span className={styles['registration__link']} onClick={() => openModal(<ModalAuth />)}>
             Войдите
-          </Link>
+          </span>
         </p>
       </div>
     </section>
   );
 };
-
-export default Registration;

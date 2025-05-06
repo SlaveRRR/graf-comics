@@ -87,6 +87,7 @@
 .tabs {
   background-color: white;
   @include themeSectionBackground;
+
   @include mediaMin($device-XL) {
     background-color: transparent;
   }
@@ -147,6 +148,7 @@
     text-align: left;
     width: 100%;
     @include themeInput;
+
     &::placeholder {
       color: #cabdfc;
       font-weight: 600;
@@ -223,6 +225,7 @@
     background-color: white;
     cursor: pointer;
   }
+
   &__circle::after {
     content: '';
     position: absolute;
@@ -243,21 +246,26 @@
       border-color: $main-color;
       display: inline; // Показываем галочку
     }
+
     &:focus-visible + .radio-btn__circle {
       box-shadow: 0 0 0 2px rgba(122, 90, 248, 0.3);
     }
   }
+
   &__switch {
     opacity: 0;
     width: 0;
     height: 0;
+
     &:checked + .radio-btn__switch-move {
       background: $main-color;
     }
+
     &:checked + .radio-btn__switch-move::before {
       transform: translateX(15px);
     }
   }
+
   &__switch-move {
     position: relative;
     background: #9e9e9e;
@@ -267,6 +275,7 @@
     height: 20px;
     left: -8px;
     cursor: pointer;
+
     &::before {
       position: absolute;
       content: '';
@@ -390,7 +399,22 @@
 .settings-container {
   position: relative;
   z-index: 2;
+
   @include mediaMax($device-XL) {
     @include themeSectionBackground;
   }
+}
+
+.signOut {
+  display: block;
+  border: none;
+  background: red;
+  color: white;
+  padding: 0.6rem 2rem;
+  min-width: 190px;
+  border-radius: 2em;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-weight: 500;
+  line-height: 24px;
 }

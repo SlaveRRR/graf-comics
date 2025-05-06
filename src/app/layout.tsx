@@ -3,6 +3,7 @@ import { RouterLoader } from '@/components/UI';
 import Layout from '@/components/layout';
 import AuthProvider from '@/context/authProvider';
 import ContextProvider from '@/context/contextProvider';
+import { ModalProvider } from '@/context/modalProvider';
 import ReduxProvider from '@/context/reduxProvider';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
@@ -34,10 +35,12 @@ const RootLayout = ({
             <ReduxProvider>
               <ThemeProvider>
                 <ContextProvider>
-                  <Layout>
-                    {children}
-                    <ScrollToTop />
-                  </Layout>
+                  <ModalProvider>
+                    <Layout>
+                      {children}
+                      <ScrollToTop />
+                    </Layout>
+                  </ModalProvider>
                 </ContextProvider>
               </ThemeProvider>
             </ReduxProvider>

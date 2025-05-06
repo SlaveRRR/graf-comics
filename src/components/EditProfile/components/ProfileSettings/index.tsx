@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { signOut } from 'next-auth/react';
 import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 import styles from '../../index.module.scss';
@@ -198,6 +199,9 @@ const ProfileSettings: FC = () => {
           </span>
           <button type="submit" className={styles['save-btn']}>
             Сохранить
+          </button>
+          <button type="button" className={styles['signOut']} onClick={() => signOut()}>
+            Выйти из профиля
           </button>
         </fieldset>
       </div>

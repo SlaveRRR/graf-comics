@@ -22,7 +22,6 @@ const ThemeProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    console.log(theme);
     document.documentElement.dataset.theme = theme;
     setItem('theme', { theme });
   }, [theme]);

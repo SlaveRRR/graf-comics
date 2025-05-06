@@ -9,6 +9,7 @@
   max-width: none;
 
   @include mediaMin($device-L) {
+    cursor: pointer;
     width: 65px;
     height: 65px;
     border-radius: 50%;

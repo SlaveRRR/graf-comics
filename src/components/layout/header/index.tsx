@@ -2,7 +2,7 @@
 import { FC, useContext } from 'react';
 import { ctx } from '../../../context/contextProvider';
 
-import { Avatar, BurgerMenu, Logo, Switch } from '@UI/index';
+import { Avatar, BurgerMenu, Logo, ModalAuth, Switch } from '@UI/index';
 
 import { routes, sideMenuRoutes } from '@/config/routing';
 import cn from 'classnames';
@@ -10,7 +10,9 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import styles from './index.module.scss';
 
+import { useModal } from '@/context/modalProvider';
 import { useTheme } from '@/context/themeProvider';
+import { useWindowSize } from '@/hooks/useWindowSize';
 import { signOut, useSession } from 'next-auth/react';
 
 const Header: FC = () => {
@@ -19,7 +21,11 @@ const Header: FC = () => {
 
   const { setActiveBurger, activeBurger, setActiveModal, setActiveAvatar, activeAvatar, visibleMenu } = useContext(ctx);
 
+  const { openModal } = useModal();
+
   const { theme, setTheme } = useTheme();
+
+  const { size } = useWindowSize();
 
   const path = usePathname();
 
@@ -33,9 +39,17 @@ const Header: FC = () => {
     setActiveAvatar(false);
   };
 
+  const handleOpenModal = () => {
+    openModal(<ModalAuth />);
+  };
+
   const handleAvatarClick = () => {
     setActiveAvatar((prev) => !prev);
     setActiveBurger(false);
+
+    if (size !== 'mobile') {
+      router.push('/profile');
+    }
   };
 
   return (
@@ -177,7 +191,7 @@ const Header: FC = () => {
                 <Link className={styles['signin-link']} href={'/auth/signin'}>
                   Войти
                 </Link>
-                <button onClick={() => handleSignOut()} className={styles['signin-btn']}>
+                <button onClick={handleOpenModal} className={styles['signin-btn']}>
                   Войти
                 </button>
               </>

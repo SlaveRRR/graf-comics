@@ -1,24 +1,34 @@
 @use '../../../styles/global' as *;
 
 .login {
-  background: white;
-
   &__container {
+    max-width: 890px;
+    padding: 0;
+    padding-bottom: 5.5em;
+  }
+
+  &__inner-container {
+    border-radius: 10px;
+    @include themeSectionBackground;
     @include flex($dir: column);
     padding-top: 1em;
+    margin-bottom: 0.9em;
   }
 
   &__head {
-    font-size: 1.43rem;
+    @include themeText;
+    font-size: clamp(1.43rem, 1.2rem + 1vw, 3.72rem);
     font-weight: 600;
-    line-height: 24px;
+    line-height: 59px;
     text-align: center;
-    margin-bottom: 0.1em;
+    margin-bottom: 0.3em;
   }
 
   &__backLink {
+    cursor: pointer;
     align-self: flex-start;
-    margin-bottom: 2em;
+    margin-bottom: 0.8em;
+    margin-left: 2.5em;
   }
 
   &__logo {
@@ -26,10 +36,11 @@
   }
 
   &__with-social {
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
-    margin-bottom: 1em;
+    @include themeText;
+    font-size: clamp(1.429rem, 0.3vw + 1.2rem, 1.714rem);
+    font-weight: 500;
+    line-height: 29px;
+    margin-bottom: 0.7em;
   }
 
   &__social {
@@ -37,9 +48,11 @@
   }
 
   &__or {
-    font-weight: 400;
-    line-height: 17px;
-    margin-bottom: 0.8em;
+    @include themeText;
+    font-size: clamp(1.429rem, 0.446vw + 1.102rem, 1.714rem);
+    font-weight: 500;
+    line-height: 29px;
+    margin-bottom: 1.2em;
   }
 
   &__fieldset {
@@ -53,20 +66,23 @@
 
   &__input {
     @include focus($outline: 1px solid #6c697a);
+    @include themeInput;
     border: none;
     border-radius: 2em;
-    padding: 0.5em 2em;
-    font-size: 0.87rem;
-    min-width: 17.5em;
-    font-weight: 600;
-    line-height: 15px;
-    background-color: #f2effe;
+    padding: 0.8em 1.8em;
+
+    font-weight: 500;
+    line-height: 24px;
     margin-bottom: 1.5em;
+    font-size: clamp(1.429rem, 0.446vw + 1.102rem, 1.714rem);
+    width: clamp(28.571rem, 10.045vw + 21.224rem, 35rem);
 
     &::placeholder {
+      @include themeInputPlaceholder;
       font-size: 0.86em;
-      font-weight: 600;
-      line-height: 15px;
+      font-weight: 500;
+      line-height: 24px;
+      font-size: clamp(1.429rem, 0.446vw + 1.102rem, 1.714rem);
     }
 
     &--marginNo {
@@ -85,9 +101,11 @@
   }
 
   &__label {
+    @include themeText;
     margin-bottom: 0.4em;
     font-weight: 500;
-    line-height: 17px;
+    line-height: 29px;
+    font-size: clamp(1.429rem, 0.446vw + 1.102rem, 1.714rem);
   }
 
   &__next {
@@ -107,34 +125,41 @@
   &__signin-btn {
     display: block;
     border: 1px solid $main-color;
-    background-color: white;
-    color: $main-color;
-    padding: 0.7em 1.6em;
+    @include themeAuthButton;
+    padding: 0.7rem 4.3rem;
+    min-width: 190px;
     margin: 0 auto 2.4em;
     border-radius: 2em;
-    font-size: 0.79rem;
+    font-size: 1.43rem;
+    cursor: pointer;
     font-weight: 500;
-    line-height: 13px;
+    line-height: 24px;
   }
 
   &__signin {
-    font-size: 0.79rem;
+    @include themeText;
+    font-size: 1.42rem;
     font-weight: 500;
     line-height: 13px;
-    margin-bottom: 2em;
+    text-align: center;
   }
 
   &__link {
-    font-size: 0.79rem;
-    font-weight: 400;
+    font-size: 1.42rem;
+    cursor: pointer;
+    color: $main-color;
+    font-weight: 500;
     line-height: 13px;
     text-decoration: none;
     text-align: center;
   }
 
   &__error {
+    text-wrap: balance;
+    max-width: 400px;
     margin: 0.4em 0;
-    font-size: 1.1em;
+    font-size: 1.4em;
+    line-height: normal;
     color: red;
   }
 
@@ -143,83 +168,18 @@
   }
 
   &__visibility {
+    @include themeFooterIcons;
     position: absolute;
-    top: 6px;
-    right: 10px;
+    top: 16px;
+    right: 15px;
     background: none;
     border: none;
     padding: 0;
-    width: 20px;
-    height: 20px;
+    cursor: pointer;
+
+    & > svg {
+      width: 30px;
+      height: 30px;
+    }
   }
-}
-
-.appear {
-  transform: translateY(100%);
-}
-
-.appearActive {
-  transform: translateY(0);
-  transition: transform 1.5s ease;
-}
-
-.enter {
-  // opacity: 0;
-  transform: translateY(100%);
-}
-
-.enterActive {
-  // opacity: 1;
-  transform: translateY(0);
-  transition: transform 1.5s ease;
-}
-
-.exit {
-  transform: translateY(0);
-  // transform: translateY(0);
-}
-
-.exitActive {
-  opacity: 0;
-  transform: translateY(100%);
-  // transform: translateY(-100%);
-  transition: transform 1.5s ease;
-}
-.exitDone {
-  transform: translateY(100%) !important;
-}
-
-.modal {
-  @include flex;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('../../../assets/bg-pc.jpg');
-  background-position: center center;
-  background-size: cover;
-
-  // &--active{
-  //     @include flex;
-  // }
-
-  //   &--exit-done {
-  //     opacity: 0;
-  //   }
-
-  &__content {
-    @include flex($dir: column);
-    padding-left: 1em;
-    border-radius: 15px;
-    padding-top: 2.5em;
-    background: #fff;
-  }
-}
-
-.backlink {
-  cursor: pointer;
-  margin-bottom: 2em;
-  align-self: flex-start;
 }

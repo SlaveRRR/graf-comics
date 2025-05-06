@@ -3,13 +3,15 @@ import cn from 'classnames';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FC, useContext, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ctx } from '../../context/contextProvider';
-import { Logo } from '../UI';
+import { Logo, ModalAuth } from '../UI';
 import { BackLink, SocialAuthLinks } from '../shared';
 
 import { emailRegexp, passwordRegexp } from '@/constants';
+import { useModal } from '@/context/modalProvider';
+import { useWindowSize } from '@/hooks/useWindowSize';
 import { toast } from 'sonner';
 import styles from './index.module.scss';
 
@@ -21,7 +23,11 @@ type FormData = {
 const Login: FC = () => {
   const [visible, setVisible] = useState(false);
   const router = useRouter();
-  const { setActiveLoader } = useContext(ctx);
+  const { setActiveLoader, setActiveModal } = useContext(ctx);
+
+  const { openModal } = useModal();
+
+  const { size } = useWindowSize();
 
   const {
     handleSubmit,
@@ -51,6 +57,14 @@ const Login: FC = () => {
       setActiveLoader(false);
     }
   };
+
+  useEffect(() => {
+    if (size !== 'mobile') {
+      router.replace('/');
+      return openModal(<ModalAuth />);
+    }
+  }, [size]);
+
   return (
     <section className={styles['login']}>
       <div className={cn(styles['login__container'], 'container')}>

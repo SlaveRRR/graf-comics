@@ -1,9 +1,9 @@
-import BurgerMenu from './BurgerMenu';
-import Logo from './Logo';
-import Search from './Search';
-
 import Badge from './Badge';
+import BurgerMenu from './BurgerMenu';
 import Button from './Button';
+import Logo from './Logo';
+import { Modal } from './Modal';
+import Search from './Search';
 
 import SliderArticles from './SliderArticles';
 import SliderPreview from './SliderPreview';
@@ -39,6 +39,7 @@ export {
   ChaptersButton,
   Loader,
   Logo,
+  Modal,
   ModalAuth,
   Progress,
   RouterLoader,

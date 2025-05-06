@@ -1,11 +1,14 @@
-@use '../../styles/global' as *;
+@use '../../../styles/global' as *;
 
 .registration {
+  &__container {
+    padding: 60px 5em 3em;
+  }
+
   &__inner-container {
     border-radius: 10px;
     @include themeSectionBackground;
     @include flex($dir: column);
-    padding-top: 1em;
     margin-bottom: 0.9em;
   }
 
@@ -15,15 +18,11 @@
 
   &__head {
     @include themeText;
-    font-size: clamp(1.43rem, 0.5rem + 3.8vw, 3.72rem);
+    font-size: clamp(1.43rem, 1.2rem + 1vw, 3.72rem);
     font-weight: 600;
-    line-height: 24px;
+    line-height: 59px;
     text-align: center;
     margin-bottom: 0.3em;
-
-    @include mediaMin($size: $device-XM) {
-      line-height: 59px;
-    }
   }
 
   &__backLink {
@@ -41,18 +40,10 @@
 
   &__with-social {
     @include themeText;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
-    margin-bottom: 1em;
-
-    @include mediaMin($size: $device-XM) {
-      font-size: 1.72rem;
-      font-weight: 500;
-      line-height: 29px;
-      margin-bottom: 0.7em;
-    }
+    font-size: clamp(1.429rem, 0.3vw + 1.2rem, 1.714rem);
+    font-weight: 500;
+    line-height: 29px;
+    margin-bottom: 0.7em;
   }
 
   &__social {
@@ -65,16 +56,10 @@
 
   &__or {
     @include themeText;
-    font-size: clamp(0.876rem, 0.7rem + 1.6vw, 2.15rem);
-    font-weight: 400;
-    line-height: 17px;
-    margin-bottom: 0.8em;
-
-    @include mediaMin($size: $device-XM) {
-      font-weight: 500;
-      line-height: 29px;
-      margin-bottom: 1.2em;
-    }
+    font-size: clamp(0.876rem, 0.8rem + 1vw, 2.15rem);
+    font-weight: 500;
+    line-height: 29px;
+    margin-bottom: 1.2em;
   }
 
   &__fieldset {
@@ -90,32 +75,20 @@
     @include themeInput;
     border: none;
     border-radius: 2em;
-    padding: 0.5em 2em;
+    padding: 0.8em 1.8em;
 
-    font-size: clamp(0.86rem, 1.9vw, 1.72rem);
-    font-weight: 600;
-    line-height: 15px;
+    font-weight: 500;
+    line-height: 24px;
     margin-bottom: 1.5em;
-
-    width: clamp(210px, 50vw, 510px);
-
-    @include mediaMin($size: $device-XM) {
-      padding: 0.8em 1.8em;
-      font-weight: 500;
-      line-height: 24px;
-    }
+    font-size: clamp(1.429rem, 0.446vw + 1.102rem, 1.714rem);
+    width: clamp(28.571rem, 10.045vw + 21.224rem, 35rem);
 
     &::placeholder {
       @include themeInputPlaceholder;
       font-size: 0.86em;
-      font-weight: 600;
-      line-height: 15px;
-      font-size: clamp(0.86rem, 1.9vw, 1.72rem);
-
-      @include mediaMin($size: $device-XM) {
-        font-weight: 500;
-        line-height: 24px;
-      }
+      font-weight: 500;
+      line-height: 24px;
+      font-size: clamp(1.429rem, 0.446vw + 1.102rem, 1.714rem);
     }
 
     &--marginNo {
@@ -135,28 +108,24 @@
 
   &__label {
     @include themeText;
-    font-size: clamp(1rem, 1rem + 0.1vw, 2rem);
+    font-size: clamp(1.429rem, 0.446vw + 1.102rem, 1.714rem);
     margin-bottom: 0.4em;
     font-weight: 500;
-    line-height: 17px;
-
-    @include mediaMin($size: $device-XM) {
-      line-height: 29px;
-
-      font-size: clamp(1rem, 1rem + 1.1vw, 2.1rem);
-    }
+    line-height: 29px;
   }
 
   &__next {
-    @include themeAuthButton;
     display: block;
-    margin: 0 auto;
     border: 1px solid $main-color;
+    @include themeAuthButton;
+    padding: 0.7rem 4.3rem;
+    min-width: 190px;
+    margin: 0 auto 2.4em;
     border-radius: 2em;
-    padding: 0.63em 2.5em;
-    font-size: 0.79rem;
+    font-size: 1.43rem;
+    cursor: pointer;
     font-weight: 500;
-    line-height: 13px;
+    line-height: 24px;
     margin-bottom: 2.3em;
 
     &:disabled {
@@ -176,42 +145,46 @@
 
   &__reset-email {
     display: block;
-    background: $main-color;
-    color: white;
-    margin: 0 auto;
     border: 1px solid $main-color;
+    @include themeAuthButton;
+    padding: 0.7rem 4.3rem;
+    min-width: 190px;
+    margin: 0 auto 2.4em;
     border-radius: 2em;
-    padding: 0.63em 2.5em;
-    font-size: 0.79rem;
+    font-size: 1.43rem;
+    cursor: pointer;
     font-weight: 500;
-    line-height: 13px;
+    line-height: 24px;
     margin-bottom: 2.3em;
   }
 
   &__ready {
     display: block;
-    background-color: $main-color;
-    color: white;
-    padding: 0.7em 1.6em;
+    border: 1px solid $main-color;
+    @include themeAuthButton;
+    padding: 0.7rem 4.3rem;
+    min-width: 190px;
     margin: 0 auto 2.4em;
     border-radius: 2em;
-    font-size: 0.79rem;
+    font-size: 1.43rem;
+    cursor: pointer;
     font-weight: 500;
-    line-height: 13px;
-    border: none;
+    line-height: 24px;
   }
 
   &__signin {
     @include themeText;
-    font-size: 0.79rem;
+    font-size: 1.42rem;
     font-weight: 500;
     line-height: 13px;
     text-align: center;
   }
 
   &__link {
+    cursor: pointer;
+    margin-left: 0.2em;
     color: $main-color;
-    font-size: 0.79rem;
+    font-size: 1.42rem;
     font-weight: 500;
     line-height: 13px;
     text-decoration: none;
@@ -220,9 +193,9 @@
 
   &__error {
     text-wrap: balance;
-    max-width: 200px;
+    max-width: 400px;
     margin: 0.4em 0;
-    font-size: 1.1em;
+    font-size: 1.4em;
     line-height: normal;
     color: red;
   }
@@ -234,24 +207,30 @@
   &__visibility {
     @include themeFooterIcons;
     position: absolute;
-    top: 6px;
-    right: 10px;
+    top: 16px;
+    right: 15px;
     background: none;
     border: none;
     padding: 0;
-    width: 20px;
-    height: 20px;
+    cursor: pointer;
+
+    & > svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
 .agreement {
   @include flex;
   @include themeText;
-  margin-bottom: 0.5em;
+  margin-bottom: 1.2em;
 
   &__label {
+    cursor: pointer;
+    margin-right: 0.5em;
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 1.4rem;
     text-wrap: balance;
   }
 }
