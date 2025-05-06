@@ -3,16 +3,21 @@ import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 import styles from './index.module.scss';
+import { BackLinkProps } from './types';
 
-type Props = {
-  mixClass?: string[];
-  text?: string;
-};
-
-const BackLink: FC<Props> = ({ mixClass = [], text = 'Вернуться назад' }) => {
+const BackLink: FC<BackLinkProps> = ({ mixClass = [], text = 'Вернуться назад', onClick }) => {
   const router = useRouter();
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      router.back();
+    }
+  };
+
   return (
-    <button className={cn(styles['link'], ...mixClass)} onClick={() => router.back()}>
+    <button className={cn(styles['link'], ...mixClass)} onClick={handleClick}>
       <svg
         className={styles['arrow']}
         width="6"

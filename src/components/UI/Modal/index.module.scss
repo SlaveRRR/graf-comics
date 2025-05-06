@@ -1,0 +1,77 @@
+@use '../../../styles/global' as *;
+
+.appear {
+  transform: translateY(100%);
+}
+
+.appearActive {
+  transform: translateY(0);
+  transition: transform 1.5s ease;
+}
+
+.enter {
+  // opacity: 0;
+  transform: translateY(100%);
+}
+
+.enterActive {
+  // opacity: 1;
+  transform: translateY(0);
+  transition: transform 1.5s ease;
+}
+
+.exit {
+  transform: translateY(0);
+  // transform: translateY(0);
+}
+
+.exitActive {
+  opacity: 0;
+  transform: translateY(100%);
+  // transform: translateY(-100%);
+  transition: transform 1.5s ease;
+}
+
+.exitDone {
+  transform: translateY(100%) !important;
+}
+
+.modal {
+  overflow: auto;
+  @include flex;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../../assets/bg-pc.jpg');
+  background-position: center center;
+  background-size: cover;
+
+  // &--active{
+  //     @include flex;
+  // }
+
+  //   &--exit-done {
+  //     opacity: 0;
+  //   }
+
+  &__container {
+    max-width: 890px;
+  }
+
+  &__content {
+    @include flex($dir: column);
+    border-radius: 15px;
+    padding-top: 2.5em;
+    @include themeSectionBackground;
+  }
+}
+
+.backLink {
+  cursor: pointer;
+  align-self: flex-start;
+  margin-bottom: 0.8em;
+  margin-left: 2.5em;
+}

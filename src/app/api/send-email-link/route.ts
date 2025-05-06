@@ -4,9 +4,8 @@ import { NextResponse, type NextRequest } from 'next/server';
 export const POST = async (request: NextRequest) => {
   try {
     const body = await request.json();
-
     const token = jwt.sign(body, process.env.NEXTAUTH_SECRET, {
-      expiresIn: '2m',
+      expiresIn: '3m',
     });
     await mailer({
       to: body.email,

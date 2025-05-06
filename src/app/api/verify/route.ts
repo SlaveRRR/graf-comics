@@ -13,6 +13,7 @@ export const GET = async (request: NextRequest) => {
       );
     }
     const verify = jwt.verify(token, process.env.NEXTAUTH_SECRET);
+    console.log(verify);
     if (typeof verify === 'string') {
       return NextResponse.json(
         { message: 'Ссылка невалидная, попробуйте создать новую ссылку' },
@@ -36,12 +37,7 @@ export const GET = async (request: NextRequest) => {
         },
       );
     }
-    await prisma.user.create({
-      data: {
-        emailVerified: true,
-        email: verify.email,
-      },
-    });
+
     return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/auth/signup?activate=true`);
   } catch (error) {
     console.log(error);

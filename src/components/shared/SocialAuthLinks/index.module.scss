@@ -14,8 +14,13 @@
     }
   }
 }
+
 .auth-btn {
   border: 0;
   padding: 0;
   background-color: transparent;
+
+  @include mediaMin($device-PC) {
+    cursor: pointer;
+  }
 }

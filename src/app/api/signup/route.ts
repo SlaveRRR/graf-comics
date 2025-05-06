@@ -7,21 +7,7 @@ export const POST = async (request: NextRequest) => {
   try {
     const body = await request.json();
     const { password, email, name } = body;
-    const existingUser = await prisma.user.findUnique({
-      where: {
-        email,
-      },
-    });
 
-    if (!existingUser) {
-      return NextResponse.json(
-        { message: 'Ошибка регистрации, активируйте почту заново!' },
-        {
-          status: 409,
-          statusText: 'Ошибка регистрации, активируйте почту заново!',
-        },
-      );
-    }
     if (!passwordRegexp.test(password)) {
       return NextResponse.json(
         { message: 'Ошибка регистрации, невалидный пароль!' },
@@ -31,24 +17,23 @@ export const POST = async (request: NextRequest) => {
         },
       );
     }
+
     const hashedPassword = await bcrypt.hash(password, 15);
-    const user = await prisma.user.update({
-      where: {
-        email,
+    const user = await prisma.user.create({
+      data: {
+        emailVerified: true,
+        email: email,
+        name: name,
+        password: hashedPassword,
       },
       select: {
         name: true,
         email: true,
       },
-      data: {
-        name: name,
-        password: hashedPassword,
-      },
     });
 
     return NextResponse.json(user);
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: error },
       {
