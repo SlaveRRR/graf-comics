@@ -1,0 +1,99 @@
+@use '../../../../../styles/global' as *;
+
+.article-skeleton {
+  width: clamp(10rem, 13vw + 7.029rem, 24.857rem);
+  border-radius: 10px;
+  padding: 1.1em 1.5em 0.8em 1.1em;
+  @include themeSectionBackground;
+  @include flex($dir: column, $justify: space-between);
+  height: clamp(7.143rem, 18.125vw + 3rem, 27.857rem);
+  scroll-snap-align: start;
+  position: relative;
+
+  @include mediaMin($size: $device-M) {
+    padding: 2.7em 3.5em 3em;
+  }
+
+  &__container-text {
+    align-self: flex-start;
+    width: 100%;
+  }
+
+  &__header {
+    height: clamp(0.786rem, 0.813vw + 0.6rem, 1.714rem);
+    width: 80%;
+    background: #e0e0e0;
+    margin-bottom: clamp(0.214rem, 0.563vw + 0.086rem, 0.857rem);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgb(255, 255, 255), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+  }
+
+  &__short {
+    height: clamp(0.571rem, 0.5vw + 0.457rem, 1.143rem);
+    width: 100%;
+    background: #e0e0e0;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgb(255, 255, 255), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+  }
+
+  &__link {
+    width: clamp(7.143rem, 9.375vw + 5rem, 17.857rem);
+    height: clamp(0.714rem, 0.625vw + 0.571rem, 1.429rem);
+    padding: 0.5em 0.4em;
+    background: #e0e0e0;
+    border-radius: 562px;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgb(255, 255, 255), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}

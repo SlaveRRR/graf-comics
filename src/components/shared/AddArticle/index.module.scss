@@ -1,19 +1,21 @@
+@use '../../../styles/global' as *;
+
 .add-article {
-    &__link {
-        margin-bottom: .65em;
-    }
+  &__link {
+    margin-bottom: 0.65em;
+  }
 
-    &__title {
-        font-weight: 600;
-        font-size: 1.43rem;
-        line-height: 24px;
-        margin-bottom: 1.2em;
-    }
+  &__title {
+    @include themeText;
+    font-weight: 600;
+    font-size: 1.43rem;
+    line-height: 24px;
+    margin-bottom: 1.2em;
+  }
 
-    &__content {
-        padding: 1.28em .72em 1.5em;
-        border-radius: 10px;
-        background-color: white;
-    }
-
+  &__content {
+    padding: 1.28em 0.72em 1.5em;
+    border-radius: 10px;
+    @include themeSectionBackground;
+  }
 }

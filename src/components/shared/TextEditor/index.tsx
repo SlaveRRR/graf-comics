@@ -1,18 +1,19 @@
 'use client';
-import React, { FC, useRef, useEffect, SetStateAction, useState } from 'react';
-import EditorJS, { BlockMutationEvent, OutputData } from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import RawTool from '@editorjs/raw';
-import List from '@editorjs/list';
-import Embed from '@editorjs/embed';
 import TextAlign from '@canburaks/text-align-editorjs';
+import EditorJS, { BlockMutationEvent } from '@editorjs/editorjs';
+import Embed from '@editorjs/embed';
+import Header from '@editorjs/header';
+import ImageTool from '@editorjs/image';
+import List from '@editorjs/list';
+import RawTool from '@editorjs/raw';
+import Underline from '@editorjs/underline';
 import FontFamily from 'editorjs-font-family';
 import FontSize from 'editorjs-inline-font-size-tool';
-import Underline from '@editorjs/underline';
 import Strikethrough from 'editorjs-strikethrough';
-import ImageTool from '@editorjs/image';
-import styles from './index.module.scss';
 import { useRouter } from 'next/navigation';
+import { FC, useEffect, useRef, useState } from 'react';
+import { toast } from 'sonner';
+import styles from './index.module.scss';
 
 function couldBeCounted(block) {
   return 'text' in block.data;
@@ -35,12 +36,14 @@ const TextEditor: FC<Props> = ({ rawHtml, onSave }) => {
   const editor = useRef<EditorJS>(null);
   const router = useRouter();
   const [count, setCount] = useState(0);
+
   const handleSave = async () => {
-    alert('Ваша статья отправлена на модерацию');
+    toast.success('Ваша статья отправлена на модерацию');
     const res = JSON.stringify(await editor.current.save());
     onSave(res);
     // router.replace('/');
   };
+
   useEffect(() => {
     if (!isReady.current) {
       editor.current = new EditorJS({
@@ -107,7 +110,9 @@ const TextEditor: FC<Props> = ({ rawHtml, onSave }) => {
 
   return (
     <>
-      <p className={styles['words']}>Количество символов: {count}</p>
+      <p className={styles['text']}>
+        Количество символов: <b className="bold">{count}</b>
+      </p>
       <div
         id="editorjs"
         style={{

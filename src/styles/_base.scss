@@ -1,3 +1,5 @@
+@use './mixins' as *;
+
 *,
 *::after,
 *::before {
@@ -196,4 +198,13 @@ table {
 
 .next-admin__root {
   height: 100% !important;
+}
+
+.ce-paragraph,
+.cdx-list__item {
+  @include themeText;
+}
+
+.codex-editor__redactor {
+  padding-bottom: 0 !important;
 }
