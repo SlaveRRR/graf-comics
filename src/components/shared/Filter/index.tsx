@@ -16,7 +16,7 @@ const Filter: FC<Props> = ({ activeFilters, colorClass, filters, handleFilter, h
   return (
     <div className={styles['filter__container']}>
       <button onClick={() => setActive()} className={styles['filter__header']}>
-        {header}{' '}
+        {header}
         <svg
           className={cn(
             {

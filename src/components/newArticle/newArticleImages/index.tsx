@@ -1,20 +1,20 @@
 'use client';
-import { AddArticle } from '@/components/shared';
-import React, { ChangeEvent, FC, useState } from 'react';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { readImageFile } from '@/utils/filereader';
-import { redirect, useRouter } from 'next/navigation';
-import styles from './index.module.scss';
-import { useActions, useAppSelector } from '@/hooks/redux';
-import { IArticle } from '@/store/article/types';
-import cn from 'classnames';
-import { useGetUserByIdQuery } from '@/store/api';
-import { useSession } from 'next-auth/react';
 import { SearchSelect } from '@/components/UI';
+import { AddArticle } from '@/components/shared';
 import { category } from '@/data/data.json';
+import { useActions, useAppSelector } from '@/hooks/redux';
+import { useGetUserByIdQuery } from '@/store/api';
+import { IArticle } from '@/store/article/types';
 import { FilterItem } from '@/types/filter.type';
+import { readImageFile } from '@/utils/filereader';
+import cn from 'classnames';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { ChangeEvent, FC, useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import styles from './index.module.scss';
 
-const categoriesData = category.map((v, i) => ({ colorClass: 'violet', text: v } as FilterItem));
+const categoriesData = category.map((v, i) => ({ colorClass: 'violet', text: v }) as FilterItem);
 
 type FormData = {
   cover: File | string;
@@ -75,9 +75,7 @@ const NewArticleImages: FC = () => {
     selectFromResult: ({ data }) => ({ isArticleApprove: data?.isArticleApprove }),
     skip: status !== 'authenticated',
   });
-  if (!isArticleApprove) {
-    return redirect('/add-article/articles');
-  }
+
   return (
     <AddArticle>
       <form onSubmit={handleSubmit(handler)}>

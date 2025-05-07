@@ -4,7 +4,7 @@ import { emailRegexp, passwordRegexp } from '@/constants';
 import { ctx } from '@/context/contextProvider';
 import { useModal } from '@/context/modalProvider';
 import cn from 'classnames';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { FC, useContext, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -19,8 +19,6 @@ type FormData = {
 const ModalAuth: FC = () => {
   const [visible, setVisible] = useState(false);
   const { openModal, closeModal } = useModal();
-
-  const { data: user } = useSession();
 
   const { setActiveLoader } = useContext(ctx);
 
@@ -44,7 +42,7 @@ const ModalAuth: FC = () => {
       }
       if (isSignin?.ok) {
         closeModal();
-        toast.success(`Вы вошли как ${user?.user?.name}`);
+        toast.success('Вы успешно вошли');
       }
     } catch (error) {
       toast.error(error);

@@ -10,7 +10,9 @@
       display: grid;
       grid-template-columns: 3fr 1fr;
       column-gap: 1em;
-      grid-template-areas: 'cards filters';
+      grid-template-areas:
+        'search .'
+        'cards filters';
     }
   }
 
@@ -18,6 +20,7 @@
     display: block;
     position: relative;
     margin-bottom: 1.1em;
+    grid-area: search;
 
     &::before {
       content: url('../../assets/search.svg');
@@ -56,11 +59,12 @@
   &__filter {
     @include mediaMin($device-M) {
       grid-area: filters;
+      height: 100%;
       border-radius: 20px;
       padding-top: 12px;
       padding-left: 35px;
       padding-right: 35px;
-      background-color: white;
+      @include themeSectionBackground;
     }
 
     margin-bottom: 1em;
@@ -69,10 +73,8 @@
   &__cards-container {
     @include mediaMin($device-M) {
       padding: clamp(1.071rem, 1.736vw + 0.119rem, 2.5rem) clamp(1.429rem, 5.729vw - 1.714rem, 6.143rem) 0;
-      // padding-top: 35px;
-      // padding-left: 86px;
-      // padding-right: 86px;
-      background: white;
+      height: 100%;
+      @include themeSectionBackground;
       border-radius: 20px;
       grid-area: cards;
       margin-bottom: 1.5em;

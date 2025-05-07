@@ -3,12 +3,13 @@ import { AddArticle, TextEditor } from '@/components/shared';
 import { useAppSelector } from '@/hooks/redux';
 import { useGetUserByIdQuery } from '@/store/api';
 import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { FC, useCallback } from 'react';
 
 const NewArticleText: FC = () => {
   const article = useAppSelector((state) => state.article);
   const { status, data } = useSession();
+  const router = useRouter();
 
   const { isArticleApprove } = useGetUserByIdQuery(data?.user?.id, {
     selectFromResult: ({ data }) => ({ isArticleApprove: data?.isArticleApprove }),
@@ -21,6 +22,7 @@ const NewArticleText: FC = () => {
       body: JSON.stringify({ ...article, article: result }),
     });
   }, []);
+  router.replace('/add-article/articles');
   if (!isArticleApprove) {
     return redirect('/add-article/articles');
   }

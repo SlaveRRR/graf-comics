@@ -4,6 +4,8 @@ import { Category } from '@prisma/client';
 import cn from 'classnames';
 import { useParams } from 'next/navigation';
 import { FC } from 'react';
+import { ComicsComment } from '../ComicsPreview/components';
+import { comments } from '../ComicsPreview/data';
 import { Avatar } from '../UI';
 import { ArticleView, BackLink } from '../shared';
 import styles from './index.module.scss';
@@ -38,8 +40,7 @@ const Article: FC = () => {
       </div>
     );
   }
-  console.log(data);
-  console.log('ОШИБКА');
+
   //@ts-ignore
   const dataJson = JSON.parse(data.content);
   return (
@@ -59,6 +60,11 @@ const Article: FC = () => {
               <p className={styles['article__data']}>{new Date(data.createdAt).toLocaleDateString()}</p>
             </div>
             <ArticleView data={dataJson} />
+            {comments.map((comment) => (
+              <>
+                <ComicsComment key={comment.id} comment={comment} />
+              </>
+            ))}
           </div>
         </div>
       </div>

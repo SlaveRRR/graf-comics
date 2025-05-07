@@ -103,10 +103,44 @@
   font-weight: 600;
   line-height: 24px;
   margin-bottom: 0.5em;
-
+  @include themeText;
   display: none;
 
   @include mediaMin($device-M) {
     display: flex;
+  }
+}
+
+.transition {
+  transition:
+    stroke 0.5s ease,
+    fill 0.5s ease;
+}
+
+.filter-icon {
+  &--white {
+    & path {
+      @extend .transition;
+      fill: black;
+      stroke: black;
+    }
+
+    & circle {
+      @extend .transition;
+      stroke: black;
+    }
+  }
+
+  &--black {
+    & path {
+      @extend .transition;
+      fill: white;
+      stroke: white;
+    }
+
+    & circle {
+      @extend .transition;
+      stroke: white;
+    }
   }
 }

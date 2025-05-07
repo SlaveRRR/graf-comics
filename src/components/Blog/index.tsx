@@ -27,7 +27,7 @@ const Blog: FC = () => {
           </label>
           <header className={styles['blog__header']}>
             <p className={styles['blog__header-text']}>Есть чем поделиться?</p>
-            <Link className={styles['blog__header-link']} href={'/'}>
+            <Link className={styles['blog__header-link']} href={'/add-article/images'}>
               Напиши статью
             </Link>
           </header>

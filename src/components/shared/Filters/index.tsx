@@ -1,6 +1,7 @@
 'use client';
 import { ActiveFilters } from '@/components/shared/index';
 import { ctx } from '@/context/contextProvider';
+import { useTheme } from '@/context/themeProvider';
 import type { FilterItem, IFilter } from '@/types/filter.type';
 import { MixClass } from '@/types/mixClass.type';
 import cn from 'classnames';
@@ -34,6 +35,8 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
     toggleFilters(filter);
   };
 
+  const { theme } = useTheme();
+
   const setActive = (elem): void => {
     setVisibleFilters(
       visbileFilters.map((v) => {
@@ -66,7 +69,14 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
     <div className={cn(styles['filter__container'], ...mixClass)}>
       <div className={styles['filter__filters']}>
         <button onClick={() => handleClick()} className={styles['filter__button']}>
-          <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className={theme === 'dark' ? styles['filter-icon--black'] : styles['filter-icon--white']}
+            width="18"
+            height="17"
+            viewBox="0 0 18 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path d="M1.5 5H9.5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M13.5 5L16.5 5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
             <path
@@ -104,7 +114,14 @@ const Filters: FC<Props> = ({ urlFilter, mixClass, filters }) => {
           </svg>
         </button>
         <p className={styles['filter-pc']}>
-          <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className={theme === 'dark' ? styles['filter-icon--black'] : styles['filter-icon--white']}
+            width="18"
+            height="17"
+            viewBox="0 0 18 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path d="M1.5 5H9.5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M13.5 5L16.5 5" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
             <path

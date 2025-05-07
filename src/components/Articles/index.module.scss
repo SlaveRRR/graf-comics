@@ -1,23 +1,25 @@
 @use '../../styles/global' as *;
-;
-
 .articles {
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 
-    &::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-    }
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 
-    @include flex($gap: 1em, $justify: flex-start);
+  @include flex($gap: 1em, $justify: flex-start);
 
-    @include mediaMin($size: $device-M) {
-        gap: 2.42em;
-    }
+  @include mediaMin($size: $device-M) {
+    gap: 2.42em;
+  }
 
-    @include mediaMin($size: $device-XXL) {
-        justify-content: center;
-    }
+  @include mediaMin($size: $device-XXL) {
+    justify-content: center;
+  }
+}
+
+.empty {
+  @include themeText;
 }
