@@ -34,7 +34,7 @@
           "enum": ["NONE", "MALE", "FEMALE"]
         },
         "emailVerified": {
-          "type": "boolean",
+          "type": ["boolean", "null"],
           "default": false
         },
         "birthDate": {
@@ -387,6 +387,9 @@
         },
         "token_type": {
           "type": ["string", "null"]
+        },
+        "user_id": {
+          "type": ["integer", "null"]
         },
         "scope": {
           "type": ["string", "null"]
