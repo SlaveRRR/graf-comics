@@ -111,6 +111,39 @@
   }
 }
 
+.dropDown {
+  @include themeSideBarBackground;
+  z-index: 1000;
+  max-width: 240px;
+  @include flex($dir: column, $justify: flex-start, $gap: 1em, $align: flex-end);
+  padding: 0.64em 1.2em 1.2em 1.2em;
+  position: absolute;
+  top: 70px;
+  right: -90px;
+  width: 70vw;
+  // box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.1);
+
+  .avatar {
+    @include flex($gap: 1.2em);
+
+    &__name {
+      color: $main-color;
+      font-size: 0.86rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  & span {
+    display: inline !important;
+  }
+}
+
 .signin-link {
   display: block;
   border: 1px solid #7a5af8;
@@ -176,6 +209,7 @@
 .right-menu-btn {
   background: transparent;
   border: none;
+  position: relative;
 }
 
 .line {
