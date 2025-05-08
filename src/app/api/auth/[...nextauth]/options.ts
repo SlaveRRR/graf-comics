@@ -54,6 +54,7 @@ export const options: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SECRET,
       profile(profile, tokens) {
+        console.log(profile);
         return {
           id: profile.sub,
           role: 'BASIC',
@@ -68,6 +69,7 @@ export const options: NextAuthOptions = {
       clientId: process.env.YANDEX_CLIENT_ID,
       clientSecret: process.env.YANDEX_SECRET,
       profile(profile, tokens) {
+        console.log(profile);
         return {
           id: profile.id,
           role: 'BASIC',
