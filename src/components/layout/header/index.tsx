@@ -1,5 +1,5 @@
 'use client';
-import { FC, useContext } from 'react';
+import { FC, useContext, useState } from 'react';
 import { ctx } from '../../../context/contextProvider';
 
 import { Avatar, BurgerMenu, Logo, ModalAuth, Switch } from '@UI/index';
@@ -19,7 +19,9 @@ const Header: FC = () => {
   const { status, data } = useSession();
   const router = useRouter();
 
-  const { setActiveBurger, activeBurger, setActiveModal, setActiveAvatar, activeAvatar, visibleMenu } = useContext(ctx);
+  const [dropDownVisible, setDropDownVisible] = useState(false);
+
+  const { setActiveBurger, activeBurger, setActiveAvatar, activeAvatar, visibleMenu } = useContext(ctx);
 
   const { openModal } = useModal();
 
@@ -43,12 +45,12 @@ const Header: FC = () => {
     openModal(<ModalAuth />);
   };
 
-  const handleAvatarClick = () => {
-    setActiveAvatar((prev) => !prev);
-    setActiveBurger(false);
-
+  const withoutMobile = (callBack: () => void) => {
     if (size !== 'mobile') {
-      router.push('/profile');
+      callBack();
+    } else {
+      setActiveAvatar(true);
+      setActiveBurger(false);
     }
   };
 
@@ -106,6 +108,7 @@ const Header: FC = () => {
               onChange={() => {
                 setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
               }}
+              value={theme === 'light'}
               checked={
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14" fill="none">
                   <g clipPath="url(#clip0_989_1122)">
@@ -183,8 +186,50 @@ const Header: FC = () => {
           </Link>
           <div className={styles['btn-container']}>
             {status === 'authenticated' || status === 'loading' ? (
-              <button onClick={handleAvatarClick} className={styles['right-menu-btn']}>
+              <button
+                onPointerOver={() => withoutMobile(() => setDropDownVisible(true))}
+                onPointerLeave={() => withoutMobile(() => setDropDownVisible(false))}
+                className={styles['right-menu-btn']}
+              >
                 <Avatar />
+                {dropDownVisible && status === 'authenticated' && (
+                  <div className={styles['dropDownWrapper']}>
+                    <nav className={cn(styles['dropDown'])}>
+                      <figure className={styles['avatar']}>
+                        <figcaption
+                          onClick={() => {
+                            setActiveAvatar(false);
+                            router.push('/profile');
+                          }}
+                          className={styles['avatar__name']}
+                        >
+                          {data?.user.name}
+                        </figcaption>
+                        <Avatar />
+                      </figure>
+                      <span className={styles['line']}></span>
+                      {Object.entries(sideMenuRoutes).map(([text, url], i) => (
+                        <>
+                          <Link
+                            className={`${
+                              path === url ? cn(styles['menu-link'], styles['menu-link--active']) : styles['menu-link']
+                            }`}
+                            key={i + 1}
+                            href={url}
+                            onClick={() => setActiveAvatar(false)}
+                          >
+                            {text}
+                          </Link>
+                          <span className={styles['line']}></span>
+                        </>
+                      ))}
+
+                      <button className={styles['auth-btn']} onClick={() => handleSignOut()}>
+                        Выйти
+                      </button>
+                    </nav>
+                  </div>
+                )}
               </button>
             ) : (
               <>
@@ -201,6 +246,7 @@ const Header: FC = () => {
               onChange={() => {
                 setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
               }}
+              value={theme === 'light'}
               checked={
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 14 14" fill="none">
                   <g clipPath="url(#clip0_989_1122)">

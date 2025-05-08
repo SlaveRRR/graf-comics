@@ -16,7 +16,7 @@ import { toast } from 'sonner';
 import styles from './index.module.scss';
 
 type FormData = {
-  email: string;
+  login: string;
   password: string;
 };
 
@@ -33,15 +33,29 @@ const Login: FC = () => {
     handleSubmit,
     register,
     formState: { errors, dirtyFields },
+    setError,
   } = useForm<FormData>({
     mode: 'onChange',
   });
 
   const handler: SubmitHandler<FormData> = async (data) => {
+    const { login, password } = data;
+
+    let authKey: 'email' | 'name' = login.includes('@') ? 'email' : 'name';
+
+    if (login.includes('@')) {
+      if (!emailRegexp.test(login)) {
+        setError('login', { message: 'Введите правильный email' });
+        return;
+      }
+    }
+
     setActiveLoader(true);
     try {
       const isSignin = await signIn('credentials', {
-        ...data,
+        login,
+        authKey,
+        password,
         redirect: false,
       });
       if (isSignin?.error) {
@@ -81,23 +95,20 @@ const Login: FC = () => {
             <fieldset className={styles['login__fieldset']}>
               <legend className="visuallyhidden">Пользовательские данные</legend>
               <label className={styles['login__label']} htmlFor="email">
-                Почта
+                Введите никнейм или e-mail
               </label>
+              {Boolean(errors?.login) && <p className={styles['login__error']}>{errors?.login?.message}</p>}
               <input
-                {...register('email', {
+                {...register('login', {
                   required: true,
-                  pattern: {
-                    value: emailRegexp,
-                    message: 'Введите правильный email',
-                  },
                 })}
                 className={cn(styles['login__input'], {
-                  [styles['login__input--error']]: errors?.email,
-                  [styles['login__input--success']]: dirtyFields?.email && !errors?.email,
+                  [styles['login__input--error']]: errors?.login,
+                  [styles['login__input--success']]: dirtyFields?.login && !errors?.login,
                 })}
                 type="text"
                 id="email"
-                placeholder="Введите e-mail"
+                placeholder="Введите никнейм или e-mail"
                 autoComplete="on"
               />
               <label className={styles['login__label']} htmlFor="pass">

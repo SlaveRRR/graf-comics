@@ -6,12 +6,13 @@ type Props = {
   checked: any;
   unchecked: any;
   mixClass?: string[];
-  value?: boolean;
+  value: boolean;
   onChange?: () => void;
 };
 
-const Switch: FC<Props> = ({ checked, unchecked, mixClass = [], value = true, onChange }) => {
+const Switch: FC<Props> = ({ checked, unchecked, mixClass = [], value, onChange }) => {
   const [isChecked, setIsChecked] = useState<boolean>(value);
+
   return (
     <button
       onClick={() => {
