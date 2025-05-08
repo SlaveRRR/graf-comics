@@ -67,7 +67,7 @@ const ModalAuth: FC = () => {
 
   return (
     <section className={styles['login']}>
-      <div className={cn(styles['login__container'], 'container')}>
+      <div className={cn(styles['login__container'])}>
         <div className={styles['login__inner-container']}>
           <h2 className={styles['login__head']}>Вход</h2>
           <p className={styles['login__with-social']}>через соцсети</p>

@@ -131,7 +131,7 @@ export const ModalSignup = () => {
 
   return (
     <section className={styles['registration']}>
-      <div className={cn(styles['registration__container'], 'container')}>
+      <div className={cn(styles['registration__container'])}>
         <div className={styles['registration__inner-container']}>
           <CSSTransition
             timeout={500}

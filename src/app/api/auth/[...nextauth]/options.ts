@@ -34,17 +34,17 @@ declare module 'next-auth/jwt' {
 export const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    // не добавляется почта, с новой версией next-auth это пофиксили
     VkProvider({
       clientId: process.env.VK_CLIENT_ID,
       clientSecret: process.env.VK_SECRET,
       profile(profile, tokens) {
         console.log(profile);
+        const [user] = profile?.response;
         return {
           id: uuid(),
-          name: [profile.first_name, profile.last_name].filter(Boolean).join(' '),
-          email: profile.email ?? '',
-          avatar: profile.photo_100,
+          name: [user.first_name, user.last_name].filter(Boolean).join(' '),
+          email: user.email ?? '',
+          avatar: user.photo_100,
           emailVerified: true,
           role: 'BASIC',
         };

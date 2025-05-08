@@ -120,6 +120,7 @@ model Account {
   expires_at        Int?
   token_type        String?
   user_id           Int?
+  email             String?
   scope             String?
   id_token          String?
   session_state     String?
