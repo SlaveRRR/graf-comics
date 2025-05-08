@@ -119,6 +119,7 @@ model Account {
   access_token      String?
   expires_at        Int?
   token_type        String?
+  user_id           Int?
   scope             String?
   id_token          String?
   session_state     String?
