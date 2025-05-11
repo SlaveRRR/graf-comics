@@ -88,7 +88,8 @@ export const ModalSignup = () => {
 
       const isSignin = await signIn('credentials', {
         password: user.password,
-        email: user.email,
+        login: user.email,
+        authKey: 'email',
         redirect: false,
       });
       if (isSignin?.ok) {

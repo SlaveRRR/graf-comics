@@ -59,6 +59,7 @@
 
   &__container {
     padding-bottom: 1.5em;
+    height: 100vh;
     // из-за работы стилей на vercel пришлось добавить important
     max-width: 890px !important;
     padding-left: 2em !important;

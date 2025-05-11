@@ -90,7 +90,8 @@ const Registration = () => {
 
       const isSignin = await signIn('credentials', {
         password: getValues('password'),
-        email: getValues('email'),
+        login: getValues('email'),
+        authKey: 'email',
         redirect: false,
       });
       if (isSignin?.ok) {
