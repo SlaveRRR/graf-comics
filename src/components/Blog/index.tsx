@@ -1,10 +1,12 @@
+'use client';
+import { ctx } from '@/context/contextProvider';
 import { author, sortSmall, theme } from '@/data/data.json';
 import cn from 'classnames';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { Button, SliderArticles } from '../UI';
-import { ArrowLink } from '../shared';
+import { ActiveFilters, ArrowLink } from '../shared';
 import styles from './index.module.scss';
 
 const Filters = dynamic(() => import('@/components/shared/Filters/index'), {
@@ -12,6 +14,7 @@ const Filters = dynamic(() => import('@/components/shared/Filters/index'), {
 });
 
 const Blog: FC = () => {
+  const { activeFilters, toggleFilters } = useContext(ctx);
   return (
     <>
       <section className={styles['blog']}>
@@ -169,7 +172,14 @@ const Blog: FC = () => {
                   className={styles['blog__search-field']}
                 />
               </label>
+              <ActiveFilters
+                mixClass={[styles['active-filters']]}
+                filters={activeFilters}
+                toggleFilters={toggleFilters}
+                shortMode={false}
+              />
             </div>
+
             <div className={styles['articles-card']}>
               <div className={styles['articles__item-card']}>
                 <header className={styles['articles__header']}>Название статьи</header>
