@@ -3,13 +3,13 @@
 .comics-page {
   &__text-container {
     padding-top: 1em;
-    background: white;
     border-radius: 10px;
     @include flex($dir: column);
+    @include themeSectionBackground;
   }
 
   &__header {
-    color: #2d283e;
+    @include themeText;
     font-size: 1.43rem;
     font-weight: 600;
     line-height: normal;
@@ -17,7 +17,7 @@
   }
 
   &__author {
-    color: #2d283e;
+    @include themeText;
     font-size: 0.86rem;
     font-weight: 500;
     line-height: normal;
@@ -32,7 +32,7 @@
   &__age,
   &__year,
   &__status {
-    color: #2d283e;
+    @include themeText;
     font-size: 0.72rem;
     font-weight: 500;
     line-height: normal;
@@ -48,7 +48,7 @@
   &__starred,
   &__bookmarks {
     @include flex($gap: 0.2em);
-    color: #2d283e;
+    @include themeText;
     font-size: 0.72rem;
     font-weight: 600;
     line-height: normal;
@@ -60,7 +60,7 @@
 
   &__description {
     display: -webkit-box;
-    color: #2d283e;
+    @include themeText;
     font-size: 0.73rem;
     font-weight: 500;
     line-height: normal;
@@ -137,7 +137,7 @@
   margin-bottom: 2.4em;
 
   &__header {
-    color: #564f70;
+    @include themeText;
     font-size: 0.72rem;
     font-weight: 600;
     line-height: normal;
@@ -174,7 +174,7 @@
   }
 
   &__text {
-    color: #564f70;
+    @include themeText;
     font-size: 0.72rem;
     font-weight: 600;
     line-height: normal;
@@ -211,7 +211,6 @@
   padding: 0.8em 2.4em 0.6em 0.9em;
   border-radius: 10px;
   min-width: 190px;
-  border: 4px solid #fafafa;
   @include flex($align: flex-start, $gap: 0.8em);
 
   position: relative;
@@ -229,7 +228,7 @@
 
   &__text {
     width: max-content;
-    color: #2d283e;
+    @include themeText;
     font-weight: 500;
     line-height: normal;
   }
@@ -270,7 +269,7 @@
     border: none;
     background: transparent;
     align-self: flex-start;
-    color: #2d283e;
+    @include themeText;
     font-size: 0.73rem;
     font-weight: 600;
     line-height: normal;
@@ -330,7 +329,7 @@
     border: none;
     background: transparent;
     align-self: flex-start;
-    color: #2d283e;
+    @include themeText;
     font-size: 0.73rem;
     font-weight: 600;
     line-height: normal;
@@ -341,7 +340,7 @@
     margin-bottom: 1em;
   }
   &__counter {
-    color: $black-color;
+    @include themeText;
     font-size: 0.6rem;
     font-weight: 500;
     line-height: 0.7rem;

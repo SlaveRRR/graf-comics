@@ -24,14 +24,14 @@
   }
 
   &__user-name {
-    color: $black-color;
+    @include themeText;
     font-weight: 600;
     font-size: 0.5rem;
     line-height: 0.6rem;
   }
 
   &__text {
-    color: $black-color;
+    @include themeText;
     font-size: 0.6rem;
     font-weight: 500;
     line-height: 0.7rem;

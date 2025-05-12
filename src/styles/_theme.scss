@@ -15,6 +15,7 @@
   --footer-icons: #2d283e;
   --theme-tab-text: #564f70;
   --theme-input-background: #f2effe;
+  --chapter: #dfdfdf;
   --animated-box-shadow-init: 0 4px 8px rgba(0, 0, 0, 0.1);
   --animated-box-shadow-animation: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -22,6 +23,7 @@
 :root[data-theme='dark'] {
   --background-color: #2d283e;
   --text-color: #ffffff;
+
   --section-background-color: #322b56;
   --sidebar-background-color: #2d283e;
   --sidebar-line: #4d37a5;
@@ -34,6 +36,7 @@
   --footer-icons: #7a5af8;
   --theme-tab-text: white;
   --theme-input-background: #37257b;
+  --chapter: #37257b;
   --animated-box-shadow-init: 0 4px 8px rgba(255, 255, 255, 0.117);
   --animated-box-shadow-animation: 0 8px 16px rgba(255, 255, 255, 0.782);
 }

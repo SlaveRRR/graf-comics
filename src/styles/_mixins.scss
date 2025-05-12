@@ -76,6 +76,9 @@
   color: var(--text-color);
   background-color: var(--theme-input-background);
 }
+@mixin themeChapter {
+  background-color: var(--chapter);
+}
 
 @mixin focus($outline: none) {
   &:focus {
