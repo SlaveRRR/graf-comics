@@ -3,6 +3,7 @@ import { ctx } from '@/context/contextProvider';
 import { IComicsComment } from '@/store/comics/types';
 import cn from 'classnames';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FC, useContext, useState } from 'react';
 import { Chapters, SliderPreview, Tabs } from '../UI';
 import { ComicsComment, FilterBarComponent } from './components';
@@ -11,9 +12,10 @@ import styles from './index.module.scss';
 import { ComicsPreviewProps } from './types';
 const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
   const { setActiveBookMarks } = useContext(ctx);
-  const { banner, covers, description, genres, title, toms, author, status, rating } = comics;
+  const { banner, covers, description, genres, title, toms, author, status, rating, id } = comics;
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
-
+  console.log(comics);
+  const router = useRouter();
   //сортировка
   const [commentsRender, setCommentsRender] = useState(comments);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +36,7 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
       default:
         break;
     }
-    console.log(sorted);
+
     setCommentsRender(sorted);
   };
 
@@ -126,7 +128,9 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
             <button onClick={() => setActiveBookMarks(true)} className={styles['buttons__bookmark']}>
               В избранное
             </button>
-            <button className={styles['buttons__read']}>Читать</button>
+            <button onClick={() => router.push(`/comics/${id}`)} className={styles['buttons__read']}>
+              Читать
+            </button>
           </div>
           <div className="container">
             <Tabs mixClass={[]} tabs={['Описание', 'Главы', 'Комментарии']}>

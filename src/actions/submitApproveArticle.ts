@@ -1,7 +1,6 @@
 'use server';
 import prisma from '@/services/prisma';
-import { ModelName } from '@premieroctet/next-admin';
-export const submitApproveArticle = async (model: ModelName, ids: number[] | string[]) => {
+export const submitApproveArticle = async (ids: number[] | string[]) => {
   for (let id of ids) {
     await prisma.article.update({
       data: {

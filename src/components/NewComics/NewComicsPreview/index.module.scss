@@ -1,47 +1,46 @@
 @use '../../../styles/global' as *;
 
 .preview-text {
-    @include flex;
-    min-height: 35px;
-    font-weight: 600;
-    font-size: .86rem;
-    line-height: 15px;
-    background: white;
+  @include flex;
+  min-height: 35px;
+  font-weight: 600;
+  font-size: 0.86rem;
+  line-height: 15px;
+  background: white;
 }
 
 .btns-container {
-    @include flex($gap: .57em);
-    position: fixed;
-    z-index: 100;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -80%);
+  @include flex($gap: 0.57em);
+  position: fixed;
+  z-index: 100;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -80%);
 
-    &__back-btn {
-        border: 1px solid $main-color;
-        font-size: .86rem;
-        padding: .5em 2em;
-        background: white;
-        color: $main-color;
-        border-radius: 250px;
+  &__back-btn {
+    @include clickableElement;
+    border: 1px solid $main-color;
+    font-size: 0.86rem;
+    padding: 0.5em 2em;
+    background: white;
+    color: $main-color;
+    border-radius: 250px;
+  }
 
-    }
-
-    &__next-btn {
-        padding: .5em 2em;
-        border: none;
-        font-size: .86rem;
-        color: white;
-        background-color: $main-color;
-        border-radius: 250px;
-    }
+  &__next-btn {
+    @include clickableElement;
+    padding: 0.5em 2em;
+    border: none;
+    font-size: 0.86rem;
+    color: white;
+    background-color: $main-color;
+    border-radius: 250px;
+  }
 }
 
-
-
 .error {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: .2em;
-    color: red;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2em;
+  color: red;
 }

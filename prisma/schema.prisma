@@ -9,9 +9,8 @@ generator client {
   output   = "../node_modules/.prisma/client"
 }
 
-generator jsonSchema {
-  provider              = "prisma-json-schema-generator"
-  includeRequiredFields = "true"
+generator nextAdmin {
+  provider = "next-admin-generator-prisma"
 }
 
 datasource db {

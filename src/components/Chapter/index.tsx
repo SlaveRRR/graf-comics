@@ -126,7 +126,7 @@ const Chapter: FC<Props> = ({ chapter, tomId }) => {
             id="cover"
             className={cn(styles['cover__input'], 'myvisuallyhidden')}
             onChange={(e) => {
-              if (e.target.files.length <= 10 && e.target.files.length >= 1) {
+              if (e.target.files.length <= 50 && e.target.files.length >= 1) {
                 readFiles(e.target.files).then((data) =>
                   saveChapterImages({ images: data, tomId: tomId, chapterId: chapterId }),
                 );

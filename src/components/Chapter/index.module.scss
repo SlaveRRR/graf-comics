@@ -1,5 +1,9 @@
 @use '../../styles/global' as *;
 
+.chapter {
+  max-width: 450px;
+}
+
 .chapter-info {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 18fr;
@@ -13,6 +17,7 @@
   min-height: 35px;
 
   &__show-btn {
+    @include clickableElement;
     display: flex;
     border: none;
     background: transparent;
@@ -26,6 +31,7 @@
   }
 
   &__edit-btn {
+    @include clickableElement;
     display: flex;
     border: none;
     background: transparent;
@@ -33,6 +39,7 @@
   }
 
   &__remove-btn {
+    @include clickableElement;
     justify-self: end;
     border: 0;
     padding: 0;
@@ -56,6 +63,7 @@
 
 .cover {
   @include flex;
+  @include clickableElement;
   background-color: white;
   border: 1px solid $main-color;
   min-width: 83px;

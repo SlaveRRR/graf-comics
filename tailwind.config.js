@@ -139,5 +139,6 @@ module.exports = {
     },
   ],
   plugins: [require('@headlessui/tailwindcss')],
-  presets: [require('@premieroctet/next-admin/dist/preset')],
+
+  presets: [require('@premieroctet/next-admin/preset')],
 };

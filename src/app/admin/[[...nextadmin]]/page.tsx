@@ -1,10 +1,9 @@
-import { deleteItem, searchResource, submitFormAction } from '@/actions/nextadmin';
 import { options } from '@/config/admin';
 import prisma from '@/services/prisma';
 import { NextAdmin } from '@premieroctet/next-admin';
-import { getPropsFromParams } from '@premieroctet/next-admin/dist/appRouter';
-import schema from '../../../../prisma/json-schema/json-schema.json';
+import { getNextAdminProps } from '@premieroctet/next-admin/appRouter';
 import '../../../styles/styles.css';
+
 export default async function AdminPage({
   params,
   searchParams,
@@ -12,15 +11,13 @@ export default async function AdminPage({
   params: { [key: string]: string[] };
   searchParams: { [key: string]: string | string[] | undefined } | undefined;
 }) {
-  const props = await getPropsFromParams({
+  const props = await getNextAdminProps({
     params: params.nextadmin as string[],
     searchParams,
     options,
     prisma,
-    schema,
-    action: submitFormAction,
-    deleteAction: deleteItem,
-    searchPaginatedResourceAction: searchResource,
+    basePath: '/admin',
+    apiBasePath: '/api/admin',
   });
 
   return <NextAdmin {...props} />;

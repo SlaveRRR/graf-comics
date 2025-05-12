@@ -43,6 +43,7 @@ const comicsSlice = createSlice({
   reducers: {
     addTitleDescription(state, action: PayloadAction<Pick<IComics, 'title' | 'description' | 'author'>>) {
       const { description, title, author } = action.payload;
+      console.log(action.payload);
       state['description'] = description;
       state['title'] = title;
       state['author'] = author;

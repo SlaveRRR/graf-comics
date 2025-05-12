@@ -52,6 +52,18 @@ const stringToEnum : Record<string,Tag | Genre | Focus> = {
   "этти": Genre.ECHI,
 };
 
+const cleanBase64 = (base64: string) => {
+  return base64.replace(/^data:image\/\w+;base64,/, '').replace(/\s/g, '');
+};
+
+const isValidBase64 = (str: string) => {
+  try {
+    return Buffer.from(str, 'base64').toString('base64') === str;
+  } catch {
+    return false;
+  }
+};
+
 interface PreparedTom extends Omit<ITom, 'tomId' | 'chapters'> {
   title: string;
   chapters: Omit<IChapter, 'chapterId'>[];
@@ -66,17 +78,32 @@ interface PreparedComics extends Omit<IComics, 'rating' | 'genres' | 'tags' | 'f
 }
 
 const updateComics = async (comics: IComics, userId: string): Promise<PreparedComics> => {
+  const processImage = async (base64: string, type: string) => {
+    const cleaned = cleanBase64(base64);
+    if (!isValidBase64(cleaned)) {
+      console.error(`Invalid ${type} image`);
+      return null;
+    }
+    try {
+      const result = await imgUploader({
+        name: `${userId}-${type}-${uuid()}`,
+        base64string: cleaned,
+      });
+      return result.url;
+    } catch (err) {
+      console.error(`Error uploading ${type}:`, err);
+      return null;
+    }
+  };
+
   const updatedToms = await Promise.all(
     comics.toms.map(async (tom) => {
       const updatedChapters = await Promise.all(
         tom.chapters.map(async (chapter) => {
           const updatedImages = await Promise.all(
-            chapter.images.map(async (image) => {
-              const imageUrl = await imgUploader({
-                name: `${userId}-image-${uuid()}`,
-                base64string: image.replace('data:image/png;base64,', ''),
-              });
-              return imageUrl.url;
+            chapter.images.map(async (image, index) => {
+              const imageUrl = await processImage(image, 'image');
+              return imageUrl;
             }),
           );
 
@@ -96,20 +123,12 @@ const updateComics = async (comics: IComics, userId: string): Promise<PreparedCo
       };
     }),
   );
-  const coversLinks = await Promise.all(
-    comics.covers.map((el) =>
-      imgUploader({
-        name: `${userId}-covers-${uuid()}`,
-        base64string: el.replace('data:image/png;base64,', ''),
-      }),
-    ),
-  );
+
+  const coversLinks = await Promise.all(comics.covers.map((el) => processImage(el, 'covers')));
+
   if (comics['banner']) {
-    const bannerLink = await imgUploader({
-      name: `${userId}-banner-${uuid()}`,
-      base64string: comics['banner'].replace('data:image/png;base64,', ''),
-    });
-    comics['banner'] = bannerLink.url;
+    const bannerLink = await processImage(comics['banner'], 'banner');
+    comics['banner'] = bannerLink;
   }
 
   return {
@@ -118,8 +137,8 @@ const updateComics = async (comics: IComics, userId: string): Promise<PreparedCo
     rating: comics['rating'][0].text,
     focus: comics['focus'].map((el) => stringToEnum[el.text]) as Focus[],
     genres: comics['genres'].map((el) => stringToEnum[el.text]) as Genre[],
-    tags: comics['genres'].map((el) => stringToEnum[el.text]) as Tag[],
-    covers: coversLinks.map((el) => el.url),
+    tags: comics['tags'].map((el) => stringToEnum[el.text]) as Tag[],
+    covers: coversLinks,
   };
 };
 
@@ -129,7 +148,7 @@ export const POST = async (request: NextRequest) => {
     const session = await getServerSession(options);
 
     const data: IComics = await request.json();
-
+    console.log(data);
     const comics = await updateComics(data, session.user.id);
 
     const createdComics = await prisma.comics.create({
@@ -163,6 +182,7 @@ export const POST = async (request: NextRequest) => {
 
     return NextResponse.json(createdComics);
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: error },
       {

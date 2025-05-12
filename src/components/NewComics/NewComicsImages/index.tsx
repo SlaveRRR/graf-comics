@@ -54,11 +54,13 @@ const NewComicsImages: FC = () => {
     });
   };
 
+  const [format, setFormat] = useState('');
+
   const onCrop = useCallback(() => {
     if (cropperRef.current) {
       const canvas = cropperRef.current.getCanvas();
       if (canvas) {
-        setCroppedImage(canvas.toDataURL('image/jpeg'));
+        setCroppedImage(canvas.toDataURL(format));
       }
     }
   }, [setCroppedImage]);
@@ -67,13 +69,25 @@ const NewComicsImages: FC = () => {
     setIsProcessing(true);
     if (getValues('covers').length <= 4) {
       addCover([croppedImage]);
-      setIsProcessing(false);
+      closeModal();
     }
+    setIsProcessing(false);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCroppedImage(null);
+  };
+
+  const nextPageHandler = () => {
+    handleSubmit(handler)().then(() => {
+      router.push('/add-comics/tags');
+    });
   };
 
   return (
     <AddComics final={false}>
-      <form onSubmit={handleSubmit(handler)}>
+      <form>
         <fieldset>
           <legend className="visuallyhidden">Название и описание</legend>
 
@@ -130,10 +144,10 @@ const NewComicsImages: FC = () => {
             </label>
             <input
               type="file"
-              id="cover"
+              id="covers"
               className={cn(styles['cover__input'], 'myvisuallyhidden')}
               {...register('covers', {
-                required: true,
+                required: comics.covers.length === 0, // Требуем только если нет загруженных
                 onChange(event) {
                   if (getValues('covers').length <= 4) {
                     readFiles(getValues('covers') as FileList).then((data) => addCover(data));
@@ -141,7 +155,6 @@ const NewComicsImages: FC = () => {
                 },
               })}
               accept="image/png, image/jpeg"
-              multiple
             />
             <span className={styles['cover-img']}>
               <Image
@@ -192,8 +205,9 @@ const NewComicsImages: FC = () => {
         </fieldset>
         <button
           disabled={isValid ? false : !isValid && comics.banner && comics.covers.length >= 1 ? false : true}
-          onClick={() => router.push('/add-comics/tags')}
+          onClick={() => nextPageHandler()}
           className={styles['next-btn']}
+          type="button"
         >
           Далее
         </button>
@@ -210,7 +224,7 @@ const NewComicsImages: FC = () => {
               или отредактируйте изображение для вашей обложки
             </h1>
             <div className={styles['modal__add']}>
-              <label htmlFor="cover" className={styles['modal__add--button']}>
+              <label htmlFor="cropped" className={styles['modal__add--button']}>
                 Выберите файл
               </label>
               <p className={styles['modal__add--text']}>Загрузить файл .png .jpeg</p>
@@ -242,20 +256,18 @@ const NewComicsImages: FC = () => {
             )}
             <input
               type="file"
-              id="cover"
+              id="cropped"
               className={cn(styles['cover__input'], 'myvisuallyhidden')}
-              {...register('covers', {
-                required: true,
-                onChange(event) {
-                  const files = event.target.files;
-                  if (files && files.length > 0 && files.length <= 4) {
-                    const imgFile = files[0];
-                    const imageUrl = URL.createObjectURL(imgFile);
-                    setPreviewImage(imageUrl);
-                    setValue('covers', files);
-                  }
-                },
-              })}
+              onChange={(event) => {
+                const files = event.target.files;
+                if (files && files.length > 0 && files.length <= 4) {
+                  const imgFile = files[0];
+                  setFormat(imgFile?.type);
+                  const imageUrl = URL.createObjectURL(imgFile);
+                  setPreviewImage(imageUrl);
+                }
+                setValue('covers', files);
+              }}
               accept="image/png, image/jpeg"
               multiple
             />

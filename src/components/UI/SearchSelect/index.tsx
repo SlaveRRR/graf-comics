@@ -1,9 +1,9 @@
 'use client';
-import React, { FC, useEffect, useRef, useState } from 'react';
-import styles from './index.module.scss';
-import SearchItem from './SearchItem';
 import { ActiveFilters } from '@/components/shared';
 import { FilterItem } from '@/types/filter.type';
+import { FC, useEffect, useRef, useState } from 'react';
+import styles from './index.module.scss';
+import SearchItem from './SearchItem';
 
 type Props = {
   data: FilterItem[];
@@ -19,6 +19,8 @@ const SearchSelect: FC<Props> = ({ data, title, state, toggleFilters, searchTitl
   const [searchValue, setSearchValue] = useState('');
 
   const refCnt = useRef<HTMLDivElement>(null);
+
+  const filteredItems = data.filter((el) => el.text.toLowerCase().includes(searchValue.toLowerCase()));
 
   useEffect(() => {
     const handler = (event) => {
@@ -48,11 +50,11 @@ const SearchSelect: FC<Props> = ({ data, title, state, toggleFilters, searchTitl
           className={styles['search-field']}
         />
       </label>
+
       {visible && (
         <ul className={styles['items']}>
-          {data
-            .filter((el) => el.text.includes(searchValue))
-            .map(({ text }) => (
+          {filteredItems.length > 0 ? (
+            filteredItems.map(({ text }) => (
               <SearchItem
                 toggleFilters={(el) => {
                   setSearchValue('');
@@ -64,10 +66,13 @@ const SearchSelect: FC<Props> = ({ data, title, state, toggleFilters, searchTitl
                 multiple={multiple}
                 state={state}
               />
-            ))}
+            ))
+          ) : (
+            <p className={styles['no-results']}>нет результата</p>
+          )}
         </ul>
       )}
-      {state.length > 0 && <ActiveFilters filters={state} toggleFilters={toggleFilters} />}
+      {state.length > 0 && <ActiveFilters mixClass={[styles['tags']]} filters={state} toggleFilters={toggleFilters} />}
     </div>
   );
 };

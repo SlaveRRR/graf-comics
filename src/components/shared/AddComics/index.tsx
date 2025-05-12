@@ -1,6 +1,6 @@
+import cn from 'classnames';
 import React, { FC } from 'react';
 import BackLink from '../BackLink';
-import cn from 'classnames';
 import styles from './index.module.scss';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 const AddComics: FC<Props> = ({ children, final }) => {
   return (
     <div className={cn(styles['add-comics'], 'container')}>
-      <BackLink mixClass={[styles['add-comics__link']]} />
+      {!final && <BackLink mixClass={[styles['add-comics__link']]} />}
       <div className={styles['add-comics__content']}>
         {final ? (
           <h2 className={styles['add-comics__final']}>Поздравляем!</h2>

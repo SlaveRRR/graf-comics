@@ -1,21 +1,30 @@
 'use client';
 import ComicsPreview from '@/components/ComicsPreview';
+import { ctx } from '@/context/contextProvider';
 import { useAppSelector } from '@/hooks/redux';
 import { useRouter } from 'next/navigation';
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useContext } from 'react';
+import { toast } from 'sonner';
 import styles from './index.module.scss';
 
 const NewComicsPreview: FC = () => {
   const comics = useAppSelector((state) => state.comics);
   const router = useRouter();
-
+  const { setActiveLoader } = useContext(ctx);
   console.log(comics);
   const sendModerate = useCallback(async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_AXIOS_URL}/api/comics`, {
-      method: 'POST',
-      body: JSON.stringify({ ...comics }),
-    });
-    // router.push('/add-comics/final');
+    setActiveLoader(true);
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_AXIOS_URL}/api/comics`, {
+        method: 'POST',
+        body: JSON.stringify({ ...comics }),
+      });
+      return router.replace('/add-comics/final');
+    } catch (error) {
+      toast.error(error);
+    } finally {
+      setActiveLoader(false);
+    }
   }, []);
   return (
     <>

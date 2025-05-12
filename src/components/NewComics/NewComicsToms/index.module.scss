@@ -1,69 +1,70 @@
 @use '../../../styles/global' as *;
 
 .title {
-    font-weight: 600;
-    font-size: .86rem;
-    line-height: 15px;
-    width: max-content;
-    margin: 0 auto 1.9em;
+  font-weight: 600;
+  font-size: 0.86rem;
+  line-height: 15px;
+  width: max-content;
+  margin: 0 auto 1.9em;
 }
 
 .btns {
-    @include flex($gap: .71em);
-    margin: 0 auto .78em;
+  @include flex($gap: 0.71em);
+  margin: 0 auto 0.78em;
 
-    &__add-btn {
-        border: 1px solid $main-color;
-        font-size: .79rem;
-        font-weight: 500;
-        padding: .7em 2.1em;
-        background: white;
-        color: $main-color;
-        border-radius: 250px;
-    }
+  &__add-btn {
+    border: 1px solid $main-color;
+    font-size: 0.79rem;
+    font-weight: 500;
+    padding: 0.7em 2.1em;
+    background: white;
+    color: $main-color;
+    border-radius: 250px;
+  }
 
-    &__remove-btn {
-        border: 1px solid red;
-        font-size: .79rem;
-        font-weight: 500;
-        padding: .7em 2.1em;
-        background: white;
-        color: red;
-        border-radius: 250px;
-    }
+  &__remove-btn {
+    border: 1px solid red;
+    font-size: 0.79rem;
+    font-weight: 500;
+    padding: 0.7em 2.1em;
+    background: white;
+    color: red;
+    border-radius: 250px;
+  }
 }
 
 .btns-container {
-    @include flex($gap: .57em);
-    margin: 0 auto;
+  @include flex($gap: 0.57em);
+  margin: 0 auto;
 
-    &__back-btn {
-        border: 1px solid $main-color;
-        font-size: .86rem;
-        padding: .5em 2em;
-        background: white;
-        color: $main-color;
-        border-radius: 250px;
+  &__back-btn {
+    border: 1px solid $main-color;
+    font-size: 0.86rem;
+    padding: 0.5em 2em;
+    background: white;
+    color: $main-color;
+    border-radius: 250px;
+    @include clickableElement;
+  }
 
-    }
-
-    &__next-btn {
-        padding: .5em 2em;
-        border: none;
-        font-size: .86rem;
-        color: white;
-        background-color: $main-color;
-        border-radius: 250px;
-    }
+  &__next-btn {
+    padding: 0.5em 2em;
+    border: none;
+    font-size: 0.86rem;
+    color: white;
+    background-color: $main-color;
+    border-radius: 250px;
+    @include clickableElement;
+  }
 }
 
 .toms {
-    margin-bottom: 3.5em;
+  margin-bottom: 3.5em;
 }
 
 .error {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: .2em;
-    color: red;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2em;
+  color: red;
 }

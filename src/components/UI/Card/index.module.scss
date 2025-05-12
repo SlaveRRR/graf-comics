@@ -1,16 +1,27 @@
 @use '../../../styles/global' as *;
 
+.clickable {
+  @include clickableElement;
+}
+
 .card {
   border: transparent 1px solid;
   border-radius: 10px;
 
-  &__img {
+  &__content {
     position: relative;
     border-radius: 10px;
     width: clamp(6.429em, 5.114em + 5.75vw, 13em);
     height: clamp(8.214em, 6.729em + 6.2vw, 15.643em);
     background: #e8e8e8;
     margin-bottom: 0.4em;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
   }
 
   &__text {

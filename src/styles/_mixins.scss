@@ -134,6 +134,12 @@
   }
 }
 
+@mixin clickableElement {
+  @media (min-width: 1024px) {
+    cursor: pointer;
+  }
+}
+
 @mixin filterNames {
   &--genres {
     background: #82bcfc;

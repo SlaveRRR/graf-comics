@@ -1,9 +1,11 @@
 import ArticleAdmin from '@/components/ArticleAdmin';
-import { imgUploader } from '@/services';
 import { NextAdminOptions } from '@premieroctet/next-admin';
 
+import { submitApproveArticle } from '@/actions/submitApproveArticle';
+import { submitApproveComics } from '@/actions/submitApproveComics';
+import { submitModerate } from '@/actions/submitModerate';
+import { submitRejectComics } from '@/actions/submitRejectComics';
 export const options: NextAdminOptions = {
-  basePath: '/admin',
   model: {
     User: {
       toString: (user) => `${user.name} (${user.email})`,
@@ -11,9 +13,11 @@ export const options: NextAdminOptions = {
       aliases: {
         id: 'ID',
       },
+
       list: {
         display: ['id', 'name', 'email', 'gender', 'role', 'avatar'],
         search: ['name', 'email', 'role'],
+        copy: ['email'],
         fields: {
           avatar: {
             formatter(avatar, context) {
@@ -100,97 +104,21 @@ export const options: NextAdminOptions = {
       },
       actions: [
         {
+          type: 'server',
+          id: 'MODERATE',
           title: 'Moderate article',
-          action: async (...args) => {
-            'use server';
-            const { submitModerate } = await import('../../actions/submitModerate');
-            await submitModerate(...args);
+          action: async (ids) => {
+            await submitModerate(ids);
           },
           successMessage: 'Successful moderate!',
           errorMessage: 'Moderate error!',
         },
         {
+          type: 'server',
+          id: 'APPROVE',
           title: 'Approve article',
-          action: async (...args) => {
-            'use server';
-            const { submitApproveArticle } = await import('../../actions/submitApproveArticle');
-            await submitApproveArticle(...args);
-          },
-          successMessage: 'Successful approve!',
-          errorMessage: 'Approve error!',
-        },
-      ],
-    },
-    Comics: {
-      toString: (comics) => comics.title,
-      title: '📚 Comics',
-      aliases: {
-        id: 'ID',
-      },
-      list: {
-        display: ['id', 'title', 'author', 'createdAt'],
-        search: ['title'],
-        fields: {
-          author: {
-            formatter: (item) => item.name,
-          },
-        },
-      },
-      edit: {
-        display: [
-          'title',
-          'description',
-          'author',
-          'createdAt',
-          'banner',
-          'focus',
-          'genres',
-          'tags',
-          'banner',
-          // 'covers',
-          'rating',
-          'isApproved',
-        ],
-        styles: {
-          _form: 'grid-cols-2 gap-1 sm:gap-2 sm:grid-cols-4 items-center',
-          title: 'col-span-2 row-start-1',
-          author: 'col-span-2 row-start-2 sm:row-start-1',
-          description: 'col-span-2 row-start-3 sm:row-start-2',
-          focus: 'col-span-2 row-start-4 sm:row-start-3',
-          genres: 'col-span-2 row-start-5 sm:row-start-4',
-          tags: 'col-span-2 row-start-6 sm:row-start-5',
-          rating: 'col-span-2 row-start-7 sm:row-start-6',
-
-          banner: 'col-span-4 row-start-8 sm:row-start-7',
-          covers: 'col-span-4 row-start-9 sm:row-start-8',
-          createdAt: 'col-span-2 row-start-10 sm:row-start-9',
-          isApproved: 'col-span-2 row-start-11 sm:row-start-10',
-        },
-        fields: {
-          author: {
-            optionFormatter: (author) => `${author.name}`,
-          },
-          banner: {
-            format: 'file',
-            handler: {
-              upload: async (file: Buffer) => {
-                'use server';
-                const uploadedFile = await imgUploader({
-                  base64string: file.toString('base64'),
-                });
-                return uploadedFile.url;
-              },
-            },
-          },
-        },
-      },
-      actions: [
-        {
-          title: 'Approve comics',
-          action: async (...args) => {
-            'use server';
-            const { submitApproveComics } = await import('../../actions/submitApproveComics');
-            await submitApproveComics(...args);
+          action: async (ids) => {
+            await submitApproveArticle(ids);
           },
           successMessage: 'Successful approve!',
           errorMessage: 'Approve error!',
@@ -237,6 +165,157 @@ export const options: NextAdminOptions = {
         fields: {
           user: {
             optionFormatter: (user) => `${user.name}`,
+          },
+        },
+      },
+    },
+    Comics: {
+      toString: (comics) => comics.title,
+      title: '📚 Комиксы',
+      aliases: {
+        id: 'ID',
+      },
+      list: {
+        display: ['id', 'title', 'author', 'status', 'rating', 'isApproved', 'createdAt'],
+        search: ['title', 'description'],
+        filters: [
+          {
+            name: 'Прошедшие модерацию',
+            value: {
+              isApproved: true,
+            },
+          },
+        ],
+        defaultSort: { field: 'createdAt', direction: 'desc' },
+        fields: {
+          author: {
+            formatter: (author) => author?.name || 'No author',
+          },
+        },
+      },
+      edit: {
+        display: [
+          'title',
+          'description',
+          'status',
+          'covers',
+          'banner',
+          'genres',
+          'focus',
+          'toms',
+          'tags',
+          'author',
+          'rating',
+          'isApproved',
+        ],
+        styles: {
+          _form: 'grid-cols-2 gap-4',
+          title: 'col-span-2',
+          description: 'col-span-2',
+          covers: 'col-span-2',
+          banner: 'col-span-2',
+        },
+        fields: {
+          covers: {
+            format: 'file',
+            // **TODO
+            handler: {
+              upload: async (buffer, infos, context) => {
+                console.log(buffer, infos, context);
+                return 'https://i.ibb.co/KzyF5JS7/6820a60bc48c293d879e5aa6-covers-b0fb21ff-fdfc-437f-adc1-d63b4173ee56.png';
+              },
+            },
+          },
+          banner: {
+            format: 'data-url',
+          },
+          author: {
+            optionFormatter: (author) => `${author.name} (${author.email})`,
+          },
+        },
+      },
+      actions: [
+        {
+          type: 'server',
+          id: 'APPROVE',
+          action: async (ids) => {
+            await submitApproveComics(ids);
+          },
+          successMessage: 'Комикс успешно прошел модерацию!',
+          errorMessage: 'Ошибка во время выполнения операции!',
+          title: 'Одобрить',
+        },
+        {
+          type: 'server',
+          id: 'DECLINE',
+          action: async (ids) => {
+            await submitRejectComics(ids);
+          },
+          successMessage: 'Комикс не прошел модерацию!',
+          errorMessage: 'Ошибка во время выполнения операции!',
+          title: 'Отклонить',
+        },
+      ],
+    },
+    Tom: {
+      toString: (tom) => tom.title,
+      title: '📖 Toms',
+      aliases: {
+        id: 'ID',
+      },
+      list: {
+        display: ['id', 'title', 'comics'],
+        search: ['title'],
+        fields: {
+          comics: {
+            formatter: (comics) => comics?.title || 'No comics',
+          },
+        },
+      },
+      edit: {
+        display: ['title', 'comics'],
+        fields: {
+          comics: {
+            optionFormatter: (comics) => comics.title,
+          },
+        },
+      },
+    },
+    Chapter: {
+      toString: (chapter) => chapter.name,
+      title: '📝 Chapters',
+      aliases: {
+        id: 'ID',
+      },
+      list: {
+        display: ['id', 'name', 'tom', 'isRead', 'likes'],
+        search: ['name'],
+        fields: {
+          tom: {
+            formatter: (tom) => tom?.title || 'No tom',
+          },
+        },
+      },
+      edit: {
+        display: ['name', 'tom', 'images', 'isRead', 'likes', 'timeCode'],
+        styles: {
+          _form: 'grid-cols-2 gap-4',
+          images: 'col-span-2',
+        },
+        fields: {
+          tom: {
+            optionFormatter: (tom) => tom.title,
+          },
+          images: {
+            format: 'file',
+
+            // **TODO
+            handler: {
+              upload: async (buffer, infos, context) => {
+                console.log(buffer, infos, context);
+                return 'https://i.ibb.co/KzyF5JS7/6820a60bc48c293d879e5aa6-covers-b0fb21ff-fdfc-437f-adc1-d63b4173ee56.png';
+              },
+            },
           },
         },
       },

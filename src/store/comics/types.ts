@@ -8,6 +8,8 @@ export enum Status {
 }
 
 export interface IComics {
+  // id приходит только с бэка
+  id?: string;
   title: string;
   description: string;
   covers: string[];

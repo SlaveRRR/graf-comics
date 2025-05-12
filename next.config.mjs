@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async headers() {
+  images: {
+    remotePatterns: [{ protocol: 'https', hostname: 'i.ibb.co' }],
+  },
+  headers: async function () {
     return [
       {
         // matching all API routes

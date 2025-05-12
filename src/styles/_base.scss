@@ -198,6 +198,13 @@ table {
 
 .next-admin__root {
   height: 100% !important;
+  padding-top: 3em;
+
+  & > div > div {
+    @include mediaMin(1024px) {
+      padding-top: 120px !important;
+    }
+  }
 }
 
 .ce-paragraph,

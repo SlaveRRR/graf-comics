@@ -1,14 +1,15 @@
 'use server';
 import { mailer } from '@/services';
 import prisma from '@/services/prisma';
-export const submitApproveComics = async (ids: number[] | string[]) => {
+
+export const submitRejectComics = async (ids: number[] | string[]) => {
   for (let id of ids) {
     const comics = await prisma.comics.update({
       data: {
-        isApproved: true,
+        isApproved: false,
         author: {
           update: {
-            isComicsApprove: true,
+            isComicsApprove: false,
           },
         },
       },
@@ -26,9 +27,7 @@ export const submitApproveComics = async (ids: number[] | string[]) => {
       html: `<div>
       <p>Здравствуйте!</p>
 
-<p>Поздравляем ваш комикс успешно прошел модерацию.Теперь он доступен на нашем сайте</p>
-
-<a href="${process.env.NEXTAUTH_URL}/comics/${id}">Ссылка на комикс</a>
+<p>К сожалению, ваш комикс не прошел модерацию </p>
 
 <p>Спасибо!</p>
 

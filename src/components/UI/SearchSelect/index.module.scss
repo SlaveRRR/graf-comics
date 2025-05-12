@@ -3,6 +3,11 @@
 .search {
   position: relative;
   margin-bottom: 1.6em;
+  max-width: 300px;
+}
+
+.tags {
+  display: flex;
 }
 
 .search-title {
@@ -30,6 +35,7 @@
 }
 
 .search-field {
+  @include clickableElement;
   display: block;
   border: none;
   border-radius: 526px;
@@ -71,8 +77,16 @@
     width: 0;
   }
 
+  @include clickableElement;
+
   // &::-webkit-scrollbar-thumb {
   //     border-radius: 15px;
   //     background-color: gray;
   // }
+}
+
+.no-results {
+  padding: 8px 16px;
+  color: #7a5af8;
+  font-style: italic;
 }

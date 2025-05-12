@@ -1,3 +1,4 @@
+'use client';
 import cn from 'classnames';
 import { FC } from 'react';
 import { Button } from '../UI';
@@ -11,7 +12,8 @@ const ModalSubscription: FC = () => {
       </h1>
       <p className={cn(styles['text--grey'], styles['text--margin-bottom-40'], styles['text'])}>
         Спасибо, что проявил интерес к нашему комиксу! Чтобы получить доступ к продолжению истории и наслаждаться новыми
-        главами без ограничений, вам потребуется оформить <span className={cn(styles['subscription'])}>подписку.</span>{' '}
+        главами без ограничений, вам потребуется оформить{' '}
+        <span className={cn(styles['subscription'])}>подписку.</span>{' '}
       </p>
       <Button mixClass={[styles['btn']]}>Оформление подписки</Button>
       <p className={cn(styles['text--lilac'], styles['text'])}>

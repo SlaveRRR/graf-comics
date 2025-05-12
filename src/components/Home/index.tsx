@@ -7,12 +7,16 @@ import cn from 'classnames';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Articles from '../Articles';
+import PopularComics from '../PopularComics';
 import { Badge, Button, Card, SliderArticles } from '../UI';
 import { ArrowLink } from '../shared/index';
 import { genresRoutes } from './constants';
 const Home: FC = () => {
   const { data, status } = useSession();
+
+  const router = useRouter();
 
   return (
     <>
@@ -36,7 +40,9 @@ const Home: FC = () => {
             <h1 className={styles['image-container__slogan']}>Создаем вселенную комиксов вместе</h1>
             <p className={styles['image-container__text']}>Здесь каждый комикс находит своего читателя</p>
             <div className={styles['image-container__btn']}>
-              <Button mixClass={[styles['image-container__btn']]}>Добавить комикс</Button>
+              <Button onClick={() => router.push('/add-comics/images')} mixClass={[styles['image-container__btn']]}>
+                Добавить комикс
+              </Button>
             </div>
           </div>
         </div>
@@ -113,11 +119,7 @@ const Home: FC = () => {
         <div className={cn(styles['popular-container'], 'container')}>
           <ArrowLink mixClass={[styles['popular-container__link']]} text="Популярные" url="/popular" />
 
-          <div className={styles['popular-cards']}>
-            {Array.from({ length: 6 }).map((item) => (
-              <Card text="Название" />
-            ))}
-          </div>
+          <PopularComics />
         </div>
       </section>
       <section className={styles['novelty-section']}>

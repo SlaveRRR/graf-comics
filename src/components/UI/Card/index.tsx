@@ -1,18 +1,11 @@
 'use client';
 import cn from 'classnames';
-import { useRouter } from 'next/navigation';
 import React, { FC, useState } from 'react';
 import styles from './index.module.scss';
+import { CardProps } from './types';
 
-type Props = {
-  text: string;
-  mixClass?: string[];
-  type?: string;
-};
-
-const Card: FC<Props> = ({ text, mixClass = [], type = null }) => {
+const Card: FC<CardProps> = ({ text, mixClass = [], type = null, onClick, imageSrc }) => {
   const [isLiked, setLike] = useState(false);
-  const router = useRouter();
 
   return (
     <div
@@ -21,7 +14,12 @@ const Card: FC<Props> = ({ text, mixClass = [], type = null }) => {
         [styles['card--edit']]: type === 'edit',
       })}
     >
-      <div onClick={() => router.push('/preview')} className={cn(styles['card__img'], ...mixClass)}>
+      <div
+        onClick={() => onClick?.()}
+        className={cn(styles['card__content'], { [styles['clickable']]: onClick }, ...mixClass)}
+      >
+        {imageSrc && <img className={styles['card__img']} src={imageSrc} />}
+
         {(() => {
           switch (type) {
             case 'new':

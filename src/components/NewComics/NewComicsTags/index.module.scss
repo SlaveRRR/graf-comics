@@ -1,29 +1,30 @@
 @use '../../../styles/global' as *;
 
 .btns-container {
-    @include flex($gap: .57em);
-    margin: 0 auto;
+  @include flex($gap: 0.57em);
+  margin: 0 auto;
 
-    &__back-btn {
-        border: 1px solid $main-color;
-        font-size: .86rem;
-        padding: .5em 2em;
-        background: white;
-        color: $main-color;
-        border-radius: 250px;
+  &__back-btn {
+    @include clickableElement;
+    border: 1px solid $main-color;
+    font-size: 0.86rem;
+    padding: 0.5em 2em;
+    background: white;
+    color: $main-color;
+    border-radius: 250px;
+  }
 
+  &__next-btn {
+    @include clickableElement;
+    padding: 0.5em 2em;
+    border: none;
+    font-size: 0.86rem;
+    color: white;
+    background-color: $main-color;
+    border-radius: 250px;
+
+    &:disabled {
+      background: rgba($main-color, 0.6);
     }
-
-    &__next-btn {
-        padding: .5em 2em;
-        border: none;
-        font-size: .86rem;
-        color: white;
-        background-color: $main-color;
-        border-radius: 250px;
-
-        &:disabled {
-            background: rgba($main-color, .6);
-        }
-    }
+  }
 }
