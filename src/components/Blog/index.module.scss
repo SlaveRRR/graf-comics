@@ -11,8 +11,25 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
-    padding: 15px 0;
-    gap: 60px;
+    padding: 15px 10px;
+    gap: 10px;
+    @include mediaMax($device-M) {
+      display: none;
+    }
+  }
+
+  &__header--mobile {
+    @include mediaMin($device-M) {
+      display: none;
+    }
+    margin-bottom: 2em;
+    @include flex($gap: 0.8em);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    padding: 15px 10px;
+    gap: 5px;
   }
 
   &__header-text {
@@ -51,12 +68,23 @@
     }
   }
 
-  &__search {
+  &__search--pc {
     width: 100%;
     @include themeSectionBackground;
     padding: 10px 20px;
     border-radius: 10px;
     margin-bottom: 14px;
+    @include mediaMax($device-M) {
+      display: none;
+    }
+  }
+  &__search--mobile {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 0;
+    @include mediaMin($device-M) {
+      display: none;
+    }
   }
 
   &__search-label {
@@ -78,14 +106,12 @@
     display: block;
     border: none;
     border-radius: 526px;
-    // max-width: 560px;
     width: 100%;
     height: 35px;
     padding: 0.3em 2.8em;
     font-size: 0.86rem;
     font-weight: 600;
     line-height: 15px;
-    margin-bottom: 2em;
 
     @include themeInputBackground;
     @include themeInputPlaceholder;
@@ -104,15 +130,36 @@
   }
 }
 
+.container {
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
+}
+
 .articles {
   @include flex($gap: 1em);
   @include themeText;
+  overflow-y: auto;
+  justify-content: flex-start;
+  width: 100%;
+  /* Прозрачный скроллбар*/
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  -ms-overflow-style: none;
 
   &__item {
     width: 100%;
     border-radius: 10px;
-    padding: 1.5em 3em;
+    padding: 1.1em 1.5em 0.8em 1.1em;
     @include themeSectionBackground;
+    @include mediaMax($device-M) {
+      margin-left: auto;
+      padding: 10px;
+      min-width: 50%;
+    }
   }
 
   &__item-card {
@@ -120,6 +167,13 @@
     padding: 1.1em 1.5em 0.8em 1.1em;
     @include themeSectionBackground;
     width: 100%;
+    @include mediaMax($device-M) {
+      margin-left: auto;
+      padding: 10px;
+      min-width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   &__header {
@@ -161,6 +215,9 @@
     background-color: #d9d9d9;
     border-radius: 10px;
     margin-bottom: 25px;
+    @include mediaMax($device-M) {
+      display: none;
+    }
   }
 }
 
@@ -169,14 +226,24 @@
 }
 
 .container-filter {
-  width: 75%;
+  width: 100%;
+  @include mediaMax($device-M) {
+    order: 2;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .articles-card {
   display: grid;
+  @include mediaMax($device-M) {
+    grid-template-columns: repeat(2, 1fr);
+  }
   grid-template-columns: repeat(3, 1fr);
   gap: 1em;
   width: 100%;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
 }
 
 .articles-filter {
@@ -186,10 +253,22 @@
   @include themeSectionBackground;
   border-radius: 10px;
   padding: 10px 20px;
+  @include mediaMax($device-M) {
+    order: 1;
+    padding: 0;
+    width: 100%;
+    background-color: transparent;
+  }
 }
 
 .container-articles {
   display: flex;
+  @include mediaMax($device-M) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
   gap: 1em;
   padding-left: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
   padding-right: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
