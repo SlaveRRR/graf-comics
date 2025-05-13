@@ -12,7 +12,7 @@ import styles from './index.module.scss';
 import { ComicsPreviewProps } from './types';
 const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
   const { setActiveBookMarks } = useContext(ctx);
-  const { banner, covers, description, genres, title, toms, author, status, rating, id } = comics;
+  const { banner, covers, description, genres, title, toms, author, status, rating, id, likes } = comics;
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
   console.log(comics);
   const router = useRouter();
@@ -99,7 +99,7 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
                   strokeWidth="1.1"
                 />
               </svg>
-              0
+              {likes.length}
             </p>
             <p className={styles['comics-page__starred']}>
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">

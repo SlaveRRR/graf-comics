@@ -21,10 +21,10 @@ import Chapters from './Chapters';
 import ArticleCard from './ArticleCard';
 import Avatar from './Avatar';
 import BookMarkMenu from './BookMarkMenu';
-import { CardsSkeleton } from './CardsSkeleton';
 import ChaptersButton from './ChaptersButton';
 import Progress from './Progress';
 import SearchSelect from './SearchSelect';
+import { Skeletons } from './Skeletons';
 import Switch from './Switch';
 import Toast from './Toaster';
 
@@ -37,7 +37,6 @@ export {
   Button,
   Card,
   Cards,
-  CardsSkeleton,
   Chapters,
   ChaptersButton,
   Loader,
@@ -48,6 +47,7 @@ export {
   RouterLoader,
   Search,
   SearchSelect,
+  Skeletons,
   SliderArticles,
   SliderPreview,
   Switch,

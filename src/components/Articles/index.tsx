@@ -1,7 +1,7 @@
 'use client';
 import { useGetArticlesQuery } from '@/store/api/articles';
 import { FC } from 'react';
-import { ArticleCard, CardsSkeleton } from '../UI';
+import { ArticleCard, Skeletons } from '../UI';
 import styles from './index.module.scss';
 
 const Articles: FC = () => {
@@ -10,7 +10,7 @@ const Articles: FC = () => {
   return (
     <div className={styles['articles']}>
       {isLoading ? (
-        <CardsSkeleton />
+        <Skeletons type="article" />
       ) : data?.length > 0 ? (
         <>
           {data.map((el) => (

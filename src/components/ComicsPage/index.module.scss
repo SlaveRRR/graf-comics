@@ -2,6 +2,8 @@
   scroll-snap-align: center;
   height: 100dvh; // Высота секции — эквивалент экрана
   width: 100%; // Полная ширина
+  display: flex;
+  align-items: center;
 
   &__scrollable {
     max-height: 100%; // Контейнер ограничивает высоту экрана

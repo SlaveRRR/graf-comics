@@ -26,4 +26,5 @@ export const comicsData: IComics = {
   ],
   author: 'Автор',
   status: Status.WORK,
+  likes: ['1'],
 };

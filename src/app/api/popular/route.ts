@@ -10,6 +10,7 @@ export const GET = async (request: NextRequest) => {
         id: true,
         covers: true,
         title: true,
+        likes: true,
       },
     });
 

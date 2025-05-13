@@ -75,6 +75,7 @@ model Comics {
   toms        Tom[]
   createdAt   DateTime @default(now())
   isApproved  Boolean  @default(false)
+  likes       String[]
 }
 
 model Tom {

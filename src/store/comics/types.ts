@@ -8,8 +8,6 @@ export enum Status {
 }
 
 export interface IComics {
-  // id приходит только с бэка
-  id?: string;
   title: string;
   description: string;
   covers: string[];
@@ -21,6 +19,10 @@ export interface IComics {
   toms: ITom[];
   author: string;
   status: Status;
+
+  //  приходят только с бэка
+  id?: string;
+  likes?: string[];
 }
 
 export interface IFilter {

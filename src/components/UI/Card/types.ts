@@ -4,4 +4,6 @@ export interface CardProps {
   type?: string;
   onClick?: () => void;
   imageSrc?: string;
+  isLiked?: boolean;
+  comicsId?: string;
 }

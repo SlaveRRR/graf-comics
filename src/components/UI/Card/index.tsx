@@ -1,11 +1,40 @@
 'use client';
+import { useLikeComicsMutation } from '@/store/api';
 import cn from 'classnames';
+import { useSession } from 'next-auth/react';
 import React, { FC, useState } from 'react';
+import { toast } from 'sonner';
+import { useDebouncedCallback } from 'use-debounce';
 import styles from './index.module.scss';
 import { CardProps } from './types';
 
-const Card: FC<CardProps> = ({ text, mixClass = [], type = null, onClick, imageSrc }) => {
-  const [isLiked, setLike] = useState(false);
+const Card: FC<CardProps> = ({
+  text,
+  mixClass = [],
+  type = null,
+  onClick,
+  imageSrc,
+  isLiked = false,
+  comicsId = '1',
+}) => {
+  const [like, setLike] = useState(isLiked);
+
+  const [mutate, { isError }] = useLikeComicsMutation();
+
+  const { data } = useSession();
+
+  const onClickLike = useDebouncedCallback(async () => {
+    const userId = data?.user?.id;
+
+    if (userId) {
+      await mutate({ comicsId: comicsId, userId: data?.user?.id });
+    }
+
+    if (isError) {
+      toast.error('Произошла ошибка!');
+      setLike((prev) => !prev);
+    }
+  }, 500);
 
   return (
     <div
@@ -51,10 +80,11 @@ const Card: FC<CardProps> = ({ text, mixClass = [], type = null, onClick, imageS
           <svg
             onClick={(e) => {
               e.stopPropagation();
-              setLike(!isLiked);
+              setLike((prev) => !prev);
+              onClickLike();
             }}
             className={cn(styles['card__like'], {
-              [styles['card__like--liked']]: isLiked,
+              [styles['card__like--liked']]: like,
             })}
             width="15"
             height="15"
