@@ -24,6 +24,10 @@
 
   &__content {
     width: 100%;
+    display: block;
+    @include mediaMax($device-M) {
+      justify-content: center;
+    }
     @include flex($wrap: wrap, $justify: flex-start, $gap: 5px);
   }
 

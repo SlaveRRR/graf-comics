@@ -99,6 +99,22 @@ const Blog: FC = () => {
             </div>
           </div>
         </section>
+        <div className={styles['blog__search--mobile']}>
+          <label htmlFor="search" className={styles['blog__search-label']}>
+            <input
+              type="text"
+              id="search"
+              placeholder="Название, автор, персонаж..."
+              className={styles['blog__search-field']}
+            />
+          </label>
+          <ActiveFilters
+            mixClass={[styles['active-filters']]}
+            filters={activeFilters}
+            toggleFilters={toggleFilters}
+            shortMode={false}
+          />
+        </div>
         <div className={cn(styles['blog__container'], 'container')}>
           <header className={styles['blog__header']}>
             <p className={styles['blog__header-text']}>
@@ -108,13 +124,18 @@ const Blog: FC = () => {
               Напиши статью
             </Link>
           </header>
-
+          <header className={styles['blog__header--mobile']}>
+            <p className={styles['blog__header-text']}>Есть чем поделиться?</p>
+            <Link className={styles['blog__header-link']} href={'/add-article/images'}>
+              Напиши статью
+            </Link>
+          </header>
           <ArrowLink mixClass={[styles['blog__link']]} text="Новости" url="/news" />
           <SliderArticles slides={['Статья №1', 'Статья №2', 'Статья №3']} />
         </div>
       </section>
       <section className={styles['blog-articles']}>
-        <div className="container">
+        <div className={styles['container']}>
           <ArrowLink mixClass={[styles['blog__link']]} text="Популярные статьи" url="/popular-article" />
           <div className={styles['articles']}>
             <div className={styles['articles__item']}>
@@ -163,7 +184,7 @@ const Blog: FC = () => {
       <section className={styles['filter-section']}>
         <div className={styles['container-articles']}>
           <div className={styles['container-filter']}>
-            <div className={styles['blog__search']}>
+            <div className={styles['blog__search--pc']}>
               <label htmlFor="search" className={styles['blog__search-label']}>
                 <input
                   type="text"
