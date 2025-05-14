@@ -35,7 +35,7 @@
 
   &__sort {
     @include flex($gap: 0.5em);
-    color: #000;
+    @include themeText;
     font-size: 11px;
     font-weight: 600;
     line-height: normal;
