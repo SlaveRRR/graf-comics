@@ -21,11 +21,9 @@ const NewArticleText: FC = () => {
       method: 'POST',
       body: JSON.stringify({ ...article, article: result }),
     });
-  }, []);
-  router.replace('/add-article/articles');
-  if (!isArticleApprove) {
     return redirect('/add-article/articles');
-  }
+  }, []);
+
   return (
     <AddArticle>
       <TextEditor onSave={sendModerate} rawHtml={article.htmlFromFile} />

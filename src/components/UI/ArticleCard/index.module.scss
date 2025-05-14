@@ -28,12 +28,16 @@
 
   &__short {
     align-self: flex-start;
-    overflow: hidden;
     max-width: 100px;
-    text-overflow: ellipsis;
     font-size: clamp(0.571rem, 0.5vw + 0.457rem, 1.143rem);
     font-weight: 500;
     line-height: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 3;
     @include themeText;
   }
 

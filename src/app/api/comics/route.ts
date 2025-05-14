@@ -36,7 +36,7 @@ const stringToEnum : Record<string,Tag | Genre | Focus> = {
   "повседневность": Genre.DAILY_LIFE,
   "спорт": Genre.SPORT,
   "хоррор": Genre.HORROR,
-  'научная фантастика': Genre.SCI_FI,
+  'фантастика': Genre.SCI_FI,
   'историческая драма': Genre.HISTORICAL_DRAMA,
   "гарем": Genre.HAREM,
   "киберпанк": Genre.CYBERPUNK,

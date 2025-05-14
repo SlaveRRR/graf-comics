@@ -4,6 +4,7 @@ import { author, sortSmall, theme } from '@/data/data.json';
 import cn from 'classnames';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FC, useContext } from 'react';
 import { Button, SliderArticles } from '../UI';
 import { ActiveFilters, ArrowLink } from '../shared';
@@ -13,8 +14,13 @@ const Filters = dynamic(() => import('@/components/shared/Filters/index'), {
   ssr: false,
 });
 
+const linkCreateArticle = '/add-article/images';
+
 const Blog: FC = () => {
   const { activeFilters, toggleFilters } = useContext(ctx);
+
+  const { push } = useRouter();
+
   return (
     <>
       <section className={styles['blog']}>
@@ -40,7 +46,9 @@ const Blog: FC = () => {
                 Знаешь интересные <span>факты о комиксах?</span> Не стесняйся!
               </p>
               <div className={styles['image-container__btn']}>
-                <Button mixClass={[styles['image-container__btn']]}>Напиши статью</Button>
+                <Button onClick={() => push(linkCreateArticle)} mixClass={[styles['image-container__btn']]}>
+                  Напиши статью
+                </Button>
               </div>
             </div>
           </div>
@@ -120,13 +128,13 @@ const Blog: FC = () => {
             <p className={styles['blog__header-text']}>
               Есть чем поделиться с миром? Знаешь интересные <span>факты о комиксах?</span>
             </p>
-            <Link className={styles['blog__header-link']} href={'/add-article/images'}>
+            <Link className={styles['blog__header-link']} href={linkCreateArticle}>
               Напиши статью
             </Link>
           </header>
           <header className={styles['blog__header--mobile']}>
             <p className={styles['blog__header-text']}>Есть чем поделиться?</p>
-            <Link className={styles['blog__header-link']} href={'/add-article/images'}>
+            <Link className={styles['blog__header-link']} href={linkCreateArticle}>
               Напиши статью
             </Link>
           </header>

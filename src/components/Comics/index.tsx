@@ -10,6 +10,7 @@ import styles from './index.module.scss';
 
 type Props = {
   imgs: string[];
+  title: string;
 };
 
 const chapters: IChapter[] = [
@@ -39,7 +40,7 @@ const chapters: IChapter[] = [
   },
 ];
 
-const Comics: FC<Props> = ({ imgs }) => {
+const Comics: FC<Props> = ({ imgs, title }) => {
   const { visibleMenu } = useContext(ctx);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -103,7 +104,7 @@ const Comics: FC<Props> = ({ imgs }) => {
     <>
       {isMobile ? (
         <>
-          {visibleMenu && <ComicsHeader title="Название главы" />}
+          {visibleMenu && <ComicsHeader title={title} />}
           <div className={styles['comics']} ref={containerRef}>
             {imgs.map((url, i) => (
               <ComicsPage key={i} index={i} image={url} />

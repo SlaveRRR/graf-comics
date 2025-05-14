@@ -22,6 +22,7 @@
   --animated-box-shadow-init: 0 4px 8px rgba(0, 0, 0, 0.1);
   --animated-box-shadow-animation: 0 8px 16px rgba(0, 0, 0, 0.2);
   --filter-line: #dfdfdf;
+  --stroke-color: black;
 }
 
 :root[data-theme='dark'] {
@@ -46,6 +47,7 @@
   --animated-box-shadow-init: 0 4px 8px rgba(255, 255, 255, 0.117);
   --animated-box-shadow-animation: 0 8px 16px rgba(255, 255, 255, 0.782);
   --filter-line: #7a5af8;
+  --stroke-color: white;
 }
 
 body {

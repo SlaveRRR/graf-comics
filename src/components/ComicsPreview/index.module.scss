@@ -1,15 +1,24 @@
 @use '../../styles/global' as *;
 
+.svg {
+  &--dark {
+    path {
+      fill: white;
+      stroke: white;
+    }
+  }
+}
+
 .comics-page {
   &__text-container {
     padding-top: 1em;
-    background: #f6f6f6;
+    @include themeSectionBackground;
     border-radius: 10px;
     @include flex($dir: column);
   }
 
   &__header {
-    color: #2d283e;
+    @include themeText;
     font-size: 1.43rem;
     font-weight: 600;
     line-height: normal;
@@ -17,7 +26,7 @@
   }
 
   &__author {
-    color: #2d283e;
+    @include themeText;
     font-size: 0.86rem;
     font-weight: 500;
     line-height: normal;
@@ -32,7 +41,7 @@
   &__age,
   &__year,
   &__status {
-    color: #2d283e;
+    @include themeText;
     font-size: 0.72rem;
     font-weight: 500;
     line-height: normal;
@@ -48,7 +57,7 @@
   &__starred,
   &__bookmarks {
     @include flex($gap: 0.2em);
-    color: #2d283e;
+    @include themeText;
     font-size: 0.72rem;
     font-weight: 600;
     line-height: normal;
@@ -60,7 +69,7 @@
 
   &__description {
     display: -webkit-box;
-    color: #2d283e;
+    @include themeText;
     font-size: 0.73rem;
     font-weight: 500;
     line-height: normal;
@@ -174,7 +183,7 @@
   }
 
   &__text {
-    color: #564f70;
+    @include themeText;
     font-size: 0.72rem;
     font-weight: 600;
     line-height: normal;
@@ -229,7 +238,7 @@
 
   &__text {
     width: max-content;
-    color: #2d283e;
+    @include themeText;
     font-weight: 500;
     line-height: normal;
   }
@@ -338,8 +347,10 @@
     & > svg {
       margin-right: 0.2em;
     }
+
     margin-bottom: 1em;
   }
+
   &__counter {
     color: $black-color;
     font-size: 0.6rem;
@@ -370,6 +381,7 @@
     background-color: $main-color;
     border-radius: 250px;
   }
+
   &__download {
     display: block;
     width: 90px;

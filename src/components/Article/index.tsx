@@ -1,9 +1,10 @@
 'use client';
+import { ctx } from '@/context/contextProvider';
 import { useGetArticleByIdQuery } from '@/store/api/articles';
 import { Category } from '@prisma/client';
 import cn from 'classnames';
 import { useParams } from 'next/navigation';
-import { FC } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { ComicsComment } from '../ComicsPreview/components';
 import { comments } from '../ComicsPreview/data';
 import { Avatar } from '../UI';
@@ -26,13 +27,13 @@ const Article: FC = () => {
   const { data, isLoading } = useGetArticleByIdQuery(obj?.id, {
     refetchOnFocus: false,
   });
-  if (isLoading) {
-    return (
-      <div className="contaner">
-        <p>Загрузка....</p>
-      </div>
-    );
-  }
+
+  const { setActiveLoader } = useContext(ctx);
+
+  useEffect(() => {
+    setActiveLoader(isLoading);
+  }, [isLoading]);
+
   if (!data) {
     return (
       <div className="contaner">

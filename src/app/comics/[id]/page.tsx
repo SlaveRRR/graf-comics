@@ -18,6 +18,6 @@ const getComics = async (id: string) => {
 const ComicsPage: NextPage = async ({ params }: { params: { id: string } }) => {
   const data = await getComics(params?.id);
   const imgs = data.toms.flatMap((el) => el.chapters.flatMap((item) => item.images));
-  return <Comics imgs={imgs} />;
+  return <Comics title={data.toms[0].chapters[0].name} imgs={imgs} />;
 };
 export default ComicsPage;

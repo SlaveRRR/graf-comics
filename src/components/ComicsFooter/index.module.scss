@@ -1,31 +1,31 @@
 @use '../../styles/global' as *;
 
 .comics-footer {
-    padding-top: .57em;
-    padding-bottom: .57em;
-    @include flex($gap: .93em,$justify:space-between);
-    background-color: #F6F6F6;
-    z-index: 100;
-    position: fixed;
-    bottom: 0;
+  padding-top: 0.57em;
+  padding-bottom: 0.57em;
+  @include flex($gap: 0.93em, $justify: space-between);
+  @include themeBackground;
+  z-index: 100;
+  position: fixed;
+  bottom: 0;
 }
 
 .progress-container {
-    &__text {
-        font-weight: 500;
-        font-size: .8rem;
-        line-height: 10px;
-        color: #000000;
-        margin-bottom: .3em;
-    }
+  &__text {
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 10px;
+    @include themeText;
+    margin-bottom: 0.6em;
+  }
 }
 
 .buttons {
-    @include flex($gap: 1.42em);
+  @include flex($gap: 1.42em);
 
-    &__item {
-        background: transparent;
-        padding: 0;
-        border: none;
-    }
+  &__item {
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
 }

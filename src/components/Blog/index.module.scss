@@ -13,6 +13,7 @@
     border-radius: 20px;
     padding: 15px 10px;
     gap: 10px;
+
     @include mediaMax($device-M) {
       display: none;
     }
@@ -22,6 +23,7 @@
     @include mediaMin($device-M) {
       display: none;
     }
+
     margin-bottom: 2em;
     @include flex($gap: 0.8em);
     width: 100%;
@@ -74,14 +76,17 @@
     padding: 10px 20px;
     border-radius: 10px;
     margin-bottom: 14px;
+
     @include mediaMax($device-M) {
       display: none;
     }
   }
+
   &__search--mobile {
     width: 100%;
     border-radius: 10px;
     margin-bottom: 0;
+
     @include mediaMin($device-M) {
       display: none;
     }
@@ -133,6 +138,7 @@
 .container {
   padding-left: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
   padding-right: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
+
   @include mediaMax($device-M) {
     padding-left: 0.9375em;
     padding-right: 0.9375em;
@@ -145,11 +151,13 @@
   overflow-y: auto;
   justify-content: flex-start;
   width: 100%;
+
   /* Прозрачный скроллбар*/
   &::-webkit-scrollbar {
     width: 0;
     background: transparent;
   }
+
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
   -ms-overflow-style: none;
@@ -159,6 +167,7 @@
     border-radius: 10px;
     padding: 1.1em 1.5em 0.8em 1.1em;
     @include themeSectionBackground;
+
     @include mediaMax($device-M) {
       margin-left: auto;
       padding: 10px;
@@ -171,6 +180,7 @@
     padding: 1.1em 1.5em 0.8em 1.1em;
     @include themeSectionBackground;
     width: 100%;
+
     @include mediaMax($device-M) {
       margin-left: auto;
       padding: 10px;
@@ -219,6 +229,7 @@
     background-color: #d9d9d9;
     border-radius: 10px;
     margin-bottom: 25px;
+
     @include mediaMax($device-M) {
       display: none;
     }
@@ -231,6 +242,7 @@
 
 .container-filter {
   width: 100%;
+
   @include mediaMax($device-M) {
     order: 2;
     margin-left: auto;
@@ -240,12 +252,15 @@
 
 .articles-card {
   display: grid;
+
   @include mediaMax($device-M) {
     grid-template-columns: repeat(2, 1fr);
   }
+
   grid-template-columns: repeat(3, 1fr);
   gap: 1em;
   width: 100%;
+
   @include mediaMax($device-M) {
     padding-left: 0.9375em;
     padding-right: 0.9375em;
@@ -259,6 +274,7 @@
   @include themeSectionBackground;
   border-radius: 10px;
   padding: 10px 20px;
+
   @include mediaMax($device-M) {
     order: 1;
     padding: 0;
@@ -269,12 +285,14 @@
 
 .container-articles {
   display: flex;
+
   @include mediaMax($device-M) {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 0;
   }
+
   gap: 1em;
   padding-left: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
   padding-right: clamp(5rem, 12.587vw - 1.905rem, 15.357rem);
@@ -317,6 +335,8 @@
     @include mediaMin($size: $device-M) {
       align-items: flex-start;
     }
+
+    font-weight: 500;
   }
 
   &__slogan {

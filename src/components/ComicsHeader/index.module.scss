@@ -2,13 +2,14 @@
 
 .header {
   @include flex($gap: 55px);
+  @include themeBackground;
   padding-top: 0.78em;
   padding-bottom: 0.78em;
-  background-color: #f6f6f6;
   z-index: 100;
   position: fixed;
 
   &__title {
+    @include themeText;
     font-weight: 600;
     font-size: 0.85rem;
     line-height: 15px;

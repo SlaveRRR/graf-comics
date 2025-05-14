@@ -15,7 +15,7 @@
     scroll-snap-align: start;
   }
 
-  @include flex($gap: 0.71em, $justify: flex-start);
+  @include flex($gap: 0.71em, $justify: flex-start, $align: flex-start);
 }
 
 .empty {
