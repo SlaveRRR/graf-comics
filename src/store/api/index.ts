@@ -21,6 +21,7 @@ export const api = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: (result, error, { comicsId }) => [{ type: 'Popular', id: comicsId }],
     }),
   }),
 });
