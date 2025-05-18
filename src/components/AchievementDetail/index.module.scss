@@ -1,3 +1,5 @@
+@use '../../styles/global' as *;
+
 .achievement-detail {
   &__backlink {
     margin-bottom: 0.75em;
@@ -28,7 +30,11 @@
     color: #2d283e;
     margin-bottom: 1.1em;
   }
-
+  &__title > br {
+    @include mediaMin($device-XL) {
+      display: none;
+    }
+  }
   &__description {
     font-size: 0.86rem;
     font-weight: 600;
