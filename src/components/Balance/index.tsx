@@ -26,11 +26,11 @@ const Balance: FC = () => {
           <Button>Пополнить</Button>
           <h3 className={styles['balance__history-title']}>История операций</h3>
           <div>
-            <DepositHistoryCard type="Пополнение" data="14.04.2024" amount="+9999" mixClass={[styles['']]} />
-            <DepositHistoryCard type="Списание" data="14.04.2024" amount="-9999" mixClass={[styles['']]} />
-            <DepositHistoryCard type="Пополнение" data="14.04.2024" amount="+9999" mixClass={[styles['']]} />
-            <DepositHistoryCard type="Списание" data="14.04.2024" amount="-9999" mixClass={[styles['']]} />
-            <DepositHistoryCard type="Пополнение" data="14.04.2024" amount="+9999" mixClass={[styles['']]} />
+            <DepositHistoryCard type="Пополнение" data="14.04.24" amount="+9999" mixClass={[styles['']]} />
+            <DepositHistoryCard type="Списание" data="14.04.24" amount="-9999" mixClass={[styles['']]} />
+            <DepositHistoryCard type="Пополнение" data="14.04.24" amount="+9999" mixClass={[styles['']]} />
+            <DepositHistoryCard type="Списание" data="14.04.24" amount="-9999" mixClass={[styles['']]} />
+            <DepositHistoryCard type="Пополнение" data="14.04.24" amount="+9999" mixClass={[styles['']]} />
           </div>
         </section>
       </div>
