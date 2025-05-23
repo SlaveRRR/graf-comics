@@ -225,7 +225,7 @@ const NewComicsImages: FC = () => {
             </h1>
             <div className={styles['modal__add']}>
               <label htmlFor="cropped" className={styles['modal__add--button']}>
-                Выберите файл
+                Выберите
               </label>
               <p className={styles['modal__add--text']}>Загрузить файл .png .jpeg</p>
             </div>
