@@ -53,6 +53,11 @@
   transition: all 0.2s ease-out;
 }
 
+@mixin themeAvatarBorder {
+  border: 3px solid var(--section-background-color);
+  transition: all 0.2s ease-out;
+}
+
 @mixin themeSvg {
   margin-left: 4px;
   fill: var(--svg-color);

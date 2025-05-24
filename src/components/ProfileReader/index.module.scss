@@ -3,7 +3,8 @@
 .profile-header {
   @include themeSectionBackground;
   margin-bottom: 1.1em;
-
+  @include mediaMin($device-M) {
+  }
   @include mediaMin(1490px) {
     width: 1490px;
     margin: 0 auto 50px;
@@ -26,9 +27,8 @@
     top: 50px;
     width: 85px;
     height: 85px;
-    border: 6px solid white;
+    @include themeAvatarBorder;
     border-radius: 200px;
-
     @include mediaMin(1490px) {
       top: 116px;
       width: 232px;
@@ -86,7 +86,7 @@
     font-weight: 600;
     @include flex($gap: 0.5em, $align: end);
     line-height: normal;
-    margin-bottom: 2.5em;
+    margin-bottom: 0.8em;
     cursor: pointer;
 
     @include mediaMin(1490px) {
