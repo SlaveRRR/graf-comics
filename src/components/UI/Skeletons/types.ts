@@ -1,4 +1,4 @@
 export interface SkeletonsProps {
   count?: number;
-  type: 'card' | 'article';
+  type: 'card' | 'article' | 'slider';
 }

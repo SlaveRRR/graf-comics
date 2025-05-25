@@ -45,21 +45,20 @@
   }
 
   &__third-string {
-    display: flex;
-    gap: 0.4rem;
+    @include flex($gap: 0.4rem, $justify: flex-start);
     padding: 0.2rem 0;
   }
 
   &__date {
-    color: #564f70;
-    font-size: 0.4rem;
+    @include themeDateText;
+    font-size: 0.6rem;
     font-weight: 500;
     line-height: 0.5rem;
   }
 
   &__button {
-    color: #564f70;
-    font-size: 0.4rem;
+    @include themeText;
+    font-size: 0.7rem;
     font-weight: 500;
     border: none;
     background: transparent;
@@ -72,7 +71,7 @@
 
   &__button-review {
     font-weight: 500;
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     line-height: 0.6rem;
     color: #7a5af8;
     background: transparent;

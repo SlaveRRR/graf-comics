@@ -1,0 +1,1 @@
+export { SliderSkeleton } from './SliderSkeleton';

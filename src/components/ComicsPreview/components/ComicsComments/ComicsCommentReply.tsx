@@ -66,7 +66,7 @@ export const ComicsCommentReply: FC<ComicsCommentProps> = ({ comment, replyName 
           </span>
         </div>
       </div>
-      <button className={styles['comments__button-review']}>Другие отзывы</button>
+      <button className={styles['comments__button-review']}>Показать другие ответы</button>
     </section>
   );
 };

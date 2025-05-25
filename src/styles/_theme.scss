@@ -23,6 +23,7 @@
   --animated-box-shadow-animation: 0 8px 16px rgba(0, 0, 0, 0.2);
   --filter-line: #dfdfdf;
   --stroke-color: black;
+  --date-color: #564f70;
 }
 
 :root[data-theme='dark'] {
@@ -48,6 +49,7 @@
   --animated-box-shadow-animation: 0 8px 16px rgba(255, 255, 255, 0.782);
   --filter-line: #7a5af8;
   --stroke-color: white;
+  --date-color: white;
 }
 
 body {

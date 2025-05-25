@@ -1,0 +1,1 @@
+export { SimilarArticles } from './SimilarArticles';

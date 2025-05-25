@@ -1,6 +1,6 @@
 import { Comics, User } from '@prisma/client';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ARTICLETAG, COMICSTAG, POPULARTAG, USERTAG } from './tags';
+import { ARTICLETAG, COMICSTAG, POPULARTAG, SIMILARARTICLETAG, USERTAG } from './tags';
 
 const users = 'users';
 
@@ -8,7 +8,7 @@ const likeComics = 'like-comics';
 
 export const api = createApi({
   reducerPath: 'api',
-  tagTypes: [USERTAG, ARTICLETAG, COMICSTAG, POPULARTAG],
+  tagTypes: [USERTAG, ARTICLETAG, COMICSTAG, POPULARTAG, SIMILARARTICLETAG],
   baseQuery: fetchBaseQuery({ baseUrl: `${process.env.NEXT_PUBLIC_AXIOS_URL}/api/` }),
   endpoints: (builder) => ({
     getUserById: builder.query<User, string>({

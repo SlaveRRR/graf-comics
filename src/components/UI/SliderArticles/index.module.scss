@@ -71,3 +71,7 @@
     --swiper-pagination-bullet-horizontal-gap: 6px;
   }
 }
+
+.empty {
+  @include themeText;
+}

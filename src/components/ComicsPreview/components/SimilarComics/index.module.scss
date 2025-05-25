@@ -1,0 +1,23 @@
+@use '../../../../styles/global' as *;
+
+.similar-comics {
+  overflow-x: scroll;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  & > * {
+    scroll-snap-align: start;
+  }
+
+  @include flex($gap: 0.71em, $justify: flex-start, $align: flex-start);
+}
+
+.empty {
+  @include themeText;
+}

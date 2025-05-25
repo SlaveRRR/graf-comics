@@ -1,7 +1,7 @@
 @use '../../../styles/global' as *;
 
 .button {
-  cursor: pointer;
+  @include clickableElement;
   @include flex($gap: 6px);
   background: transparent;
   border: none;

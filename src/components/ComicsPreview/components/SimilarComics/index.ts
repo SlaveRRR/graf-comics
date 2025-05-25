@@ -1,0 +1,1 @@
+export { SimilarComics } from './SimilarComics';

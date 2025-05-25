@@ -1,5 +1,7 @@
+@use '../../../../styles/global' as *;
+
 .article {
-  background: #fff;
+  @include themeSectionBackground;
 }
 
 .container {

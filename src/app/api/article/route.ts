@@ -16,8 +16,13 @@ const categoryObj = {
 
 export const GET = async (request: NextRequest) => {
   try {
+    const take = Number(request.nextUrl.searchParams.get('take'));
+
     const articles = await prisma.article.findMany({
       where: { isApproved: true },
+      ...(take && {
+        take: take,
+      }),
     });
     return NextResponse.json(articles);
   } catch (error) {

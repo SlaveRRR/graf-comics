@@ -29,8 +29,8 @@ export const LikeButton: FC<LikeButtonProps> = ({ isLiked, userId, articleId, co
           [styles['like--liked']]: like,
         })}
         onClick={() => {
-          onClickLike();
           setLike((prev) => !prev);
+          onClickLike();
         }}
         width="18"
         height="15"

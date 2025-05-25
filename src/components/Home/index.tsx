@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Articles from '../Articles';
 import PopularComics from '../PopularComics';
-import { Badge, Button, Card, SliderArticles } from '../UI';
+import { Badge, Button, SliderArticles } from '../UI';
 import { ArrowLink } from '../shared/index';
 import { genresRoutes } from './constants';
 const Home: FC = () => {
@@ -126,13 +126,7 @@ const Home: FC = () => {
         <div className={cn(styles['novelty-container'], 'container')}>
           <ArrowLink mixClass={[styles['novelty-container__link']]} text="Новинки" url="/novelty" />
 
-          <div className={styles['novelty-cards']}>
-            {Array.from({
-              length: 8,
-            }).map((item) => (
-              <Card mixClass={[styles['poppading']]} text="Название" />
-            ))}
-          </div>
+          <PopularComics />
         </div>
       </section>
       <section className={styles['genre-section']}>

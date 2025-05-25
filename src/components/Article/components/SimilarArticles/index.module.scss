@@ -1,4 +1,4 @@
-@use '../../styles/global' as *;
+@use '../../../../styles/global' as *;
 
 .articles {
   overflow-x: scroll;
@@ -14,8 +14,6 @@
 
   @include mediaMin($size: $device-M) {
     gap: 2.42em;
-    flex-wrap: wrap;
-    align-items: flex-start;
   }
 
   @include mediaMin($size: $device-XXL) {

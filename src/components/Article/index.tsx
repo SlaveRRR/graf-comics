@@ -10,7 +10,7 @@ import { comments } from '../ComicsPreview/data';
 import { Avatar } from '../UI';
 import { ArticleView, BackLink } from '../shared';
 import { ShareButton } from '../shared/ShareButton';
-import { LikeButton, Skeleton } from './components';
+import { LikeButton, SimilarArticles, Skeleton } from './components';
 import styles from './index.module.scss';
 
 // prettier-ignore
@@ -82,6 +82,8 @@ const Article: FC = () => {
             </>
           ))}
         </div>
+        <p className={styles['similar__text']}>Читайте также</p>
+        <SimilarArticles id={obj?.id} />
       </div>
     </section>
   );

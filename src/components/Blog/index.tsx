@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC, useContext } from 'react';
+import Articles from '../Articles';
 import { Button, SliderArticles } from '../UI';
 import { ActiveFilters, ArrowLink } from '../shared';
 import styles from './index.module.scss';
@@ -145,48 +146,7 @@ const Blog: FC = () => {
       <section className={styles['blog-articles']}>
         <div className={styles['container']}>
           <ArrowLink mixClass={[styles['blog__link']]} text="Популярные статьи" url="/popular-article" />
-          <div className={styles['articles']}>
-            <div className={styles['articles__item']}>
-              <header className={styles['articles__header']}>Название статьи</header>
-              <p className={styles['articles__short']}>Кратко о статье</p>
-              <div className={styles['articles__img']}>
-                <img src="" alt="" />
-              </div>
-              <Link className={styles['articles__link']} href={'/article'}>
-                Читать статью
-              </Link>
-            </div>
-            <div className={styles['articles__item']}>
-              <header className={styles['articles__header']}>Название статьи</header>
-              <p className={styles['articles__short']}>Кратко о статье</p>
-              <div className={styles['articles__img']}>
-                <img src="" alt="" />
-              </div>
-              <Link className={styles['articles__link']} href={'/article'}>
-                Читать статью
-              </Link>
-            </div>
-            <div className={styles['articles__item']}>
-              <header className={styles['articles__header']}>Название статьи</header>
-              <p className={styles['articles__short']}>Кратко о статье</p>
-              <div className={styles['articles__img']}>
-                <img src="" alt="" />
-              </div>
-              <Link className={styles['articles__link']} href={'/article'}>
-                Читать статью
-              </Link>
-            </div>
-            <div className={styles['articles__item']}>
-              <header className={styles['articles__header']}>Название статьи</header>
-              <p className={styles['articles__short']}>Кратко о статье</p>
-              <div className={styles['articles__img']}>
-                <img src="" alt="" />
-              </div>
-              <Link className={styles['articles__link']} href={'/article'}>
-                Читать статью
-              </Link>
-            </div>
-          </div>
+          <Articles />
         </div>
       </section>
       <section className={styles['filter-section']}>

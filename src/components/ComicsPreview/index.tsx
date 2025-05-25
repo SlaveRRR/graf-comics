@@ -1,17 +1,17 @@
 'use client';
+import { reverseMap } from '@/constants';
 import { ctx } from '@/context/contextProvider';
 import { useTheme } from '@/context/themeProvider';
 import { IComicsComment } from '@/store/comics/types';
 import cn from 'classnames';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC, useContext, useState } from 'react';
 import { Chapters, SliderPreview, Tabs } from '../UI';
-import { ComicsComment, FilterBarComponent } from './components';
+import { ComicsComment, FilterBarComponent, SimilarComics } from './components';
 import { comicsData, comments } from './data';
 import styles from './index.module.scss';
 import { ComicsPreviewProps } from './types';
-const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
+const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData, isBackend = false }) => {
   const { setActiveBookMarks } = useContext(ctx);
   const { banner, covers, description, genres, title, toms, author, status, rating, id } = comics;
 
@@ -199,120 +199,21 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
                 <div className={styles['filters']}>
                   <header className={styles['filters__header']}>Жанры</header>
                   <div className={styles['filters__container']}>
-                    {genres.slice(0, 10).map(({ text }) => (
-                      <label key={text} htmlFor={`id${text}`} className={styles['filters__label']}>
-                        {text} <input id={`id${text}`} type="checkbox" className="myvisuallyhidden" />
-                      </label>
-                    ))}
+                    {genres.slice(0, 10).map((genre) => {
+                      const text = (isBackend ? reverseMap[genre as unknown as string] : genre?.text) as string;
+                      return (
+                        <label key={text} htmlFor={`id${text}`} className={styles['filters__label']}>
+                          {text} <input id={`id${text}`} type="checkbox" className="myvisuallyhidden" />
+                        </label>
+                      );
+                    })}
                   </div>
                 </div>
                 <div className={styles['same']}>
                   <header className={styles['same__header']}>
                     <p className={styles['same__text']}>Похожее</p>
-                    <button className={styles['same__btn']}>Показать всё</button>
                   </header>
-                  <div className={styles['same__container']}>
-                    <div className={styles['card']}>
-                      <div className={styles['card__left']}>
-                        <svg
-                          className={cn(styles['card__like'])}
-                          width="15"
-                          height="15"
-                          viewBox="0 0 13 12"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M9.36343 0.711914C8.77718 0.721166 8.20372 0.887212 7.70095 1.19328C7.19819 1.49935 6.78393 1.93461 6.5 2.4551C6.21607 1.93461 5.80181 1.49935 5.29905 1.19328C4.79628 0.887212 4.22282 0.721166 3.63657 0.711914C2.70202 0.753112 1.82153 1.16792 1.18745 1.86571C0.553368 2.5635 0.217248 3.48756 0.25252 4.436C0.25252 6.8379 2.74422 9.46113 4.83401 11.2397C5.3006 11.6375 5.89053 11.8557 6.5 11.8557C7.10947 11.8557 7.6994 11.6375 8.16599 11.2397C10.2558 9.46113 12.7475 6.8379 12.7475 4.436C12.7828 3.48756 12.4466 2.5635 11.8126 1.86571C11.1785 1.16792 10.298 0.753112 9.36343 0.711914Z"
-                            fill="white"
-                          />
-                        </svg>
-                        <Link href={'/preview'}>
-                          <div className={styles['card__img']}></div>
-                        </Link>
-                      </div>
-                      <p className={styles['card__text']}>Название</p>
-                    </div>
-                    <div className={styles['card']}>
-                      <div className={styles['card__left']}>
-                        <svg
-                          className={cn(styles['card__like'])}
-                          width="15"
-                          height="15"
-                          viewBox="0 0 13 12"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M9.36343 0.711914C8.77718 0.721166 8.20372 0.887212 7.70095 1.19328C7.19819 1.49935 6.78393 1.93461 6.5 2.4551C6.21607 1.93461 5.80181 1.49935 5.29905 1.19328C4.79628 0.887212 4.22282 0.721166 3.63657 0.711914C2.70202 0.753112 1.82153 1.16792 1.18745 1.86571C0.553368 2.5635 0.217248 3.48756 0.25252 4.436C0.25252 6.8379 2.74422 9.46113 4.83401 11.2397C5.3006 11.6375 5.89053 11.8557 6.5 11.8557C7.10947 11.8557 7.6994 11.6375 8.16599 11.2397C10.2558 9.46113 12.7475 6.8379 12.7475 4.436C12.7828 3.48756 12.4466 2.5635 11.8126 1.86571C11.1785 1.16792 10.298 0.753112 9.36343 0.711914Z"
-                            fill="white"
-                          />
-                        </svg>
-                        <Link href={'/preview'}>
-                          <div className={styles['card__img']}></div>
-                        </Link>
-                      </div>
-                      <p className={styles['card__text']}>Название</p>
-                    </div>
-                    <div className={styles['card']}>
-                      <div className={styles['card__left']}>
-                        <svg
-                          className={cn(styles['card__like'])}
-                          width="15"
-                          height="15"
-                          viewBox="0 0 13 12"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M9.36343 0.711914C8.77718 0.721166 8.20372 0.887212 7.70095 1.19328C7.19819 1.49935 6.78393 1.93461 6.5 2.4551C6.21607 1.93461 5.80181 1.49935 5.29905 1.19328C4.79628 0.887212 4.22282 0.721166 3.63657 0.711914C2.70202 0.753112 1.82153 1.16792 1.18745 1.86571C0.553368 2.5635 0.217248 3.48756 0.25252 4.436C0.25252 6.8379 2.74422 9.46113 4.83401 11.2397C5.3006 11.6375 5.89053 11.8557 6.5 11.8557C7.10947 11.8557 7.6994 11.6375 8.16599 11.2397C10.2558 9.46113 12.7475 6.8379 12.7475 4.436C12.7828 3.48756 12.4466 2.5635 11.8126 1.86571C11.1785 1.16792 10.298 0.753112 9.36343 0.711914Z"
-                            fill="white"
-                          />
-                        </svg>
-                        <Link href={'/preview'}>
-                          <div className={styles['card__img']}></div>
-                        </Link>
-                      </div>
-                      <p className={styles['card__text']}>Название</p>
-                    </div>
-                    <div className={styles['card']}>
-                      <div className={styles['card__left']}>
-                        <svg
-                          className={cn(styles['card__like'])}
-                          width="15"
-                          height="15"
-                          viewBox="0 0 13 12"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M9.36343 0.711914C8.77718 0.721166 8.20372 0.887212 7.70095 1.19328C7.19819 1.49935 6.78393 1.93461 6.5 2.4551C6.21607 1.93461 5.80181 1.49935 5.29905 1.19328C4.79628 0.887212 4.22282 0.721166 3.63657 0.711914C2.70202 0.753112 1.82153 1.16792 1.18745 1.86571C0.553368 2.5635 0.217248 3.48756 0.25252 4.436C0.25252 6.8379 2.74422 9.46113 4.83401 11.2397C5.3006 11.6375 5.89053 11.8557 6.5 11.8557C7.10947 11.8557 7.6994 11.6375 8.16599 11.2397C10.2558 9.46113 12.7475 6.8379 12.7475 4.436C12.7828 3.48756 12.4466 2.5635 11.8126 1.86571C11.1785 1.16792 10.298 0.753112 9.36343 0.711914Z"
-                            fill="white"
-                          />
-                        </svg>
-                        <Link href={'/preview'}>
-                          <div className={styles['card__img']}></div>
-                        </Link>
-                      </div>
-                      <p className={styles['card__text']}>Название</p>
-                    </div>
-                    <div className={styles['card']}>
-                      <div className={styles['card__left']}>
-                        <svg
-                          className={cn(styles['card__like'])}
-                          width="15"
-                          height="15"
-                          viewBox="0 0 13 12"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M9.36343 0.711914C8.77718 0.721166 8.20372 0.887212 7.70095 1.19328C7.19819 1.49935 6.78393 1.93461 6.5 2.4551C6.21607 1.93461 5.80181 1.49935 5.29905 1.19328C4.79628 0.887212 4.22282 0.721166 3.63657 0.711914C2.70202 0.753112 1.82153 1.16792 1.18745 1.86571C0.553368 2.5635 0.217248 3.48756 0.25252 4.436C0.25252 6.8379 2.74422 9.46113 4.83401 11.2397C5.3006 11.6375 5.89053 11.8557 6.5 11.8557C7.10947 11.8557 7.6994 11.6375 8.16599 11.2397C10.2558 9.46113 12.7475 6.8379 12.7475 4.436C12.7828 3.48756 12.4466 2.5635 11.8126 1.86571C11.1785 1.16792 10.298 0.753112 9.36343 0.711914Z"
-                            fill="white"
-                          />
-                        </svg>
-                        <Link href={'/preview'}>
-                          <div className={styles['card__img']}></div>
-                        </Link>
-                      </div>
-                      <p className={styles['card__text']}>Название</p>
-                    </div>
-                  </div>
+                  <SimilarComics id={id} />
                 </div>
               </div>
               <div className={cn(styles['comics-page__chapters'], 'chapters')}>

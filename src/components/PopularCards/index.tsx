@@ -2,7 +2,7 @@
 import { useTheme } from '@/context/themeProvider';
 import cn from 'classnames';
 import { FC } from 'react';
-import { Card } from '../UI';
+import PopularComics from '../PopularComics';
 import styles from './index.module.scss';
 import { PopularCardsProps } from './types';
 
@@ -21,12 +21,7 @@ const PopularCards: FC<PopularCardsProps> = ({ titleText, Icon }) => {
           {titleText}
         </h1>
         <div className={styles['popular-cards']}>
-          <Card mixClass={[styles['cards-comics']]} text="Название" />
-          <Card mixClass={[styles['cards-comics']]} text="Название" />
-          <Card mixClass={[styles['cards-comics']]} text="Название" />
-          <Card mixClass={[styles['cards-comics']]} text="Название" />
-          <Card mixClass={[styles['cards-comics']]} text="Название" />
-          <Card mixClass={[styles['cards-comics']]} text="Название" />
+          <PopularComics />
         </div>
       </div>
     </section>

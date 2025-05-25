@@ -1,12 +1,18 @@
-import { ArticleSkeleton, CardSkeleton } from './components';
+import { ArticleSkeleton, CardSkeleton, SliderSkeleton } from './components';
 import { SkeletonsProps } from './types';
 
+const ComponentsMap = {
+  article: ArticleSkeleton,
+  card: CardSkeleton,
+  slider: SliderSkeleton,
+} as const;
+
 export const Skeletons = ({ count = 4, type }: SkeletonsProps) => {
-  const Component = type === 'article' ? ArticleSkeleton : CardSkeleton;
+  const Component = ComponentsMap[type];
 
   return (
     <>
-      {Array.from({ length: count }).map((el) => (
+      {Array.from({ length: count }).map(() => (
         <Component />
       ))}
     </>

@@ -17,6 +17,11 @@
   transition: color 0.5s ease-out;
 }
 
+@mixin themeDateText {
+  color: var(--date-color);
+  transition: color 0.5s ease-out;
+}
+
 @mixin themeSectionBackground {
   background: var(--section-background-color);
   transition: background-color 0.5s ease-out;

@@ -1,5 +1,6 @@
 import { IChapter } from '@/components/Chapter/types';
 import { ITom } from '@/components/Tom/types';
+import { genresMap } from '@/constants';
 import { imgUploader } from '@/services';
 import prisma from '@/services/prisma';
 import { IComics } from '@/store/comics/types';
@@ -8,49 +9,6 @@ import { getServerSession } from 'next-auth';
 import { NextResponse, type NextRequest } from 'next/server';
 import { v4 as uuid } from 'uuid';
 import { options } from '../auth/[...nextauth]/options';
-
-// prettier-ignore
-const stringToEnum : Record<string,Tag | Genre | Focus> = {
-  "au": Tag.AU,
-  "ангст": Tag.ANGST,
-  'нецензурная лексика': Tag.NSFW,
-  'hurt/comfort': Tag.HURT_COMFORT,
-  "психология": Tag.PSYCHOLOGY,
-  'смерть основных персонажей': Tag.CHARACTER_DEATH,
-  "дружба": Tag.FRIENDSHIP,
-  "насилие": Tag.VIOLENCE,
-  "фэнтези": Tag.FANTASY,
-  'веб-комикс': Focus.WEB_COMIC,
-  "манга": Focus.MANGA,
-  "сингл": Focus.SINGLE,
-  "мини": Focus.MINI,
-  "макси": Focus.MAXI,
-  'омнибус (сборник)': Focus.OMNIBUS,
-  "комедия": Genre.COMEDY,
-  "боевик": Genre.ACTION,
-  "драма": Genre.DRAMA,
-  "детектив": Genre.DETECTIVE,
-  "триллер": Genre.THRILLER,
-  "романтика": Genre.ROMANCE,
-  "мелодрама": Genre.MELODRAMA,
-  "повседневность": Genre.DAILY_LIFE,
-  "спорт": Genre.SPORT,
-  "хоррор": Genre.HORROR,
-  'фантастика': Genre.SCI_FI,
-  'историческая драма': Genre.HISTORICAL_DRAMA,
-  "гарем": Genre.HAREM,
-  "киберпанк": Genre.CYBERPUNK,
-  "стимпанк": Genre.STEAMPUNK,
-  "супергерои": Genre.SUPERHERO,
-  'космическая опера': Genre.SPACE_OPERA,
-  "апокалипсис": Genre.APOCALYPSE,
-  "постапокалипсис": Genre.POST_APOCALYPSE,
-  'боевые искусства': Genre.MARTIAL_ARTS,
-  "айдолы": Genre.IDOLS,
-  "меха": Genre.MECHA,
-  "фансервис": Genre.FAN_SERVICE,
-  "этти": Genre.ECHI,
-};
 
 const cleanBase64 = (base64: string) => {
   return base64.replace(/^data:image\/\w+;base64,/, '').replace(/\s/g, '');
@@ -135,9 +93,9 @@ const updateComics = async (comics: IComics, userId: string): Promise<PreparedCo
     ...comics,
     toms: updatedToms,
     rating: comics['rating'][0].text,
-    focus: comics['focus'].map((el) => stringToEnum[el.text]) as Focus[],
-    genres: comics['genres'].map((el) => stringToEnum[el.text]) as Genre[],
-    tags: comics['tags'].map((el) => stringToEnum[el.text]) as Tag[],
+    focus: comics['focus'].map((el) => genresMap[el.text]) as Focus[],
+    genres: comics['genres'].map((el) => genresMap[el.text]) as Genre[],
+    tags: comics['tags'].map((el) => genresMap[el.text]) as Tag[],
     covers: coversLinks,
   };
 };
