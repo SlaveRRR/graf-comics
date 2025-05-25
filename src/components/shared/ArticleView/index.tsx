@@ -1,16 +1,17 @@
 'use client';
-import React, { FC, useRef, useEffect } from 'react';
-import EditorJS, { OutputData } from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import RawTool from '@editorjs/raw';
-import List from '@editorjs/list';
-import Embed from '@editorjs/embed';
+import { Skeleton } from '@/components/Article/components';
 import TextAlign from '@canburaks/text-align-editorjs';
+import EditorJS, { OutputData } from '@editorjs/editorjs';
+import Embed from '@editorjs/embed';
+import Header from '@editorjs/header';
+import ImageTool from '@editorjs/image';
+import List from '@editorjs/list';
+import RawTool from '@editorjs/raw';
+import Underline from '@editorjs/underline';
 import FontFamily from 'editorjs-font-family';
 import FontSize from 'editorjs-inline-font-size-tool';
-import Underline from '@editorjs/underline';
 import Strikethrough from 'editorjs-strikethrough';
-import ImageTool from '@editorjs/image';
+import { FC, useEffect, useRef, useState } from 'react';
 
 type Props = {
   data: OutputData;
@@ -18,13 +19,25 @@ type Props = {
 
 const ArticleView: FC<Props> = ({ data }) => {
   const isReady = useRef(false);
+
   const editor = useRef<EditorJS>(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    const endLoading = async () => {
+      await editor.current.isReady;
+      await editor.current.render(data);
+      setIsLoading(false);
+    };
+
     if (!isReady.current) {
       editor.current = new EditorJS({
         holder: 'editorjs',
+        data: {
+          blocks: [],
+        },
         readOnly: true,
-        data: data,
         tools: {
           header: {
             class: Header,
@@ -49,17 +62,21 @@ const ArticleView: FC<Props> = ({ data }) => {
           },
         },
       });
+      endLoading();
       isReady.current = true;
     }
   }, []);
 
   return (
-    <div
-      id="editorjs"
-      style={{
-        marginBottom: '1em',
-      }}
-    />
+    <>
+      {isLoading && <Skeleton />}
+      <div
+        id="editorjs"
+        style={{
+          marginBottom: '1em',
+        }}
+      ></div>
+    </>
   );
 };
 

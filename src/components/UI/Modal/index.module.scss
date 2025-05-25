@@ -45,9 +45,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('../../../assets/bg-pc.jpg');
-  background-position: center center;
-  background-size: cover;
+
+  &--bg {
+    background-image: url('../../../assets/bg-pc.jpg');
+    background-position: center center;
+    background-size: cover;
+  }
 
   // &--active{
   //     @include flex;

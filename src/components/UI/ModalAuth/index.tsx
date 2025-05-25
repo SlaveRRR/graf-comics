@@ -137,7 +137,7 @@ const ModalAuth: FC = () => {
         </div>
         <p className={styles['login__signin']}>
           Еще нет аккаунта?{' '}
-          <span className={styles['login__link']} onClick={() => openModal(<ModalSignup />)}>
+          <span className={styles['login__link']} onClick={() => openModal(<ModalSignup />, { bg: true })}>
             Зарегистриуйтесь
           </span>
         </p>

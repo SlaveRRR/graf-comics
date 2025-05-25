@@ -1,14 +1,16 @@
 'use client';
-import { ctx } from '@/context/contextProvider';
 import { useGetArticleByIdQuery } from '@/store/api/articles';
 import { Category } from '@prisma/client';
 import cn from 'classnames';
+import { useSession } from 'next-auth/react';
 import { useParams } from 'next/navigation';
-import { FC, useContext, useEffect } from 'react';
+import { FC } from 'react';
 import { ComicsComment } from '../ComicsPreview/components';
 import { comments } from '../ComicsPreview/data';
 import { Avatar } from '../UI';
 import { ArticleView, BackLink } from '../shared';
+import { ShareButton } from '../shared/ShareButton';
+import { LikeButton, Skeleton } from './components';
 import styles from './index.module.scss';
 
 // prettier-ignore
@@ -24,22 +26,22 @@ const categoryObj = {
 const Article: FC = () => {
   const obj = useParams<{ id: string }>();
 
-  const { data, isLoading } = useGetArticleByIdQuery(obj?.id, {
+  const { data, isLoading, isError } = useGetArticleByIdQuery(obj?.id, {
     refetchOnFocus: false,
   });
 
-  const { setActiveLoader } = useContext(ctx);
+  const { data: userData } = useSession();
 
-  useEffect(() => {
-    setActiveLoader(isLoading);
-  }, [isLoading]);
-
-  if (!data) {
+  if (isError) {
     return (
       <div className="contaner">
         <p>Ошибка...</p>
       </div>
     );
+  }
+
+  if (isLoading) {
+    return <Skeleton />;
   }
 
   //@ts-ignore
@@ -61,12 +63,24 @@ const Article: FC = () => {
               <p className={styles['article__data']}>{new Date(data.createdAt).toLocaleDateString()}</p>
             </div>
             <ArticleView data={dataJson} />
-            {comments.map((comment) => (
-              <>
-                <ComicsComment key={comment.id} comment={comment} />
-              </>
-            ))}
+            <div className={styles['buttons']}>
+              <LikeButton
+                isLiked={data?.likes.includes(userData?.user?.id)}
+                count={data?.likes.length}
+                userId={userData?.user?.id}
+                articleId={data.id}
+              />
+
+              <ShareButton url={window.location.href} />
+            </div>
           </div>
+        </div>
+        <div className={styles['comments-container']}>
+          {comments.map((comment) => (
+            <>
+              <ComicsComment key={comment.id} comment={comment} />
+            </>
+          ))}
         </div>
       </div>
     </section>

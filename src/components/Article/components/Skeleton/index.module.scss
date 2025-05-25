@@ -1,0 +1,166 @@
+.article {
+  background: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.backLinkSkeleton {
+  height: 24px;
+  width: 100px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.coverSkeleton {
+  width: 100%;
+  height: 300px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.titleSkeleton {
+  height: 32px;
+  width: 80%;
+  background: #f0f0f0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.categorySkeleton {
+  height: 20px;
+  width: 120px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.metaContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.authorContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatarSkeleton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.authorSkeleton {
+  height: 20px;
+  width: 100px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.dateSkeleton {
+  height: 20px;
+  width: 80px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.contentSkeleton {
+  height: 16px;
+  width: 100%;
+  background: #f0f0f0;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.likeButtonSkeleton,
+.shareButtonSkeleton {
+  height: 40px;
+  width: 80px;
+  background: #f0f0f0;
+  border-radius: 20px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.commentsContainer {
+  margin-top: 40px;
+}
+
+.commentSkeleton {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.commentAvatarSkeleton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.commentContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.commentAuthorSkeleton {
+  height: 16px;
+  width: 120px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.commentTextSkeleton {
+  height: 14px;
+  width: 100%;
+  background: #f0f0f0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}

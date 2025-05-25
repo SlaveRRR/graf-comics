@@ -8,7 +8,7 @@ import styles from './index.module.scss';
 import { ModalProps } from './types';
 
 export const Modal: FC<ModalProps> = ({ className }) => {
-  const { isOpen, closeModal, content } = useModal();
+  const { isOpen, closeModal, content, settings } = useModal();
 
   return (
     <CSSTransition
@@ -20,7 +20,16 @@ export const Modal: FC<ModalProps> = ({ className }) => {
         ...styles,
       }}
     >
-      <div onClick={closeModal} className={cn(styles['modal'], className)}>
+      <div
+        onClick={closeModal}
+        className={cn(
+          styles['modal'],
+          {
+            [styles['modal--bg']]: settings?.bg,
+          },
+          className,
+        )}
+      >
         <div className={cn(styles['modal__container'], 'container')}>
           <div className={styles['modal__content']} onClick={(e) => e.stopPropagation()}>
             <BackLink mixClass={[styles['backLink']]} onClick={closeModal} />

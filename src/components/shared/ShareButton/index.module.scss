@@ -1,0 +1,13 @@
+@use '../../../styles/global' as *;
+
+.button {
+  cursor: pointer;
+  @include flex($gap: 6px);
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-weight: 600;
+  font-size: 0.86rem;
+  line-height: 13px;
+  color: $main-color;
+}

@@ -369,7 +369,7 @@ export const ModalSignup = () => {
 
         <p className={styles['registration__signin']}>
           Уже есть аккаунт?
-          <span className={styles['registration__link']} onClick={() => openModal(<ModalAuth />)}>
+          <span className={styles['registration__link']} onClick={() => openModal(<ModalAuth />, { bg: true })}>
             Войдите
           </span>
         </p>

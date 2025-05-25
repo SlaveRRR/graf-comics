@@ -31,6 +31,13 @@
     .icon {
       width: clamp(16px, 1.5vw, 32px);
       height: clamp(16px, 1.5vw, 32px);
+
+      &--dark {
+        path {
+          transition: 0.4s ease-in;
+          fill: white;
+        }
+      }
     }
 
     @include mediaMin($size: $device-M) {

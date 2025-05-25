@@ -3,7 +3,7 @@ import { api } from './index';
 import { ARTICLETAG, POPULARTAG } from './tags';
 
 const article = 'article';
-
+const likeArticle = 'like-article';
 const popular = 'popular';
 
 const extendedApi = api.injectEndpoints({
@@ -24,6 +24,15 @@ const extendedApi = api.injectEndpoints({
       providesTags: (result, error, arg) =>
         result ? [...result.map(({ id }) => ({ type: 'Popular' as const, id })), POPULARTAG] : [POPULARTAG],
     }),
+
+    likeArticle: builder.mutation<Article, { userId: string; articleId: string }>({
+      query: (body) => ({
+        url: `${likeArticle}`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: (result, error, { articleId }) => [{ type: 'Article', id: articleId }],
+    }),
   }),
 });
-export const { useGetArticlesQuery, useGetArticleByIdQuery, useGetPopularQuery } = extendedApi;
+export const { useGetArticlesQuery, useGetArticleByIdQuery, useGetPopularQuery, useLikeArticleMutation } = extendedApi;

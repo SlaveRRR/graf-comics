@@ -42,7 +42,7 @@ const Header: FC = () => {
   };
 
   const handleOpenModal = () => {
-    openModal(<ModalAuth />);
+    openModal(<ModalAuth />, { bg: true });
   };
 
   const withoutMobile = (callBack: () => void) => {

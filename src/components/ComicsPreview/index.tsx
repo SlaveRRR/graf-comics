@@ -20,7 +20,7 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData }) => {
   const { theme } = useTheme();
 
   const [isVisibleMore, setIsVisibleMore] = useState<boolean>(false);
-  console.log(comics);
+
   const router = useRouter();
   //сортировка
   const [commentsRender, setCommentsRender] = useState(comments);

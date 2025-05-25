@@ -142,6 +142,7 @@ model Article {
   isApproved  Boolean  @default(false)
   authorName  String
   category    Category
+  likes       String[]
 }
 
 model ArticleImage {

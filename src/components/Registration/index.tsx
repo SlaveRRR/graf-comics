@@ -133,7 +133,7 @@ const Registration = () => {
 
   useEffect(() => {
     if (size !== 'mobile') {
-      return openModal(<ModalSignup />);
+      return openModal(<ModalSignup />, { bg: true });
     }
   }, [size]);
 

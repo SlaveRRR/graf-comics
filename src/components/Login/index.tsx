@@ -75,7 +75,7 @@ const Login: FC = () => {
   useEffect(() => {
     if (size !== 'mobile') {
       router.replace('/');
-      return openModal(<ModalAuth />);
+      return openModal(<ModalAuth />, { bg: true });
     }
   }, [size]);
 

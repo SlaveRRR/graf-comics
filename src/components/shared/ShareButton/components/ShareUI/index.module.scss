@@ -1,0 +1,39 @@
+@use '../../../../../styles/global' as *;
+
+.title {
+  font-size: 0.9rem;
+}
+
+.share-container {
+  padding: 20px;
+  background: white;
+  position: relative;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.copied-tooltip {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.copy-button {
+  @include flex($gap: 4px, $align: center);
+
+  & > svg {
+    fill: white;
+  }
+}
+
+.share-buttons {
+  @include flex($gap: 12px, $wrap: wrap, $justify: center);
+  margin: 20px 0;
+}

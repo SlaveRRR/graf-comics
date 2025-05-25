@@ -21,9 +21,21 @@
   padding-top: 0.5em;
 }
 
+.buttons {
+  @include flex($justify: space-between);
+}
+
+.comments-container {
+  padding-top: 1em;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+}
+
 .article {
   &__container {
     padding-top: 1em;
+    padding-bottom: 1em;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 10px;
