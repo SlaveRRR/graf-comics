@@ -1,10 +1,9 @@
 'use client';
-import FooterLogo from '@/assets/logo-footer.svg';
+import { useTheme } from '@/context/themeProvider';
 import cn from 'classnames';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 
 const Footer: FC = () => {
@@ -12,6 +11,16 @@ const Footer: FC = () => {
   if (path.includes('comics')) {
     return;
   }
+  const { theme, setTheme } = useTheme();
+  const [logo, setLogo] = useState<string>();
+  useEffect(() => {
+    if (theme === 'light') {
+      setLogo('logo-light.svg');
+    } else {
+      setLogo('logo-dark.svg');
+    }
+  }, [theme]);
+
   return (
     <footer className={styles['footer']}>
       <div className={cn(styles['footer-container'], 'container')}>
@@ -101,27 +110,34 @@ const Footer: FC = () => {
           </Link>
         </div>
         <div className={styles['links']}>
-          <Link className={styles['links__item']} href="/about">
-            О нас <span className={styles['dot']}></span>
-          </Link>
-          <Link className={styles['links__item']} href="/help">
-            Помощь <span className={styles['dot']}></span>
-          </Link>
-          <Link className={styles['links__item']} href="/author-rights">
-            Авторское право
-          </Link>
-          <Link className={styles['links__item']} href="/user-agreement">
-            Пользовательское соглашение <span className={styles['dot']}></span>
-          </Link>
-          <Link className={styles['links__item']} href="/policy">
-            Политика
-          </Link>
-          <Link className={styles['links__item']} href="/contacts">
-            Контакты <span className={styles['dot']}></span>
-          </Link>
-          <Link className={styles['links__item']} href="/contract">
-            Агентский договор
-          </Link>
+          <div className={styles['links__group']}>
+            <Link className={styles['links__item']} href="/about">
+              О нас <span className={styles['dot']}></span>
+            </Link>
+            <Link className={styles['links__item']} href="/help">
+              Помощь <span className={styles['dot']}></span>
+            </Link>
+            <Link className={styles['links__item']} href="/author-rights">
+              Авторское право
+            </Link>
+          </div>
+          <div className={styles['links__group']}>
+            <Link className={styles['links__item']} href="/user-agreement">
+              Пользовательское соглашение <span className={styles['dot']}></span>
+            </Link>
+            <Link className={styles['links__item']} href="/policy">
+              Политика
+            </Link>
+          </div>
+          <div className={styles['links__group']}>
+            <Link className={styles['links__item']} href="/contacts">
+              Контакты <span className={styles['dot']}></span>
+            </Link>
+
+            <Link className={styles['links__item']} href="/contract">
+              Агентский договор
+            </Link>
+          </div>
         </div>
 
         <Link
@@ -132,7 +148,7 @@ const Footer: FC = () => {
           }}
           href={'/'}
         >
-          <Image alt="logo-foooter" src={FooterLogo} />
+          <img src={logo} alt="logo" className={styles['footer-logo']} />
         </Link>
       </div>
     </footer>

@@ -11,10 +11,16 @@
 }
 
 .links {
-  @include flex($wrap: wrap);
+  @include flex($dir: column);
   row-gap: 0.4em;
   column-gap: 1.27em;
   margin-bottom: 0.8em;
+
+  &__group {
+    @include flex($wrap: wrap);
+    row-gap: 0.4em;
+    column-gap: 1.27em;
+  }
 
   &__item {
     position: relative;
@@ -42,6 +48,15 @@
 
 .footer-icon {
   @include themeFooterIcons;
+}
+
+.footer-logo {
+  @include themeLogoSrc;
+  width: 164px;
+  height: 86px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .dot {
