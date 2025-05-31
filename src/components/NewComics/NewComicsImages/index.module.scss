@@ -73,7 +73,7 @@
 .banner {
   @include flex;
   @include clickableElement;
-  background-color: white;
+  @include themeSectionBackground;
   border: 1px solid $main-color;
   min-height: 109px;
   width: 100%;

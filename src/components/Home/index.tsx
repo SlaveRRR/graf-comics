@@ -1,8 +1,9 @@
 'use client';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import styles from './index.module.scss';
 
+import { useTheme } from '@/context/themeProvider';
 import cn from 'classnames';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
@@ -15,6 +16,14 @@ import { ArrowLink } from '../shared/index';
 import { genresRoutes } from './constants';
 const Home: FC = () => {
   const { data, status } = useSession();
+  const { theme, setTheme } = useTheme();
+  const [img, setImg] = useState<string>();
+  useEffect(() => {
+    const selectedGenre = genresRoutes.find((genre) => genre.src === img || genre.darkimg === img);
+    if (selectedGenre) {
+      setImg(theme === 'light' ? selectedGenre.src : selectedGenre.darkimg);
+    }
+  }, [theme]);
 
   const router = useRouter();
 
@@ -142,9 +151,9 @@ const Home: FC = () => {
             <Badge mixClass={[styles['genres__badge']]} text={text} url={url} />
           ))}
 
-          {genresRoutes.map(({ src, text, url }) => (
-            <Link className={styles['genres__card']} href={url}>
-              <Image src={src} height={200} width={290} alt="genre" />
+          {genresRoutes.map(({ src, darkimg, text, url }) => (
+            <Link key={text} className={styles['genres__card']} href={url}>
+              <Image src={theme === 'light' ? src : darkimg} height={200} width={290} alt={text} />
             </Link>
           ))}
         </div>
