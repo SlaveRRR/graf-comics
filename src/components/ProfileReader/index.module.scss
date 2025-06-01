@@ -76,7 +76,7 @@
 
     @include mediaMin(1490px) {
       font-size: 1.715rem;
-      margin-bottom: 0.35em;
+      margin-bottom: 1.2em;
     }
   }
 
@@ -243,4 +243,7 @@
   text-align: center;
   border-radius: 18px;
   margin-bottom: 20px;
+  @include mediaMin($device-M) {
+    display: none;
+  }
 }
