@@ -224,6 +224,7 @@
 }
 
 .logo-mobile {
+  margin-right: 20px;
   @include mediaMin($device-M) {
     display: none;
   }
@@ -247,8 +248,10 @@
 }
 
 .logo-header {
+  margin-right: 50px;
   @include mediaMax($device-L) {
     display: none;
+    margin-right: 0;
   }
 }
 
@@ -272,4 +275,27 @@
 
 .arrow {
   margin-right: 0.3em;
+}
+
+.search {
+  @include mediaMax($size: $device-M) {
+    display: none;
+  }
+  width: 30px;
+  cursor: pointer;
+  :hover {
+    transform: scale(1.1);
+  }
+  &__mobile {
+    @include mediaMin($size: $device-M) {
+      display: none;
+      width: 10px;
+    }
+    &--view {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 'use client';
-import { FC, useContext, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { ctx } from '../../../context/contextProvider';
 
 import { Avatar, BurgerMenu, Logo, ModalAuth, Switch } from '@UI/index';
@@ -24,7 +24,7 @@ const Header: FC = () => {
   const { setActiveBurger, activeBurger, setActiveAvatar, activeAvatar, visibleMenu } = useContext(ctx);
 
   const { openModal } = useModal();
-
+  const [search, setSearch] = useState('');
   const { theme, setTheme } = useTheme();
 
   const { size } = useWindowSize();
@@ -53,6 +53,14 @@ const Header: FC = () => {
       setActiveBurger(false);
     }
   };
+
+  useEffect(() => {
+    if (theme == 'light') {
+      setSearch('/search.svg');
+    } else {
+      setSearch('/searchWhite.svg');
+    }
+  }, [theme]);
 
   return (
     visibleMenu && (
@@ -87,6 +95,7 @@ const Header: FC = () => {
               </svg>
               Закрыть
             </button>
+
             {Object.entries(routes).map(([text, url], i) => (
               <>
                 <Link
@@ -169,8 +178,12 @@ const Header: FC = () => {
               Выйти
             </button>
           </nav>
-
-          <BurgerMenu isActive={activeBurger} onClick={handleBurgerClick} />
+          <div className={styles['search__mobile--view']}>
+            <BurgerMenu isActive={activeBurger} onClick={handleBurgerClick} />
+            <div className={styles['search__mobile']} onClick={() => {}}>
+              <img src={search} alt="" className={styles['search__mobile']} />
+            </div>
+          </div>
           <Link href={'/'}>
             <picture className={styles['logo-mobile']}>
               <source type="image/webp" srcSet="/logo-mobile.webp 1x, /logo-mobile2x.webp 2x, /logo-mobile3x.webp 3x" />
@@ -185,6 +198,9 @@ const Header: FC = () => {
             </picture>
           </Link>
           <div className={styles['btn-container']}>
+            <div className={styles['search']} onClick={() => {}}>
+              <img src={search} alt="" className={styles['search']} />
+            </div>
             {status === 'authenticated' || status === 'loading' ? (
               <button
                 onPointerOver={() => withoutMobile(() => setDropDownVisible(true))}
@@ -263,7 +279,7 @@ const Header: FC = () => {
                 </svg>
               }
               unchecked={
-                <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18">
+                <svg fill="white" xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18">
                   <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" />
                 </svg>
               }
