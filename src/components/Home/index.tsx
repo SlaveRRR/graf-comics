@@ -149,6 +149,17 @@ const Home: FC = () => {
           <SliderArticles className={styles['slider']} slides={['Статья №1', 'Статья №2', 'Статья №3']} />
         </div>
       </section>
+      <section className={styles['co-author-section']}>
+        <div className={cn('container', styles['co-author__container'])}>
+          <p className={styles['co-author__text']}>
+            Есть чем поделиться с миром? Знаешь интересные{' '}
+            <span className={styles['co-author__idea']}>факты о комиксах</span>?
+          </p>
+          <Link href="/add-article/images" className={styles['co-author__link']}>
+            Напиши статью
+          </Link>
+        </div>
+      </section>
       <section className="article-section">
         <div className="container">
           <ArrowLink mixClass={[styles['slider-container__link']]} text="Полезные статьи" url="/articles" />
