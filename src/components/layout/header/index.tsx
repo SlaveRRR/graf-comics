@@ -31,8 +31,8 @@ const Header: FC = () => {
 
   const path = usePathname();
 
-  const handleSignOut = () => {
-    signOut();
+  const handleSignOut = async () => {
+    await signOut({ redirect: false });
     router.replace('/');
   };
 
