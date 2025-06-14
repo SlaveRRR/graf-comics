@@ -43,7 +43,7 @@ const chapters: IChapter[] = [
 const Comics: FC<Props> = ({ imgs, title }) => {
   const { visibleMenu } = useContext(ctx);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(-1);
 
   const containerRef = useRef<HTMLDivElement>(null);
 

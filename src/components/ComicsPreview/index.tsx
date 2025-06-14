@@ -138,7 +138,7 @@ const ComicsPreview: FC<ComicsPreviewProps> = ({ comics = comicsData, isBackend 
                   strokeLinejoin="round"
                 />
               </svg>
-              0
+              0.00
             </p>
             <p className={styles['comics-page__bookmarks']}>
               <svg
