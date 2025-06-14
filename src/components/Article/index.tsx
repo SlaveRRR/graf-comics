@@ -47,7 +47,16 @@ const Article: FC = () => {
   //@ts-ignore
   const dataJson = JSON.parse(data.content);
   return (
-    <section className="article">
+    <section
+      className="article"
+      style={{
+        backgroundImage: 'url(/bg-article.jpg)',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+      }}
+    >
       <div className={cn('container', styles['padding'])}>
         <BackLink mixClass={[styles['link']]} />
         <div className={styles['inner-container']}>
