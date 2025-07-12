@@ -1,0 +1,164 @@
+@use '../../styles/global' as *;
+
+.authorship {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  margin-top: 50px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  &__comics {
+    display: flex;
+    @include mediaMax($device-PC) {
+      flex-direction: column;
+    }
+    flex-direction: row;
+    align-items: start;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px;
+    &--first {
+      @include mediaMax($device-PC) {
+        width: 100%;
+      }
+      width: 37%;
+      @include themeBadge;
+      border-radius: 20px;
+      padding: 35px 40px;
+    }
+    &--two {
+      @include mediaMax($device-PC) {
+        width: 100%;
+      }
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  &__header {
+    font-size: 64px;
+    color: red;
+  }
+
+  &__view {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &--flag {
+      width: 25px;
+    }
+  }
+  &__view > p {
+    @include themeText;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  &__genre {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  &__genre > div {
+    width: 60px;
+    height: 25px;
+    text-align: center;
+    align-content: center;
+    border-radius: 10px;
+    @include themeInput;
+  }
+  &__ViewTag {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    &--tag {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+  }
+  &__ViewTag--tag > div {
+    width: 60px;
+    height: 25px;
+    text-align: center;
+    align-content: center;
+    border-radius: 10px;
+    @include themeInput;
+  }
+
+  &__comics--two > div > p {
+    color: #818181;
+  }
+  &__ViewTag--tag > div > p,
+  &__genre > div > p {
+    @include themeInputPlaceholder;
+    font-weight: 600;
+  }
+
+  &__comics--two > div {
+    @include themeBadge;
+    border-radius: 20px;
+    padding: 35px 40px;
+  }
+  &__text {
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 10px;
+    @include themeText;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  &__text > span {
+    color: #7a5af8;
+  }
+  &__comics--button {
+    width: 100%;
+    background-color: transparent;
+  }
+  &__mycomics {
+    &--first {
+      @include mediaMax($device-PC) {
+        width: 100%;
+      }
+      width: 37%;
+      border-radius: 20px;
+
+      display: flex;
+      flex-direction: column;
+      font-size: 20px;
+      font-weight: 600;
+      gap: 5px;
+    }
+    &--two {
+      @include mediaMax($device-PC) {
+        width: 100%;
+      }
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    &--buttonfirst {
+      padding: 15px 40px;
+      @include themeBadge;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      color: #7a5af8;
+    }
+    &--buttontwo {
+      padding: 15px 40px;
+      @include themeBadge;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+  }
+  &__comics--two {
+    width: 100%;
+  }
+}
