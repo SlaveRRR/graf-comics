@@ -19,64 +19,126 @@ datasource db {
 }
 
 model User {
-  id                            String         @id @default(auto()) @map("_id") @db.ObjectId
-  avatar                        String?        @default("")
-  email                         String?        @unique
+  id                            String                       @id @default(auto()) @map("_id") @db.ObjectId
+  avatar                        String?                      @default("")
+  email                         String?                      @unique
   name                          String?
   password                      String?
-  role                          Role           @default(BASIC)
+  role                          Role                         @default(BASIC)
   link                          String?
-  gender                        Gender         @default(NONE)
-  emailVerified                 Boolean?       @default(false)
+  gender                        Gender                       @default(NONE)
+  emailVerified                 Boolean?                     @default(false)
   birthDate                     DateTime?
-  subscribers                   Int            @default(0)
+  subscribers                   Int                          @default(0)
   about                         String?
-  isArticleApprove              Boolean        @default(true)
-  isComicsApprove               Boolean        @default(true)
-  closedProfile                 Boolean        @default(false)
-  closedSubscribers             Boolean        @default(false)
+  isArticleApprove              Boolean                      @default(true)
+  isComicsApprove               Boolean                      @default(true)
+  closedProfile                 Boolean                      @default(false)
+  closedSubscribers             Boolean                      @default(false)
   comics                        Comics[]
+  collaborationRequests         CollaborationRequest[] // Добавлено: заявки пользователя
+  collaborationResponses        CollaborationResponse[] // Добавлено: отклики пользователя
+  savedCollaborationRequests    SavedCollaborationRequests[]
   comments                      Comment[]
   accounts                      Account[]
   sessions                      Session[]
   Article                       Article[]
   ArticleImage                  ArticleImage[]
-  showMatureContent             Boolean        @default(false)
-  showNotificationsSubscribes   Boolean        @default(true)
-  showNotificationsComments     Boolean        @default(true)
-  showNotificationsPaidContent  Boolean        @default(true)
-  showNotificationsLikes        Boolean        @default(true)
-  showNotificationsGifts        Boolean        @default(true)
-  showNotificationsNewPosts     Boolean        @default(true)
-  showNotificationsListsReading Boolean        @default(true)
-  showNotificationsListsRead    Boolean        @default(true)
-  showNotificationsListsPlanned Boolean        @default(true)
-  showNotificationsListsLiked   Boolean        @default(true)
-  showNotificationsListsDropped Boolean        @default(true)
-  emailNotificationsUpdates     Boolean        @default(true)
-  emailNotificationsSurveys     Boolean        @default(true)
-  emailNotificationsReports     Boolean        @default(true)
+  showMatureContent             Boolean                      @default(false)
+  showNotificationsSubscribes   Boolean                      @default(true)
+  showNotificationsComments     Boolean                      @default(true)
+  showNotificationsPaidContent  Boolean                      @default(true)
+  showNotificationsLikes        Boolean                      @default(true)
+  showNotificationsGifts        Boolean                      @default(true)
+  showNotificationsNewPosts     Boolean                      @default(true)
+  showNotificationsListsReading Boolean                      @default(true)
+  showNotificationsListsRead    Boolean                      @default(true)
+  showNotificationsListsPlanned Boolean                      @default(true)
+  showNotificationsListsLiked   Boolean                      @default(true)
+  showNotificationsListsDropped Boolean                      @default(true)
+  emailNotificationsUpdates     Boolean                      @default(true)
+  emailNotificationsSurveys     Boolean                      @default(true)
+  emailNotificationsReports     Boolean                      @default(true)
   residenceName                 String?
 }
 
 model Comics {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
-  status      String
-  covers      String[]
-  banner      String
-  genres      Genre[]
-  focus       Focus[]
-  tags        Tag[]
-  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId    String   @db.ObjectId
-  rating      String
-  toms        Tom[]
-  createdAt   DateTime @default(now())
-  isApproved  Boolean  @default(false)
-  likes       String[]
+  id              String                       @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  description     String
+  status          String
+  covers          String[]
+  banner          String
+  genres          Genre[]
+  focus           Focus[]
+  tags            Tag[]
+  author          User                         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId        String                       @db.ObjectId
+  rating          String
+  toms            Tom[]
+  createdAt       DateTime                     @default(now())
+  isApproved      Boolean                      @default(false)
+  likes           String[]
+  savedInRequests SavedCollaborationRequests[] @relation("ComicsSavedRequests")
 }
+
+// НОВАЯ МОДЕЛЬ: Заявка на соавторство
+model CollaborationRequest {
+  id           String                       @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
+  cover        String?
+  roles        String[]
+  genres       Genre[]
+  tags         Tag[]
+  author       User                         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId     String                       @db.ObjectId
+  responses    CollaborationResponse[] // Отклики на заявку
+  createdAt    DateTime                     @default(now())
+  updatedAt    DateTime                     @updatedAt
+  savedInUsers SavedCollaborationRequests[] @relation("RequestSavedByUsers")
+}
+
+// НОВАЯ МОДЕЛЬ: Отклик на заявку
+model CollaborationResponse {
+  id        String               @id @default(auto()) @map("_id") @db.ObjectId
+  request   CollaborationRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  requestId String               @db.ObjectId
+  user      User                 @relation(fields: [userId], references: [id])
+  userId    String               @db.ObjectId
+  roles     String[]
+  status    ResponseStatus       @default(PENDING)
+  message   String?
+  files     ResponseFile[]       // Связь с файлами
+  createdAt DateTime             @default(now())
+}
+
+model SavedCollaborationRequests {
+  id        String               @id @default(auto()) @map("_id") @db.ObjectId
+  user      User                 @relation(fields: [userId], references: [id])
+  userId    String               @db.ObjectId
+  request   CollaborationRequest @relation(fields: [requestId], references: [id], name: "RequestSavedByUsers")
+  requestId String               @db.ObjectId
+  comics    Comics?              @relation(fields: [comicsId], references: [id], name: "ComicsSavedRequests")
+  comicsId  String?              @db.ObjectId
+  createdAt DateTime             @default(now())
+
+  @@unique([userId, requestId])
+}
+
+model ResponseFile {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  response   CollaborationResponse @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  responseId String   @db.ObjectId
+  filename   String
+  mimeType   String
+  data       Bytes    // Бинарные данные файла
+  size       Int
+  createdAt  DateTime @default(now())
+
+  @@unique([responseId, filename])
+}
+
 
 model Tom {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
@@ -181,6 +243,13 @@ enum Role {
   BASIC
   AUTHOR
   ADMIN
+}
+
+// НОВЫЙ ENUM: Статусы откликов
+enum ResponseStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
 }
 
 enum Category {

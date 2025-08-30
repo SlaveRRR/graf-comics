@@ -8,7 +8,7 @@
   border-radius: 20px;
   font-weight: 600;
 
-  @include mediaMin($device-M) {
+  @include Min($device-M) {
     margin-bottom: 3.5em;
   }
 

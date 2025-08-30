@@ -11,6 +11,7 @@ export const comicsData: IComics = {
   genres: [],
   focus: [],
   tags: [],
+  roles: [],
   rating: [
     {
       colorClass: 'author',
