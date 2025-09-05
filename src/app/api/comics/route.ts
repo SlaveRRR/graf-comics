@@ -149,3 +149,92 @@ export const POST = async (request: NextRequest) => {
     );
   }
 };
+
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+
+    // Получаем параметры фильтрации из URL
+    const genre = searchParams.get('genre');
+    const focusParam = searchParams.get('focus');
+    const tag = searchParams.get('tag');
+    const statusParam = searchParams.get('status');
+    const rating = searchParams.get('rating');
+    const sort = searchParams.get('sort') || 'createdAt_desc';
+    const search = searchParams.get('search');
+
+    // Строим условия фильтрации
+    const where: any = {
+      isApproved: true,
+    };
+
+    if (genre) {
+      const genreEnum = genresMap[genre.toLowerCase()];
+      if (genreEnum) {
+        where.genres = { has: genreEnum };
+      }
+    }
+
+    if (focusParam) {
+      const focusEnum = genresMap[focusParam.toLowerCase()];
+      if (focusEnum) {
+        where.focus = { has: focusEnum };
+      }
+    }
+
+    if (tag) {
+      const tagEnum = genresMap[tag.toLowerCase()];
+      if (tagEnum) {
+        where.tags = { has: tagEnum };
+      }
+    }
+
+    if (statusParam) {
+      where.status = statusParam;
+    }
+
+    if (rating) {
+      where.rating = rating;
+    }
+
+    if (search) {
+      where.OR = [
+        { title: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+      ];
+    }
+
+    // Сортировка
+    const [sortField, sortOrder] = sort.split('_');
+    const orderBy = { [sortField]: sortOrder };
+
+    const comics = await prisma.comics.findMany({
+      where,
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            avatar: true,
+          },
+        },
+        toms: {
+          include: {
+            chapters: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+      },
+      orderBy,
+    });
+
+    return NextResponse.json(comics);
+  } catch (error) {
+    console.error('Error fetching comics:', error);
+    return NextResponse.json({ message: 'Error fetching comics' }, { status: 500 });
+  }
+}

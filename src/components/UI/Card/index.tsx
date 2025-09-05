@@ -8,28 +8,33 @@ import { useDebouncedCallback } from 'use-debounce';
 import styles from './index.module.scss';
 import { CardProps } from './types';
 
-const Card: FC<CardProps> = ({
+// Обновите Props чтобы принимать cover
+interface ExtendedCardProps extends CardProps {
+  cover?: string;
+}
+
+const Card: FC<ExtendedCardProps> = ({
   text,
   mixClass = [],
   type = null,
   onClick,
   imageSrc,
+  cover, // ← Новый пропс
   isLiked = false,
   comicsId = '1',
 }) => {
   const [like, setLike] = useState(isLiked);
-
   const [mutate, { isError }] = useLikeComicsMutation();
-
   const { data } = useSession();
+
+  // Используем cover если передан, иначе imageSrc
+  const imageSource = cover || imageSrc;
 
   const onClickLike = useDebouncedCallback(async () => {
     const userId = data?.user?.id;
-
     if (userId) {
       await mutate({ comicsId: comicsId, userId: data?.user?.id });
     }
-
     if (isError) {
       toast.error('Произошла ошибка!');
       setLike((prev) => !prev);
@@ -47,7 +52,7 @@ const Card: FC<CardProps> = ({
         onClick={() => onClick?.()}
         className={cn(styles['card__content'], { [styles['clickable']]: onClick }, ...mixClass)}
       >
-        {imageSrc && <img className={styles['card__img']} src={imageSrc} />}
+        {imageSource && <img className={styles['card__img']} src={imageSource} alt={text} />}
 
         {(() => {
           switch (type) {
