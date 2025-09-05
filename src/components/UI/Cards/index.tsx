@@ -1,11 +1,14 @@
+// components/UI/Cards/index.tsx
 import cn from 'classnames';
 import { FC } from 'react';
 import { Card } from '..';
 import styles from './index.module.scss';
 
 interface ICard {
+  id: string;
   name: string;
   type?: string;
+  cover?: string;
 }
 
 type Props = {
@@ -16,8 +19,13 @@ type Props = {
 const Cards: FC<Props> = ({ cards, mixClass }) => {
   return (
     <div className={cn(styles['cards'], ...mixClass)}>
-      {cards.map((v, i) => (
-        <Card key={`${v}${i}`} text={v.name} type={v.type} />
+      {cards.map((card) => (
+        <Card
+          key={card.id}
+          text={card.name}
+          type={card.type}
+          cover={card.cover} // ← Теперь передаем cover
+        />
       ))}
     </div>
   );
